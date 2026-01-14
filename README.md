@@ -1,27 +1,30 @@
 # Pag EXPO-LMAD 🚀
-> Reescritura del sistema legacy bajo arquitectura limpia y Laravel 12.
+> Reestructuración integral del sistema de la EXPO LMAD, enfocada en estandarización, mantenibilidad y escalabilidad, utilizando Laravel 12 y una arquitectura limpia.
 
 ## 📌 Índice
-1. [¿Por qué este proyecto?](#-porque)
+1. [¿Por qué este proyecto?](#-por-qué)
 2. [Documentación Técnica](docs/README.md)
    - [⚙️ Setup del Proyecto](docs/SETUP.md)
    - [📏 Convenciones de Código](docs/CONVENCIONES.md)
    - [🏗️ Arquitectura y Patrones](docs/ARQUITECTURA.md)
    - [🗄️ Diseño de Base de Datos](docs/DATABASE.md)
-3. [Stack Tecnológico](#-stack-tecnológico)
+3. [🛠 Stack Tecnológico](#-stack-tecnológico)
 
 ---
 
 ## 💡 El Proyecto
 
 ### ¿Por qué?
-[PAG_EXPO: Aquí explícame el problema del sistema anterior, ej: Era difícil de mantener, lento o desordenado]
+Este proyecto surge con la intención de **reestructurar por completo la página de la EXPO LMAD**, ya que el sistema anterior carecía de estándares claros, presentaba problemas de organización y resultaba difícil de mantener y escalar.  
+Tras analizar estas limitaciones, se concluyó que la mejor solución era **iniciar un nuevo proyecto desde cero**, permitiendo establecer una base sólida y bien definida desde el inicio.
 
 ### ¿Para qué?
-[PAG_EXPO: Cuál es el objetivo final, ej: Centralizar la gestión de proyectos de los estudiantes de forma escalable]
+El objetivo principal es **evitar la fragmentación y el desorden del código**, asegurando que la estructura del proyecto sea clara y comprensible en todo momento.  
+Además, se busca contar con **una documentación sólida**, facilitar el trabajo colaborativo y garantizar que la plataforma sea **escalable, mantenible y preparada para futuras mejoras**.
 
 ### ¿Cómo?
-Utilizando PHP 8.2+ con tipado estricto, una arquitectura de **Servicios y Repositorios** para separar la lógica de negocio de la persistencia, y una interfaz moderna con **TailwindCSS**.
+Mediante la aplicación de **estándares de desarrollo**, la **separación clara de responsabilidades** y la organización de la lógica de negocio en capas bien definidas.  
+Todo esto con el propósito de mantener un código **sencillo, legible y consistente**, que permita establecer un estándar funcional y sostenible a largo plazo.
 
 ## 🛠 Stack Tecnológico
 - **Core:** Laravel 12 & PHP 8.2 (Strict Types)
@@ -30,4 +33,4 @@ Utilizando PHP 8.2+ con tipado estricto, una arquitectura de **Servicios y Repos
 - **Server:** Entorno nativo (PHP Artisan)
 
 ---
-[© 2026 - Pag EXPO-LMAD]
+© 2026 – Pag EXPO-LMAD
