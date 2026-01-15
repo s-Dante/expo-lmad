@@ -57,6 +57,7 @@ cd expo-lmad
 
 ### Paso 2: Inicialización automática
 
+*(Se recomienda ya tener activo XAMPP con los servidores MySQL Database y Apache Web Server en ejecución)
 Se creó un comando de Composer para automatizar el setup del proyecto (instalación de dependencias, copia del archivo `.env`, generación de la llave de la aplicación y migraciones):
 
 ```bash
@@ -67,7 +68,7 @@ composer run setup-dev
 
 El comando anterior intentará configurar la base de datos automáticamente. Si ocurre algún error, revisa tu archivo `.env`:
 
-* Verifica que `DB_DATABASE` coincida con el nombre de tu base de datos en MySQL (XAMPP).
+* Verifica que `DB_DATABASE` coincida con el nombre de la base de datos en MySQL (XAMPP) [Dicho nombre debe de ser: `bd_expo_lmad].
 * Si realizas cambios en el archivo `.env`, ejecuta nuevamente:
 
   ```bash

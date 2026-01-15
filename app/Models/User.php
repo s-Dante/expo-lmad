@@ -12,6 +12,7 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $table = 'tbl_usuarios'; //<- Debe de usar esta tabla
     /**
      * The attributes that are mass assignable.
      *
@@ -19,8 +20,14 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'nombre',
+        'apellido_paterno',
+        'apellido_materno',
         'email',
         'password',
+        'llave_acceso',
+        'rol',
+        'estatus'
     ];
 
     /**
