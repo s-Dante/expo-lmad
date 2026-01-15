@@ -21,7 +21,7 @@ app/
 └── Services/                # Lógica de negocio compleja (Ej: Procesamiento de QR)
 resources/
 ├── css/
-│   ├── pages/               # CSS específico por vista compleja (Basicamente estructura de carpetas    como en views/)
+│   ├── pages/               # CSS específico por vista compleja (Basicamente estructura de carpetas como en views/)
 │   └── app.css              # Tailwind base  (Basicamente estructura de carpetas como en views/)
 └── views/
     ├── layouts/             # app.blade.php y otros
