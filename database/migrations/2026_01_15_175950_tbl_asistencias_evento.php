@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('visitantes_id')->constrained('tbl_visitantes')->onDelete('cascade');
             $table->boolean('asistencia')->default(false);
             $table->dateTime('fecha_asistencia');
-            $table->unique(['evento_id', 'visitantes_id']);
+            $table->unique(['evento_id', 'visitantes_id'], 'unique_evento_visitante');
             $table->timestamps();
         });
     }

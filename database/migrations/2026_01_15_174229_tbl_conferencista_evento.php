@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tbl_conferencista_evento', function (Blueprint $table) {
             $table->foreignId('conferencista_id')->constrained('tbl_conferencistas')->onDelete('cascade');
             $table->foreignId('evento_id')->constrained('tbl_eventos')->onDelete('cascade');
-            $table->primary(['conferencista_id', 'evento_id']);
+            $table->primary(['conferencista_id', 'evento_id'], 'primary_conferencista_evento');
         });
     }
 

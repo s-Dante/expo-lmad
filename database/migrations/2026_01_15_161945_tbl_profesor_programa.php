@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_planes_academicos', function (Blueprint $table) {
+        Schema::create('tbl_profesor_programa', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->unique(['nombre', 'programa_academico_id'], 'unique_nombre_programa_academico');
-            $table->boolean('estatus')->default(true);
+            $table->foreignId('profesor_id')->constrained('tbl_profesores')->onDelete('cascade');
             $table->foreignId('programa_academico_id')->constrained('tbl_programas_academicos')->onDelete('restrict');
+            $table->unique(['profesor_id', 'programa_academico_id'], 'unique_profesor_programa');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_planes_academicos');
+        Schema::dropIfExists('tbl_profesor_programa');
     }
 };

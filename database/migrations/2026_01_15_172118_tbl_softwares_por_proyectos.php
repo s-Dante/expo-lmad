@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('proyecto_id')->constrained('tbl_proyectos')->onDelete('cascade');
             $table->foreignId('software_id')->constrained('tbl_softwares')->onDelete('cascade');
 
-            $table->primary(['proyecto_id', 'software_id']);
+            $table->primary(['proyecto_id', 'software_id'], 'primary_proyecto_software');
         });
     }
 

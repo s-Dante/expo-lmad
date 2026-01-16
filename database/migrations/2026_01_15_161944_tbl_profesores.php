@@ -17,9 +17,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellido_paterno');
             $table->string('apellido_materno')->nullable();
-            $table->string('departamento', 100);
             $table->foreignId('usuario_id')->nullable()->unique()->constrained('tbl_usuarios')->nullOnDelete();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->unsignedTinyInteger('creditos');
             $table->unsignedTinyInteger('semestre');
             $table->foreignId('plan_academico_id')->constrained('tbl_planes_academicos')->onDelete('restrict');
+            $table->unique(['clave', 'plan_academico_id'], 'unique_clave_plan');
+            $table->index('semestre');
             $table->softDeletes();
             $table->timestamps();
         });

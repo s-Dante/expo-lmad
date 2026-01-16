@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('apellido_paterno')->after('nombre');
             $table->string('apellido_materno')->after('apellido_paterno')->nullable();
             $table->string('llave_acceso')->unique()->nullable()->after('password');
-            $table->string('rol', 30, )->default('estudiante')->index()->after('llave_acceso');
+            $table->enum('rol', ['estudiante', 'profesor', 'admin', 'super_admin', 'staff'])->default('estudiante')->index()->after('llave_acceso');
             $table->boolean('estatus')->default(true)->after('rol');
         });
     }

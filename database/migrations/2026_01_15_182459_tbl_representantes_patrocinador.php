@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('patrocinador_id')->constrained('tbl_patrocinadores')->onDelete('cascade');
             $table->foreignId('visitante_id')->constrained('tbl_visitantes')->onDelete('cascade');
             $table->string('cargo')->nullable();
-            $table->unique(['patrocinador_id', 'visitante_id']);
+            $table->unique(['patrocinador_id', 'visitante_id'], 'unique_patrocinador_visitante');
             $table->softDeletes();
             $table->timestamps();
         });

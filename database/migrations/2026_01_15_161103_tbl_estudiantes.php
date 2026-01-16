@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('usuario_id')->nullable()->unique()->constrained('tbl_usuarios')->nullOnDelete();
             $table->string('email')->unique()->nullable(); //<- Revisar si es algo que nos pueden proporcionar, espero y creo que si
             $table->foreignId('programa_academico_id')->constrained('tbl_programas_academicos')->onDelete('restrict');
+            $table->index('semestre');
             $table->softDeletes();
             $table->timestamps();
         });
