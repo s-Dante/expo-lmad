@@ -15,22 +15,24 @@ class MultimediaProyectoSeeder extends Seeder
      */
     public function run(): void
     {
-        $proyectos = Proyecto::take(3)->get();
+        $proyectos = Proyecto::all();
+
+        if ($proyectos->isEmpty()) {
+            return;
+        }
 
         foreach ($proyectos as $proyecto) {
-            // Portada
             MultimediaProyecto::factory()
                 ->portada()
                 ->create([
                     'proyecto_id' => $proyecto->id,
-                    'tipo' => 'imagen',
                 ]);
 
-            // Multimedia adicional
             MultimediaProyecto::factory()
-                ->count(3)
+                ->count(rand(2, 5))
                 ->create([
                     'proyecto_id' => $proyecto->id,
+                    'es_portada' => false,
                 ]);
         }
     }

@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use \Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -50,6 +53,31 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'estatus' => 'boolean',
         ];
+    }
+
+    /**
+     * Relacoin uno a uno con Estudiante
+     */
+    public function estudiante(): HasOne
+    {
+        return $this->hasOne(Estudiante::class, 'usuario_id');
+    }
+
+    /**
+     * Relacoin uno a uno con Profesor
+     */
+    public function profesor(): HasOne
+    {
+        return $this->hasOne(Profesor::class, 'usuario_id');
+    }
+
+    /**
+     * Helper para verificacion de roles
+     */
+    public function hasRole(string $role): bool 
+    {
+        return $this->rol === $role;
     }
 }

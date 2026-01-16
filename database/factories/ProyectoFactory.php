@@ -23,20 +23,34 @@ class ProyectoFactory extends Factory
      */
     public function definition(): array
     {
-        $titulo = $this->faker->sentence(4);
-
+        $titulo = fake()->unique()->sentence(rand(3, 6));
+        
         return [
             'titulo' => $titulo,
-            'descripcion' => $this->faker->paragraph(),
-            'slug' => Str::slug($titulo) . '-' . Str::random(5),
-            'estatus' => 'borrador',
-            'codigo_acceso' => strtoupper(Str::random(8)),
+            'descripcion' => fake()->paragraphs(3, true),
+            'slug' => Str::slug($titulo) . '-' . rand(100, 999),
+            'estatus' => fake()->randomElement(['borrador', 'enviado', 'aprobado', 'rechazado']),
+            'codigo_acceso' => strtoupper(Str::random(8)), // Genera algo como A8X12B9Z
+            'periodo_semestral' => 'Agosto - Diciembre 2025',
             'profesor_id' => Profesor::factory(),
             'materia_id' => Materia::factory(),
-            'periodo_semestral' => '2025-1',
         ];
     }
 
+    /**
+     * Estado de recien creado por el profesor
+     */
+    public function borrador(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'estatus' => 'borrador',
+            'titulo' => 'Proyecto Asignado #' . rand(1000, 9999), // Placeholder
+            'descripcion' => null,
+            'slug' => 'temp-' . Str::random(10),
+        ]);
+    }
+
+    //Otros estados (checar)
     public function enviado(): static
     {
         return $this->state(fn () => [

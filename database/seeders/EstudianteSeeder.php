@@ -15,6 +15,15 @@ class EstudianteSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // Usar el factory para crear estudiantes de prueba
+        Estudiante::factory(10)->create();
+
+        // Uno manual para pruebas específicas
+        Estudiante::factory()->create([
+            'matricula' => '1000000',
+            'nombre' => 'Estudiante',
+            'apellido_paterno' => 'De Prueba',
+            'semestre' => 8,
+        ]);
     }
 }

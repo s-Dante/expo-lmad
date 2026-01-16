@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+use App\Models\User;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
@@ -23,10 +25,13 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $nombre = $this->faker->firstName();
+        $apellido = $this->faker->lastName();
+        
         return [
-            'name' => $this->faker->userName(),
-            'nombre' => $this->faker->firstName(),
-            'apellido_paterno' => $this->faker->lastName(),
+            'name' => strtolower($nombre . '.' . $apellido . rand(1, 99)), // username tipo dante.rodriguez12
+            'nombre' => $nombre,
+            'apellido_paterno' => $apellido,
             'apellido_materno' => $this->faker->optional()->lastName(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),

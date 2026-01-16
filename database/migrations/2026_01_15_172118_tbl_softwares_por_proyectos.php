@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('software_id')->constrained('tbl_softwares')->onDelete('cascade');
 
             $table->primary(['proyecto_id', 'software_id'], 'primary_proyecto_software');
+
+            $table->timestamps();
         });
     }
 

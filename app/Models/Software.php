@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Software extends Model
 {
@@ -24,14 +27,14 @@ class Software extends Model
         'estatus' => 'boolean',
     ];
 
-    // Relaciones
-    public function proyectos()
+    /**
+     * Que proyectos utilizan este software
+     */
+    public function proyectos(): BelongsToMany
     {
-        return $this->belongsToMany(
-            Proyecto::class,
-            'tbl_softwares_por_proyectos',
-            'software_id',
-            'proyecto_id'
-        );
+        return $this->belongsToMany(Proyecto::class,
+                                    'tbl_softwares_por_proyectos',
+                                    'software_id', 'proyecto_id'
+        )->withTimestamps();
     }
 }

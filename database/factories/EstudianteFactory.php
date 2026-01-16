@@ -22,17 +22,20 @@ class EstudianteFactory extends Factory
     public function definition(): array
     {
         return [
-            'matricula' => $this->faker->unique()->numerify('#######'),
+            'matricula' => (string) $this->faker->unique()->numberBetween(1400000, 2199999),
             'nombre' => $this->faker->firstName(),
             'apellido_paterno' => $this->faker->lastName(),
             'apellido_materno' => $this->faker->lastName(),
             'semestre' => $this->faker->numberBetween(1, 10),
-            'usuario_id' => null,
+            'usuario_id' => null, // Por defecto nacen sin usuario
             'email' => $this->faker->unique()->safeEmail(),
-            'programa_academico_id' => ProgramaAcademico::factory(),
+            'programa_academico_id' => ProgramaAcademico::inRandomOrder()->first()?->id ?? ProgramaAcademico::factory(),
         ];
     }
 
+    /**
+     * Indica que el estudiante pertenece a un programa académico específico.
+     */
     public function forPrograma(ProgramaAcademico $programa): static
     {
         return $this->state(fn () => [

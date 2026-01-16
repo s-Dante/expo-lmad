@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('estudiante_id')->constrained('tbl_estudiantes')->onDelete('cascade');
             $table->boolean('es_lider')->default(false);
             $table->primary(['proyecto_id', 'estudiante_id'], 'primary_proyecto_estudiante');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
     

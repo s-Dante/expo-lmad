@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use App\Models\ProgramaAcademico;
 
@@ -30,10 +34,20 @@ class PlanAcademico extends Model
     protected $casts = [
         'estatus' => 'boolean',
     ];
-    
-    //Relaciones
-    public function programaAcademico()
+
+    /**
+     * Un plan academico pertenece a un programa academico
+     */
+    public function programaAcademico(): BelongsTo
     {
         return $this->belongsTo(ProgramaAcademico::class, 'programa_academico_id');
+    }
+
+    /**
+     * Un plan académico puede tener muchas materias.
+     */
+    public function materias(): HasMany
+    {
+        return $this->hasMany(Materia::class, 'plan_academico_id');
     }
 }

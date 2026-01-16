@@ -22,7 +22,7 @@ class ProfesorFactory extends Factory
     public function definition(): array
     {
         return [
-            'numero_empleado' => $this->faker->unique()->numerify('#######'),
+            'numero_empleado' => (string) $this->faker->unique()->numberBetween(100000, 999999),
             'nombre' => $this->faker->firstName(),
             'apellido_paterno' => $this->faker->lastName(),
             'apellido_materno' => $this->faker->optional()->lastName(),

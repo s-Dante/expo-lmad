@@ -16,6 +16,8 @@ use Database\Seeders\ProyectoSeeder;
 use Database\Seeders\AutorProyectoSeeder;
 use Database\Seeders\MultimediaProyectoSeeder;
 use Database\Seeders\SoftwareSeeder;
+use Database\Seeders\SoftwarePorProyectoSeeder;
+use Database\Seeders\ConferenciaSeeder;
 
 // Factories
 use Database\Factories\ProgramaAcademicoFactory;
@@ -27,6 +29,8 @@ use Database\Factories\ProyectoFactory;
 use Database\Factories\AutorProyectoFactory;
 use Database\Factories\MultimediaProyectoFactory;
 use Database\Factories\SoftwareFactory;
+use Database\Factories\SoftwarePorProyectoFactory;
+use Database\Factories\ConferenciaFactory;
 
 // Models
 use App\Models\ProgramaAcademico;
@@ -38,6 +42,8 @@ use App\Models\Proyecto;
 use App\Models\AutorProyecto;
 use App\Models\MultimediaProyecto;
 use App\Models\Software;
+use App\Models\SoftwarePorProyecto;
+use App\Models\Conferencia;
 
 
 class DatabaseSeeder extends Seeder
@@ -154,3 +160,30 @@ class DatabaseSeeder extends Seeder
     }
 }
 
+/*
+$this->call([
+        // Bloque Academico
+        ProgramaAcademicoSeeder::class,
+        PlanAcademicoSeeder::class,
+        MateriaSeeder::class,
+
+        //Bloque de Softwares
+        SoftwareSeeder::class,
+    ]);
+
+if (App::environment('local')) {
+        $this->call([
+            //Bloque de usuarios
+            EstudianteSeeder::class,
+            ProfesorSeeder::class,
+            ProyectosSeeder::clas,
+            AutorProyectoSeeder::class,
+            MultimediaProyectoSeeder::class,
+        ]);
+    }
+
+//Creacion de usuarios
+$this->call([
+            UserSeeder::class,
+        ]);
+*/

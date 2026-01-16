@@ -15,11 +15,17 @@ class AutorProyecto extends Pivot
 
     protected $table = 'tbl_autores_proyecto';
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'proyecto_id',
         'estudiante_id',
         'es_lider',
+    ];
+
+    protected $casts = [
+        'es_lider' => 'boolean',
+        'proyecto_id' => 'integer',
+        'estudiante_id' => 'integer',
     ];
 }

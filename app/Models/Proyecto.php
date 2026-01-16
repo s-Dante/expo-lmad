@@ -1,10 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 use App\Models\Profesor;
 use App\Models\Materia;
@@ -36,42 +42,69 @@ class Proyecto extends Model
         'estatus' => 'string',
     ];
 
-    // Relaciones
-    public function profesor()
+    
+    /**
+    * Permitir busqueda de rutas
+    */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    /**
+     * Que profesor creo el "asiento" 
+     */
+    public function profesor(): BelongsTo
     {
         return $this->belongsTo(Profesor::class, 'profesor_id');
     }
 
-    public function materia()
+
+    /**
+     * A que materia pertenece el proyecto
+     */
+    public function materia(): BelongsTo
     {
         return $this->belongsTo(Materia::class, 'materia_id');
     }
 
-    public function autores()
+    /**
+     * Relacion con estudiantes
+     */
+    public function autores(): BelongsToMany
     {
-        return $this->belongsToMany(Estudiante::class, 'tbl_autores_proyecto', 'proyecto_id', 'estudiante_id')
+        return $this->belongsToMany(Estudiante::class, 'tbl_autores_proyecto', 
+                                    'proyecto_id', 'estudiante_id')
                     ->using(AutorProyecto::class)
-                    ->withPivot('es_lider');
+                    ->withPivot('es_lider')
+                    ->withTimestamps();
     }
 
-    public function multimedia()
+    /**
+     * Relacion con los archivos multimedia
+     */
+    public function multimedia(): HasMany
     {
         return $this->hasMany(MultimediaProyecto::class, 'proyecto_id');
     }
 
-    public function portada()
+    /**
+     * Helper para obtener solamente la portada
+     */
+    public function portada(): HasOne
     {
         return $this->hasOne(MultimediaProyecto::class, 'proyecto_id')
             ->where('es_portada', true);
     }
 
-    public function softwares()
+    /**
+     * Relacion con los softwares utilizados
+     */
+    public function softwares(): BelongsToMany
     {
-        return $this->belongsToMany(
-            Software::class,
-            'tbl_softwares_por_proyectos',
-            'proyecto_id',
-            'software_id'
-        );
+        return $this->belongsToMany(Software::class,
+                                    'tbl_softwares_por_proyectos',
+                                    'proyecto_id', 'software_id')
+                    ->withTimestamps();
     }
 }

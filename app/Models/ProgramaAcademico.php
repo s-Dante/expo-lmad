@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Catálogo base de programas académicos.
@@ -33,4 +36,11 @@ class ProgramaAcademico extends Model
         'estatus' => 'boolean',
     ];
 
+    /**
+     * Un programa académico puede tener muchos planes de estudio.
+     */
+    public function planes(): HasMany
+    {
+        return $this->hasMany(PlanAcademico::class, 'programa_id'); 
+    }
 }

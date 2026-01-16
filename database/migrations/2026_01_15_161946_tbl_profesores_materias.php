@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_softwares', function (Blueprint $table) {
+        Schema::create('tbl_materia_profesor', function (Blueprint $table) {
             $table->id();
-            $table->string('software_name')->unique();
-            $table->text('software_description')->nullable();
-            $table->boolean('estatus')->default(true);
-            $table->softDeletes();
+            $table->foreignId('profesor_id')->constrained('tbl_profesores')->onDelete('cascade');
+            $table->foreignId('materia_id')->constrained('tbl_materias')->onDelete('cascade');
+            $table->unique(['profesor_id', 'materia_id'], 'unique_profesor_materia');
+            
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_softwares');
+        Schema::dropIfExists('tbl_profesor_materia');
     }
 };

@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use App\Models\User;
 use App\Models\ProgramaAcademico;
@@ -32,23 +36,36 @@ class Estudiante extends Model
 
     protected $casts = [
         'semestre' => 'integer',
+        'usuario_id' => 'integer',
+        'programa_academico_id' => 'integer',
     ];
 
-    // Relaciones
-    public function usuario()
+    /**
+     * El estudiante puede o no tener cuenta de usuario.
+     */
+    public function usuario(): BelongsTo
     {
         return $this->belongsTo(User::class, 'usuario_id');
     }
 
-    public function programaAcademico()
+    /**
+     * El estudiante pertenece a un programa académico.
+     */
+    public function programaAcademico(): BelongsTo
     {
         return $this->belongsTo(ProgramaAcademico::class, 'programa_academico_id');
     }
     
-    public function proyectos()
+    /**
+     * El estudiante puede participar en muchos proyectos.
+     */
+    public function proyectos(): BelongsToMany
     {
-        return $this->belongsToMany(Proyecto::class, 'tbl_autores_proyecto', 'estudiante_id', 'proyecto_id')
+        return $this->belongsToMany(Proyecto::class, 
+                                    'tbl_autores_proyecto', 'estudiante_id', 
+                                    'proyecto_id')
                     ->using(AutorProyecto::class)
-                    ->withPivot('es_lider');
+                    ->withPivot('es_lider')
+                    ->withTimestamps();
     }
 }
