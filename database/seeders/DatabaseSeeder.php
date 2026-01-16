@@ -12,6 +12,10 @@ use Database\Seeders\PlanAcademicoSeeder;
 use Database\Seeders\MateriaSeeder;
 use Database\Seeders\EstudianteSeeder;
 use Database\Seeders\ProfesorSeeder;
+use Database\Seeders\ProyectoSeeder;
+use Database\Seeders\AutorProyectoSeeder;
+use Database\Seeders\MultimediaProyectoSeeder;
+use Database\Seeders\SoftwareSeeder;
 
 // Factories
 use Database\Factories\ProgramaAcademicoFactory;
@@ -19,6 +23,10 @@ use Database\Factories\PlanAcademicoFactory;
 use Database\Factories\MateriaFactory;
 use Database\Factories\EstudianteFactory;
 use Database\Factories\ProfesorFactory;
+use Database\Factories\ProyectoFactory;
+use Database\Factories\AutorProyectoFactory;
+use Database\Factories\MultimediaProyectoFactory;
+use Database\Factories\SoftwareFactory;
 
 // Models
 use App\Models\ProgramaAcademico;
@@ -26,6 +34,10 @@ use App\Models\PlanAcademico;
 use App\Models\Materia;
 use App\Models\Estudiante;
 use App\Models\Profesor;
+use App\Models\Proyecto;
+use App\Models\AutorProyecto;
+use App\Models\MultimediaProyecto;
+use App\Models\Software;
 
 
 class DatabaseSeeder extends Seeder
@@ -39,6 +51,7 @@ class DatabaseSeeder extends Seeder
             ProgramaAcademicoSeeder::class,
             PlanAcademicoSeeder::class,
             MateriaSeeder::class,
+            SoftwareSeeder::class,
         ]);
 
         // =========================
@@ -122,6 +135,21 @@ class DatabaseSeeder extends Seeder
             Proyecto::factory()
                 ->count(10)
                 ->create();
+
+
+            // =========================
+            // RELACIONES AUTOR - PROYECTO
+            // =========================
+            $this->call([
+                AutorProyectoSeeder::class,
+            ]);
+
+            // =========================
+            // MULTIMEDIA PROYECTOS
+            // =========================
+            $this->call([
+                MultimediaProyectoSeeder::class,
+            ]);
         }
     }
 }

@@ -19,7 +19,12 @@ return new class extends Migration
             $table->string('titulo')->nullable();
             $table->string('descripcion')->nullable();
             $table->boolean('es_portada')->default(false);
-            $table->unique(['proyecto_id', 'es_portada'], 'unique_portada_por_proyecto');
+            
+            $table->unique(
+                ['proyecto_id'],
+                'unique_portada_por_proyecto'
+            )->where('es_portada', true);
+
             $table->softDeletes();
             $table->timestamps();
         });

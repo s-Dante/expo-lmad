@@ -22,7 +22,7 @@ class ProgramaAcademicoFactory extends Factory
         return [
             'nombre' => $this->faker->unique()->words(3, true),
             'abreviatura' => strtoupper($this->faker->unique()->lexify('???')),
-            'descripcion' => $this->faker->sentece(),
+            'descripcion' => $this->faker->sentence(),
             'estatus' => true,
         ];
     }

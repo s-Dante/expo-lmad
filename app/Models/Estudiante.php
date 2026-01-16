@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Appa\Models\User;
+use App\Models\User;
 use App\Models\ProgramaAcademico;
+use App\Models\Proyecto;
+use App\Models\AutorProyecto;
 
 class Estudiante extends Model
 {
@@ -43,4 +45,10 @@ class Estudiante extends Model
         return $this->belongsTo(ProgramaAcademico::class, 'programa_academico_id');
     }
     
+    public function proyectos()
+    {
+        return $this->belongsToMany(Proyecto::class, 'tbl_autores_proyecto', 'estudiante_id', 'proyecto_id')
+                    ->using(AutorProyecto::class)
+                    ->withPivot('es_lider');
+    }
 }
