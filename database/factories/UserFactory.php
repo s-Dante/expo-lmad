@@ -24,12 +24,46 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => $this->faker->userName(),
+            'nombre' => $this->faker->firstName(),
+            'apellido_paterno' => $this->faker->lastName(),
+            'apellido_materno' => $this->faker->optional()->lastName(),
+            'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'llave_acceso' => $this->faker->optional()->uuid(),
+            'rol' => 'estudiante',
+            'estatus' => true,
             'remember_token' => Str::random(10),
         ];
+    }
+
+    /**
+     * Estatus por rol
+     */
+    public function superAdmin(): static
+    {
+        return $this->state(fn () => ['rol' => 'super_admin']);
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn () => ['rol' => 'admin']);
+    }
+
+    public function staff(): static
+    {
+        return $this->state(fn () => ['rol' => 'staff']);
+    }
+
+    public function profesor(): static
+    {
+        return $this->state(fn () => ['rol' => 'profesor']);
+    }
+
+    public function estudiante(): static
+    {
+        return $this->state(fn () => ['rol' => 'estudiante']);
     }
 
     /**
