@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('tbl_asistencias_evento', function (Blueprint $table) {
             $table->id();
             $table->foreignId('evento_id')->constrained('tbl_eventos')->onDelete('cascade');
-            $table->foreignId('visitantes_id')->constrained('tbl_visitantes')->onDelete('cascade');
+            $table->foreignId('visitante_id')->constrained('tbl_visitantes')->onDelete('cascade');
             $table->boolean('asistencia')->default(false);
-            $table->dateTime('fecha_asistencia');
-            $table->unique(['evento_id', 'visitantes_id'], 'unique_evento_visitante');
+            $table->dateTime('fecha_registro');
+            $table->dateTime('fecha_salida')->nullable();
+            $table->unique(['evento_id', 'visitante_id'], 'unique_evento_visitante');
             $table->timestamps();
         });
     }

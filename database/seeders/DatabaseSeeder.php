@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 
 // Seeders
 use Database\Seeders\ProgramaAcademicoSeeder;
@@ -50,140 +51,45 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // =========================
-        // CATÁLOGOS BASE
-        // =========================
+        // ==========================================
+        // 1. INFRAESTRUCTURA (CATÁLOGOS) - GLOBAL
+        // ==========================================
         $this->call([
+            SoftwareSeeder::class,
             ProgramaAcademicoSeeder::class,
             PlanAcademicoSeeder::class,
             MateriaSeeder::class,
-            SoftwareSeeder::class,
         ]);
 
-        // =========================
-        // USUARIOS
-        // =========================
-        if(app()->environment('local')) {
-            // =========================
-            // SUPER ADMINS
-            // =========================
-            User::factory()
-                ->superAdmin()
-                ->count(3)
-                ->create();
-
-            // =========================
-            // ADMIN BASE
-            // =========================
-            User::factory()
-                ->admin()
-                ->create([
-                    'email' => 'admin@expo-lmad.mx',
-                ]);
-
-            // =========================
-            // STAFF BASE
-            // =========================
-            User::factory()
-                ->staff()
-                ->count(2)
-                ->create();
-
-            // =========================
-            // PROFESORES
-            // =========================
-            Profesor::factory()
-                ->count(5)
-                ->create()
-                ->each(function ($profesor) {
-                    $usuario = User::factory()
-                        ->profesor()
-                        ->create([
-                            'llave_acceso' => $profesor->numero_empleado,
-                        ]);
-
-                    $profesor->update([
-                        'usuario_id' => $usuario->id,
-                    ]);
-                });
-
-            // =========================
-            // ESTUDIANTES CON ACCESO
-            // =========================
-            Estudiante::factory()
-                ->count(10)
-                ->create()
-                ->each(function ($estudiante) {
-                    $usuario = User::factory()
-                        ->estudiante()
-                        ->create([
-                            'llave_acceso' => $estudiante->matricula,
-                        ]);
-
-                    $estudiante->update([
-                        'usuario_id' => $usuario->id,
-                    ]);
-                });
-
-            // =========================
-            // ESTUDIANTES SIN ACCESO
-            // =========================
-            Estudiante::factory()
-                ->count(30)
-                ->create([
-                    'usuario_id' => null,
-                ]);
-
-
-            // =========================
-            // PROYECTOS
-            // =========================
-            Proyecto::factory()
-                ->count(10)
-                ->create();
-
-
-            // =========================
-            // RELACIONES AUTOR - PROYECTO
-            // =========================
+        // ==========================================
+        // 2. MOCK DATA - SOLO DESARROLLO (LOCAL)
+        // ==========================================
+        if (App::environment('local')) {
             $this->call([
-                AutorProyectoSeeder::class,
-            ]);
+                // -- Personas Base --
+                EstudianteSeeder::class, // Padrón Alumnos
+                ProfesorSeeder::class,   // Padrón Profes (con materias asignadas)
+                
+                // -- Actores Externos --
+                ConferencistaSeeder::class, // Speakers
+                PatrocinadorSeeder::class,  // Empresas y Representantes (Visitantes tipo sponsor)
 
-            // =========================
-            // MULTIMEDIA PROYECTOS
-            // =========================
-            $this->call([
-                MultimediaProyectoSeeder::class,
+                // -- Operación Core: Proyectos --
+                ProyectoSeeder::class,           // Proyectos (Profesor + Materia + Softwares)
+                AutorProyectoSeeder::class,      // Equipos (Estudiantes + Proyecto)
+                MultimediaProyectoSeeder::class, // Galería
+
+                // -- Operación Core: Eventos --
+                EventoSeeder::class,     // Agenda (Eventos + Conferencistas)
+                VisitanteSeeder::class,  // Audiencia general y Asistencias
             ]);
         }
+
+        // ==========================================
+        // 3. ACCESOS (USUARIOS) - AL FINAL
+        // ==========================================
+        $this->call([
+            UserSeeder::class, // Crea admins y asigna cuentas a Alumnos/Profes del padrón
+        ]);
     }
 }
-
-/*
-$this->call([
-        // Bloque Academico
-        ProgramaAcademicoSeeder::class,
-        PlanAcademicoSeeder::class,
-        MateriaSeeder::class,
-
-        //Bloque de Softwares
-        SoftwareSeeder::class,
-    ]);
-
-if (App::environment('local')) {
-        $this->call([
-            //Bloque de usuarios
-            EstudianteSeeder::class,
-            ProfesorSeeder::class,
-            ProyectosSeeder::clas,
-            AutorProyectoSeeder::class,
-            MultimediaProyectoSeeder::class,
-        ]);
-    }
-
-//Creacion de usuarios
-$this->call([
-            UserSeeder::class,
-        ]);
-*/

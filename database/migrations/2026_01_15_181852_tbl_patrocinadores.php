@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('tier', ['Bronce', 'Plata', 'Oro', 'Platino']);
             $table->string('logo_url')->nullable();
             $table->string('website_url')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

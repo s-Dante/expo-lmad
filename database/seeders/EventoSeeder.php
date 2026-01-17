@@ -15,20 +15,18 @@ class EventoSeeder extends Seeder
      */
     public function run(): void
     {
-        // Obtenemos los IDs de los conferencistas creados previamente
-        $conferencistasIds = Conferencista::all()->pluck('id');
+        $conferencistas = Conferencista::all();
 
-        if ($conferencistasIds->isEmpty()) {
-            // Fallback por si corres este seeder solo sin conferencistas previos
-            $conferencistasIds = Conferencista::factory(5)->create()->pluck('id');
+        if ($conferencistas->isEmpty()) {
+            $conferencistas = Conferencista::factory(10)->create();
         }
 
-        // Creamos 10 eventos
-        Evento::factory(10)->create()->each(function ($evento) use ($conferencistasIds) {
-            // A cada evento le asignamos entre 1 y 2 conferencistas aleatorios
-            $evento->conferencistas()->attach(
-                $conferencistasIds->random(rand(1, 2))
-            );
+        Evento::factory(15)->create()->each(function ($evento) use ($conferencistas) {
+            $cantidadSpeakers = fake()->boolean(80) ? 1 : rand(2, 3);
+
+            $speakersSeleccionados = $conferencistas->random(min($cantidadSpeakers, $conferencistas->count()));
+
+            $evento->conferencistas()->attach($speakersSeleccionados);
         });
     }
 }

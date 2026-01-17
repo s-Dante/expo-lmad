@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('tipo', ['externo', 'estudiante', 'sponsor', 'staff', 'profesor', 'directivos']);
 
             //Datos UANL
-            $table->string('matricula')->nullable();
+            $table->string('matricula')->nullable()->index();
             $table->string('dependencia')->nullable();
             $table->string('carrera')->nullable();
             $table->string('semestre')->nullable();

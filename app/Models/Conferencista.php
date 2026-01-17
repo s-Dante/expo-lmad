@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -45,6 +47,6 @@ class Conferencista extends Model
             'tbl_conferencista_evento',
             'conferencista_id',
             'evento_id'
-        )->withTimestamps(); // Importante si quisieras timestamps en el pivot, aunque tu migración actual no los tiene, es buena práctica dejarlos listos en la relación.
+        )->withTimestamps();
     }
 }

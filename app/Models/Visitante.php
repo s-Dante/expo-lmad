@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -39,30 +41,43 @@ class Visitante extends Model
         //Podriamos castear 'tipo' por un enum en un futuro
     ];
 
-    // Relaciones
+    /**
+     * Eventos a los que asistio
+     */
     public function eventos(): BelongsToMany
     {
-        return $this->belongsToMany(
-            Evento::class,
-            'tbl_asistencias_evento',
-            'visitantes_id', // Nota: En tu migración pusiste 'visitantes_id' (plural)
-            'evento_id'
+        return $this->belongsToMany(Evento::class,
+                                    'tbl_asistencias_evento',
+                                    'visitante_id', 'evento_id'
         )
         ->withPivot(['asistencia', 'fecha_asistencia'])
         ->withTimestamps();
     }
 
-    // Viitantes que son patrocinadores
+    /**
+     * Patrocinadores a los que representa
+     */
     public function patrocinios(): BelongsToMany
     {
-        return $this->belongsToMany(
-            Patrocinador::class,
-            'tbl_representantes_patrocinador',
-            'visitante_id',
-            'patrocinador_id'
+        return $this->belongsToMany(Patrocinador::class,
+                                    'tbl_representantes_patrocinador',
+                                    'visitante_id', 'patrocinador_id'
         )
         ->withPivot(['cargo', 'deleted_at'])
         ->withTimestamps()
         ->wherePivotNull('deleted_at');
+    }
+
+    /**
+     * LÓGICA DE NEGOCIO:
+     * Intenta encontrar al estudiante oficial en el padrón usando la matrícula.
+     * Útil para validar AFI.
+     */
+    public function obtenerEstudianteOficial(): ?Estudiante
+    {
+        if (!$this->matricula || $this->tipo !== 'estudiante') {
+            return null;
+        }
+        return Estudiante::where('matricula', $this->matricula)->first();
     }
 }

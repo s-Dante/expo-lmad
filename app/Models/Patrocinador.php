@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,6 +26,9 @@ class Patrocinador extends Model
         'website_url',
     ];
 
+    /**
+     * Visitantes que son representantes de un patrocinador
+     */
     public function representantes(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -36,7 +41,4 @@ class Patrocinador extends Model
         ->withTimestamps()
         ->wherePivotNull('deleted_at'); // Fundamental para respetar el SoftDelete de la tabla intermedia
     }
-
-    
-
 }

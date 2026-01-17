@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,15 +40,22 @@ class Evento extends Model
     ];
 
     /**
+     * Define que el slug es la clave para las rutas.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    /**
      * Conferencistas que presentan este evento.
      */
     public function conferencistas(): BelongsToMany
     {
-        return $this->belongsToMany(
-            Conferencista::class,
-            'tbl_conferencista_evento',
-            'evento_id',
-            'conferencista_id'
+        return $this->belongsToMany(Conferencista::class,
+                                    'tbl_conferencista_evento',
+                                    'evento_id',
+                                    'conferencista_id'
         );
     }
 
@@ -55,11 +64,9 @@ class Evento extends Model
      */
     public function visitantes(): BelongsToMany
     {
-        return $this->belongsToMany(
-            Visitante::class,
-            'tbl_asistencias_evento',
-            'evento_id',
-            'visitantes_id'
+        return $this->belongsToMany(Visitante::class,
+                                    'tbl_asistencias_evento',
+                                    'evento_id', 'visitantes_id'
         )
         ->withPivot(['asistencia', 'fecha_asistencia'])
         ->withTimestamps();

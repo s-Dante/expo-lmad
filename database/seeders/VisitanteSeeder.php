@@ -15,33 +15,31 @@ class VisitanteSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Crear visitantes
         $visitantes = Visitante::factory(50)->create();
 
-        // 2. Obtener eventos disponibles
         $eventos = Evento::all();
 
         if ($eventos->isEmpty()) {
-            return; // Si no hay eventos, no podemos registrar asistencias
+            return;
         }
 
-        // 3. Simular registros y asistencias
         $visitantes->each(function ($visitante) use ($eventos) {
-            // Cada visitante se registra a 1-3 eventos aleatorios
-            $eventosAleatorios = $eventos->random(rand(1, 3));
+            
+            $eventosAsistidos = $eventos->random(rand(1, 3));
 
-            foreach ($eventosAleatorios as $evento) {
-                // Simulamos lógica de negocio: 
-                // 80% de probabilidad de que sí haya asistido
+            foreach ($eventosAsistidos as $evento) {
                 $asistio = fake()->boolean(80);
+
+                $inicioEvento = $evento->fecha_inicio_evento;
+
+                $checkIn = (clone $inicioEvento)->modify(rand(-10, 15) . ' minutes');
                 
-                // La fecha de asistencia debe ser cercana a la fecha del evento
-                $fechaEvento = $evento->fecha_inicio_evento;
-                $fechaAsistencia = (clone $fechaEvento)->modify('+' . rand(0, 30) . ' minutes');
+                $checkOut = $asistio ? (clone $checkIn)->modify('+' . rand(30, 60) . ' minutes') : null;
 
                 $visitante->eventos()->attach($evento->id, [
                     'asistencia' => $asistio,
-                    'fecha_asistencia' => $fechaAsistencia,
+                    'fecha_registro' => $checkIn,
+                    'fecha_salida' => $checkOut,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
