@@ -57,6 +57,7 @@
         "sync": [
             "composer install",
             "@php artisan migrate:fresh --seed",
+            "@php artisan optimize:clear",
             "npm install",
             "npm run build"
         ],
