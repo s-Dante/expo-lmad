@@ -46,7 +46,7 @@ class Profesor extends Model
     /**
      * Un Profesor puede estar asociado a varios Programas Académicos
      */
-    public function programasAcademicos()
+    public function programasAcademicos(): BelongsToMany
     {
         return $this->belongsToMany(ProgramaAcademico::class, 
                                     'tbl_profesor_programa', 'profesor_id', 

@@ -1,0 +1,1 @@
+Aqui iran los documentos que explican cada una de las tablas que contiene el proyecto
