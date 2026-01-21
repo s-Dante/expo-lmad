@@ -1,0 +1,56 @@
+.header-cronograma {
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 8rem 2rem 0rem 2rem;
+}
+
+.hero {
+    height: auto;
+}
+
+.header-logo {
+    justify-self: left;
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.Timer-style p {
+    justify-self: right;
+    padding: 0;
+    margin: 0;
+}
+
+.Timer-days-style {
+    color: #bbd0bd;
+    font-family: Bebas Neue;
+    font-size: 48px;
+    line-height: 1;
+}
+
+.Timer-clock-style {
+    color: #e1bbd4;
+    font-family: Bruno Ace;
+    font-size: 82px;
+    font-style: normal;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .header-cronograma {
+        display: block;
+        margin-top: 18vw;
+    }
+
+    .header-logo {
+        justify-self: center;
+    }
+
+    .Timer-style p {
+        justify-self: center;
+    }
+
+    .Timer-clock-style {
+        font-size: 3rem;
+    }
+}
