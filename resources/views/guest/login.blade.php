@@ -14,12 +14,16 @@
 
         <header class="text-top">EXPANDIENDO LA REALIDAD</header>
     </main>
-    <form class="login-form" action="#" method="post">
+    <form class="login-form" action="{{ route('auth.login')}}" method="post">
+
+        @csrf
+
         <img class="logo-w" src="{{ asset('assets/guest/LOGOEXPO2.png') }}" alt="" />
 
         <div class="input-container">
             <div class="input-group">
                 <input
+                    name="email"
                     type="text"
                     class="input-clave"
                     placeholder="Clave de usuario" />
@@ -28,13 +32,14 @@
 
             <div class="input-group">
                 <input
+                    name="password"
                     type="password"
                     class="input-contrasena"
                     placeholder="Contraseña" />
                 <span class="line"></span>
             </div>
 
-            <a href="#" class="btn btn-purple">Iniciar Sesión</a>
+            <button type="submit" class="btn btn-purple">Iniciar Sesión</button>
         </div>
     </form>
 </body>
