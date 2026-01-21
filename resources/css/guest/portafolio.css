@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kodchasan&display=swap");
+
+h1 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    justify-content: center;
+    flex-shrink: 0;
+    text-align: center;
+    font-size: 30px;
+}
+
+.BrunoAce-font {
+    color: #fff;
+    font-family: Bruno Ace;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.hr-gradient {
+    width: 80%;
+    height: 0px;
+    flex-shrink: 0;
+    margin-top: 10px;
+    z-index: 7 !important;
+    border-radius: 63px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    background: linear-gradient(
+        270deg,
+        rgb(11, 26, 43) 2.34%,
+        rgb(54, 141, 234) 49.54%,
+        rgb(11, 26, 43) 100%
+    );
+}
+
+.portafolio-menu {
+    justify-self: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.btn-portafolio {
+    margin: 0.5rem;
+    background-color: #00000000;
+    font-size: 100%;
+    font-style: normal;
+    border: 0rem;
+    color: white;
+    font-family: Bruno Ace;
+    transition: all 200ms;
+}
+
+.btn-portafolio:hover {
+    margin: 0px;
+    font-size: 1.5rem;
+}
+
+.btn-portafolio.active {
+    margin: 0px;
+    font-size: 2rem;
+    border-bottom: 0.2rem solid #00b0eb;
+}
+
+.btn-portafolio:disabled {
+    margin: 0px;
+    background-color: #00000000;
+    font-size: smaller;
+    color: rgb(160, 160, 160);
+}
+
+.section-portafolio {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.project-card-slot {
+    justify-self: center;
+}
+
+.project-card-container {
+    width: 25rem;
+    margin: 1rem;
+    cursor: pointer;
+    display: contents;
+}
+
+.project-card-border {
+    width: 15rem;
+    height: 15rem;
+    flex-shrink: 0;
+    border: 1px solid #5170ed;
+    background: rgba(217, 217, 217, 0);
+    border-radius: 2rem;
+    transition: all 180ms ease-out;
+    background-size: cover;
+    background-position: center;
+}
+
+.project-card-container:hover .project-card-border {
+    border: 0.2rem solid #f558e5;
+    background: rgba(217, 217, 217, 0);
+    box-shadow: 0px 0px 1rem 0.2rem rgba(81, 112, 237, 0.45);
+    transform: scale(1.05);
+    background-size: cover;
+    background-position: center;
+}
+
+.project-card-info {
+    align-content: end;
+    height: 14rem;
+    width: 14rem;
+    display: inline-block;
+    border-radius: 2rem;
+    position: relative;
+    text-align: left;
+    padding: 0.5rem;
+}
+
+.project-card-container:hover .project-card-info {
+    border-radius: 2rem;
+    background: -moz-linear-gradient(
+        top,
+        rgba(77, 105, 143, 1) 0%,
+        rgba(8, 35, 105, 1) 100%
+    );
+    /* FF3.6+ */
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, rgba(77, 105, 143, 1)),
+        color-stop(100%, rgba(8, 35, 105, 1))
+    );
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(
+        180deg,
+        rgba(77, 105, 143, 1) 0%,
+        rgba(8, 35, 105, 1) 100%
+    );
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(
+        top,
+        rgba(77, 105, 143, 1) 0%,
+        rgba(8, 35, 105, 1) 100%
+    );
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(
+        top,
+        rgba(77, 105, 143, 1) 0%,
+        rgba(8, 35, 105, 1) 100%
+    );
+    /* IE10+ */
+    background: linear-gradient(
+        to bottom,
+        rgba(77, 105, 143, 0) 0%,
+        rgba(8, 35, 105, 1) 100%
+    );
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=0);
+    /* IE6-9 */
+}
+
+.project-card-titulo {
+    color: #ffffff00;
+    text-align: left;
+    font-family: Bruno Ace;
+    font-size: 1.7rem;
+    font-style: normal;
+    line-height: normal;
+    margin: 0.6rem;
+    transition: all 0.3s ease-out;
+}
+
+.project-card-container:hover .project-card-titulo {
+    font-style: normal;
+    color: #ffffff;
+    margin-bottom: 0rem;
+}
+
+.project-card-subtitulo {
+    font-family: Kodchasan;
+    font-size: 1.7rem;
+    color: #18e2ed00;
+    margin: 0.6rem;
+    transition: all 0.3s ease-out;
+}
+
+.project-card-container:hover .project-card-subtitulo {
+    font-style: normal;
+    color: #18e4ed;
+    margin-top: 0rem;
+}

@@ -50,6 +50,15 @@ body {
   animation: heroFade 1.2s ease-out forwards;
 }
 
+.hero-logo{
+  justify-self: anchor-center;
+  position: absolute;
+  z-index: 9 !important;
+  width: 31vw;
+  bottom: 9%;
+  filter: brightness(85%);
+}
+
 .navbar {
   position: fixed;
   top: 10px;
