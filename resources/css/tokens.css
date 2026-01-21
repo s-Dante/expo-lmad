@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;700&family=Inter:wght@300;700&family=League+Spartan:wght@200&family=Bruno+Ace:wght@400&display=swap");
+
+:root {
+    /* --- FUENTES GLOBALES --- */
+    --font-main: "Kodchasan", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-display: "Bruno Ace", sans-serif;
+    --font-alt: "League Spartan", sans-serif;
+
+    /* --- PALETA DE COLORES --- */
+    /* Azules */
+    --clr-blue-100: #5fe2ff;
+    --clr-blue-200: #4ca5e7;
+    --clr-blue-600: #21316d;
+    --clr-blue-700: #283346;
+    --clr-blue-800: #131f33;
+    --clr-blue-900: #10151d;
+    --clr-blue-950: #161e29;
+
+    /* Púrpuras/Rosas */
+    --clr-purple-200: #a748ca;
+    --clr-purple-300: #9958f5;
+    --clr-purple-800: #5825e9;
+    --clr-pink-500: #8e06a4;
+
+    /* Neutros */
+    --clr-white: #ffffff;
+    --clr-black: #000000;
+    --clr-gray: #a8a8a8;
+
+    /* --- SEMÁNTICA COMPARTIDA --- */
+
+    /* Fondos de página */
+    --bg-page-gradient: linear-gradient(
+        180deg,
+        var(--clr-blue-800) 0%,
+        var(--clr-blue-900) 100%
+    );
+    --bg-flat: var(--clr-blue-900);
+
+    /* Textos */
+    --text-primary: var(--clr-white);
+    --text-secondary: var(--clr-gray);
+    --text-link: var(--clr-purple-200);
+
+    /* Bordes y Formas */
+    --radius-rounded: 20px;
+    --radius-base: 10px;
+
+    /* Botones o gradientes*/
+    --contrast-color-A: var(--clr-blue-200);
+    --contrast-color-B: var(--clr-purple-300);
+    --contrast-color-C: var(--clr-pink-500);
+
+    --hover-btn: var(--clr-blue-950);
+    --gradient-A: linear-gradient(
+        90deg,
+        var(--clr-purple-200) 0%,
+        var(--clr-blue-800) 100%
+    );
+    --gradient-B: linear-gradient(
+        90deg,
+        var(--clr-blue-100) 0%,
+        var(--clr-blue-600) 100%
+    );
+
+    --gradient-C: linear-gradient(
+        90deg,
+        var(--clr-purple-200) 0%,
+        var(--clr-blue-600) 100%
+    );
+
+    --gradient-D: linear-gradient(
+        90deg,
+        var(--clr-purple-800) 0%,
+        var(--clr-blue-600) 100%
+    );
+
+    --btn-flat: var(--clr-black);
+
+    /*Card Inferior*/
+    --bg-info-card: var(--clr-blue-950);
+    --border-card: var(--clr-blue-700);
+}

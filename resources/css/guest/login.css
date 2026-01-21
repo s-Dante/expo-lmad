@@ -1,0 +1,232 @@
+@import url(/resources/css/tokens.css);
+
+body {
+    background: var(--bg-page-gradient);
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+
+    background-repeat: no-repeat;
+    background-color: var(--bg-flat);
+}
+
+/* ---- Img Planet - Text top ---- */
+.planet {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    mix-blend-mode: lighten;
+    object-fit: contain;
+
+    animation: planetIn 1.3s ease-out forwards;
+}
+
+.text-top {
+    position: absolute;
+    top: 1%;
+    left: 16%;
+    color: var(--text-primary);
+    opacity: 70%;
+    font-family: var(--font-body);
+    font-size: 0.8vw;
+    letter-spacing: 0.6em;
+
+    animation: textReveal 1s ease-out forwards;
+}
+
+@keyframes textReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+}
+
+@keyframes planetIn {
+    from {
+        opacity: 0;
+        transform: translatex(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translatex(0);
+    }
+}
+
+@media (max-width: 650px) {
+    .planet {
+        width: 100%;
+        height: 50%;
+        top: 25%;
+        bottom: 0;
+        left: 0;
+        opacity: 0.2;
+        animation: none !important;
+    }
+    .text-top {
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 10px;
+        top: 10%;
+    }
+}
+/* ---- ------------------ ---- */
+
+/* ----- Login Form ----- */
+.login-form {
+    position: absolute;
+    left: 28%;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    animation: formIn 1s ease-out forwards;
+}
+.logo-w {
+    position: absolute;
+    top: 19%;
+    transform: translateX(-50%);
+    width: 60%;
+}
+
+.input-container {
+    position: absolute;
+    top: 55%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.6rem 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1vw;
+    letter-spacing: 0.4em;
+    text-align: center;
+}
+.input-group input::placeholder {
+    color: var(--text-primary);
+    opacity: 0.9;
+}
+
+.input-group .line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--contrast-color-A),
+        transparent
+    );
+    animation: lineGrow 1.5s ease-in-out;
+}
+
+.input-group input:focus ~ .line {
+    box-shadow: 0 0 16px rgba(74, 163, 255, 0.4);
+}
+
+.btn {
+    font-family: var(--font-main);
+    font-size: 0.7rem;
+    padding: 0.6rem 4rem;
+    border-radius: 20px;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--hover-btn);
+}
+
+.btn-purple {
+    color: var(--text-primary);
+    background:var(--gradient-A);
+}
+
+@media (max-width: 650px) {
+    .login-form {
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-w {
+        width: 60vw;
+        left: 50%;
+    }
+
+    .input-container {
+        top: 40%;
+        width: 90%;
+        left: 50%;
+        margin-top: 10%;
+    }
+
+    .input-group input {
+        font-size: 16px;
+        letter-spacing: 0.2em;
+        padding: 1rem 0;
+    }
+
+    .btn {
+        margin-top: 40px;
+        font-size: 1rem;
+        padding: 0.8rem 3rem;
+        width: 50%;
+        text-align: center;
+    }
+}
+/*  Animaciones  */
+@keyframes lineGrow {
+    from {
+        width: 0;
+    }
+    to {
+        width: 80%;
+    }
+}
+
+@keyframes formIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ---- --------------- ---- */

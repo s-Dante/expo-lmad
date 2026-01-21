@@ -21,7 +21,11 @@ export default defineConfig({
                 "resources/js/guest/cronogramaS1.js",
                 "resources/js/guest/cronogramaS2.js",
                 "resources/js/guest/cronogramaS3.js",
-                "resources/js/guest/showButtonMenu.js"
+                "resources/js/guest/showButtonMenu.js",
+
+                "resources/css/guest/landing-page.css",
+                "resources/js/guest/revealAnimation",
+                "resources/css/guest/login.css",
 
             ],
             refresh: true,
