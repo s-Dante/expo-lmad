@@ -6,6 +6,10 @@
     <meta charset="utf-8" />
     <title>EXPO LMAD - Landing Page</title>
     @vite(['resources/css/guest/landing-page.css'])
+    @vite([
+    'resources/js/guest/revealAnimation',
+    'resources/js/guest/showButtonMenu.js'
+    ])
 </head>
 
 <body>
@@ -22,19 +26,7 @@
         </video>
         <img src="{{ asset('assets/guest/LMAD-LOGO-2.png') }}" alt="EXPO LMAD" class="hero-logo" />
 
-        <nav class="navbar unselectable">
-            <div class="navbar-actions">
-                <button class="btn-menu" aria-label="Menú" onclick="showButtons()">
-                    <img src="img/btn-burger-grad.png" alt="" />
-                </button>
-
-                <a href="#" class="btn btn-purple">Prueba</a>
-                <a href="#" class="btn btn-darkpur">Prueba</a>
-
-                <a href="#" class="btn btn-ghost">Portafolio</a>
-                <a href="#" class="btn btn-blue">Iniciar Sesión</a>
-            </div>
-        </nav>
+        <x-guest.navbar />
     </header>
 
     <section class="tex-presentation reveal">
@@ -113,7 +105,6 @@
         <img src="img/icon-arrow-down.png" alt="" />
     </article>
 
-    @vite(['resources/js/guest/revealAnimation'])>
 </body>
 
 </html>
