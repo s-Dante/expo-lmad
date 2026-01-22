@@ -25,12 +25,24 @@ class ProyectoFactory extends Factory
     {
         $titulo = fake()->unique()->sentence(rand(3, 6));
         
+        // Decidimos el estatus aleatoriamente
+        $estatus = fake()->randomElement(['borrador', 'enviado', 'aprobado', 'rechazado']);
+        
+        // Si el estatus es rechazado, generamos una retroalimentación simulada
+        $retro = ($estatus === 'rechazado') ? fake()->paragraph() : null;
+
         return [
             'titulo' => $titulo,
             'descripcion' => fake()->paragraphs(3, true),
             'slug' => Str::slug($titulo) . '-' . rand(100, 999),
-            'estatus' => fake()->randomElement(['borrador', 'enviado', 'aprobado', 'rechazado']),
-            'codigo_acceso' => strtoupper(Str::random(8)), // Genera algo como A8X12B9Z
+            
+            // Asignamos una categoría aleatoria de las válidas
+            'categoria' => fake()->randomElement(['programacion', 'arte', 'rv', 'videojuegos']),
+            
+            'estatus' => $estatus,
+            'retroalimentacion' => $retro,
+            
+            'codigo_acceso' => strtoupper(Str::random(8)),
             'periodo_semestral' => 'Agosto - Diciembre 2025',
             'profesor_id' => Profesor::factory(),
             'materia_id' => Materia::factory(),

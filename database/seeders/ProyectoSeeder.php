@@ -25,7 +25,7 @@ class ProyectoSeeder extends Seeder
         $softwares = Software::all();
 
         foreach ($profesores as $profesor) {
-            for ($i = 0; $i < 2; $i++) {
+            for ($i = 0; $i < 10; $i++) {
                 
                 $materia = $profesor->materias->random();
 

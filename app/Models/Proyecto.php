@@ -31,7 +31,9 @@ class Proyecto extends Model
         'titulo',
         'descripcion',
         'slug',
+        'categoria',
         'estatus',
+        'retroalimentacion',
         'codigo_acceso',
         'profesor_id',
         'materia_id',
@@ -40,6 +42,7 @@ class Proyecto extends Model
 
     protected $casts = [
         'estatus' => 'string',
+        'categoria' => 'string',
     ];
 
     

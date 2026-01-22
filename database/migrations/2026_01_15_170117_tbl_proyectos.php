@@ -17,6 +17,13 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->string('slug')->unique();
 
+            $table->enum('categoria', [
+                'programacion',
+                'arte',
+                'rv',
+                'videojuegos'
+            ])->nullable();
+
             $table->enum('estatus', [
                 'borrador',
                 'enviado',
@@ -25,7 +32,8 @@ return new class extends Migration
                 'eliminado'
             ])
             ->default('borrador');
-
+            
+            $table->text('retroalimentacion')->nullable();
             $table->string('codigo_acceso')->index();
             $table->foreignId('profesor_id')->constrained('tbl_profesores')->onDelete('restrict');
             $table->foreignId('materia_id')->constrained('tbl_materias')->onDelete('restrict');

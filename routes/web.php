@@ -3,25 +3,47 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
+use App\Http\Controllers\Guest\PortafolioController;
+use App\Http\Controllers\Guest\ProyectoController;
+
+// Rutas de paginas publicas
+
+/**
+ * Vista de la Landig Page
+ */
 Route::get('/', function () {
     return view('/guest/landing-page');
 });
 
+//Ruta de autentificacion
+/**
+ * Vista de Login
+ */
 Route::get('/login', function () {
     return view('/guest/login');
 });
 
+/**
+ * Vista de Nuestras Estrellas / Patrocinadores
+ */
 Route::get('/NuestrasEstrellas', function () {
     return view('guest.patrocinadores');
 });
 
+/**
+ * Vista de Cronograma
+ */
 Route::get('/Cronograma', function () {
     return view('guest.cronograma');
 });
 
-Route::get('/Portafolio', function () {
-    return view('guest.portafolio');
-});
+/**
+ * Vista de Portafolio
+ */
+Route::get('/Portafolio', [PortafolioController::class, 'index'])->name('portafolio.index');
+Route::get('/Portafolio/{slug}', [PortafolioController::class, 'show'])->name('proyecto.show');
+
+
 // Rutas de Autenticacion
 Route::post('/auth/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])
 ->name('auth.login');
