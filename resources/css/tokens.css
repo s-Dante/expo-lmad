@@ -16,6 +16,7 @@
     --clr-blue-800: #131f33;
     --clr-blue-900: #10151d;
     --clr-blue-950: #161e29;
+    --clr-blue-1000: #080c13;
 
     /* Púrpuras/Rosas */
     --clr-purple-200: #a748ca;
@@ -37,6 +38,7 @@
         var(--clr-blue-900) 100%
     );
     --bg-flat: var(--clr-blue-900);
+    --bag-sidebar: var(--clr-blue-1000);
 
     /* Textos */
     --text-primary: var(--clr-white);
@@ -53,6 +55,8 @@
     --contrast-color-C: var(--clr-pink-500);
 
     --hover-btn: var(--clr-blue-950);
+    --hover-btn2: var(--clr-blue-200);
+
     --gradient-A: linear-gradient(
         90deg,
         var(--clr-purple-200) 0%,

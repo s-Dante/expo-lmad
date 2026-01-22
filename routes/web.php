@@ -17,3 +17,7 @@ Route::get('/NuestrasEstrellas', function () {
 Route::get('/Cronograma', function () {
     return view('guest.cronograma');
 });
+
+Route::get('/RegistroExpositores', function () {
+    return view('teacher.registro-expositores');
+});
