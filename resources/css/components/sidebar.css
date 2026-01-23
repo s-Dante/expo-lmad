@@ -140,6 +140,7 @@
         display: flex;
         justify-content: center;
         transition: left 0.3s ease;
+        margin-left: -6px;
         margin-top: 200px;
     }
 
@@ -149,7 +150,7 @@
     }
 
     .sidebar-item {
-        flex-direction: row; /* Icono al lado del texto */
+        flex-direction: row; 
         align-items: center;
         justify-content: flex-start;
         width: 100%;
