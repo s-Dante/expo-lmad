@@ -13,23 +13,6 @@
     ])
 </head>
 
-<style>
-    .section-portafolio{
-        margin-inline: 10rem;
-        grid-template-columns: min-content min-content min-content min-content;
-    }
-
-    .project-card-slot{
-        position: static;
-        padding:1rem;
-    }
-
-    .project-card-container{
-        position: absolute;
-    }
-
-</style>
-
 <body>
     <div class="bg-navbar d-none"></div>
     <header class="hero">

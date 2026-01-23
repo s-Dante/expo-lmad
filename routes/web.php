@@ -22,6 +22,11 @@ Route::get('/Cronograma', function () {
 Route::get('/Portafolio', function () {
     return view('guest.portafolio');
 });
+
+Route::get('/Proyecto', function () {
+    return view('guest.portafolio-proyecto');
+});
+
 // Rutas de Autenticacion
 Route::post('/auth/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])
 ->name('auth.login');

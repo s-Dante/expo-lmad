@@ -1,316 +1,326 @@
 @import url("https://fonts.googleapis.com/css2?family=Kodchasan:wght@700&family=Inter:wght@300;700&display=swap");
 
 :root {
-  --kodchasan-font: "Kodchasan", sans-serif;
-  --inter-font: "Inter", sans-serif;
+    --kodchasan-font: "Kodchasan", sans-serif;
+    --inter-font: "Inter", sans-serif;
 
-  /*Los nombres de los colores no son definitivos*/
-  --blue-100: #5fe2ff;
-  --blue-600: #21316d;
-  --blue-800: #131f33;
-  --blue-900: #10151d;
-  --blue-950: #161e29;
+    /*Los nombres de los colores no son definitivos*/
+    --blue-100: #5fe2ff;
+    --blue-600: #21316d;
+    --blue-800: #131f33;
+    --blue-900: #10151d;
+    --blue-950: #161e29;
 
-  --purple-200: #a748ca;
-  --purple-400: #9a08d7;
-  --purple-800: #5825e9;
+    --purple-200: #a748ca;
+    --purple-400: #9a08d7;
+    --purple-800: #5825e9;
 
-  --gray: #a8a8a8;
-  --white: #ffffff;
-  --black: #000000;
+    --gray: #a8a8a8;
+    --white: #ffffff;
+    --black: #000000;
 }
 
 header {
-  z-index: 9 !important;
+    z-index: 9 !important;
 }
 
 body {
-  background: linear-gradient(180deg, var(--blue-800) 0%, var(--blue-900) 100%);
-  background-size: 100% 100vh;
-  background-repeat: no-repeat;
-  background-color: var(--blue-900);
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  position: relative;
+    background: linear-gradient(
+        180deg,
+        var(--blue-800) 0%,
+        var(--blue-900) 100%
+    );
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+    background-color: var(--blue-900);
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    padding-bottom: 7rem;
 }
 
 /* ---- Banner y Navbar ---- */
 .hero {
-  position: relative;
-  height: 45vh;
-  overflow: hidden;
+    position: relative;
+    height: 45vh;
+    overflow: hidden;
 }
 
 .hero-banner {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.18;
-  animation: heroFade 1.2s ease-out forwards;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.18;
+    animation: heroFade 1.2s ease-out forwards;
 }
 
-.hero-logo{
-  justify-self: anchor-center;
-  position: absolute;
-  z-index: 9 !important;
-  width: 31vw;
-  bottom: 9%;
-  filter: brightness(85%);
+.hero-logo {
+    justify-self: anchor-center;
+    position: absolute;
+    z-index: 9 !important;
+    width: 31vw;
+    filter: brightness(85%);
 }
 
 .navbar {
-  position: fixed;
-  top: 10px;
-  width: -webkit-fill-available;
-  padding: 1rem 2rem;
+    position: fixed;
+    top: 10px;
+    width: -webkit-fill-available;
+    padding: 1rem 2rem;
 
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 
-  animation: navDrop 0.8s ease-out forwards;
+    animation: navDrop 0.8s ease-out forwards;
 }
 
 button,
 .btn {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  justify-self: center;
-  justify-content: center;
-  justify-items: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    justify-self: center;
+    justify-content: center;
+    justify-items: center;
 }
 
 .btn-menu {
-  padding: 0.6rem 0.8rem;
+    padding: 0.6rem 0.8rem;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .btn-menu img {
-  width: 26px;
-  opacity: 0.9;
+    width: 26px;
+    opacity: 0.9;
 }
 
 .navbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  z-index: 3 !important;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 3 !important;
 }
 
 .btn {
-  font-family: var(--kodchasan-font);
-  font-size: 0.8rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: var(--kodchasan-font);
+    font-size: 0.8rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--blue-950);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--blue-950);
 }
 
 .btn-ghost {
-  color: var(--white);
-  background: var(--black);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    background: var(--black);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .btn-blue {
-  color: var(--white);
-  background: linear-gradient(90deg, var(--blue-100) 0%, var(--blue-600) 100%);
+    color: var(--white);
+    background: linear-gradient(
+        90deg,
+        var(--blue-100) 0%,
+        var(--blue-600) 100%
+    );
 }
 
 .btn-purple {
-  color: var(--white);
-  background: linear-gradient(
-    90deg,
-    var(--purple-200) 0%,
-    var(--blue-600) 100%
-  );
+    color: var(--white);
+    background: linear-gradient(
+        90deg,
+        var(--purple-200) 0%,
+        var(--blue-600) 100%
+    );
 
-  display: none;
+    display: none;
 }
 
 .btn-darkpur {
-  color: var(--white);
-  background: linear-gradient(
-    90deg,
-    var(--purple-800) 0%,
-    var(--blue-600) 100%
-  );
+    color: var(--white);
+    background: linear-gradient(
+        90deg,
+        var(--purple-800) 0%,
+        var(--blue-600) 100%
+    );
 
-  display: none;
+    display: none;
 }
 
 .bg-navbar {
-  background-color: #0000009f;
-  z-index: 0 !important;
-  width: -webkit-fill-available;
-  height: -webkit-fill-available;
-  position: absolute;
+    background-color: #000000c2;
+    z-index: 8 !important;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    position: fixed;
 }
 
 /*dispositivos móviles*/
 @media (max-width: 650px) {
-  .navbar-actions {
-    display: grid;
-  }
+    .navbar-actions {
+        display: grid;
+    }
 
-  .btn-blue,
-  .btn-ghost {
-    display: none;
-  }
+    .btn-blue,
+    .btn-ghost {
+        display: none;
+    }
 
-  .btn-blue,
-  .btn-darkpur,
-  .btn-ghost,
-  .btn-purple {
-    justify-self: right;
-  }
+    .btn-blue,
+    .btn-darkpur,
+    .btn-ghost,
+    .btn-purple {
+        justify-self: right;
+    }
 
-  .btn-menu {
-    justify-self: right;
-  }
+    .btn-menu {
+        justify-self: right;
+    }
 }
 
 /*Animaciones*/
 
 @keyframes heroFade {
-  from {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-  to {
-    opacity: 0.18;
-    transform: scale(1);
-  }
+    from {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+    to {
+        opacity: 0.18;
+        transform: scale(1);
+    }
 }
 
 @keyframes navDrop {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ---- --------------- ---- */
 
 /* ---- Card Info inferior ---- */
 .card-info {
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
 
-  min-width: 196px;
-  width: 40%;
-  max-width: 610px;
-  height: 40px;
-  padding: 0.75rem 1.5rem;
+    min-width: 196px;
+    width: 40%;
+    max-width: 610px;
+    height: 40px;
+    padding: 0.75rem 1.5rem;
 
-  display: grid;
-  grid-template-columns: max-content auto;
-  align-items: center;
-  justify-content: space-between;
+    display: grid;
+    grid-template-columns: max-content auto;
+    align-items: center;
+    justify-content: space-between;
 
-  background: var(--blue-950);
-  border: 3px solid #283346;
-  border-radius: 10px 10px 0 0;
+    background: var(--blue-950);
+    border: 3px solid #283346;
+    border-radius: 10px 10px 0 0;
 
-  backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
 
-  box-shadow: 0px -7px 90px 2px #2b2b49;
-  animation: cardUp 1s ease-out forwards;
+    box-shadow: 0px -7px 90px 2px #2b2b49;
+    animation: cardUp 1s ease-out forwards;
 }
 
 .card-info span {
-  justify-self: center;
-  position: absolute;
-  bottom: 0.8rem;
-  font-family: var(--inter-font);
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--gray);
+    justify-self: center;
+    position: absolute;
+    bottom: 0.8rem;
+    font-family: var(--inter-font);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gray);
 }
 
 .card-info img {
-  position: absolute;
-  right: 2.5rem;
-  bottom: 1rem;
-  width: 18px;
-  height: auto;
-  opacity: 0.8;
-  cursor: pointer;
+    position: absolute;
+    right: 2.5rem;
+    bottom: 1rem;
+    width: 18px;
+    height: auto;
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 @media (max-width: 650px) {
-  .card-info span {
-    text-align: center;
-    font-size: 1rem;
-    padding-inline: 3rem;
-    word-wrap: break-word;
-  }
+    .card-info span {
+        text-align: center;
+        font-size: 1rem;
+        padding-inline: 3rem;
+        word-wrap: break-word;
+    }
 }
 
 /*Animaciones*/
 
 @keyframes cardUp {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 20px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }
 /* ---- --------------- ---- */
 
 /*------------ Estilos rápidos ----------------*/
 .d-none {
-  display: none;
+    display: none;
 }
 
 .d-block {
-  display: block;
+    display: block;
 }
 
 .d-flex {
-  display: flex;
+    display: flex;
 }
 
 .unselectable {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .quit-highlight {
-  -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .img-fluid {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }

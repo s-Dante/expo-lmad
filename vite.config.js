@@ -15,6 +15,7 @@ export default defineConfig({
                 "resources/css/guest/daysUntilExpo.css",
                 "resources/css/guest/glassimorfismo.css",
                 "resources/css/guest/portafolio.css",
+                "resources/css/guest/portafolio-proyecto.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
