@@ -21,3 +21,6 @@ Route::get('/Cronograma', function () {
 Route::get('/RegistroExpositores', function () {
     return view('teacher.registro-expositores');
 });
+Route::get('/Proyectos-Maestro', function () {
+    return view('teacher.lista-proyectos');
+});

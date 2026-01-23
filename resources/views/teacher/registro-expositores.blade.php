@@ -7,9 +7,7 @@
     <title>EXPO LMAD - Maestros</title>
     @vite(['resources/css/teacher/registro-expositores.css'])
 
-    @vite([
-
-    ])
+    @vite(['resources/js/teacher/agregarIntegrantes.js'])
 </head>
 
 <body>
@@ -41,21 +39,11 @@
 
                     <div class="fila-full">
                         <label>Número de integrantes:</label>
-                        <select class="input-c corto"></select>
+                        <input type="number" id="num-integrantes" class="input-c corto" min="1" max="10" value="0">
                     </div>
                 </div>
 
-                <div class="alumnos-box">
-                    <div class="fila-alumno">
-                        <div class="item">
-                            <label>Matrícula:</label>
-                            <input type="text" class="input-c matricula">
-                        </div>
-                        <div class="item">
-                            <label>Alumno:</label>
-                            <input type="text" class="input-c nombre">
-                        </div>
-                    </div>
+                <div class="alumnos-box" id="contenedor-alumnos">
 
                     <div class="fila-alumno">
                         <div class="item">
@@ -67,13 +55,12 @@
                             <input type="text" class="input-c nombre">
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <button class="btn-save">Guardar cambios</button>
 
             </form>
-
 
         </section>
 

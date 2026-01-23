@@ -18,6 +18,7 @@ export default defineConfig({
                 "resources/css/guest/login.css",
                 "resources/css/components/sidebar.css",
                 "resources/css/teacher/registro-expositores.css",
+                "resources/css/teacher/lista-proyectos.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
@@ -27,6 +28,7 @@ export default defineConfig({
                 "resources/js/guest/showButtonMenu.js",
                 "resources/js/guest/revealAnimation.js",
                 "resources/js/components/sidebar.js",
+                "resources/js/teacher/agregarIntegrantes.js",
             ],
             refresh: true,
         }),

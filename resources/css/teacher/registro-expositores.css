@@ -55,6 +55,9 @@ body {
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
 
@@ -208,6 +211,7 @@ select.input-c {
         font-size: 1.4rem;
         text-align: center;
         letter-spacing: 1px;
+        margin-bottom: 20px;
     }
 
     .expo-card {
@@ -267,7 +271,7 @@ select.input-c {
     }
 
     .btn-save {
-        width: 80%;
+        width: 75%;
         font-size: 1rem;
     }
 }

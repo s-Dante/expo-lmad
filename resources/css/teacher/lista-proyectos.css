@@ -1,0 +1,61 @@
+@import url(/resources/css/tokens.css);
+
+body {
+    background: var(--bg-page-gradient);
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+    background-color: var(--bg-flat);
+}
+.main-content {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-main {
+    color: var(--contrast-color-D);
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+}
+
+.card-project {
+    padding: 2rem 3.5rem;
+    position: relative;
+    border-radius: 18px;   
+}
+
+.card-project::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1.5px 3px 3px 1.5px;
+    border-radius: 18px;
+
+    background: conic-gradient(
+        from -70deg,
+        var(--contrast-color-C),
+        var(--contrast-color-D),
+        var(--contrast-color-E),
+        var(--contrast-color-E)
+    );
+
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    box-shadow:
+        0 0 12px rgba(127, 0, 255, 0.45),
+        inset 0 0 12px rgba(0, 234, 255, 0.25);
+
+    pointer-events: none;
+}
