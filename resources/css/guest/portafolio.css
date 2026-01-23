@@ -73,12 +73,14 @@ h1 {
 }
 
 .section-portafolio {
-    margin: 2rem;
+    margin: 10rem;
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: min-content min-content min-content min-content;
 }
 
 .project-card-slot {
+    position: static;
+    padding: 1rem;
     justify-self: center;
 }
 
@@ -87,6 +89,7 @@ h1 {
     margin: 1rem;
     cursor: pointer;
     display: contents;
+    position: absolute;
 }
 
 .project-card-border {
@@ -194,4 +197,8 @@ h1 {
     font-style: normal;
     color: #18e4ed;
     margin-top: 0rem;
+}
+
+.hero-logo{
+  bottom: 9%;
 }

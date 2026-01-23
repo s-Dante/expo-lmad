@@ -43,6 +43,9 @@ Route::get('/Cronograma', function () {
 Route::get('/Portafolio', [PortafolioController::class, 'index'])->name('portafolio.index');
 Route::get('/Portafolio/{slug}', [PortafolioController::class, 'show'])->name('proyecto.show');
 
+Route::get('/Proyecto', function () {
+    return view('guest.portafolio-proyecto');
+});
 
 // Rutas de Autenticacion
 Route::post('/auth/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])
