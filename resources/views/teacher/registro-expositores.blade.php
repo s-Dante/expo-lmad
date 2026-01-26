@@ -39,7 +39,7 @@
 
                     <div class="fila-full">
                         <label>Número de integrantes:</label>
-                        <input type="number" id="num-integrantes" class="input-c corto" min="1" max="10" value="0">
+                        <input type="number" id="num-integrantes" class="input-c corto" min="1" max="10" value="1">
                     </div>
                 </div>
 
