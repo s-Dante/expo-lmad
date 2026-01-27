@@ -146,7 +146,7 @@ body {
     font-size: 0.8rem;
     font-family: var(--font-body);
     color: var(--text-primary);
-    margin:10px 0 15px ;
+    margin: 10px 0 15px;
 
     display: flex;
     flex-direction: column;
@@ -262,11 +262,78 @@ body {
 .btn-action:hover {
     transform: translateY(-3px);
     filter: brightness(2);
-      box-shadow: 0 0 10px var( --hover-btn);
+    box-shadow: 0 0 10px var(--hover-btn);
 }
 
 .btn-action.help:hover {
     background: var(--contrast-color-D);
     color: var(--bg-flat);
     box-shadow: 0 0 10px var(--contrast-color-D);
+}
+
+@media (max-width: 650px) {
+    .main-content {
+        margin-left: 0;
+        margin-top: 50px;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .text-main {
+        font-size: 1.2rem;
+        text-align: center;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 20px;
+        justify-content: center;
+        justify-items: center;
+    }
+    .card-project {
+        width: 90%;
+        max-width: 240px;
+    }
+
+    .expo-card {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .project-title {
+        font-size: 1rem;
+    }
+
+    .project-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .token-container {
+        padding: 2px 15px;
+        gap: 5px;
+    }
+
+    .token-container span {
+        font-size: 0.65rem;
+    }
+
+    .project-members {
+        font-size: 0.67em;
+    }
+
+    .status-check label {
+        font-size: 0.8rem;
+    }
+    .status-check label::before {
+        width: 10px;
+        height: 10px;
+    }
+
+    .btn-action {
+        width: 40px;
+        height: 40px;
+    }
 }
