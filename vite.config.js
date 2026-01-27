@@ -14,6 +14,7 @@ export default defineConfig({
                 "resources/css/guest/cronograma.css",
                 "resources/css/guest/daysUntilExpo.css",
                 "resources/css/guest/glassimorfismo.css",
+                "resources/css/guest/portafolio-proyecto.css",
 
                 "resources/css/guest/landing-page.css",
                 "resources/css/guest/login.css",
