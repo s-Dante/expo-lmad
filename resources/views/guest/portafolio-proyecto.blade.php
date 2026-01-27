@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Debug Proyecto</title>
 </head>
+
 <body>
 
 <h1>Debug - Proyecto</h1>
