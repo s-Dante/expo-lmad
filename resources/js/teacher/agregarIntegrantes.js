@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 fila.innerHTML = `
                     <div class="item">
                         <label>Matrícula:</label>
-                        <input type="text" name="matricula_${i}" class="input-c matricula">
+                        <input type="text"  name="estudiantes[${i-1}][matricula]" class="input-c matricula">
                     </div>
                     <div class="item">
                         <label>Alumno:</label>
-                        <input type="text" name="alumno_${i}" class="input-c nombre">
+                        <input type="text"  name="estudiantes[${i-1}][nombre]" class="input-c nombre">
                     </div>
                 `;
                 contenedorAlumnos.appendChild(fila);

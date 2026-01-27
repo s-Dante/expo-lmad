@@ -71,16 +71,19 @@ Route::get('/estudiante/dashboard', function () {
     return view('student.dashboard');
 })->name('estudiante.dashboard');
 
+//Rutas de profesor
+Route::get('/profesor/registro-expositores', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarRegistroExpositores'])
+->name('teacher.registro-expositores');
+
+Route::post('/profesor/cargar-proyecto', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarProyecto'])
+->name('teacher.cargar-proyecto');
+
+Route::get('/Proyectos-Maestro', function () {
+    return view('teacher.lista-proyectos');
+});
+
 //Rutas de staff
 Route::get('/staff/dashboard', function () {
     return view('staff.dashboard');
 })->name('staff.dashboard');
 
-
-//Rutas de Maestros
-Route::get('/RegistroExpositores', function () {
-    return view('teacher.registro-expositores');
-});
-Route::get('/Proyectos-Maestro', function () {
-    return view('teacher.lista-proyectos');
-});
