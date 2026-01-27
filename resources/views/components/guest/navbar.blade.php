@@ -9,6 +9,6 @@
         <a href="#" class="btn btn-darkpur">Prueba</a>
 
         <a href="#" class="btn btn-ghost">Portafolio</a>
-        <a href="#" class="btn btn-blue">Iniciar Sesión</a>
+        <a href="{{ route('login') }}" class="btn btn-blue">Iniciar Sesión</a>
     </div>
 </nav>

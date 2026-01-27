@@ -12,7 +12,7 @@ use App\Http\Controllers\Guest\ProyectoController;
  * Vista de la Landig Page
  */
 Route::get('/', function () {
-    return view('/guest/landing-page');
+    return view('guest.landing-page');
 });
 
 //Ruta de autentificacion
@@ -20,8 +20,8 @@ Route::get('/', function () {
  * Vista de Login
  */
 Route::get('/login', function () {
-    return view('/guest/login');
-});
+    return view('guest.login');
+})->name('login');
 
 /**
  * Vista de Nuestras Estrellas / Patrocinadores
@@ -75,3 +75,12 @@ Route::get('/estudiante/dashboard', function () {
 Route::get('/staff/dashboard', function () {
     return view('staff.dashboard');
 })->name('staff.dashboard');
+
+
+//Rutas de Maestros
+Route::get('/RegistroExpositores', function () {
+    return view('teacher.registro-expositores');
+});
+Route::get('/Proyectos-Maestro', function () {
+    return view('teacher.lista-proyectos');
+});

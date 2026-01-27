@@ -14,8 +14,13 @@ export default defineConfig({
                 "resources/css/guest/cronograma.css",
                 "resources/css/guest/daysUntilExpo.css",
                 "resources/css/guest/glassimorfismo.css",
-                "resources/css/guest/portafolio.css",
-                "resources/css/guest/portafolio-proyecto.css",
+
+                "resources/css/guest/landing-page.css",
+                "resources/css/guest/login.css",
+                "resources/css/components/sidebar.css",
+                "resources/css/teacher/registro-expositores.css",
+                "resources/css/teacher/lista-proyectos.css",
+                "resources/css/components/teacher/modal-editar.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
@@ -23,11 +28,10 @@ export default defineConfig({
                 "resources/js/guest/cronogramaS2.js",
                 "resources/js/guest/cronogramaS3.js",
                 "resources/js/guest/showButtonMenu.js",
-
-                "resources/css/guest/landing-page.css",
-                "resources/js/guest/revealAnimation",
-                "resources/css/guest/login.css",
-
+                "resources/js/guest/revealAnimation.js",
+                "resources/js/components/sidebar.js",
+                "resources/js/teacher/agregarIntegrantes.js",
+                "resources/js/teacher/modalEditar.js",
             ],
             refresh: true,
         }),

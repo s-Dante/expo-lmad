@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;700&family=Inter:wght@300;700&family=League+Spartan:wght@200&family=Bruno+Ace:wght@400&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 
 :root {
     /* --- FUENTES GLOBALES --- */
@@ -12,14 +13,19 @@
     --clr-blue-100: #5fe2ff;
     --clr-blue-200: #4ca5e7;
     --clr-blue-600: #21316d;
+    --clr-blue-650: #1f2540;
     --clr-blue-700: #283346;
     --clr-blue-800: #131f33;
     --clr-blue-900: #10151d;
     --clr-blue-950: #161e29;
+    --clr-blue-1000: #080c13;
+
+    --clr-cian-300: #00afc4;
 
     /* Púrpuras/Rosas */
     --clr-purple-200: #a748ca;
     --clr-purple-300: #9958f5;
+    --clr-purple-400: #9a08d7;
     --clr-purple-800: #5825e9;
     --clr-pink-500: #8e06a4;
 
@@ -37,6 +43,7 @@
         var(--clr-blue-900) 100%
     );
     --bg-flat: var(--clr-blue-900);
+    --bag-sidebar: var(--clr-blue-1000);
 
     /* Textos */
     --text-primary: var(--clr-white);
@@ -51,8 +58,12 @@
     --contrast-color-A: var(--clr-blue-200);
     --contrast-color-B: var(--clr-purple-300);
     --contrast-color-C: var(--clr-pink-500);
+    --contrast-color-D: var(--clr-cian-300);
+    --contrast-color-E: var(--clr-purple-400);
 
     --hover-btn: var(--clr-blue-950);
+    --hover-btn2: var(--clr-blue-200);
+
     --gradient-A: linear-gradient(
         90deg,
         var(--clr-purple-200) 0%,
@@ -76,7 +87,14 @@
         var(--clr-blue-600) 100%
     );
 
+    --gradient-E: linear-gradient(
+        90deg,
+        var(--clr-purple-400) 0%,
+        var(--clr-blue-800) 100%
+    );
+
     --btn-flat: var(--clr-black);
+    --input-flat: var(--clr-blue-650);
 
     /*Card Inferior*/
     --bg-info-card: var(--clr-blue-950);
