@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Proyecto\ProyectoRepositoryInterface;
+use App\Models\Categoria; // <-- Importamos el modelo (o podrías hacer un repositorio para categorías)
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -17,14 +18,20 @@ class PortafolioController extends Controller
 
     public function index(Request $request): View
     {
-        // Obtenemos la categoría del Query Param (?category=videojuegos)
-        $categoria = $request->input('category');
+        // 1. Capturamos el slug de la URL (?category=videojuegos)
+        $categoriaSlug = $request->input('category');
 
-        $proyectos = $this->proyectoRepository->obtenerParaGaleria($categoria);
+        // 2. Obtenemos los proyectos filtrados
+        $proyectos = $this->proyectoRepository->obtenerParaGaleria($categoriaSlug);
+
+        // 3. NUEVO: Obtenemos todas las categorías para pintar el menú de filtros dinámicamente
+        // (Sugerencia: Podrías cachear esto después si no cambia mucho)
+        $categorias = Categoria::has('materias')->get(); // Solo traemos categorías que tengan materias asignadas (opcional)
 
         return view('guest.portafolio', [
             'proyectos' => $proyectos,
-            'categoriaActiva' => $categoria ?? 'todos'
+            'categorias' => $categorias, // <-- Pasamos la lista al front
+            'categoriaActiva' => $categoriaSlug ?? 'todos'
         ]);
     }
 
@@ -36,7 +43,6 @@ class PortafolioController extends Controller
             abort(404, 'El proyecto no existe o no está disponible.');
         }
 
-        // Retornamos la vista (que crearemos vacía en el siguiente paso)
         return view('guest.proyecto.show', [
             'proyecto' => $proyecto
         ]);

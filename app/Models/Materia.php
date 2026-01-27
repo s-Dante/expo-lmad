@@ -38,11 +38,13 @@ class Materia extends Model
         'creditos',
         'semestre',
         'plan_academico_id', 
+        'categoria_id',
     ];
 
     protected $casts = [
         'creditos' => 'integer',
         'semestre' => 'integer',
+        'categoria_id' => 'integer',
     ];
 
     /**
@@ -64,5 +66,13 @@ class Materia extends Model
             'materia_id',
             'profesor_id'
         )->withTimestamps();
+    }
+
+    /**
+     * La materia pertenece a una categoría 
+     */
+    public function categoria(): BelongsTo
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
     }
 }

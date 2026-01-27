@@ -21,6 +21,8 @@ return new class extends Migration
             $table->unsignedTinyInteger('semestre');
             $table->foreignId('plan_academico_id')->constrained('tbl_planes_academicos')->onDelete('restrict');
             $table->unique(['clave', 'plan_academico_id'], 'unique_clave_plan');
+            $table->foreignId('categoria_id')->constrained('tbl_categorias')->onDelete('restrict');
+            $table->unique(['clave', 'categoria_id'], 'unique_clave_categoria');
             $table->index('semestre');
             $table->softDeletes();
             $table->timestamps();

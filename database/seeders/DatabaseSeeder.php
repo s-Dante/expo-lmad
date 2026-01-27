@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\App;
 // Seeders
 use Database\Seeders\ProgramaAcademicoSeeder;
 use Database\Seeders\PlanAcademicoSeeder;
+use Database\Seeders\CategoriaSeeder;
 use Database\Seeders\MateriaSeeder;
 use Database\Seeders\EstudianteSeeder;
 use Database\Seeders\ProfesorSeeder;
@@ -23,6 +24,7 @@ use Database\Seeders\ConferenciaSeeder;
 // Factories
 use Database\Factories\ProgramaAcademicoFactory;
 use Database\Factories\PlanAcademicoFactory;
+use Database\Factories\CategoriaFactory;
 use Database\Factories\MateriaFactory;
 use Database\Factories\EstudianteFactory;
 use Database\Factories\ProfesorFactory;
@@ -36,6 +38,7 @@ use Database\Factories\ConferenciaFactory;
 // Models
 use App\Models\ProgramaAcademico;
 use App\Models\PlanAcademico;
+use App\Models\Categoria;
 use App\Models\Materia;
 use App\Models\Estudiante;
 use App\Models\Profesor;
@@ -58,6 +61,7 @@ class DatabaseSeeder extends Seeder
             SoftwareSeeder::class,
             ProgramaAcademicoSeeder::class,
             PlanAcademicoSeeder::class,
+            CategoriaSeeder::class,
             MateriaSeeder::class,
         ]);
 

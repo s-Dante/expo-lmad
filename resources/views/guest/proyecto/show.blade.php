@@ -10,17 +10,18 @@
 
 {{-- ============================================================
 | 1. DATOS DIRECTOS DEL MODELO PROYECTO
-|    Fuente: tabla `proyectos`
 ============================================================ --}}
 <p><strong>Título:</strong> {{ $proyecto->titulo }}</p>
-<p><strong>Categoría:</strong> {{ $proyecto->categoria }}</p>
+
+<p><strong>Categoría (nombre):</strong> {{ $proyecto->getNombreCategoriaAttribute() ?? 'Sin Categoría' }}</p>
+<p><strong>Categoría (objeto):</strong> {{ $proyecto->getCategoriaAttribute() ?? 'Sin Categoría' }}</p>
+
 <p><strong>Descripción:</strong> {{ $proyecto->descripcion }}</p>
 
 <hr>
 
 {{-- ============================================================
 | 2. RELACIÓN BELONGS TO: MATERIA
-|    proyecto → materia
 ============================================================ --}}
 <p><strong>Materia:</strong> {{ $proyecto->materia->nombre }}</p>
 
@@ -28,7 +29,6 @@
 
 {{-- ============================================================
 | 3. RELACIÓN BELONGS TO: PROFESOR
-|    proyecto → profesor
 ============================================================ --}}
 <p>
     <strong>Profesor:</strong>
@@ -40,7 +40,6 @@
 
 {{-- ============================================================
 | 4. RELACIÓN MANY TO MANY: AUTORES
-|    proyecto ↔ autores
 ============================================================ --}}
 
 @php
@@ -68,7 +67,6 @@
 
 {{-- ============================================================
 | 5. RELACIÓN ONE TO MANY: MULTIMEDIA
-|    proyecto → multimedia
 ============================================================ --}}
 <h3>Multimedia</h3>
 <p>Total: {{ $proyecto->multimedia->count() }}</p>
@@ -85,22 +83,20 @@
 
 {{-- ============================================================
 | 6. RELACIÓN MANY TO MANY: SOFTWARES
-|    proyecto ↔ softwares
 ============================================================ --}}
 <h3>Softwares</h3>
 
 @foreach($proyecto->softwares as $software)
     <p>
-        {{ $software->nombre }}
-        (icono: {{ $software->icono ?? 'N/A' }})
+        {{ $software->software_name }}
+        (Logo Path: {{ $software->logo_path ?? 'N/A' }})
     </p>
 @endforeach
 
 <hr>
 
 {{-- ============================================================
-| 7. DUMP COMPLETO DEL MODELO
-|    Para inspección técnica profunda
+| 7. DUMP COMPLETO
 ============================================================ --}}
 <pre>
 @json($proyecto, JSON_PRETTY_PRINT)

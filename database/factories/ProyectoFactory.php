@@ -36,9 +36,6 @@ class ProyectoFactory extends Factory
             'descripcion' => fake()->paragraphs(3, true),
             'slug' => Str::slug($titulo) . '-' . rand(100, 999),
             
-            // Asignamos una categoría aleatoria de las válidas
-            'categoria' => fake()->randomElement(['programacion', 'arte', 'rv', 'videojuegos']),
-            
             'estatus' => $estatus,
             'retroalimentacion' => $retro,
             

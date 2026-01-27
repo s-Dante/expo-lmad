@@ -16,14 +16,7 @@ return new class extends Migration
             $table->string('titulo')->nullable();
             $table->text('descripcion')->nullable();
             $table->string('slug')->unique();
-
-            $table->enum('categoria', [
-                'programacion',
-                'arte',
-                'rv',
-                'videojuegos'
-            ])->nullable();
-
+            
             $table->enum('estatus', [
                 'borrador',
                 'enviado',

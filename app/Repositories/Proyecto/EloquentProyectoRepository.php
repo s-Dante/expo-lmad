@@ -6,28 +6,30 @@ namespace App\Repositories\Proyecto;
 
 use App\Models\Proyecto;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder; // <--- Importante para el type hinting del whereHas
 
 class EloquentProyectoRepository implements ProyectoRepositoryInterface
 {
     /**
-     * Obtiene los proyectos paginados para la galería del protafolio
+     * Obtiene los proyectos paginados para la galería del portafolio
      */
-    public function obtenerParaGaleria(?string $categoria = null, int $perPage = 12): LengthAwarePaginator
+    public function obtenerParaGaleria(?string $categoriaSlug = null, int $perPage = 12): LengthAwarePaginator
     {
         $query = Proyecto::query()
-            // 1. Corregido: Usamos 'aprobado' según tu ENUM en la migración
             ->where('estatus', 'aprobado') 
             ->with([
-                'materia:id,nombre', // Traemos solo lo necesario
-                'portada'            // Eager loading de la imagen
+                // Carga la materia Y su categoría (para mostrar "Videojuegos" en la tarjeta del proyecto)
+                'materia.categoria', 
+                'portada'
             ])
             ->latest(); 
 
-        // 2. Corregido: Filtramos directamente sobre la tabla proyectos
-        // Ya no necesitamos 'whereHas' porque agregaste el campo 'categoria' al proyecto.
-        if ($categoria && $categoria !== 'todos') {
-            $query->where('categoria', $categoria);
+        // CAMBIO PRINCIPAL: Filtrado por relación
+        if ($categoriaSlug && $categoriaSlug !== 'todos') {
+            // "Fíltrame los proyectos DONDE la relación 'materia' -> 'categoria' tenga un slug igual a..."
+            $query->whereHas('materia.categoria', function (Builder $q) use ($categoriaSlug) {
+                $q->where('slug', $categoriaSlug);
+            });
         }
 
         return $query->paginate($perPage)->withQueryString();
@@ -40,13 +42,13 @@ class EloquentProyectoRepository implements ProyectoRepositoryInterface
     {
         return Proyecto::query()
             ->where('slug', $slug)
-            ->where('estatus', 'aprobado') // Seguridad: solo mostramos aprobados
+            ->where('estatus', 'aprobado')
             ->with([
-                'materia',           // Para ver de qué materia es
-                'profesor',          // Quién lo supervisó
-                'autores',           // Estudiantes (incluye pivot es_lider)
-                'multimedia',        // Todas las fotos/videos (no solo la portada)
-                'softwares'          // Iconos de software usado
+                'materia.categoria', // <-- Necesario para mostrar la categoría en el detalle
+                'profesor',
+                'autores',
+                'multimedia',
+                'softwares'
             ])
             ->first();
     }

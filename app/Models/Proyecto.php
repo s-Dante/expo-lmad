@@ -31,7 +31,6 @@ class Proyecto extends Model
         'titulo',
         'descripcion',
         'slug',
-        'categoria',
         'estatus',
         'retroalimentacion',
         'codigo_acceso',
@@ -42,7 +41,6 @@ class Proyecto extends Model
 
     protected $casts = [
         'estatus' => 'string',
-        'categoria' => 'string',
     ];
 
     
@@ -109,5 +107,21 @@ class Proyecto extends Model
                                     'tbl_softwares_por_proyectos',
                                     'proyecto_id', 'software_id')
                     ->withTimestamps();
+    }
+
+    /**
+     * Accesor para obtener la categoria del proyecto
+     */
+    public function getNombreCategoriaAttribute(): string
+    {
+        return $this->materia?->categoria?->nombre ?? 'Sin Categoría';
+    }
+
+    /**
+     * Para accdder a todo el objeto categoria
+     */
+    public function getCategoriaAttribute()
+    {
+         return $this->materia?->categoria;
     }
 }

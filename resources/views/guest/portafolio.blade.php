@@ -13,7 +13,7 @@
     ])
 </head>
 
-{{-- 🔹 ESTILOS ORIGINALES (RESPETADOS) --}}
+
 <style>
     .section-portafolio {
         margin-inline: 10rem;
@@ -64,14 +64,23 @@
             <input type="text" disabled class="hr-gradient">
         </center>
 
-        {{-- FILTROS SERVER SIDE --}}
+        {{-- CAMBIO 1: MENÚ DINÁMICO DESDE LA BASE DE DATOS --}}
         <div class="portafolio-menu">
-            @foreach(['todos', 'programacion', 'arte', 'rv', 'videojuegos'] as $cat)
+            {{-- El botón "Todos" siempre va fijo --}}
+            <a
+                href="{{ route('portafolio.index', ['category' => 'todos']) }}"
+                class="btn-portafolio BrunoAce-font"
+            >
+                Todos
+            </a>
+
+            {{-- Iteramos las categorías que trajimos de la tabla tbl_categorias --}}
+            @foreach($categorias as $cat)
                 <a
-                    href="{{ route('portafolio.index', ['category' => $cat]) }}"
+                    href="{{ route('portafolio.index', ['category' => $cat->slug]) }}"
                     class="btn-portafolio BrunoAce-font"
                 >
-                    {{ ucfirst($cat) }}
+                    {{ $cat->nombre }}
                 </a>
             @endforeach
         </div>
@@ -84,7 +93,9 @@
             @php
                 $bgStyle = '';
                 if ($proyecto->portada) {
-                    $url = asset('storage/' . $proyecto->portada->ruta_archivo);
+                    // CAMBIO 2: Aseguramos usar 'url' que es como lo definimos en el modelo Multimedia
+                    // Antes decía 'ruta_archivo', verifica cual es el nombre real en tu tabla
+                    $url = asset('storage/' . $proyecto->portada->url);
                     $bgStyle = "background-image: url('$url');";
                 }
             @endphp
@@ -98,7 +109,6 @@
                 />
             </a>
 
-
         @empty
             <div style="grid-column: 1 / -1; text-align: center; color: white;">
                 <p>No hay proyectos disponibles en esta categoría.</p>
@@ -107,7 +117,6 @@
     </section>
 
     {{-- PAGINACIÓN --}}
-    {{-- Nota: el método links() genera automáticamente los enlaces de paginación, se debe de mejorar el diseño xd--}}
     <div class="pagination-container">
         {{ $proyectos->links() }}
     </div>

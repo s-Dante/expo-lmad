@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 use App\Models\Materia;
 use App\Models\PlanAcademico;
+use App\Models\Categoria;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Materia>
@@ -30,6 +31,7 @@ class MateriaFactory extends Factory
             'creditos' => $this->faker->numberBetween(1, 6),
             'semestre' => $this->faker->numberBetween(1, 10),
             'plan_academico_id' => PlanAcademico::factory(),
+            'categoria_id' => Categoria::inRandomOrder()->first()?->id ?? Categoria::factory(),
         ];
     }
 }
