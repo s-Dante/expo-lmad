@@ -6,9 +6,9 @@
     <meta charset="utf-8" />
     <title>EXPO LMAD - Maestros</title>
     @vite([
-    'resources/css/teacher/lista-proyectos.css',
-    'resources/css/components/teacher/modal-editar.css',
-    'resources/js/teacher/modalEditar.js'
+        'resources/css/teacher/lista-proyectos.css',
+        'resources/css/components/teacher/modal-editar.css',
+        'resources/js/teacher/modalEditar.js'
     ])
 </head>
 
@@ -18,76 +18,53 @@
     <main class="main-content">
         <h1 class="text-main">LISTA DE PROYECTOS</h1>
         <section class="projects-grid">
+            @foreach ($proyectosProfesor as $proyecto)
+                <article class="card-project" data-proyecto-id="{{ $proyecto->id }}">
+                    <h2 class="project-title">{{$proyecto->titulo}}</h2>
+                    <p class="project-subtitle">{{ $proyecto->materia->nombre }}</p>
 
-            <article class="card-project">
-                <h2 class="project-title">ADADAT</h2>
-                <p class="project-subtitle">Administración de Alto Volumen de Datos</p>
-
-                <div class="token-container">
-                    <span>Token: 52563-64bad69f5d44c4--7-17292</span>
-                    <button class="btn-copy"><img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar"></img></button>
-                </div>
-
-                <div class="project-members">
-                    <div class="member-item">
-                        <p>Matrícula: 1994104</p>
-                        <p>Alumno: alumno123</p>
+                    <div class="token-container">
+                        <span>Token: {{ $proyecto->codigo_acceso }}</span>
+                        <button class="btn-copy"><img src="{{ asset('assets/teacher/CopiarVector.png') }}"
+                                alt="Copiar"></img></button>
                     </div>
 
-                    <div class="member-item">
-                        <p>Matrícula: 1994104</p>
-                        <p>Alumno: alumno123</p>
-                    </div>
-                </div>
+                    <div class="project-members">
+                        <div class="member-item">
+                            <p>Matrícula: {{ $proyecto->autores[0]->matricula }}</p>
+                            <p>Lider:
+                                {{ $proyecto->autores[0]->nombre . ' ' . $proyecto->autores[0]->apellido_paterno . ' ' . $proyecto->autores[0]->apellido_materno}}
+                            </p>
+                        </div>
 
-                <div class="status-check">
-                    <input type="checkbox" id="check-datos" checked>
-                    <label for="check-datos">Datos entregados</label>
-                </div>
 
-                <div class="card-actions">
-
-                    <button class="btn-action edit" onclick="abrirModal()">
-                        <img src="{{ asset('assets/teacher/EditarIcon.png') }}" alt="Editar">
-                    </button>
-                    <button class="btn-action help"><i class="fas fa-question"></i></button>
-                </div>
-            </article>
-
-            <article class="card-project">
-                <h2 class="project-title">ADADAT</h2>
-                <p class="project-subtitle">Administración de Alto Volumen de Datos</p>
-
-                <div class="token-container">
-                    <span>Token: 52563-64bad69f5d44c4--7-17292</span>
-                    <button class="btn-copy"><img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar"></img></button>
-                </div>
-
-                <div class="project-members">
-                    <div class="member-item">
-                        <p>Matrícula: 1994104</p>
-                        <p>Alumno: alumno123</p>
                     </div>
 
-                    <div class="member-item">
-                        <p>Matrícula: 1994104</p>
-                        <p>Alumno: alumno123</p>
+                    @if ($proyecto->estatus === 'aprobado')
+                        <div class="status-check">
+                            <input type="checkbox" checked disabled>
+                            <label for="check-datos">Datos entregados</label>
+                        </div>
+                    @else
+                        <div class="status-check">
+                            <input type="checkbox" disabled>
+                            <label for="check-datos">Datos entregados</label>
+                        </div>
+                    @endif
+
+                    <div class="card-actions">
+
+                        <button class="btn-action edit" onclick="abrirModal()">
+                            <img src="{{ asset('assets/teacher/EditarIcon.png') }}" alt="Editar">
+                        </button>
+                        <button class="btn-action help"><i class="fas fa-question"></i></button>
                     </div>
-                </div>
+                </article>
 
-                <div class="status-check">
-                    <input type="checkbox" id="check-datos" checked>
-                    <label for="check-datos">Datos entregados</label>
-                </div>
 
-                <div class="card-actions">
+            @endforeach
 
-                    <button class="btn-action edit" onclick="abrirModal()">
-                        <img src="{{ asset('assets/teacher/EditarIcon.png') }}" alt="Editar">
-                    </button>
-                    <button class="btn-action help"><i class="fas fa-question"></i></button>
-                </div>
-            </article>
+
         </section>
 
     </main>

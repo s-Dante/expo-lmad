@@ -37,10 +37,10 @@ class ProfesorController extends Controller
 
         return DB::transaction(function () use ($request) {
 
-        dd($request->all());
+
 
             $profesorReal = auth()->user()->profesor;
-            
+
 
             if (!$profesorReal) {
                 return back()->withErrors(['msg' => 'El usuario autenticado no está registrado como profesor.']);
@@ -88,15 +88,47 @@ class ProfesorController extends Controller
                 ]);
 
                 $proyecto->multimedia()->create([
-                    'tipo' => 'imagen', 
-                    'url' => '',        
+                    'tipo' => 'imagen',
+                    'url' => '',
                     'titulo' => 'Pendiente...',
                     'descripcion' => null,
-                    'es_portada' => true, 
+                    'es_portada' => true,
                 ]);
             }
             return redirect()->back()->with('Exito', 'Proyecto registrado con éxito. Código: ' . $codigo);
         });
 
+    }
+
+    public function listadoProyectos()
+    {
+        $usuario = auth()->user();
+
+        $profesor = $usuario->profesor;
+
+        $proyectosProfesor = Proyecto::where('profesor_id', $profesor->id)
+            ->with(['autores','materia'])
+            ->get();
+
+        //dd($proyectosProfesor);
+        
+        return view('teacher.lista-proyectos', compact('proyectosProfesor'));
+
+    }
+
+    public function buscarEstudiante($matricula){
+        $estudiante = Estudiante::where('matricula', $matricula)->first();
+
+        if($estudiante){
+            return response()->json([
+                'success' => true,
+                'nombre' => $estudiante->nombre . ' ' . $estudiante->apellido_paterno . ' ' . $estudiante->apellido_materno
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Estudiante no encontrado'
+            ], 404);
+        }
     }
 }

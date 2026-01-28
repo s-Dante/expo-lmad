@@ -61,10 +61,7 @@ Route::get('/admin/dashboard', function () {
     return view(view: 'admin.dashboard');
 })->name('admin.dashboard');
 
-//Rutas de profesor
-Route::get('/profesor/dashboard', function () {
-    return view(view: 'teacher.dashboard');
-})->name('profesor.dashboard');
+
 
 //Rutas de estudiante 
 Route::get('/estudiante/dashboard', function () {
@@ -72,15 +69,20 @@ Route::get('/estudiante/dashboard', function () {
 })->name('estudiante.dashboard');
 
 //Rutas de profesor
+Route::get('/profesor/dashboard', function () {
+    return view(view: 'teacher.dashboard');
+})->name('profesor.dashboard');
+
 Route::get('/profesor/registro-expositores', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarRegistroExpositores'])
 ->name('teacher.registro-expositores');
 
 Route::post('/profesor/cargar-proyecto', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarProyecto'])
 ->name('teacher.cargar-proyecto');
 
-Route::get('/Proyectos-Maestro', function () {
-    return view('teacher.lista-proyectos');
-});
+Route::get('/profesor/lista-proyectos', [App\Http\Controllers\Teacher\ProfesorController::class, 'listadoProyectos'])
+->name('teacher.lista-proyectos');
+
+Route::get('/buscar-estudiante/{matricula}', [App\Http\Controllers\Teacher\ProfesorController::class, 'buscarEstudiante']);
 
 //Rutas de staff
 Route::get('/staff/dashboard', function () {

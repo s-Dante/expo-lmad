@@ -13,7 +13,7 @@
 <body>
     <x-sidebar />
     <main class="main-content">
-        <h1 class="text-main">REGISTRO DE EXPOSITORES {{ auth()->user()->nombre }}</h1>
+        <h1 class="text-main">REGISTRO DE EXPOSITORES</h1>
 
         <section class="expo-card">
 
@@ -65,7 +65,7 @@
                         </div>
                         <div class="item">
                             <label>Alumno:</label>
-                            <input type="text" class="input-c nombre" name="estudiantes[0][nombre]">
+                            <input type="text" class="input-c nombre" name="estudiantes[0][nombre]" readonly>
                         </div>
                     </div>
 
