@@ -1,106 +1,93 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Debug Proyecto</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LMAD</title>
+    @vite('resources/css/guest/template.css')
+    @vite('resources/css/guest/portafolio-proyecto.css')
+
+    @vite([
+        'resources/js/guest/showButtonMenu.js'
+    ])
 </head>
+
 <body>
+    <header class="hero">
+        <div class="bg-navbar d-none"></div>
+        <x-guest.navbar-logo />
 
-<h1>Debug - Proyecto</h1>
+        <container class="section-proyecto-header">
+            <h1 class="BrunoAce-font section-proyecto-materia">{{ $proyecto->materia->nombre }}</h1>
+            <center><input type="text" disabled class="hr-gradient"></center>
+            <container class="container-proyecto">
+                <x-guest.bracket-left />
+                <h2 class="BrunoAce-font section-proyecto-nombre">{{ $proyecto->titulo }}</h2>
+                <x-guest.bracket-right />
+            </container>
+        </container>
+        <container class="container-banner">
+            <img src="{{asset('assets/guest/expolmadimg.png')}}" alt="EXPO LMAD" class="hero-banner" />
+        </container>
+    </header>
 
-{{-- ============================================================
-| 1. DATOS DIRECTOS DEL MODELO PROYECTO
-============================================================ --}}
-<p><strong>Título:</strong> {{ $proyecto->titulo }}</p>
+    <section class="section-proyecto-info" id="">
 
-<p><strong>Categoría (nombre):</strong> {{ $proyecto->getNombreCategoriaAttribute() ?? 'Sin Categoría' }}</p>
-<p><strong>Categoría (objeto):</strong> {{ $proyecto->getCategoriaAttribute() ?? 'Sin Categoría' }}</p>
+        @foreach($proyecto->multimedia as $media)
+            @if ($media->es_portada)
+                <container class="container-proyecto-info">
+                    <img class="img-proyecto" src="{{ $media->url }}">
+                    <p>{{ $proyecto->descripcion }}</p>
+                </container>
+                <container class="container-proyecto-tags">
+                    <p> Creado con </p>
+                    <div class="tags-list">
+                        @foreach($proyecto->softwares as $software)
+                            <div class="tooltip">
+                                <p>
+                                    {{ $software->software_name }}
+                                </p>
+                                <span class="tooltiptext">{{ $software->software_description }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </container>
+            @else
+                <container class="container-proyecto-video">
+                    <iframe src="{{ $media->url }}" class="video-project img-fluid" frameborder="0"
+                        allow="accelerometer; autoplay=true; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen="" autoplay="true">
+                    </iframe>
+                </container>
+            @endif
+        @endforeach
 
-<p><strong>Descripción:</strong> {{ $proyecto->descripcion }}</p>
+        <container class="container-proyecto-equipo">
+            @php
+                $totalAutores = $proyecto->autores->count();
+            @endphp
+            <div class="equipo-head">
+                <x-icons.left-bracket />
+                <h1 class="BrunoAce-font equipo-head-equipo">{{ $totalAutores > 1 ? 'Equipo' : 'Alumno' }}</h1>
+                <x-icons.right-bracket />
+            </div>
+            <div class="equipo-nombres">
+                @foreach($proyecto->autores as $autor)
+                    <p>
+                        {{ $autor->nombre }} {{ $autor->apellido_paterno }}
+                    </p>
+                @endforeach
 
-<hr>
+            </div>
+        </container>
+    </section>
 
-{{-- ============================================================
-| 2. RELACIÓN BELONGS TO: MATERIA
-============================================================ --}}
-<p><strong>Materia:</strong> {{ $proyecto->materia->nombre }}</p>
-
-<hr>
-
-{{-- ============================================================
-| 3. RELACIÓN BELONGS TO: PROFESOR
-============================================================ --}}
-<p>
-    <strong>Profesor:</strong>
-    {{ $proyecto->profesor->nombre }}
-    {{ $proyecto->profesor->apellido_paterno }}
-</p>
-
-<hr>
-
-{{-- ============================================================
-| 4. RELACIÓN MANY TO MANY: AUTORES
-============================================================ --}}
-
-@php
-    $totalAutores = $proyecto->autores->count();
-@endphp
-
-<p>
-    <strong>Tipo de participación:</strong>
-    {{ $totalAutores > 1 ? 'Equipo' : 'Alumno' }}
-</p>
-
-<h3>Autores</h3>
-
-@foreach($proyecto->autores as $autor)
-    <p>
-        {{ $autor->nombre }} {{ $autor->apellido_paterno }}
-        @if($autor->pivot->es_lider)
-            ← LÍDER (pivot)
-        @endif
-    </p>
-@endforeach
-
-
-<hr>
-
-{{-- ============================================================
-| 5. RELACIÓN ONE TO MANY: MULTIMEDIA
-============================================================ --}}
-<h3>Multimedia</h3>
-<p>Total: {{ $proyecto->multimedia->count() }}</p>
-
-@foreach($proyecto->multimedia as $media)
-    <p>
-        Tipo: {{ $media->tipo }} |
-        URL: {{ $media->url }} |
-        Portada: {{ $media->es_portada ? 'sí' : 'no' }}
-    </p>
-@endforeach
-
-<hr>
-
-{{-- ============================================================
-| 6. RELACIÓN MANY TO MANY: SOFTWARES
-============================================================ --}}
-<h3>Softwares</h3>
-
-@foreach($proyecto->softwares as $software)
-    <p>
-        {{ $software->software_name }}
-        (Logo Path: {{ $software->logo_path ?? 'N/A' }})
-    </p>
-@endforeach
-
-<hr>
-
-{{-- ============================================================
-| 7. DUMP COMPLETO
-============================================================ --}}
-<pre>
-@json($proyecto, JSON_PRETTY_PRINT)
-</pre>
+    <article class="card-info">
+        <span>EXPO LMAD - Mayo - 2026</span>
+        <img src="{{asset('assets/guest/icon-arrow-down.png')}}" alt="" />
+    </article>
 
 </body>
+
 </html>
