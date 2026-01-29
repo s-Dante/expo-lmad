@@ -38,9 +38,9 @@ h1 {
 }
 
 .portafolio-menu {
-    justify-self: center;
+    display: flex;
     justify-content: center;
-    justify-items: center;
+    align-items: flex-start;
 }
 
 .btn-portafolio {
@@ -52,6 +52,7 @@ h1 {
     color: white;
     font-family: Bruno Ace;
     transition: all 200ms;
+    text-decoration: none;
 }
 
 .btn-portafolio:hover {
@@ -73,7 +74,6 @@ h1 {
 }
 
 .section-portafolio {
-    margin: 10rem;
     display: grid;
     grid-template-columns: min-content min-content min-content min-content;
 }

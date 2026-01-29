@@ -15,14 +15,24 @@
 
 
 <style>
+    .title-portafolio {
+        text-align: center;
+    }
+
     .section-portafolio {
-        margin-inline: 10rem;
+        margin-top: 2rem;
+        display: grid;
         grid-template-columns: min-content min-content min-content min-content;
+        justify-content: center;
+        gap: 1rem;
     }
 
     .project-card-slot {
         position: static;
         padding: 1rem;
+        overflow: visible;
+        max-width: 15rem;
+        max-height: 15rem;
     }
 
     .project-card-container {
@@ -42,13 +52,64 @@
         justify-content: center;
         padding: 2rem;
     }
+
+    @media (max-width: 1130px) {
+        .section-portafolio {
+            margin-top: 4rem;
+            grid-template-columns: min-content min-content min-content;
+        }
+    }
+
+    @media (max-width: 870px) {
+        .section-portafolio {
+            margin-top: ;
+            grid-template-columns: min-content min-content;
+        }
+    }
+
+    @media (max-width: 580px) {
+        .section-portafolio {
+            grid-template-columns: min-content;
+        }
+    }
+
+    .portafolio-menu {
+        display: flex;
+        justify-content: center;
+        align-items: anchor-center;
+        max-height: 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .project-card-subtitulo {
+        font-family: Kodchasan;
+        font-size: 1.7rem;
+        color: #18e2ed00;
+        margin: .6rem;
+        transition: all .3s ease-out;
+        max-height: 9rem;
+        overflow: hidden;
+    }
+
+    .project-card-titulo {
+        color: #fff0;
+        text-align: left;
+        font-family: Bruno Ace;
+        font-size: 1.3rem;
+        font-style: normal;
+        line-height: normal;
+        margin: .6rem;
+        transition: all .3s ease-out;
+    }
 </style>
 
 <body>
 
     {{-- Navbar --}}
-    <div class="bg-navbar d-none"></div>
+
     <header class="hero">
+        <div class="bg-navbar d-none"></div>
         <img src="{{ asset('assets/guest/expolmadimg.png') }}" alt="EXPO LMAD" class="hero-banner" />
         <img src="{{ asset('assets/guest/LMAD_BLOOM.png') }}" class="hero-logo">
         <x-guest.navbar />
@@ -67,19 +128,13 @@
         {{-- CAMBIO 1: MENÚ DINÁMICO DESDE LA BASE DE DATOS --}}
         <div class="portafolio-menu">
             {{-- El botón "Todos" siempre va fijo --}}
-            <a
-                href="{{ route('portafolio.index', ['category' => 'todos']) }}"
-                class="btn-portafolio BrunoAce-font"
-            >
+            <a href="{{ route('portafolio.index', ['category' => 'todos']) }}" class="btn-portafolio BrunoAce-font">
                 Todos
             </a>
 
             {{-- Iteramos las categorías que trajimos de la tabla tbl_categorias --}}
             @foreach($categorias as $cat)
-                <a
-                    href="{{ route('portafolio.index', ['category' => $cat->slug]) }}"
-                    class="btn-portafolio BrunoAce-font"
-                >
+                <a href="{{ route('portafolio.index', ['category' => $cat->slug]) }}" class="btn-portafolio BrunoAce-font">
                     {{ $cat->nombre }}
                 </a>
             @endforeach
@@ -101,12 +156,7 @@
             @endphp
 
             <a href="{{ route('proyecto.show', $proyecto->slug) }}">
-                <x-guest.project-card
-                    class="project-card-bg"
-                    :style="$bgStyle"
-                    :materia="$proyecto->materia->nombre ?? 'Materia desconocida'"
-                    :nombreProyecto="$proyecto->titulo"
-                />
+                <x-guest.project-card class="project-card-bg" :style="$bgStyle" :materia="$proyecto->materia->nombre ?? 'Materia desconocida'" :nombreProyecto="$proyecto->titulo" />
             </a>
 
         @empty
@@ -127,4 +177,5 @@
     </article>
 
 </body>
+
 </html>
