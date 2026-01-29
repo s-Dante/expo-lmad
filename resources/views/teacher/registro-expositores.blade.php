@@ -31,10 +31,10 @@
                         <select class="input-c" name="materia_id" id="materia_id">
                             <option value="" disabled selected>Selecciona una materia</option>
                             @foreach ($materiasProfesor as $materia)
-                                <option value="{{ $materia->id }}" data-plan="{{ $materia->planAcademico->nombre }}"
-                                    data-semestre="{{ $materia->semestre }}">
-                                    {{ $materia->nombre }}
-                                </option>
+                            <option value="{{ $materia->id }}" data-plan="{{ $materia->planAcademico->nombre }}"
+                                data-semestre="{{ $materia->semestre }}">
+                                {{ $materia->nombre }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -48,27 +48,26 @@
                             <label>Semestre:</label>
                             <input type="text" class="input-c" id="in_semestre" readonly>
                         </div>
+
+                    </div>
+
+                    <div class="item">
+                        <label>Ciclo:</label> <select class="input-c periodo" id="in_periodo" readonly>
+                            <option value="Enero - Junio 2026">Ene - Jun 2026</option>
+                        </select>
                     </div>
 
                     <div class="fila-full">
-                        <label>Número de integrantes:</label>
-                        <input type="number" id="num-integrantes" class="input-c corto" min="1" max="10" value="1">
+                        <div class="item">
+                            <label>Numero de integrantes:</label>
+                            <input type="number" id="num-integrantes" class="input-c corto" min="1" max="10" value="0" onkeydown="return false">
+                        </div>
+
                     </div>
+
                 </div>
 
                 <div class="alumnos-box" id="contenedor-alumnos">
-
-                    <div class="fila-alumno">
-                        <div class="item">
-                            <label>Matrícula:</label>
-                            <input type="text" class="input-c matricula" name="estudiantes[0][matricula]">
-                        </div>
-                        <div class="item">
-                            <label>Alumno:</label>
-                            <input type="text" class="input-c nombre" name="estudiantes[0][nombre]" readonly>
-                        </div>
-                    </div>
-
                 </div>
 
                 <button type="submit" class="btn-save">Guardar</button>

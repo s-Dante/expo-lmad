@@ -19,7 +19,7 @@ body {
     font-size: 1.8rem;
     font-weight: 400;
     letter-spacing: 3px;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     margin-top: 2rem;
 }
 
@@ -89,6 +89,8 @@ body {
     font-family: var(--font-main);
     padding: 8px 15px;
     outline: none;
+    text-align: center;
+    position: relative;
 }
 .datos-box {
     display: flex;
@@ -129,7 +131,9 @@ body {
 .item .input-c {
     width: 80px;
 }
-
+.input-c.periodo {
+    width: 160px;
+}
 /* ----Alumnos Box ----*/
 .alumnos-box {
     display: flex;
@@ -187,17 +191,40 @@ body {
     transform: scale(0.98);
 }
 
-select.input-c {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='cyan' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1em;
-    padding-right: 2.5rem;
+.input-c:focus {
+    border-bottom: 3px solid var(--contrast-color-E);
+}
+.seccion-titulo {
+    font-family: var(--font-display);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: auto;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px var(--contrast-color-D);
 }
 
+h3.seccion-titulo:nth-of-type(2) {
+    margin-top: 0px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+@keyframes entradaSuave {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fila-alumno,
+.seccion-titulo {
+    animation: entradaSuave 0.4s ease-out forwards;
+}
 
 @media (max-width: 650px) {
     .main-content {
