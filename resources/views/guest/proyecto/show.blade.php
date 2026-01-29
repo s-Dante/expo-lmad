@@ -46,9 +46,9 @@
                         @foreach($proyecto->softwares as $software)
                             <div class="tooltip">
                                 <p>
-                                    {{ $software->software_name }}
+                                    {{ $software->nombre }}
                                 </p>
-                                <span class="tooltiptext">{{ $software->software_description }}</span>
+                                <span class="tooltiptext">{{ $software->descripcion }}</span>
                             </div>
                         @endforeach
                     </div>

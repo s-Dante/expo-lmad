@@ -20,8 +20,8 @@ class SoftwareFactory extends Factory
     public function definition(): array
     {
         return [
-            'software_name' => $this->faker->unique()->word(),
-            'software_description' => $this->faker->sentence(),
+            'nombre' => $this->faker->unique()->word(),
+            'descripcion' => $this->faker->sentence(),
             'estatus' => true,
         ];
     }
