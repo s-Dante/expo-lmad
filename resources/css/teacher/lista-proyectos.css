@@ -7,7 +7,7 @@ body {
     background-color: var(--bg-flat);
 }
 .main-content {
-    margin-left: 100px;
+    margin-left: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,9 +27,10 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 350px));
     gap: 40px;
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     padding-bottom: 50px;
+    align-items: center;
 }
 
 .card-project {
@@ -39,6 +40,7 @@ body {
     padding: 0.6rem 2rem;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .card-project::before {
@@ -172,7 +174,11 @@ body {
     gap: 12px;
     cursor: pointer;
     user-select: none;
-    margin-bottom: 20px;
+
+    margin-top: auto; 
+    
+    padding-top: 10px; 
+    margin-bottom: 15px;
 }
 
 .status-check input[type="checkbox"] {
@@ -287,12 +293,13 @@ body {
         font-size: 1.2rem;
         text-align: center;
         letter-spacing: 1px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
     }
     .projects-grid {
         grid-template-columns: 1fr;
         width: 100%;
-        gap: 20px;
+         height: 100%;
+        gap: 50px;
         justify-content: center;
         justify-items: center;
     }

@@ -60,11 +60,7 @@
                         <button class="btn-action help"><i class="fas fa-question"></i></button>
                     </div>
                 </article>
-
-
             @endforeach
-
-
         </section>
 
     </main>

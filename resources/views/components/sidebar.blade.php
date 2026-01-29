@@ -13,12 +13,12 @@
      </div>
 
      <nav class="sidebar-nav">
-         <a href="{{ route('profesor.registro-expositores') }}" class="sidebar-item ">
+         <a href="{{ route('teacher.registro-expositores') }}" class="sidebar-item ">
              <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
              <span>Registrar Expositores</span>
          </a>
 
-         <a href="{{ route('profesor.lista-proyectos') }}" class="sidebar-item ">
+         <a href="{{ route('teacher.lista-proyectos') }}" class="sidebar-item ">
              <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
              <span>Mostrar Proyectos</span>
          </a>
