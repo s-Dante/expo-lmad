@@ -89,3 +89,12 @@ Route::get('/staff/dashboard', function () {
     return view('staff.dashboard');
 })->name('staff.dashboard');
 
+
+//Rutas de Maestros
+Route::get('/RegistroExpositores', function () {
+    return view('teacher.registro-expositores');
+})->name('profesor.registro-expositores');
+
+Route::get('/Proyectos-Maestro', function () {
+    return view('teacher.lista-proyectos');
+})->name('profesor.lista-proyectos');

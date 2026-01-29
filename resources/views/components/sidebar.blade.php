@@ -1,5 +1,6 @@
  @vite(['resources/css/components/sidebar.css'])
-@vite(['resources/js/components/sidebar.js'])
+ @vite(['resources/js/components/sidebar.js'])
+
  <aside class="role-sidebar">
      <button class="sidebar-toggle" id="sidebarToggle">
          <span></span>
@@ -12,12 +13,12 @@
      </div>
 
      <nav class="sidebar-nav">
-         <a href="#" class="sidebar-item ">
+         <a href="{{ route('profesor.registro-expositores') }}" class="sidebar-item ">
              <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
              <span>Registrar Expositores</span>
          </a>
 
-         <a href="#" class="sidebar-item ">
+         <a href="{{ route('profesor.lista-proyectos') }}" class="sidebar-item ">
              <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
              <span>Mostrar Proyectos</span>
          </a>
@@ -35,3 +36,5 @@
      </div>
 
  </aside>
+
+ 
