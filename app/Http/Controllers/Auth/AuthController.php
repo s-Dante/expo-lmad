@@ -28,6 +28,14 @@ class AuthController extends Controller
 
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/login');
+    }
+
     public function redireccionPorRol($usuario){
         switch($usuario->rol){
             case 'super_admin':

@@ -66,7 +66,7 @@ class ProfesorController extends Controller
                 $estudiante = Estudiante::where('matricula', $estudianteData['matricula'])->first();
 
                 $usuario = User::firstOrCreate(
-                    ['llave_acceso' => $estudiante->matricula],
+                    ['email' => $estudiante->email],
                     [
                         'name' => $estudiante->matricula,
                         'nombre' => $estudiante->nombre,

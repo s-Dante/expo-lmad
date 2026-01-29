@@ -13,7 +13,7 @@
 <body>
     <x-sidebar />
     <main class="main-content">
-        <h1 class="text-main">REGISTRO DE EXPOSITORES</h1>
+        <h1 class="text-main">REGISTRO DE PROYECTOS</h1>
 
         <section class="expo-card">
 
@@ -23,7 +23,7 @@
                 <input type="hidden" name="profesor_id" value="{{ auth()->user()->id }}">
                 <input type="hidden" name="periodo_semestral" value="Enero - Junio 2026">
 
-                <h2 class="card-title">ADADAT</h2>
+                <h2 class="card-title">Ingrese la información del proyecto</h2>
 
                 <div class="datos-box">
                     <div class="fila-full">

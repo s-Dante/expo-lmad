@@ -51,6 +51,9 @@ Route::get('/Proyecto', function () {
 Route::post('/auth/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])
 ->name('auth.login');
 
+Route::get('/auth/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])
+->name('auth.logout');
+
 // Rutas de Super_Admin
 Route::get('/superadmin/dashboard', function () {
     return view('superadmin.dashboard');
@@ -60,8 +63,6 @@ Route::get('/superadmin/dashboard', function () {
 Route::get('/admin/dashboard', function () {
     return view(view: 'admin.dashboard');
 })->name('admin.dashboard');
-
-
 
 //Rutas de estudiante 
 Route::get('/estudiante/dashboard', function () {

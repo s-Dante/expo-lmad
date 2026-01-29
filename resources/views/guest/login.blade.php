@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <main class="log-in">
         <img class="planet" src="{{ asset('assets/guest/planet-1.png') }}" alt="" />
 
@@ -22,20 +23,12 @@
 
         <div class="input-container">
             <div class="input-group">
-                <input
-                    name="email"
-                    type="text"
-                    class="input-clave"
-                    placeholder="Clave de usuario" />
+                <input name="email" type="text" class="input-clave" placeholder="Clave de usuario" />
                 <span class="line"></span>
             </div>
 
             <div class="input-group">
-                <input
-                    name="password"
-                    type="password"
-                    class="input-contrasena"
-                    placeholder="Contraseña" />
+                <input name="password" type="password" class="input-contrasena" placeholder="Contraseña" />
                 <span class="line"></span>
             </div>
 
