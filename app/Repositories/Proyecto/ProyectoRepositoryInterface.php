@@ -16,5 +16,5 @@ interface ProyectoRepositoryInterface
      */
     public function obtenerParaGaleria(?string $categoria = null, int $perPage = 12): LengthAwarePaginator;
 
-    public function obtenerDetallePorSlug(string $slug): ?Proyecto;
+    public function obtenerDetallePorSlug(string $slug): ?Proyecto;         
 }
