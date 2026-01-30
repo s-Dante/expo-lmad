@@ -40,6 +40,17 @@ body {
     padding-bottom: 7rem;
 }
 
+a {
+    text-decoration: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* ---- Banner y Navbar ---- */
 .hero {
     position: relative;
@@ -178,7 +189,6 @@ button,
 
 /*dispositivos móviles*/
 @media (max-width: 650px) {
-
     .navbar-actions {
         display: grid;
     }
@@ -297,6 +307,28 @@ button,
 }
 /* ---- --------------- ---- */
 
+/*------------ Paginación ---------------*/
+
+.a-pagination {
+    font-family: var(--kodchasan-font);
+    color: var(--gray);
+    margin: 0.3rem;
+}
+
+.a-pagination-blue {
+    font-family: var(--kodchasan-font);
+    color: var(--blue-100);
+    margin: 0.3rem;
+}
+
+.pagination-container nav {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/*----------------------------*/
+
 /*------------ Estilos rápidos ----------------*/
 .d-none {
     display: none;
@@ -326,4 +358,16 @@ button,
 .img-fluid {
     max-width: 100%;
     height: auto;
+}
+
+.align-content-center {
+    align-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
 }

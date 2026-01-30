@@ -13,42 +13,12 @@
     ])
 </head>
 
-
-<style>
-    .section-portafolio {
-        margin-inline: 10rem;
-        grid-template-columns: min-content min-content min-content min-content;
-    }
-
-    .project-card-slot {
-        position: static;
-        padding: 1rem;
-    }
-
-    .project-card-container {
-        position: absolute;
-    }
-
-    /* Fondo dinámico para las cards */
-    .project-card-bg {
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-    /* Paginación centrada */
-    .pagination-container nav {
-        display: flex;
-        justify-content: center;
-        padding: 2rem;
-    }
-</style>
-
 <body>
 
     {{-- Navbar --}}
-    <div class="bg-navbar d-none"></div>
+
     <header class="hero">
+        <div class="bg-navbar d-none"></div>
         <img src="{{ asset('assets/guest/expolmadimg.png') }}" alt="EXPO LMAD" class="hero-banner" />
         <img src="{{ asset('assets/guest/LMAD_BLOOM.png') }}" class="hero-logo">
         <x-guest.navbar />
@@ -67,19 +37,13 @@
         {{-- CAMBIO 1: MENÚ DINÁMICO DESDE LA BASE DE DATOS --}}
         <div class="portafolio-menu">
             {{-- El botón "Todos" siempre va fijo --}}
-            <a
-                href="{{ route('portafolio.index', ['category' => 'todos']) }}"
-                class="btn-portafolio BrunoAce-font"
-            >
+            <a href="{{ route('portafolio.index', ['category' => 'todos']) }}" class="btn-portafolio BrunoAce-font">
                 Todos
             </a>
 
             {{-- Iteramos las categorías que trajimos de la tabla tbl_categorias --}}
             @foreach($categorias as $cat)
-                <a
-                    href="{{ route('portafolio.index', ['category' => $cat->slug]) }}"
-                    class="btn-portafolio BrunoAce-font"
-                >
+                <a href="{{ route('portafolio.index', ['category' => $cat->slug]) }}" class="btn-portafolio BrunoAce-font">
                     {{ $cat->nombre }}
                 </a>
             @endforeach
@@ -101,12 +65,7 @@
             @endphp
 
             <a href="{{ route('proyecto.show', $proyecto->slug) }}">
-                <x-guest.project-card
-                    class="project-card-bg"
-                    :style="$bgStyle"
-                    :materia="$proyecto->materia->nombre ?? 'Materia desconocida'"
-                    :nombreProyecto="$proyecto->titulo"
-                />
+                <x-guest.project-card class="project-card-bg" :style="$bgStyle" :materia="$proyecto->materia->nombre ?? 'Materia desconocida'" :nombreProyecto="$proyecto->titulo" />
             </a>
 
         @empty
@@ -127,4 +86,5 @@
     </article>
 
 </body>
+
 </html>
