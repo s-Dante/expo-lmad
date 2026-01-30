@@ -47,6 +47,14 @@
     --clr-black: #000000;
     --clr-gray: #a8a8a8;
 
+    /*portafolio*/
+    --clr-blue-gray: rgb(77, 105, 143, 1);
+    --clr-blue-gray-transparent: rgb(77, 105, 143, 0);
+    --clr-cian-transparent: #18e2ed00;
+    --clr-pink-600: #f558e5;
+    --clr-blue-indigo: #5170ed;
+    --clr-blue-transparent: rgba(81, 112, 237, 0.45);
+
     /* --- SEMÁNTICA COMPARTIDA --- */
 
     /* Fondos de página */
