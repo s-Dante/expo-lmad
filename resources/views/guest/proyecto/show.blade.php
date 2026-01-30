@@ -35,23 +35,26 @@
     <section class="section-proyecto-info" id="">
 
         @foreach($proyecto->multimedia as $media)
+            @if ($loop->iteration > 2)
+                @break
+            @endif
             @if ($media->es_portada)
                 <container class="container-proyecto-info">
                     <img class="img-proyecto" src="{{ $media->url }}">
                     <p>{{ $proyecto->descripcion }}</p>
-                </container>
-                <container class="container-proyecto-tags">
-                    <p> Creado con </p>
-                    <div class="tags-list">
-                        @foreach($proyecto->softwares as $software)
-                            <div class="tooltip">
-                                <p>
-                                    {{ $software->software_name }}
-                                </p>
-                                <span class="tooltiptext">{{ $software->software_description }}</span>
-                            </div>
-                        @endforeach
-                    </div>
+                    <container class="container-proyecto-tags">
+                        <p> Creado con </p>
+                        <div class="tags-list">
+                            @foreach($proyecto->softwares as $software)
+                                <div class="tooltip">
+                                    <p>
+                                        {{ $software->software_name }}
+                                    </p>
+                                    <span class="tooltiptext">{{ $software->software_description }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </container>
                 </container>
             @else
                 <container class="container-proyecto-video">
@@ -62,26 +65,26 @@
                 </container>
             @endif
         @endforeach
-
-        <container class="container-proyecto-equipo">
-            @php
-                $totalAutores = $proyecto->autores->count();
-            @endphp
-            <div class="equipo-head">
-                <x-icons.left-bracket />
-                <h1 class="BrunoAce-font equipo-head-equipo">{{ $totalAutores > 1 ? 'Equipo' : 'Alumno' }}</h1>
-                <x-icons.right-bracket />
-            </div>
-            <div class="equipo-nombres">
-                @foreach($proyecto->autores as $autor)
-                    <p>
-                        {{ $autor->nombre }} {{ $autor->apellido_paterno }}
-                    </p>
-                @endforeach
-
-            </div>
-        </container>
     </section>
+
+    <container class="container-proyecto-equipo">
+        @php
+            $totalAutores = $proyecto->autores->count();
+        @endphp
+        <div class="equipo-head">
+            <x-icons.left-bracket />
+            <h1 class="BrunoAce-font equipo-head-equipo">{{ $totalAutores > 1 ? 'Equipo' : 'Alumno' }}</h1>
+            <x-icons.right-bracket />
+        </div>
+        <div class="equipo-nombres">
+            @foreach($proyecto->autores as $autor)
+                <p>
+                    {{ $autor->nombre }} {{ $autor->apellido_paterno }}
+                </p>
+            @endforeach
+
+        </div>
+    </container>
 
     <article class="card-info">
         <span>EXPO LMAD - Mayo - 2026</span>

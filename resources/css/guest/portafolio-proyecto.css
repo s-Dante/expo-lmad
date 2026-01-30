@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Kodchasan&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=League+Spartan&display=swap");
+@import url(/resources/css/tokens.css);
 
 body {
     height: auto;
@@ -16,15 +14,15 @@ h1 {
 }
 
 .BrunoAce-font {
-    color: #fff;
-    font-family: Bruno Ace;
+    color: var(--clr-white);
+    font-family: var(--font-display);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
 .section-proyecto-materia {
-    color: #00afc4;
+    color: var(--clr-blue-100);
     text-transform: uppercase;
 }
 
@@ -71,9 +69,9 @@ h1 {
     border-image: initial;
     background: linear-gradient(
         270deg,
-        rgb(11, 26, 43) 2.34%,
-        #00ebd2 49.54%,
-        rgb(11, 26, 43) 100%
+        var(--clr-blue-800) 2.34%,
+        var(--clr-blue-200) 49.54%,
+        var(--clr-blue-800) 100%
     );
 }
 
@@ -102,8 +100,8 @@ h1 {
 }
 
 .container-proyecto-info p {
-    color: #fff;
-    font-family: Kodchasan;
+    color: var(--clr-white);
+    font-family: var(--font-main);
     font-weight: 700;
 }
 
@@ -125,19 +123,19 @@ h1 {
 .img-proyecto {
     width: 160px;
     height: 159px;
-    box-shadow: rgba(153, 88, 245, 0.25) 0px 0px 50px 4px;
+    box-shadow: var(--clr-purple-transparent) 0px 0px 50px 4px;
     border-radius: 40px;
     border-width: 1.5px;
     border-style: solid;
-    border-color: rgb(153, 88, 245);
+    border-color: var(--clr-purple-200);
     border-image: initial;
-    background: 50% center / cover no-repeat lightgray;
+    background: 50% center / cover no-repeat var(--clr-white);
 }
 
 .video-project {
-    border: 1.5px solid #368be6;
-    background: lightgray 50% / cover no-repeat;
-    box-shadow: 0px 4px 50px 4px rgba(54, 139, 230, 0.3);
+    border: 1.5px solid var(--clr-blue-200);
+    background: var(--clr-white) 50% / cover no-repeat;
+    box-shadow: 0px 4px 50px 4px var(--clr-blue-transparent);
     width: 80vw;
     min-height: 100%;
     height: auto;
@@ -153,7 +151,7 @@ h1 {
 }
 
 .container-proyecto-equipo p {
-    color: #fff;
+    color: var(--clr-white);
 }
 
 .equipo-nombres {
@@ -163,8 +161,8 @@ h1 {
 }
 
 .equipo-nombres p {
-    color: #fff;
-    font-family: League Spartan;
+    color: var(--clr-white);
+    font-family: var(--font-alt);
     text-transform: uppercase;
     text-justify: center;
 }
@@ -214,11 +212,11 @@ h1 {
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    font-family: Kodchasan;
+    font-family: var(--font-main);
     width: auto;
     max-width: 300px; /* Adjust as needed */
-    background-color: black;
-    color: #fff;
+    background-color: var(--clr-black);
+    color: var(--clr-white);
     text-align: center;
     border-radius: 6px;
     padding: 5px;
@@ -239,7 +237,7 @@ h1 {
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: black transparent transparent transparent;
+    border-color: var(--clr-black) transparent transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {
@@ -256,8 +254,8 @@ h1 {
 }
 
 .container-proyecto-tags p {
-    color: #fff;
-    font-family: Kodchasan;
+    color: var(--clr-white);
+    font-family: var(--font-main);
 }
 
 .tags-list {
@@ -276,14 +274,70 @@ h1 {
     margin: 0rem;
     padding: 0.4rem;
     width: max-content;
-    color: #fff;
-    font-family: Kodchasan;
-    background-color: #182e4a;
+    color: var(--clr-white);
+    font-family: var(--font-main);
+    background-color: var(--clr-blue-650);
     border-radius: 0.8rem;
 }
 
 @media (max-height: 425px) {
     .container-proyecto-info {
         margin-top: 7rem;
+    }
+}
+
+@media (min-width: 1340px) {
+    .hero-logo {
+        justify-self: left;
+        position: absolute;
+        z-index: 9 !important;
+        width: 6rem;
+        filter: brightness(85%);
+    }
+
+    .section-proyecto-info {
+        display: grid;
+        grid-template-columns: auto auto;
+        width: -webkit-fill-available;
+        padding-inline: 5rem;
+    }
+
+    .container-proyecto-info {
+        margin-inline: 1rem;
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        justify-items: center;
+        margin-top: 2rem;
+        padding-inline: 1rem;
+        width: 28rem;
+    }
+
+    .container-proyecto-video {
+        display: flex;
+        justify-content: center;
+        margin: 3rem;
+        height: 30rem;
+    }
+}
+
+@media (min-width: 620px) {
+    .container-proyecto-info {
+        margin-inline: 1rem;
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        justify-items: center;
+        margin-top: 2rem;
+        max-width: 32rem;
+        justify-self: center;
+    }
+
+    .container-proyecto-video {
+        height: 35vw;
     }
 }
