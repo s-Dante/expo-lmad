@@ -19,6 +19,7 @@ use Database\Seeders\AutorProyectoSeeder;
 use Database\Seeders\MultimediaProyectoSeeder;
 use Database\Seeders\SoftwareSeeder;
 use Database\Seeders\SoftwarePorProyectoSeeder;
+use Database\Seeders\AsistenciaGeneralSeeder;
 use Database\Seeders\ConferenciaSeeder;
 
 // Factories
@@ -33,6 +34,7 @@ use Database\Factories\AutorProyectoFactory;
 use Database\Factories\MultimediaProyectoFactory;
 use Database\Factories\SoftwareFactory;
 use Database\Factories\SoftwarePorProyectoFactory;
+use Database\Factories\AsistenciaGeneralFactory;
 use Database\Factories\ConferenciaFactory;
 
 // Models
@@ -47,6 +49,7 @@ use App\Models\AutorProyecto;
 use App\Models\MultimediaProyecto;
 use App\Models\Software;
 use App\Models\SoftwarePorProyecto;
+use App\Models\AsistenciaGeneral;
 use App\Models\Conferencia;
 
 
@@ -73,6 +76,7 @@ class DatabaseSeeder extends Seeder
                 // -- Personas Base --
                 EstudianteSeeder::class, // Padrón Alumnos
                 ProfesorSeeder::class,   // Padrón Profes (con materias asignadas)
+                AsistenciaGeneralSeeder::class, // Asistencias Generales (QR)
                 
                 // -- Actores Externos --
                 ConferencistaSeeder::class, // Speakers

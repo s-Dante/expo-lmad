@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
 use App\Http\Controllers\Guest\PortafolioController;
+use App\Http\Controllers\Student\EstudianteController;
+use App\Http\Controllers\Teacher\ProfesorController;
+use App\Http\Controllers\SuperAdmin\SuperAdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Guest\ProyectoController;
 
 // Rutas de paginas publicas
@@ -48,10 +52,10 @@ Route::get('/Proyecto', function () {
 });
 
 // Rutas de Autenticacion
-Route::post('/auth/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])
+Route::post('/auth/login', [AuthController::class, 'login'])
 ->name('auth.login');
 
-Route::get('/auth/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])
+Route::get('/auth/logout', [AuthController::class, 'logout'])
 ->name('auth.logout');
 
 // Rutas de Super_Admin
@@ -65,25 +69,30 @@ Route::get('/admin/dashboard', function () {
 })->name('admin.dashboard');
 
 //Rutas de estudiante 
-Route::get('/estudiante/dashboard', function () {
-    return view('student.dashboard');
-})->name('estudiante.dashboard');
+Route::get('/estudiante/dashboard', [EstudianteController::class, 'dashboard'])->name('estudiante.dashboard');    
+
+Route::get('/estudiante/asistencia-qr', [EstudianteController::class, 'asistenciaQr'])->name('estudiante.qr');
+
+Route::get('/estudiante/proyectos', [EstudianteController::class, 'index'])->name('estudiante.proyectos.index');
+Route::get('/estudiante/proyectos/{id}/editar', [EstudianteController::class, 'edit'])->name('estudiante.proyectos.edit');
+Route::put('/estudiante/proyectos/{id}', [EstudianteController::class, 'update'])->name('estudiante.proyectos.update');
+
 
 //Rutas de profesor
 Route::get('/profesor/dashboard', function () {
     return view(view: 'teacher.dashboard');
 })->name('profesor.dashboard');
 
-Route::get('/profesor/registro-expositores', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarRegistroExpositores'])
+Route::get('/profesor/registro-expositores', [ProfesorController::class, 'cargarRegistroExpositores'])
 ->name('teacher.registro-expositores');
 
-Route::post('/profesor/cargar-proyecto', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarProyecto'])
+Route::post('/profesor/cargar-proyecto', [ProfesorController::class, 'cargarProyecto'])
 ->name('teacher.cargar-proyecto');
 
-Route::get('/profesor/lista-proyectos', [App\Http\Controllers\Teacher\ProfesorController::class, 'listadoProyectos'])
+Route::get('/profesor/lista-proyectos', [ProfesorController::class, 'listadoProyectos'])
 ->name('teacher.lista-proyectos');
 
-Route::get('/buscar-estudiante/{matricula}', [App\Http\Controllers\Teacher\ProfesorController::class, 'buscarEstudiante']);
+Route::get('/buscar-estudiante/{matricula}', [ProfesorController::class, 'buscarEstudiante']);
 
 //Rutas de staff
 Route::get('/staff/dashboard', function () {
