@@ -49,44 +49,70 @@ Route::get('/Proyecto', function () {
 
 // Rutas de Autenticacion
 Route::post('/auth/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])
-->name('auth.login');
+    ->name('auth.login');
 
 Route::get('/auth/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])
-->name('auth.logout');
+    ->name('auth.logout');
 
+
+/* 
+PAGINAS CON MIDDLEWARE - AUTENTICACION Y ACCESO UNICAMENTE POR ROL
+
+El funcionamiento es practicamente igual, solo que si ahora quieres hacer una rutilla para cada rol lo debes de meter dentro del
+Route::middleware que le corresponda uwu. Se valida que haya tanto una sesion iniciada como que el rol se cumpla para cada vista, asi un alumno curioso no va a poder andar chismoseando vistas ajenas a su posicion inferior muajaja. Pero bueno ya asi eso fue todo creo que todo claro, por si hay alguna duda del funcionamiento me mandan wsp o a mi insta que tengo insta, en teams tambien pero en facebook no porque no tengo. tqm papoi <3 
+
+*/
+    
 // Rutas de Super_Admin
-Route::get('/superadmin/dashboard', function () {
-    return view('superadmin.dashboard');
-})->name('superadmin.dashboard');
+Route::middleware(['auth', 'role:super_admin'])->group(function () {
+    Route::get('/superadmin/dashboard', function () {
+        return view('superadmin.dashboard');
+    })->name('superadmin.dashboard');
+});
 
-//Rutas de admin
-Route::get('/admin/dashboard', function () {
-    return view(view: 'admin.dashboard');
-})->name('admin.dashboard');
+//Rutas de Admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view(view: 'admin.dashboard');
+    })->name('admin.dashboard');
+});
 
-//Rutas de estudiante 
-Route::get('/estudiante/dashboard', function () {
-    return view('student.dashboard');
-})->name('estudiante.dashboard');
 
-//Rutas de profesor
-Route::get('/profesor/dashboard', function () {
-    return view(view: 'teacher.dashboard');
-})->name('profesor.dashboard');
+//Rutas de Estudiante 
+Route::middleware(['auth', 'role:estudiante'])->group(function () {
+    Route::get('/estudiante/dashboard', function () {
+        return view('student.dashboard');
+    })->name('estudiante.dashboard');
+});
 
-Route::get('/profesor/registro-expositores', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarRegistroExpositores'])
-->name('teacher.registro-expositores');
+//Rutas de Profesor
+Route::middleware(['auth', 'role:profesor'])->group(function () {
+    Route::get('/profesor/dashboard', function () {
+        return view(view: 'teacher.dashboard');
+    })->name('profesor.dashboard');
 
-Route::post('/profesor/cargar-proyecto', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarProyecto'])
-->name('teacher.cargar-proyecto');
+    Route::get('/profesor/registro-expositores', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarRegistroExpositores'])
+        ->name('teacher.registro-expositores');
 
-Route::get('/profesor/lista-proyectos', [App\Http\Controllers\Teacher\ProfesorController::class, 'listadoProyectos'])
-->name('teacher.lista-proyectos');
+    Route::post('/profesor/cargar-proyecto', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarProyecto'])
+        ->name('teacher.cargar-proyecto');
 
-Route::get('/buscar-estudiante/{matricula}', [App\Http\Controllers\Teacher\ProfesorController::class, 'buscarEstudiante']);
+    Route::get('/profesor/lista-proyectos', [App\Http\Controllers\Teacher\ProfesorController::class, 'listadoProyectos'])
+        ->name('teacher.lista-proyectos');
+});
 
 //Rutas de staff
-Route::get('/staff/dashboard', function () {
-    return view('staff.dashboard');
-})->name('staff.dashboard');
+Route::middleware(['auth', 'role:staff'])->group(function () {
+    Route::get('/staff/dashboard', function () {
+        return view('staff.dashboard');
+    })->name('staff.dashboard');
+});
 
+
+/* 
+APIS 
+
+La verdad creo que dentro de lo planeado no teniamos pensado algo asi, pero en consecuencia de que hacer esto fue necesario para una funcionalidad en el registro de proyecto creo que puede ser útil tanto para otras areas del desarrollo como para quizas, hacer algo de apis. Se pueden hacer modificaciones para a lo mejor crear un controller especifico para estas weas pero eso eventualmente sera analizado por el super genial, fantastico, asombros, poderoso, inconmensurable, apoteosico, biblico, potente y mamastroso equipo de programacion del departamento multimedia.
+
+*/
+Route::get('/buscar-estudiante/{matricula}', [App\Http\Controllers\Teacher\ProfesorController::class, 'buscarEstudiante']);
