@@ -100,6 +100,7 @@ button,
     justify-self: center;
     justify-content: center;
     justify-items: center;
+    border: none;
 }
 
 .btn-menu {
@@ -142,6 +143,43 @@ button,
     box-shadow: 0 6px 20px var(--blue-950);
 }
 
+.btn-ghost-nav {
+    color: var(--white);
+    background: var(--black);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-blue-nav {
+    color: var(--white);
+    background: linear-gradient(
+        90deg,
+        var(--blue-100) 0%,
+        var(--blue-600) 100%
+    );
+}
+
+.btn-purple-nav {
+    color: var(--white);
+    background: linear-gradient(
+        90deg,
+        var(--purple-200) 0%,
+        var(--blue-600) 100%
+    );
+
+    display: none;
+}
+
+.btn-darkpur-nav {
+    color: var(--white);
+    background: linear-gradient(
+        90deg,
+        var(--purple-800) 0%,
+        var(--blue-600) 100%
+    );
+
+    display: none;
+}
+
 .btn-ghost {
     color: var(--white);
     background: var(--black);
@@ -165,7 +203,6 @@ button,
         var(--blue-600) 100%
     );
 
-    display: none;
 }
 
 .btn-darkpur {
@@ -175,8 +212,6 @@ button,
         var(--purple-800) 0%,
         var(--blue-600) 100%
     );
-
-    display: none;
 }
 
 .bg-navbar {
@@ -193,15 +228,15 @@ button,
         display: grid;
     }
 
-    .btn-blue,
-    .btn-ghost {
+    .btn-blue-nav,
+    .btn-ghost-nav {
         display: none;
     }
 
-    .btn-blue,
-    .btn-darkpur,
-    .btn-ghost,
-    .btn-purple {
+    .btn-blue-nav,
+    .btn-darkpur-nav,
+    .btn-ghost-nav,
+    .btn-purple-nav {
         justify-self: right;
     }
 

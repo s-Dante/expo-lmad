@@ -1,9 +1,9 @@
 window.showButtons = function() {
-  showElementsByStyle("btn-darkpur");
-  showElementsByStyle("btn-purple");
+  showElementsByStyle("btn-darkpur-nav");
+  showElementsByStyle("btn-purple-nav");
   if (screen.width < 650) {
-    showElementsByStyle("btn-ghost");
-    showElementsByStyle("btn-blue");
+    showElementsByStyle("btn-ghost-nav");
+    showElementsByStyle("btn-blue-nav");
     showElementsByClass("bg-navbar");
   }
 }

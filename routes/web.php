@@ -49,10 +49,10 @@ Route::get('/Proyecto', function () {
 
 // Rutas de Autenticacion
 Route::post('/auth/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])
-->name('auth.login');
+    ->name('auth.login');
 
 Route::get('/auth/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])
-->name('auth.logout');
+    ->name('auth.logout');
 
 // Rutas de Super_Admin
 Route::get('/superadmin/dashboard', function () {
@@ -69,19 +69,24 @@ Route::get('/estudiante/dashboard', function () {
     return view('student.dashboard');
 })->name('estudiante.dashboard');
 
+Route::get('/estudiante/registro-proyecto', function () {
+    return view('student.registro-proyecto');
+});
+
+
 //Rutas de profesor
 Route::get('/profesor/dashboard', function () {
     return view(view: 'teacher.dashboard');
 })->name('profesor.dashboard');
 
 Route::get('/profesor/registro-expositores', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarRegistroExpositores'])
-->name('teacher.registro-expositores');
+    ->name('teacher.registro-expositores');
 
 Route::post('/profesor/cargar-proyecto', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarProyecto'])
-->name('teacher.cargar-proyecto');
+    ->name('teacher.cargar-proyecto');
 
 Route::get('/profesor/lista-proyectos', [App\Http\Controllers\Teacher\ProfesorController::class, 'listadoProyectos'])
-->name('teacher.lista-proyectos');
+    ->name('teacher.lista-proyectos');
 
 Route::get('/buscar-estudiante/{matricula}', [App\Http\Controllers\Teacher\ProfesorController::class, 'buscarEstudiante']);
 

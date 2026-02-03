@@ -24,6 +24,8 @@ export default defineConfig({
                 "resources/css/teacher/lista-proyectos.css",
                 "resources/css/components/teacher/modal-editar.css",
 
+                "resources/css/student/registro-proyecto.css",
+
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
                 "resources/js/guest/cronogramaS1.js",
@@ -33,7 +35,7 @@ export default defineConfig({
                 "resources/js/guest/revealAnimation.js",
                 "resources/js/components/sidebar.js",
                 "resources/js/teacher/agregarIntegrantes.js",
-                "resources/js/teacher/modalEditar.js",
+                "resources/js/teacher/modalEditar.js"
             ],
             refresh: true,
         }),

@@ -9,7 +9,7 @@
     @vite([
         'resources/css/guest/template.css',
         'resources/css/guest/portafolio.css',
-        'resources/js/guest/showButtonMenu.js'
+        'resources/css/components/sidebar.css'
     ])
 </head>
 
