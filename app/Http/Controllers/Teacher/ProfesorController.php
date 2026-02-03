@@ -115,20 +115,4 @@ class ProfesorController extends Controller
         return view('teacher.lista-proyectos', compact('proyectosProfesor'));
 
     }
-
-    public function buscarEstudiante($matricula){
-        $estudiante = Estudiante::where('matricula', $matricula)->first();
-
-        if($estudiante){
-            return response()->json([
-                'success' => true,
-                'nombre' => $estudiante->nombre . ' ' . $estudiante->apellido_paterno . ' ' . $estudiante->apellido_materno
-            ]);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Estudiante no encontrado'
-            ], 404);
-        }
-    }
 }

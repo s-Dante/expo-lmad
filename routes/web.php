@@ -115,4 +115,5 @@ APIS
 La verdad creo que dentro de lo planeado no teniamos pensado algo asi, pero en consecuencia de que hacer esto fue necesario para una funcionalidad en el registro de proyecto creo que puede ser útil tanto para otras areas del desarrollo como para quizas, hacer algo de apis. Se pueden hacer modificaciones para a lo mejor crear un controller especifico para estas weas pero eso eventualmente sera analizado por el super genial, fantastico, asombros, poderoso, inconmensurable, apoteosico, biblico, potente y mamastroso equipo de programacion del departamento multimedia.
 
 */
-Route::get('/buscar-estudiante/{matricula}', [App\Http\Controllers\Teacher\ProfesorController::class, 'buscarEstudiante']);
+
+Route::get('/api/buscar-estudiante/{matricula}', [App\Http\Controllers\api\ApiController::class, 'buscarEstudiante']);
