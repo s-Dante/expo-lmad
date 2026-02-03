@@ -47,7 +47,13 @@ Route::get('/Proyecto', function () {
     return view('guest.portafolio-proyecto');
 });
 
-// Rutas de Autenticacion
+
+
+/*
+RUTAS PARA INICIAR Y CERRAR SESION
+
+Pos aqui se hace todo para iniciar o cerrar una sesion con el controlador Auth, asi nomas sin tanto rollo que no es sushi.
+*/
 Route::post('/auth/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])
     ->name('auth.login');
 
@@ -112,7 +118,7 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
 /* 
 APIS 
 
-La verdad creo que dentro de lo planeado no teniamos pensado algo asi, pero en consecuencia de que hacer esto fue necesario para una funcionalidad en el registro de proyecto creo que puede ser útil tanto para otras areas del desarrollo como para quizas, hacer algo de apis. Se pueden hacer modificaciones para a lo mejor crear un controller especifico para estas weas pero eso eventualmente sera analizado por el super genial, fantastico, asombros, poderoso, inconmensurable, apoteosico, biblico, potente y mamastroso equipo de programacion del departamento multimedia.
+La verdad creo que dentro de lo planeado no teniamos pensado algo asi, pero es consecuencia de que hacer una funcionalidad en el registro de proyectos. Medio sobrepensador de mi parte separar esta parte, pero creo que es util si se desea implementar esta funcionalidad en otras vistas de distintos roles, e incluso hacer algo de APIs para terceros si es que se llega a necesitar. Se pueden hacer modificaciones para su middleware propio pero eso eventualmente sera analizado por el super genial, fantastico, asombroso, poderoso, inconmensurable, apoteosico, biblico, potente y mamastroso equipo de programacion del departamento multimedia.
 
 */
 
