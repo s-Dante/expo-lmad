@@ -59,6 +59,10 @@ Route::get('/superadmin/dashboard', function () {
     return view('superadmin.dashboard');
 })->name('superadmin.dashboard');
 
+Route::get('/superadmin/revision-proyecto', function () {
+    return view('superadmin.revision-proyecto');
+})->name('superadmin.revision-proyecto');
+
 //Rutas de admin
 Route::get('/admin/dashboard', function () {
     return view(view: 'admin.dashboard');
