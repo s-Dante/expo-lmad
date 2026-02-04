@@ -68,7 +68,7 @@ El funcionamiento es practicamente igual, solo que si ahora quieres hacer una ru
 Route::middleware que le corresponda uwu. Se valida que haya tanto una sesion iniciada como que el rol se cumpla para cada vista, asi un alumno curioso no va a poder andar chismoseando vistas ajenas a su posicion inferior muajaja. Pero bueno ya asi eso fue todo creo que todo claro, por si hay alguna duda del funcionamiento me mandan wsp o a mi insta que tengo insta, en teams tambien pero en facebook no porque no tengo. tqm papoi <3 
 
 */
-    
+
 // Rutas de Super_Admin
 Route::middleware(['auth', 'role:super_admin'])->group(function () {
     Route::get('/superadmin/dashboard', function () {
@@ -79,22 +79,29 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
 //Rutas de Admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
-        return view(view: 'admin.dashboard');
+        return view('admin.dashboard');
     })->name('admin.dashboard');
 });
-
 
 //Rutas de Estudiante 
 Route::middleware(['auth', 'role:estudiante'])->group(function () {
     Route::get('/estudiante/dashboard', function () {
         return view('student.dashboard');
     })->name('estudiante.dashboard');
+
+    Route::get('/estudiante/registro-proyecto', function () {
+        return view('student.registro-proyecto');
+    });
+
+    Route::get('/estudiante/lista-exposiones', function () {
+        return view('student.lista-exposiones');
+    });
 });
 
 //Rutas de Profesor
 Route::middleware(['auth', 'role:profesor'])->group(function () {
     Route::get('/profesor/dashboard', function () {
-        return view(view: 'teacher.dashboard');
+        return view('teacher.dashboard');
     })->name('profesor.dashboard');
 
     Route::get('/profesor/registro-expositores', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarRegistroExpositores'])

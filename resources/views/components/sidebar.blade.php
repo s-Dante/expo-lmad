@@ -13,8 +13,9 @@
     </div>
 
     <!-- NAVBAR PARA PROFESORES -->
-    @if(auth()->user()->rol == 'profesor')
-        <nav class="sidebar-nav">
+    <nav class="sidebar-nav">
+        @if(auth()->user()->rol == 'profesor')
+
             <a href="{{ route('teacher.registro-expositores') }}" class="sidebar-item ">
                 <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
                 <span>Registrar Expositores</span>
@@ -24,10 +25,22 @@
                 <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
                 <span>Mostrar Proyectos</span>
             </a>
-        </nav>
-    @endif
+        @else
+            @if(auth()->user()->rol == 'estudiante')
+                <a href="" class="sidebar-item ">
+                    <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
+                    <span>Registrar Expositores</span>
+                </a>
+
+                <a href="" class="sidebar-item ">
+                    <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+                    <span>Mostrar Proyectos</span>
+                </a>
+            @endif
+        @endif
+    </nav>
     <!-- FIN NAVBAR PARA PROFESORES -->
-     
+
     <div class="sidebar-bottom">
         <a href="{{ route('auth.logout') }}" class="sidebar-item ">
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Exit-1.png') }}" alt="" />

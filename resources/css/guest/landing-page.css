@@ -105,24 +105,24 @@ button,
     box-shadow: 0 6px 20px var(--hover-btn);
 }
 
-.btn-ghost {
+.btn-ghost-nav {
     color: var(--text-primary);
     background: var(--btn-flat);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.btn-blue {
+.btn-blue-nav {
     color: var(--text-primary);
     background: var(--gradient-B);
 }
 
-.btn-purple {
+.btn-purple-nav {
     color: var(--text-primary);
     background: var(--gradient-C);
     display: none;
 }
 
-.btn-darkpur {
+.btn-darkpur-nav {
     color: var(--text-primary);
     background: var(--gradient-D);
     display: none;
@@ -141,15 +141,15 @@ button,
         display: grid;
     }
 
-    .btn-blue,
-    .btn-ghost {
+    .btn-blue-nav,
+    .btn-ghost-nav {
         display: none;
     }
 
-    .btn-blue,
-    .btn-darkpur,
-    .btn-ghost,
-    .btn-purple {
+    .btn-blue-nav,
+    .btn-darkpur-nav,
+    .btn-ghost-nav,
+    .btn-purple-nav {
         justify-self: right;
     }
 

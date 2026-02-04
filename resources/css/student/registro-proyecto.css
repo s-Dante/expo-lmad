@@ -1,0 +1,201 @@
+@import url(/resources/css/tokens.css);
+
+.expo-card {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6rem;
+    width: 640px;
+    height: fit-content;
+    padding: 2rem 3.5rem;
+    position: relative;
+
+    border-radius: 18px;
+}
+
+.expo-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1.5px 3px 3px 1.5px;
+    border-radius: 18px;
+
+    background: conic-gradient(
+        from -70deg,
+        var(--contrast-color-C),
+        var(--contrast-color-D),
+        var(--contrast-color-E),
+        var(--contrast-color-E)
+    );
+
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    box-shadow:
+        0 0 12px rgba(127, 0, 255, 0.45),
+        inset 0 0 12px rgba(0, 234, 255, 0.25);
+
+    pointer-events: none;
+}
+
+.card-title {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin-top: 5px;
+
+    color: var(--text-primary);
+    text-shadow: 0 0 8px rgba(0, 234, 255, 0.6);
+}
+
+.input-c {
+    background: var(--input-flat);
+    border: 0;
+    border-bottom: 3px solid var(--contrast-color-D);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    padding: 8px 15px;
+    outline: none;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    color: var(--clr-blue-100);
+    font-family: var(--font-display);
+    font-weight: 10;
+    text-align: center;
+}
+
+span {
+    font-family: var(--font-main);
+    color: var(--clr-white);
+}
+
+input {
+    background: var(--input-flat);
+    border: 0;
+    border-bottom: 3px solid var(--contrast-color-D);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    padding: 8px 15px;
+    outline: none;
+    text-align: center;
+    position: relative;
+    width: -webkit-fill-available;
+}
+
+.main-content {
+    top: 4rem;
+    position: absolute;
+    padding: 1rem;
+    width: -webkit-fill-available;
+    justify-content: center;
+    display: grid;
+}
+
+.expo-card {
+    display: flex;
+    margin-bottom: 1rem;
+    width: auto;
+    height: fit-content;
+    padding: 2rem 1.5rem;
+    border-radius: 18px;
+    gap: 0.4rem;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.info-secondary {
+    font-size: 0.8rem;
+    text-align: center;
+    color: var(--clr-gray);
+}
+
+.project-card {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 1rem;
+    justify-self: center;
+}
+
+.img-icon {
+    width: 1.8rem;
+}
+
+.btn-icon {
+    padding: 0.5rem;
+    padding-inline: 0.8rem;
+    width: fit-content;
+}
+
+.input-mail {
+    max-width: 15rem;
+}
+
+.input-description {
+    background: var(--input-flat);
+    border: 0;
+    border-bottom: 3px solid var(--contrast-color-D);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    padding: 8px 15px;
+    outline: none;
+    position: relative;
+    width: -webkit-fill-available;
+    height: 4rem;
+    text-align: start;
+}
+
+.div-email {
+    text-align: center;
+}
+
+@media (min-width: 474px) {
+    .div-email {
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+@media (min-width: 600px) {
+    .project-info {
+        display: grid;
+        grid-template-columns: 52vw auto;
+        gap: 1rem;
+    }
+
+    .expo-card {
+        height: auto;
+    }
+}
+
+@media (min-width: 650px) {
+    .main-content {
+        margin-left: 7.5rem;
+        top: 1rem;
+    }
+}
+
+@media (min-width: 1350px) {
+    .main-content {
+        padding-inline: 15rem;
+    }
+
+    .project-info {
+        grid-template-columns: 35vw auto;
+    }
+}

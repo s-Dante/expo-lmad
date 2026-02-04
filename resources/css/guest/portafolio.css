@@ -17,25 +17,6 @@ h1 {
     line-height: normal;
 }
 
-.hr-gradient {
-    width: 80%;
-    height: 0px;
-    flex-shrink: 0;
-    margin-top: 10px;
-    z-index: 7 !important;
-    border-radius: 63px;
-    border-width: 0px;
-    border-style: initial;
-    border-color: initial;
-    border-image: initial;
-    background: linear-gradient(
-        270deg,
-        var(--clr-blue-800) 2.34%,
-        var(--clr-blue-200) 49.54%,
-        var(--clr-blue-800) 100%
-    );
-}
-
 .portafolio-menu {
     display: flex;
     justify-content: center;

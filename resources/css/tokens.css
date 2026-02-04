@@ -47,6 +47,11 @@
     --clr-black: #000000;
     --clr-gray: #a8a8a8;
 
+    /* Botones especiales */
+    --clr-warning: #f5ae58;
+    --clr-accepted: #58f59c;
+    --clr-rejected: #f55887;
+
     /*portafolio*/
     --clr-blue-gray: rgb(77, 105, 143, 1);
     --clr-blue-gray-transparent: rgb(77, 105, 143, 0);
