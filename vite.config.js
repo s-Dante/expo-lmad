@@ -26,6 +26,7 @@ export default defineConfig({
 
                 "resources/css/student/registro-proyecto.css",
                 "resources/css/student/lista-exposiones.css",
+                "resources/css/student/revisar-exposicion.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",

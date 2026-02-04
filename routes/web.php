@@ -77,6 +77,10 @@ Route::get('/estudiante/lista-exposiones', function () {
     return view('student.lista-exposiones');
 });
 
+Route::get('/estudiante/revisar-exposicion', function () {
+    return view('student.revisar-exposicion');
+});
+
 //Rutas de profesor
 Route::get('/profesor/dashboard', function () {
     return view(view: 'teacher.dashboard');
