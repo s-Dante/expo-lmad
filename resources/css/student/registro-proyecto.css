@@ -190,9 +190,6 @@ input {
     }
 }
 
-@media (min-width: 890px) {
-}
-
 @media (min-width: 1350px) {
     .main-content {
         padding-inline: 15rem;

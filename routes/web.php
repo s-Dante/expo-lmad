@@ -73,6 +73,9 @@ Route::get('/estudiante/registro-proyecto', function () {
     return view('student.registro-proyecto');
 });
 
+Route::get('/estudiante/lista-exposiones', function () {
+    return view('student.lista-exposiones');
+});
 
 //Rutas de profesor
 Route::get('/profesor/dashboard', function () {

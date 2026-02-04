@@ -25,6 +25,7 @@ export default defineConfig({
                 "resources/css/components/teacher/modal-editar.css",
 
                 "resources/css/student/registro-proyecto.css",
+                "resources/css/student/lista-exposiones.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
