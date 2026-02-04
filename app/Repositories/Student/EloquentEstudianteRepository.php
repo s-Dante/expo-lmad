@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Builder;
 
 use App\Models\AsistenciaGeneral;
+use App\Models\Software;
 
 class EloquentEstudianteRepository implements EstudianteRepositoryInterface
 {
@@ -46,5 +47,10 @@ class EloquentEstudianteRepository implements EstudianteRepositoryInterface
     {
         // Verifica si existe un registro en la tabla de asistencia general para este ID
         return AsistenciaGeneral::where('estudiante_id', $estudianteId)->exists();
+    }
+
+    public function getAllSoftwares()
+    {
+        return Software::where('estatus', true)->orderBy('nombre', 'asc')->get();
     }
 }

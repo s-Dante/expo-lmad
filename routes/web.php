@@ -76,7 +76,7 @@ Route::get('/estudiante/asistencia-qr', [EstudianteController::class, 'asistenci
 Route::get('/estudiante/proyectos', [EstudianteController::class, 'index'])->name('estudiante.proyectos.index');
 Route::get('/estudiante/proyectos/{id}/editar', [EstudianteController::class, 'edit'])->name('estudiante.proyectos.edit');
 Route::put('/estudiante/proyectos/{id}', [EstudianteController::class, 'update'])->name('estudiante.proyectos.update');
-
+Route::get('/estudiante/proyectos/{id}', [EstudianteController::class, 'show'])->name('estudiante.proyectos.show');
 
 //Rutas de profesor
 Route::get('/profesor/dashboard', function () {

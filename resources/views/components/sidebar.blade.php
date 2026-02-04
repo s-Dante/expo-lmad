@@ -13,12 +13,28 @@
     </div>
 
     <!-- NAVBAR PARA PROFESORES -->
+    @if(auth()->user()->rol == 'profesor')
+        <nav class="sidebar-nav">
+            <a href="{{ route('teacher.registro-expositores') }}" class="sidebar-item ">
+                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
+                <span>Registrar Expositores</span>
+            </a>
+
+            <a href="{{ route('teacher.lista-proyectos') }}" class="sidebar-item ">
+                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+                <span>Mostrar Proyectos</span>
+            </a>
+        </nav>
+    @endif
+    <!-- FIN NAVBAR PARA PROFESORES -->
+
+    <!-- NAVBAR PARA ESTUDIANTES -->
     @if(auth()->user()->rol == 'estudiante')
         <nav class="sidebar-nav">
+            {{-- Tome los iconos que encontre (cambiar si es necesario) --}}
             <a href="{{ route('estudiante.dashboard') }}" class="sidebar-item {{ request()->routeIs('student.dashboard') ? 'active' : '' }}">
-                {{-- Reutilizo el icono Public-1, pero idealmente aquí iría un 'Home.png' --}}
                 <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
-                <span>Inicio</span>
+                <span>Panel de Administración</span>
             </a>
 
             <a href="{{ route('estudiante.proyectos.index') }}" class="sidebar-item {{ request()->routeIs('student.proyectos.*') ? 'active' : '' }}">
@@ -32,7 +48,7 @@
             </a>
         </nav>
     @endif
-    <!-- FIN NAVBAR PARA PROFESORES -->
+    <!-- FIN NAVBAR PARA ESTUDIANTES -->
      
     <div class="sidebar-bottom">
         <a href="{{ route('auth.logout') }}" class="sidebar-item ">

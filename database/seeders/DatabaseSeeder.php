@@ -76,7 +76,6 @@ class DatabaseSeeder extends Seeder
                 // -- Personas Base --
                 EstudianteSeeder::class, // Padrón Alumnos
                 ProfesorSeeder::class,   // Padrón Profes (con materias asignadas)
-                AsistenciaGeneralSeeder::class, // Asistencias Generales (QR)
                 
                 // -- Actores Externos --
                 ConferencistaSeeder::class, // Speakers
@@ -98,6 +97,7 @@ class DatabaseSeeder extends Seeder
         // ==========================================
         $this->call([
             UserSeeder::class, // Crea admins y asigna cuentas a Alumnos/Profes del padrón
+            AsistenciaGeneralSeeder::class, // Asistencias Generales (QR)
         ]);
     }
 }

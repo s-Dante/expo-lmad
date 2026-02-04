@@ -27,4 +27,10 @@ interface EstudianteRepositoryInterface
      * Verifica si el estudiante ha registrado asistencia general
      */
     public function verificarAsistenciaGeneral(int $estudianteId): bool;
+
+
+    /**
+     * Obtiene todos los softwares disponibles
+     */
+    public function getAllSoftwares();
 }
