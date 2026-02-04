@@ -91,11 +91,11 @@ Route::middleware(['auth', 'role:estudiante'])->group(function () {
 
     Route::get('/estudiante/registro-proyecto', function () {
         return view('student.registro-proyecto');
-    });
+    })->name('estudiante.registro-proyecto');
 
     Route::get('/estudiante/lista-exposiones', function () {
         return view('student.lista-exposiones');
-    });
+    })->name('estudiante.lista-exposiones');
 });
 
 //Rutas de Profesor
