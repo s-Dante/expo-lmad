@@ -1,0 +1,325 @@
+@import url(/resources/css/tokens.css);
+
+body {
+    background: var(--bg-page-gradient);
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+    background-color: var(--bg-flat);
+}
+.main-content {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-main {
+    color: var(--contrast-color-D);
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 300;
+
+    margin-bottom: 3rem;
+    margin-top: 1.5rem;
+}
+
+.line {
+    display: block;
+    width: 100%;
+    height: 3px;
+    margin: -1.2rem auto 2rem;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--contrast-color-D),
+        transparent
+    );
+}
+
+/* ----- Card del proyecto ----- */
+.project-card {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    padding: 2px;
+    background: linear-gradient(
+        to top,
+        var(--contrast-color-E),
+        var(--contrast-color-D)
+    );
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card-inner {
+    background: var(--bg-page-gradient-invert);
+    border-radius: 13px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+.inner-title {
+    text-align: center;
+    font-family: var(--font-main);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: -1.2rem;
+    margin-top: -1rem;
+
+    background: linear-gradient(
+        to top,
+        var(--contrast-color-E),
+        var(--contrast-color-D)
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.inner-subject {
+    color: var(--contrast-color-D);
+    font-family: var(--font-title-bold);
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+/* Informaciòn */
+.project-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.group-container {
+    margin-bottom: 30px;
+}
+
+.info-row {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+.label {
+    color: var(--contrast-color-D);
+    font-family: var(--font-title-bold);
+    font-size: 1.2rem;
+
+    width: 180px;
+    text-align: right;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+.value {
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    font-size: 1.2rem;
+}
+.val-id {
+    min-width: 50px;
+    margin-right: 190px;
+}
+.label-inline {
+    width: auto;
+}
+
+/*Alumnos*/
+.students-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+.student-item {
+    display: flex;
+    justify-content: flex-start;
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    font-size: 1.2rem;
+}
+.student-name {
+    width: 220px;
+    flex-shrink: 0;
+}
+.student-id {
+    color: var(--text-primary);
+    opacity: 0.9;
+}
+
+/*links*/
+.link-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: space-between;
+    padding-right: 15px;
+}
+.url-text {
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    text-decoration: none;
+    font-size: 1.2rem;
+    max-width: 300px;
+    word-break: break-all;
+    line-height: 1.2;
+}
+.btn-copy {
+    background: var(--gradient-E);
+    border: none;
+    color: var(--text-primary);
+
+    width: 40px;
+    height: 40px;
+    min-width: 38px;
+
+    border-radius: 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    flex-shrink: 0;
+}
+.btn-copy:hover {
+    transform: scale(1.1);
+}
+.btn-copy img {
+    width: 16px;
+    height: auto;
+    opacity: 0.8;
+}
+
+/*Descripción*/
+.description-text {
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    font-size: 1.3rem;
+    line-height: 1;
+    margin: 0;
+    text-align: justify;
+    padding-right: 20px;
+}
+.description-section .label {
+    align-self: flex-start;
+    padding-top: 2px;
+}
+
+/*Imagen*/
+.image-side {
+    width: 350px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10px;
+}
+.image-box {
+    width: 100%;
+    border: 1.5px solid var(--contrast-color-D);
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+}
+.image-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    object-fit: cover;
+}
+
+/*----- Botones del proyecto -----*/
+.project-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 30px;
+}
+.action-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+.row-top {
+    margin-bottom: 50px;
+}
+.row-top,
+.row-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.btn-pill {
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.15rem;
+    border: none;
+    border-radius: 16px;
+    color: var(--text-primary);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 280px;
+    height: 54px;
+    flex-shrink: 0;
+
+    transition: all 0.3s ease;
+}
+.btn-purple {
+    background: var(--gradient-E);
+}
+.btn-cyan {
+    background: var(--gradient-btn-positive);
+}
+.btn-blue {
+    background: var(--gradient-btn-middle);
+}
+.btn-magenta {
+    background: var(--gradient-btn-negative);
+}
+
+.btn-blue-dark {
+    background: var(--gradient-btn-dark);
+}
+.btn-pill:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.icon-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-left: -30px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+
+    transform: scale(1.2);
+}
+
+.hidden {
+    display: none !important;
+}

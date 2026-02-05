@@ -23,6 +23,7 @@ export default defineConfig({
                 "resources/css/teacher/registro-expositores.css",
                 "resources/css/teacher/lista-proyectos.css",
                 "resources/css/components/teacher/modal-editar.css",
+                "resources/css/superadmin/revision-proyecto.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
