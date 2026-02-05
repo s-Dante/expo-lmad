@@ -16,27 +16,47 @@
     <nav class="sidebar-nav">
         @if(auth()->user()->rol == 'profesor')
 
-            <a href="{{ route('teacher.registro-expositores') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
-                <span>Registrar Expositores</span>
-            </a>
+        <a href="{{ route('teacher.registro-expositores') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
+            <span>Registrar Expositores</span>
+        </a>
 
-            <a href="{{ route('teacher.lista-proyectos') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
-                <span>Mostrar Proyectos</span>
-            </a>
+        <a href="{{ route('teacher.lista-proyectos') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+            <span>Mostrar Proyectos</span>
+        </a>
         @else
-            @if(auth()->user()->rol == 'estudiante')
-                <a href="" class="sidebar-item ">
-                    <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
-                    <span>Registrar Expositores</span>
-                </a>
+        
+        @if(auth()->user()->rol == 'estudiante')
+        <a href="" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
+            <span>Registrar Expositores</span>
+        </a>
 
-                <a href="" class="sidebar-item ">
-                    <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
-                    <span>Mostrar Proyectos</span>
-                </a>
-            @endif
+        <a href="" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+            <span>Mostrar Proyectos</span>
+        </a>
+        @endif
+
+        @else
+
+        @if(auth()->user()->rol == 'super_admin')
+        <a href="" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
+            <span>Inicio</span>
+        </a>
+
+        <a href="" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Teachers-1.png') }}" alt="" />
+            <span>Maestros</span>
+        </a>
+
+        <a href="" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Idea-1.png') }}" alt="" />
+            <span>Proyectos</span>
+        </a>
+
         @endif
     </nav>
     <!-- FIN NAVBAR PARA PROFESORES -->
