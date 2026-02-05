@@ -25,9 +25,8 @@
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
             <span>Mostrar Proyectos</span>
         </a>
-        @else
-        
-        @if(auth()->user()->rol == 'estudiante')
+
+        @elseif(auth()->user()->rol == 'estudiante')
         <a href="" class="sidebar-item ">
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
             <span>Registrar Expositores</span>
@@ -37,11 +36,8 @@
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
             <span>Mostrar Proyectos</span>
         </a>
-        @endif
 
-        @else
-
-        @if(auth()->user()->rol == 'super_admin')
+        @elseif(auth()->user()->rol == 'super_admin')
         <a href="" class="sidebar-item ">
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
             <span>Inicio</span>
@@ -63,7 +59,7 @@
 
     <div class="sidebar-bottom">
         <a href="{{ route('auth.logout') }}" class="sidebar-item ">
-            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Exit-1.png') }}" alt="" />
+            <img class="sidebar-icon" src="{{asset('assets/components/sidebar/Exit-1.png')}}" alt="Salir">
             <span>Salir</span>
         </a>
     </div>
