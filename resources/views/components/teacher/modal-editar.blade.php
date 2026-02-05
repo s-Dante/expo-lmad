@@ -6,36 +6,36 @@
 
         <article class="expo-card">
             <form>
-                <h2 class="card-title">ADADAT</h2>
+                <h2 class="card-title" id="modal-titulo">ADADAT</h2>
 
                 <div class="datos-box">
                     <div class="fila-full">
                         <label>Materia:</label>
-                        <select class="input-c">
-                            <option>Administración de Datos</option>
+                        <select class="input-c" id="modal-materia">
+                            <option value="" disabled>Selecciona una materia</option>
+                            @foreach ($materias as $materia)
+                                <option value="{{ $materia->id }}" data-plan="{{ $materia->planAcademico->nombre }}"
+                                    data-semestre="{{ $materia->semestre }}">
+                                    {{ $materia->nombre }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="fila-flex">
                         <div class="item">
                             <label>Plan:</label>
-                            <select class="input-c corto">
-                                <option>401</option>
-                            </select>
+                            <input type="text" id="modal-plan_academico" readonly>
                         </div>
                         <div class="item">
                             <label>Semestre:</label>
-                            <select class="input-c corto">
-                                <option>6</option>
-                            </select>
+                            <input type="text" id="modal-semestre" readonly>
                         </div>
                     </div>
 
                     <div class="fila-full">
                         <label>Número de integrantes:</label>
-                        <select class="input-c corto">
-                            <option>2</option>
-                        </select>
+                        <input type="number" name="num_integrantes" id="modal-num-integrantes">
                     </div>
                 </div>
 
@@ -44,41 +44,11 @@
                     <div class="fila-alumno">
                         <div class="item">
                             <label>Matrícula:</label>
-                            <input type="text" class="input-c matricula" value="2084689">
+                            <input type="text" class="input-c matricula" value="" readonly>
                         </div>
                         <div class="item">
                             <label>Alumno:</label>
-                            <input type="text" class="input-c nombre" value="alumno1234">
-                        </div>
-                    </div>
-                    <div class="fila-alumno">
-                        <div class="item">
-                            <label>Matrícula:</label>
-                            <input type="text" class="input-c matricula" value="2084689">
-                        </div>
-                        <div class="item">
-                            <label>Alumno:</label>
-                            <input type="text" class="input-c nombre" value="alumno1234">
-                        </div>
-                    </div>
-                    <div class="fila-alumno">
-                        <div class="item">
-                            <label>Matrícula:</label>
-                            <input type="text" class="input-c matricula" value="2084689">
-                        </div>
-                        <div class="item">
-                            <label>Alumno:</label>
-                            <input type="text" class="input-c nombre" value="alumno1234">
-                        </div>
-                    </div>
-                    <div class="fila-alumno">
-                        <div class="item">
-                            <label>Matrícula:</label>
-                            <input type="text" class="input-c matricula" value="2084689">
-                        </div>
-                        <div class="item">
-                            <label>Alumno:</label>
-                            <input type="text" class="input-c nombre" value="alumno1234">
+                            <input type="text" class="input-c nombre" value="" readonly>
                         </div>
                     </div>
 

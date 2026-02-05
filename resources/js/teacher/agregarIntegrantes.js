@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     inputNombre.value = 'Buscando...';
 
                     try {
-                        const response = await fetch(`/buscar-estudiante/${matricula}`);
+                        const response = await fetch(`/api/buscar-estudiante/${matricula}`);
                         const data = await response.json();
 
                         if (data.success) {

@@ -107,12 +107,13 @@ class ProfesorController extends Controller
         $profesor = $usuario->profesor;
 
         $proyectosProfesor = Proyecto::where('profesor_id', $profesor->id)
-            ->with(['autores','materia'])
+            ->with(['autores', 'materia'])
             ->get();
 
-        //dd($proyectosProfesor);
-        
-        return view('teacher.lista-proyectos', compact('proyectosProfesor'));
+
+        $materias = $usuario->profesor->materias()->with('planAcademico')->get();
+
+        return view('teacher.lista-proyectos', compact('proyectosProfesor', 'materias'));
 
     }
 }

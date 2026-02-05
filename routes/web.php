@@ -96,6 +96,8 @@ Route::middleware(['auth', 'role:estudiante'])->group(function () {
     Route::get('/estudiante/lista-exposiones', function () {
         return view('student.lista-exposiones');
     })->name('estudiante.lista-exposiones');
+
+
 });
 
 //Rutas de Profesor
@@ -130,3 +132,4 @@ La verdad creo que dentro de lo planeado no teniamos pensado algo asi, pero es c
 */
 
 Route::get('/api/buscar-estudiante/{matricula}', [App\Http\Controllers\api\ApiController::class, 'buscarEstudiante']);
+Route::get('/api/obtener-proyecto-token/{token}', [App\Http\Controllers\api\ApiController::class, 'obtenerProyectoPorToken']);

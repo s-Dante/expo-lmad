@@ -19,7 +19,7 @@
         <h1 class="text-main">LISTA DE PROYECTOS</h1>
         <section class="projects-grid">
             @foreach ($proyectosProfesor as $proyecto)
-                <article class="card-project" data-proyecto-id="{{ $proyecto->id }}">
+                <article class="card-project" data-proyecto-id="{{ $proyecto->id }}" data-proyecto-token="{{ $proyecto->codigo_acceso }}">
                     <h2 class="project-title">{{$proyecto->titulo}}</h2>
                     <p class="project-subtitle">{{ $proyecto->materia->nombre }}</p>
 
@@ -54,7 +54,7 @@
 
                     <div class="card-actions">
 
-                        <button class="btn-action edit" onclick="abrirModal()">
+                        <button class="btn-action edit" onclick="abrirModal(this)">
                             <img src="{{ asset('assets/teacher/EditarIcon.png') }}" alt="Editar">
                         </button>
                         <button class="btn-action help"><i class="fas fa-question"></i></button>
@@ -65,5 +65,5 @@
 
     </main>
 
-    <x-teacher.modal-editar />
+    <x-teacher.modal-editar :materias="$materias"/>
 </body>

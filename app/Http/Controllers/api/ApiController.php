@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use App\Models\Estudiante;
 
@@ -24,4 +25,29 @@ class ApiController extends Controller
             ], 404);
         }
     }
+
+    public function obtenerProyectoPorToken($token)
+    {
+        $proyecto = Proyecto::where('codigo_acceso', $token)
+            ->with(['autores', 'materia.planAcademico'])
+            ->first();
+
+        if ($proyecto) {
+
+            return response()->json([
+                'success' => true,
+                'data' => $proyecto
+            ]);
+
+        } else {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Proyecto no encontrado'
+            ]);
+        }
+
+
+}
+
 }
