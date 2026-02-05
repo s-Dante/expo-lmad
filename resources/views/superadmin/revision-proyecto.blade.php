@@ -6,7 +6,8 @@
     <meta charset="utf-8" />
     <title>EXPO LMAD - SuperAdmin</title>
     @vite([
-    "resources/css/superadmin/revision-proyecto.css"
+    "resources/css/superadmin/revision-proyecto.css",
+    "resources/js/superadmin/actions-check.js"
     ])
 </head>
 
@@ -91,13 +92,15 @@
                         <div class="group-container description-section">
                             <div class="info-row">
                                 <span class="label">DESCRIPCIÓN:</span>
-                                <p class="description-text">
+                                <p id="text-desc" class="description-text">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
                                     ullamcorper porta feugiat. Pellentesque volutpat massa et neque
                                     facilisis pellentesque. Mauris id urna et libero luctus tincidunt
                                     tincidunt non ipsum. Nullam suscipit dapibus nunc quis suscipit.
                                     Aenean molestie laoreet volutpat.
                                 </p>
+
+                                <textarea id="edit-desc" class="description-editor hidden"></textarea>
                             </div>
                         </div>
 
@@ -111,11 +114,17 @@
 
                 </div>
 
+
                 <div class="project-actions">
 
                     <div class="action-group" id="group-review">
                         <div class="row-top">
-                            <button class="btn-pill btn-purple">
+                            <button class="help-link" title="Más información">
+                                <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
+                            </button>
+
+                            <!-- Editar Descripción btn -->
+                            <button id="btn-edit-desc" class="btn-pill btn-purple">
                                 <div class="icon-container">
                                     <img src="{{ asset('assets/superadmin/lapiz-1.svg') }}" alt="" class="btn-icon">
                                 </div>
@@ -126,31 +135,64 @@
                         </div>
 
                         <div class="row-bottom">
-                            <button class="btn-pill btn-cyan">
+
+                            <!-- Aceptar proyecto-->
+                            <button id="btn-accept-project" class="btn-pill btn-cyan">
                                 <div class="icon-container">
                                     <img src="{{ asset('assets/superadmin/cheque-1.svg') }}" alt="" class="btn-icon">
                                 </div> Aceptar proyecto
                             </button>
-                            <button class="btn-pill btn-blue">
+
+                            <button class="help-link" title="Más información">
+                                <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
+                            </button>
+
+                            <!-- Devolver proyecto-->
+                            <button id="btn-open-return" class="btn-pill btn-blue">
                                 <div class="icon-container">
                                     <img src="{{ asset('assets/superadmin/flecha-izquierda-1.svg') }}" alt="" class="btn-icon">
                                 </div> Devolver proyecto
                             </button>
-                            <button class="btn-pill btn-magenta">
+
+                            <!-- Rechazar proyecto-->
+                            <button id="btn-reject-project" class="btn-pill btn-magenta">
                                 <div class="icon-container">
                                     <img src="{{ asset('assets/superadmin/cruz-1.svg') }}" alt="" class="btn-icon">
                                 </div>Rechazar proyecto
                             </button>
+
                         </div>
                     </div>
 
                     <div class="action-group hidden" id="group-save">
                         <div class="row-top">
-                            <button class="btn-pill btn-blue-dark">Guardar cambios</button>
-                            <button class="btn-pill btn-purple">Regresar</button>
+                              <!-- Botones de aceptar-cancelar descripción-->
+                            <button id="btn-save-desc" class="btn-pill btn-blue-dark">Guardar cambios</button>
+                            <button id="btn-cancel-edit" class="btn-pill btn-purple">Regresar</button>
                         </div>
                     </div>
                 </div>
+
+                <div id="return-panel" class="hidden">
+                    <span class="line second"></span>
+
+                    <div class="return-content">
+                        <p class="return-label">
+                            Mensaje con las correcciones solicitadas al alumno para su aceptación en el CONGRESO LMAD:
+                        </p>
+
+                        <textarea id="return-msg" class="description-editor" placeholder="Escribe aquí las observaciones..."></textarea>
+                    </div>
+
+                    <div class="project-actions">
+                        <div class="row-top">
+                                   <!-- Botones de aceptar-cancelar Devolver proyecto-->
+                            <button id="btn-confirm-return" class="btn-pill btn-blue-dark">Devolver proyecto</button>
+                            <button id="btn-cancel-return" class="btn-pill btn-purple">Regresar</button>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </section>
