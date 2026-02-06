@@ -319,7 +319,6 @@ body {
 
     transform: scale(1.2);
 }
-
 .hidden {
     display: none !important;
 }
@@ -332,7 +331,6 @@ body {
     transition: all 0.3s ease;
     flex-shrink: 0;
     text-decoration: none;
-    margin-right: -50px;
     background-color: transparent;
     border: none;
 }
@@ -365,7 +363,6 @@ body {
 .description-editor:focus {
     border-bottom: 3px solid var(--contrast-color-E);
 }
-
 #return-panel {
     width: 100%;
     display: flex;
@@ -373,30 +370,30 @@ body {
     align-items: center;
     margin-top: 3rem;
 }
-
 .return-content {
     width: 100%;
-    max-width: 800px; 
+    max-width: 800px;
     margin-bottom: 2rem;
 }
-
 .return-label {
     color: var(--text-primary);
     font-family: var(--font-alt);
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
-    text-align: left; 
+    text-align: left;
     opacity: 0.9;
 }
-
-
 #return-msg {
     width: 100%;
-    min-height: 200px; 
+    min-height: 200px;
 }
-
-.second{
-     width: 60%;
+.second {
+    width: 60%;
+}
+.btn-group-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 /*Animaciones de entrada*/
@@ -418,4 +415,157 @@ body {
 .fade-out {
     opacity: 0;
     transition: opacity 0.2s ease;
+}
+
+@media (max-width: 650px) {
+    .main-content {
+        margin-left: 0;
+        margin-top: 50px;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .text-main {
+        font-size: 1.4rem;
+        text-align: center;
+        letter-spacing: 1px;
+        margin-bottom: 35px;
+    }
+
+    .card-inner {
+        padding: 1.5rem 1rem;
+    }
+
+    .inner-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: -10px;
+        margin-bottom: -15px;
+    }
+
+    .inner-subject {
+        font-size: 1.2rem;
+    }
+
+    /* Informaciòn */
+    .project-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+
+    .label {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 2px;
+        font-size: 1rem;
+    }
+
+    .value,
+    .student-item,
+    .url-text {
+        font-size: 1.1rem;
+        padding-left: 8px;
+    }
+    .header-info .label {
+        width: auto;
+        text-align: left;
+        margin-right: 0;
+    }
+    .header-info .value {
+        font-size: 0.95rem;
+    }
+    .header-info .val-id {
+        margin-right: -10px;
+    }
+    .header-info .info-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .image-side {
+        width: 90%;
+        order: -1;
+        margin-bottom: 20px;
+    }
+    .link-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+    }
+    .btn-copy {
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .row-top,
+    .row-bottom {
+        gap: 20px;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-right: 35px;
+    }
+
+    .description-text {
+        font-size: 1.2rem;
+        padding-right: 0px;
+    }
+
+    .description-editor {
+        width: 270px;
+        min-height: 200px;
+        font-size: 1.2rem;
+        line-height: 1;
+        text-align: justify;
+    }
+
+    #return-panel {
+        width: 94%;
+    }
+    .return-label {
+        font-size: 1rem;
+    }
+    .second {
+        width: 100%;
+    }
+
+    .btn-pill {
+        font-size: 1rem;
+        width: 225px;
+        height: 50px;
+    }
+    .icon-container {
+        width: 30px;
+        height: 40px;
+
+        margin-left: -20px;
+        margin-right: 10px;
+    }
+
+    .btn-icon {
+        width: 35px;
+        height: 40px;
+        object-fit: contain;
+
+        transform: scale(1.2);
+    }
+
+    /*help icon*/
+    .help-svg {
+        width: 25px;
+    }
+
+    .center {
+        align-items: flex-end;
+        margin-right: -10px;
+    }
 }

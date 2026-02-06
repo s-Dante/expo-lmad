@@ -119,17 +119,19 @@
 
                     <div class="action-group" id="group-review">
                         <div class="row-top">
-                            <button class="help-link" title="Más información">
-                                <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
-                            </button>
+                            <div class="btn-group-container">
+                                <button class="help-link" title="Más información">
+                                    <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
+                                </button>
 
-                            <!-- Editar Descripción btn -->
-                            <button id="btn-edit-desc" class="btn-pill btn-purple">
-                                <div class="icon-container">
-                                    <img src="{{ asset('assets/superadmin/lapiz-1.svg') }}" alt="" class="btn-icon">
-                                </div>
-                                Editar descripción
-                            </button>
+                                <!-- Editar Descripción btn -->
+                                <button id="btn-edit-desc" class="btn-pill btn-purple">
+                                    <div class="icon-container">
+                                        <img src="{{ asset('assets/superadmin/lapiz-1.svg') }}" alt="" class="btn-icon">
+                                    </div>
+                                    Editar descripción
+                                </button>
+                            </div>
 
                             <button class="btn-pill btn-purple">Regresar</button>
                         </div>
@@ -142,17 +144,18 @@
                                     <img src="{{ asset('assets/superadmin/cheque-1.svg') }}" alt="" class="btn-icon">
                                 </div> Aceptar proyecto
                             </button>
+                            <div class="btn-group-container">
+                                <button class="help-link" title="Más información">
+                                    <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
+                                </button>
 
-                            <button class="help-link" title="Más información">
-                                <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
-                            </button>
-
-                            <!-- Devolver proyecto-->
-                            <button id="btn-open-return" class="btn-pill btn-blue">
-                                <div class="icon-container">
-                                    <img src="{{ asset('assets/superadmin/flecha-izquierda-1.svg') }}" alt="" class="btn-icon">
-                                </div> Devolver proyecto
-                            </button>
+                                <!-- Devolver proyecto-->
+                                <button id="btn-open-return" class="btn-pill btn-blue">
+                                    <div class="icon-container">
+                                        <img src="{{ asset('assets/superadmin/flecha-izquierda-1.svg') }}" alt="" class="btn-icon">
+                                    </div> Devolver proyecto
+                                </button>
+                            </div>
 
                             <!-- Rechazar proyecto-->
                             <button id="btn-reject-project" class="btn-pill btn-magenta">
@@ -164,9 +167,9 @@
                         </div>
                     </div>
 
-                    <div class="action-group hidden" id="group-save">
+                    <div class="action-group hidden center" id="group-save">
                         <div class="row-top">
-                              <!-- Botones de aceptar-cancelar descripción-->
+                            <!-- Botones de aceptar-cancelar descripción-->
                             <button id="btn-save-desc" class="btn-pill btn-blue-dark">Guardar cambios</button>
                             <button id="btn-cancel-edit" class="btn-pill btn-purple">Regresar</button>
                         </div>
@@ -184,9 +187,9 @@
                         <textarea id="return-msg" class="description-editor" placeholder="Escribe aquí las observaciones..."></textarea>
                     </div>
 
-                    <div class="project-actions">
-                        <div class="row-top">
-                                   <!-- Botones de aceptar-cancelar Devolver proyecto-->
+                    <div class="project-actions ">
+                        <div class="row-top center">
+                            <!-- Botones de aceptar-cancelar Devolver proyecto-->
                             <button id="btn-confirm-return" class="btn-pill btn-blue-dark">Devolver proyecto</button>
                             <button id="btn-cancel-return" class="btn-pill btn-purple">Regresar</button>
                         </div>
