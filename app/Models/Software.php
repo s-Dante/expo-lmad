@@ -18,8 +18,8 @@ class Software extends Model
     protected $table = 'tbl_softwares';
 
     protected $fillable = [
-        'software_name',
-        'software_description',
+        'nombre',
+        'descripcion',
         'estatus',
     ];
 

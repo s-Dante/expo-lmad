@@ -57,6 +57,28 @@
     </nav>
     <!-- FIN NAVBAR PARA PROFESORES -->
 
+     <!-- NAVBAR PARA ESTUDIANTES -->
+    @if(auth()->user()->rol == 'estudiante')
+        <nav class="sidebar-nav">
+            {{-- Tome los iconos que encontre (cambiar si es necesario) --}}
+            <a href="{{ route('estudiante.dashboard') }}" class="sidebar-item {{ request()->routeIs('student.dashboard') ? 'active' : '' }}">
+                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+                <span>Panel de Administración</span>
+            </a>
+
+            <a href="{{ route('estudiante.proyectos.index') }}" class="sidebar-item {{ request()->routeIs('student.proyectos.*') ? 'active' : '' }}">
+                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+                <span>Mis Proyectos</span>
+            </a>
+
+            <a href="{{ route('estudiante.qr') }}" class="sidebar-item {{ request()->routeIs('student.qr') ? 'active' : '' }}">
+                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
+                <span>Mi Pase (QR)</span>
+            </a>
+        </nav>
+    @endif
+    <!-- FIN NAVBAR PARA ESTUDIANTES -->
+     
     <div class="sidebar-bottom">
         <a href="{{ route('auth.logout') }}" class="sidebar-item ">
             <img class="sidebar-icon" src="{{asset('assets/components/sidebar/Exit-1.png')}}" alt="Salir">

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 use App\Models\User;
 use App\Models\ProgramaAcademico;
@@ -67,5 +68,13 @@ class Estudiante extends Model
                     ->using(AutorProyecto::class)
                     ->withPivot('es_lider')
                     ->withTimestamps();
+    }
+    
+    /**
+     * Relacion con la asistencia
+     */
+    public function asistenciaGeneral(): HasOne
+    {
+        return $this->hasOne(AsistenciaGeneral::class, 'estudiante_id');
     }
 }

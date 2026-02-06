@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Proyecto\ProyectoRepositoryInterface;
-use App\Models\Categoria; // <-- Importamos el modelo (o podrías hacer un repositorio para categorías)
+use App\Models\Categoria; 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
