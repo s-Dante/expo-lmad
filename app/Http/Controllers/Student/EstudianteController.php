@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Student\EstudianteRepositoryInterface;
 use App\Services\Student\EstudianteService;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
+
 use App\Models\AsistenciaEvento;
 
 class EstudianteController extends Controller
@@ -35,7 +38,11 @@ class EstudianteController extends Controller
         $estudiante = Auth::user()->estudiante;
         $asistio = $this->studentRepo->verificarAsistenciaGeneral($estudiante->id);
 
-        return view('student.qr', compact('estudiante', 'asistio'));
+        $qrCode = QrCode::size(300)
+            ->errorCorrection('H')
+            ->generate($estudiante->matricula);
+
+        return view('student.qr', compact('estudiante', 'asistio', 'qrCode'));
     }
 
     public function index()

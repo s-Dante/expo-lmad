@@ -4,24 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi QR - Expo LMAD</title>
+    <title>Mi QR | EXPO LMAD</title>
 
     {{-- Sidebar --}}
     @vite(['resources/css/components/sidebar.css'])
 
-    {{-- 
-        Estilo simple para que se vea la info mas o menos bien, 
-        Todo esto pueden personalizarlo mejor supongo 
-    --}}
     <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background-color: #f3f3f3;
-            color: #1f1f1f
-            ;
-        }
-
         main {
             min-height: 100vh;
             display: flex;
@@ -32,161 +20,153 @@
 
         @media (min-width: 768px) {
             main {
-                margin-left: 16rem;
+                margin-left: 10em;
             }
         }
 
-        /* ---------- Card ---------- */
         .card {
             position: relative;
             background-color: #ffffff;
-            padding: 2rem;
-            max-width: 28rem;
+            padding: 2.5rem 2rem;
+            max-width: 26rem;
             width: 100%;
             text-align: center;
-            border-radius: 0.75rem;
+            border-radius: 1rem;
             border: 1px solid #e5e7eb;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             overflow: hidden;
         }
 
-        /* ---------- Estado ---------- */
         .estatus {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 0.5rem 0;
+            padding: 0.6rem 0;
             font-size: 0.75rem;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
 
         .estatus.success {
-            background-color: #22c55e;
+            background-color: #10b981;
             color: #ffffff;
         }
 
         .estatus.pending {
-            background-color: #e5e7eb;
+            background-color: #f3f4f6;
             color: #6b7280;
-        }
-
-        /* ---------- Header ---------- */
-        .header {
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
         }
 
         .header h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #111827;
+            margin: 0;
         }
 
         .header p {
-            color: #6b7280;
-            font-weight: 500;
+            color: #9ca3af;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-top: 0.22rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        /* ---------- QR ---------- */
-        .qr-box {
+        .qr-container {
             position: relative;
             display: inline-block;
             padding: 1rem;
-            margin-bottom: 1.5rem;
-            background-color: #ffffff;
-            border-radius: 0.5rem;
-            border: 2px solid #f3f4f6;
+            background: white;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
         }
 
-        .qr-box img.qr {
-            width: 16rem;
-            height: 16rem;
-            opacity: 0.9;
-            mix-blend-mode: multiply;
-        }
-
-        /* Logo centrado */
-        .qr-logo {
+        .qr-logo-overlay {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            padding: 0.25rem;
+            width: 100px;
+            height: 100px;
         }
 
-        .qr-logo img {
-            width: 5rem;
-            height: 5rem;
+        .qr-logo-overlay img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
         }
 
-        /* ---------- Datos ---------- */
         .estudiante {
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        .estudiante h2,
-        .estudiante h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-transform: uppercase;
+        .estudiante h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #111827;
             margin: 0;
         }
 
         .estudiante h3 {
-            color: #374151;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin: 0;
         }
 
         .matricula {
             display: inline-block;
-            margin-top: 0.5rem;
-            padding: 0.25rem 0.75rem;
-            font-size: 0.875rem;
+            margin-top: 0.75rem;
+            padding: 0.35rem 1rem;
+            font-size: 1rem;
             font-weight: 700;
             letter-spacing: 0.1em;
-            font-family: monospace;
-            color: #1e40af;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            color: #2563eb;
             background-color: #eff6ff;
-            border-radius: 999px;
-            border: 1px solid #dbeafe;
+            border-radius: 9999px;
+            border: 1px solid #bfdbfe;
         }
 
-        /* ---------- Mensajes ---------- */
         .alert {
-            padding: 1rem;
-            border-radius: 0.5rem;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
             font-size: 0.875rem;
             border: 1px solid;
+            text-align: center;
         }
 
         .alert.success {
             background-color: #ecfdf5;
             color: #065f46;
-            border-color: #a7f3d0;
+            border-color: #6ee7b7;
         }
 
         .alert.info {
-            background-color: #eff6ff;
-            color: #1e40af;
-            border-color: #dbeafe;
+            background-color: #f8fafc;
+            color: #334155;
+            border-color: #e2e8f0;
         }
 
         .alert p {
-            margin: 0.25rem 0;
+            margin: 0;
         }
 
         .alert .title {
-            font-weight: 700;
-            font-size: 1.125rem;
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
         .alert .small {
             font-size: 0.75rem;
             margin-top: 0.5rem;
             opacity: 0.8;
+            font-style: italic;
         }
     </style>
 
@@ -198,20 +178,23 @@
 
     <main>
 
-        {{-- Tarjeta del QR 
-                Ojo, esta tarjeta podria ser un componente y tener mejor diseño
+        {{--
+            De nuevo, este podria ser un componente aparte en donde se muestre la informacion que ya se muestra aqui
         --}}
+
         <article class="card">
 
-            {{-- ESTADO DE LA ASISTENCIA --}}
             {{--
-                    NOta: Pueden decidir si dejar o quitar los stickers jajajaj, o cambiarlos por 
-                    texto simple o iconos personalizados XD 
-                --}}
+                Esta parte muestra si tiene o no asistencia
+            --}}
             @if($asistio)
-            <div class="estatus success">✅ Asistencia Registrada</div>
+            <div class="estatus success">
+                <span>✅ Asistencia Registrada</span>
+            </div>
             @else
-            <div class="estatus pending">⏳ Pendiente de Registrar su Asistencia</div>
+            <div class="estatus pending">
+                <span>⏳ Pendiente de Registro</span>
+            </div>
             @endif
 
             <header class="header">
@@ -219,68 +202,50 @@
                 <p>EXPO LMAD {{ date('Y') }}</p>
             </header>
 
-            {{-- Código QR --}}
-            <figure class="qr-box">
-                <img class="qr"
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&ecc=H&data={{ $estudiante->matricula }}"
-                    alt="QR Acceso">
+            {{-- Código QR Generado desde Backend --}}
+            <figure class="qr-container">
+                {!! $qrCode !!}
 
-                <div class="qr-logo">
+                {{--
+                    Logo superpuesto
+                        Deberiamos de buscar el logo actual de la expo y ponerlo aqui 
+                            (Podriamos quiza incluso esta variabla hacerla variable 
+                            de entorno para que se camvie mas facilmente)
+                --}}
+                <div class="qr-logo-overlay">
                     <img src="{{ asset('assets/guest/logo expo_lmad.png') }}" alt="Logo">
                 </div>
             </figure>
 
-            {{-- Datos del Estudiante --}}
+            {{--
+                Aqui se muestra la informacion del estudiante
+            --}}
             <div class="estudiante">
                 <h2>{{ $estudiante->nombre }}</h2>
                 <h3>{{ $estudiante->apellido_paterno }} {{ $estudiante->apellido_materno }}</h3>
                 <div class="matricula">{{ $estudiante->matricula }}</div>
             </div>
 
-            {{-- Mensajes de asistencia --}}
-            {{-- 
-                Nota: Pueden personalizar los mensajes como quieran 
-                Ademas podrian ver si quieren cambiar los colores con los que se muestra
+            {{--
+                Aqui le damos un contexto en caso de si tiene o no asistencia, este texto puede cambiar
             --}}
             @if($asistio)
             <div class="alert success">
-                <p class="title">¡Bienvenido!</p>
-                <p>Tu entrada ha sido validada correctamente.</p>
-                <p class="small">Disfruta el evento.</p>
+                <span class="title">¡Bienvenid@ al evento!</span>
+                <p>Tu asistencia ha sido validada correctamente en el sistema.</p>
+                <p class="small">Disfruta de las conferencias y proyectos.</p>
             </div>
             @else
             <div class="alert info">
-                <p><strong>Instrucciones:</strong></p>
-                <p>Presenta este código al Staff para registrar tu asistencia.</p>
+                <span class="title">Instrucciones de Acceso:</span>
+                <p>Por favor, presenta este código al Staff para validar tu asistencia.</p>
             </div>
             @endif
 
         </article>
     </main>
+
+    @vite(['resources/js/components/sidebar.js'])
 </body>
 
-
 </html>
-
-
-
-{{--
-Si quieren hacer pruebas y saber que "estudiantes" tienen o no asistencia registrada, 
-pueden usar estas consultas SQL:
-
--- Los que NO tienen asistencia registrada:
-SELECT e.*
-FROM tbl_estudiantes e
-LEFT JOIN tbl_asistencias_general a
-    ON a.estudiante_id = e.id
-WHERE e.usuario_id IS NOT NULL
-  AND a.estudiante_id IS NULL;
-
-
--- Los que SI tienen asistencia registrada:
-SELECT DISTINCT e.*
-FROM tbl_estudiantes e
-INNER JOIN tbl_asistencias_general a
-    ON a.estudiante_id = e.id
-WHERE e.usuario_id IS NOT NULL;
---}}
