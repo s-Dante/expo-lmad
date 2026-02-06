@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Estudiante;
 use App\Models\Proyecto;
@@ -114,6 +115,66 @@ class ProfesorController extends Controller
         $materias = $usuario->profesor->materias()->with('planAcademico')->get();
 
         return view('teacher.lista-proyectos', compact('proyectosProfesor', 'materias'));
+
+    }
+
+    public function actualizarProyecto(Request $request)
+    {
+        //dd($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'estudiantes' => 'required|array',
+            'estudiantes.*.matricula' => 'required|exists:tbl_estudiantes,matricula',
+            'materia_id' => 'required',
+            'periodo_semestral' => 'required',
+            'codigo_acceso' => 'required|exists:tbl_proyectos,codigo_acceso',
+        ]);
+
+
+        return DB::transaction((function () use ($request) {
+
+            $proyecto = Proyecto::where('codigo_acceso', $request->codigo_acceso)->firstOrFail();
+
+            $proyecto->update([
+                'materia_id' => $request->materia_id,
+                'periodo_semestral' => $request->periodo_semestral,
+            ]);
+
+            // 1. Obtenemos el array original de estudiantes del request
+            $estudiantesRequest = $request->input('estudiantes', []);
+
+            $matriculas = [];
+            foreach ($estudiantesRequest as $item) {
+                if (!empty($item['matricula'])) {
+                    $matriculas[] = $item['matricula'];
+                }
+            }
+
+            $estudiantesDB = Estudiante::whereIn('matricula', $matriculas)->get();
+            $datosSync = [];
+
+            $contador = 0;
+
+            foreach ($matriculas as $matricula) {
+                $estudiante = $estudiantesDB->where('matricula', $matricula)->first();
+
+                if ($estudiante) {
+                    $datosSync[$estudiante->id] = [
+                        'es_lider' => ($contador === 0) ? 1 : 0,
+                    ];
+                    $contador++;
+                }
+            }
+
+            /*
+            if (empty($datosSync)) {
+                dd("Error: No se encontraron estudiantes para las matrículas enviadas", $matriculas);
+            }
+            */
+            $proyecto->autores()->sync($datosSync);
+            return redirect()->back()->with('Exito', 'Proyecto actualizado con éxito.');
+
+        }));
 
     }
 }

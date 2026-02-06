@@ -43,10 +43,10 @@ class Proyecto extends Model
         'estatus' => 'string',
     ];
 
-    
+
     /**
-    * Permitir busqueda de rutas
-    */
+     * Permitir busqueda de rutas
+     */
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -74,11 +74,17 @@ class Proyecto extends Model
      */
     public function autores(): BelongsToMany
     {
-        return $this->belongsToMany(Estudiante::class, 'tbl_autores_proyecto', 
+        /*return $this->belongsToMany(Estudiante::class, 'tbl_autores_proyecto', 
                                     'proyecto_id', 'estudiante_id')
                     ->using(AutorProyecto::class)
                     ->withPivot('es_lider')
-                    ->withTimestamps();
+                    ->withTimestamps()
+        */
+
+        return $this->belongsToMany(Estudiante::class, 'tbl_autores_proyecto', 'proyecto_id', 'estudiante_id')
+            // ->using(AutorProyecto::class) // Comenta esto para probar
+            ->withPivot('es_lider')
+            ->withTimestamps();
     }
 
     /**
@@ -103,10 +109,13 @@ class Proyecto extends Model
      */
     public function softwares(): BelongsToMany
     {
-        return $this->belongsToMany(Software::class,
-                                    'tbl_softwares_por_proyectos',
-                                    'proyecto_id', 'software_id')
-                    ->withTimestamps();
+        return $this->belongsToMany(
+            Software::class,
+            'tbl_softwares_por_proyectos',
+            'proyecto_id',
+            'software_id'
+        )
+            ->withTimestamps();
     }
 
     /**
@@ -122,6 +131,6 @@ class Proyecto extends Model
      */
     public function getCategoriaAttribute()
     {
-         return $this->materia?->categoria;
+        return $this->materia?->categoria;
     }
 }

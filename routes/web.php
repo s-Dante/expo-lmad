@@ -114,6 +114,9 @@ Route::middleware(['auth', 'role:profesor'])->group(function () {
 
     Route::get('/profesor/lista-proyectos', [App\Http\Controllers\Teacher\ProfesorController::class, 'listadoProyectos'])
         ->name('teacher.lista-proyectos');
+
+    Route::post('/profesor/actualizar-proyecto', [App\Http\Controllers\Teacher\ProfesorController::class, 'actualizarProyecto'])
+        ->name('teacher.actualizar-proyecto');
 });
 
 //Rutas de staff

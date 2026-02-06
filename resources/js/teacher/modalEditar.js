@@ -22,6 +22,8 @@ async function buscarProyectoModal(token) {
 
             const proyecto = result.data;
             //console.log("Proyecto encontrado:", proyecto);
+            const tokenInput = document.getElementById('hidden_token');
+            if (tokenInput) tokenInput.value = token;
 
             const tituloDisplay = document.querySelector('.card-title');
             if (tituloDisplay) tituloDisplay.innerText = proyecto.titulo || 'Sin título aún';
@@ -30,7 +32,7 @@ async function buscarProyectoModal(token) {
             if (campoMateria) campoMateria.value = proyecto.materia_id;
 
             const campoPlanAcademico = document.getElementById('modal-plan_academico');
-            if (campoPlanAcademico && proyecto.materia){
+            if (campoPlanAcademico && proyecto.materia) {
                 campoPlanAcademico.value = proyecto.materia.plan_academico.nombre;
             }
 
@@ -38,6 +40,9 @@ async function buscarProyectoModal(token) {
             if (campoSemestre && proyecto.materia) {
                 campoSemestre.value = proyecto.materia.semestre;
             }
+
+            const campoPeriodo = document.getElementById('modal-periodo-semestral');
+            if(campoPeriodo) campoPeriodo.value = proyecto.periodo_semestral;
 
             // 4. Número de integrantes
             const numIntegrantes = proyecto.autores.length;
@@ -61,8 +66,7 @@ async function buscarProyectoModal(token) {
                         </div>
                         <div class="item">
                             <label>Alumno:</label>
-                            <input type="text" class="input-c nombre" 
-                                   name="estudiantes[${index}][nombre]" 
+                            <input type="text" class="input-c nombre"  
                                    value="${autor.nombre} ${autor.apellido_paterno} ${autor.apellido_materno}" 
                                    readonly>
                         </div>
@@ -81,14 +85,14 @@ async function buscarProyectoModal(token) {
 }
 
 // Lógica para actualizar Plan y Semestre al cambiar la materia
-document.getElementById('modal-materia').addEventListener('change', function() {
+document.getElementById('modal-materia').addEventListener('change', function () {
     const opcionSeleccionada = this.options[this.selectedIndex];
-    
+
     const planAcademico = opcionSeleccionada.getAttribute('data-plan');
     const semestre = opcionSeleccionada.getAttribute('data-semestre');
     const planInput = document.getElementById('modal-plan_academico');
     const semestreInput = document.getElementById('modal-semestre');
-    
+
     planInput.value = planAcademico;
     semestreInput.value = semestre;
 });
@@ -109,8 +113,8 @@ window.onclick = function (event) {
     }
 }
 // Lógica para ajustar filas de alumnos según número de integrantes
-document.getElementById('modal-num-integrantes').addEventListener('change', function() {
-    const contenedor = document.getElementById('contenedor-alumnos'); 
+document.getElementById('modal-num-integrantes').addEventListener('change', function () {
+    const contenedor = document.getElementById('contenedor-alumnos');
     const numeroDeseado = parseInt(this.value);
     const filasActuales = contenedor.querySelectorAll('.fila-alumno');
     const cantidadActual = filasActuales.length;
@@ -134,7 +138,7 @@ document.getElementById('modal-num-integrantes').addEventListener('change', func
                 </div>
             `;
             contenedor.appendChild(fila);
-            
+
             // Aquí podrías re-vincular tu evento de búsqueda de matrícula si es necesario
         }
     } else if (numeroDeseado < cantidadActual) {
@@ -165,7 +169,7 @@ if (contenedorAlumnosModal) {
 
                     if (data.success) {
 
-                        
+
                         inputNombre.value = data.nombre;
                     } else {
                         inputNombre.value = 'No encontrado';

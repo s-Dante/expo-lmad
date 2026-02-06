@@ -15,6 +15,8 @@ class AutorProyecto extends Pivot
 
     protected $table = 'tbl_autores_proyecto';
 
+    public $incrementing = true;
+
     public $timestamps = true;
 
     protected $fillable = [

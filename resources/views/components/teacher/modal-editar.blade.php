@@ -5,13 +5,16 @@
         <h1 class="text-main">EDICIÓN DE EXPOSITORES</h1>
 
         <article class="expo-card">
-            <form>
+            <form method="post" action="{{ route('teacher.actualizar-proyecto') }}">
+                @csrf
                 <h2 class="card-title" id="modal-titulo">ADADAT</h2>
+
+                <input type="hidden" name="codigo_acceso" id="hidden_token" value="">
 
                 <div class="datos-box">
                     <div class="fila-full">
                         <label>Materia:</label>
-                        <select class="input-c" id="modal-materia">
+                        <select class="input-c" id="modal-materia" name="materia_id">
                             <option value="" disabled>Selecciona una materia</option>
                             @foreach ($materias as $materia)
                                 <option value="{{ $materia->id }}" data-plan="{{ $materia->planAcademico->nombre }}"
@@ -33,28 +36,35 @@
                         </div>
                     </div>
 
+                    <select name="periodo_semestral" id="modal-periodo-semestral">
+                        <option value="" selected disabled>Selecciona un periodo semestral</option>
+                        <option value="Enero - Junio 2026">Enero - Junio 2026</option>
+                        <option value="Agosto - Diciembre 2025">Agosto - Diciembre 2025</option>
+                    </select>
+
                     <div class="fila-full">
                         <label>Número de integrantes:</label>
-                        <input type="number" name="num_integrantes" id="modal-num-integrantes">
+                        <input type="number" id="modal-num-integrantes">
                     </div>
                 </div>
 
                 <div class="alumnos-box" id="contenedor-alumnos">
 
                     <div class="fila-alumno">
-                        <div class="item">
+                        <!--<div class="item">
                             <label>Matrícula:</label>
                             <input type="text" class="input-c matricula" value="" readonly>
                         </div>
                         <div class="item">
                             <label>Alumno:</label>
                             <input type="text" class="input-c nombre" value="" readonly>
-                        </div>
+                        </div> -->
+
                     </div>
 
                 </div>
 
-                <button type="button" class="btn-save">Guardar cambios</button>
+                <button type="submit" class="btn-save">Guardar cambios</button>
 
             </form>
         </article>
