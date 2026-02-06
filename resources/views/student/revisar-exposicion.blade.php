@@ -66,6 +66,47 @@
         display: grid;
     }
 
+    center {
+        margin-top: 3rem;
+        width: -webkit-fill-available;
+    }
+
+    .input-c {
+        background: var(--input-flat);
+        border: 0;
+        border-bottom: 3px solid var(--contrast-color-D);
+        border-radius: 10px;
+        color: var(--text-primary);
+        font-family: var(--font-main);
+        padding: 8px 15px;
+        outline: none;
+        text-align: center;
+        position: relative;
+        text-align: left;
+        font-size: 1rem;
+        width: -webkit-fill-available;
+    }
+
+    .div-btn-changeimage{
+        margin-top: 1rem;
+    }
+
+    .input-description {
+        background: var(--input-flat);
+        border: 0;
+        border-bottom: 3px solid var(--contrast-color-D);
+        border-radius: 10px;
+        color: var(--text-primary);
+        font-family: var(--font-main);
+        padding: 8px 15px;
+        outline: none;
+        position: relative;
+        width: -webkit-fill-available;
+        height: 10rem;
+        text-align: start;
+        font-size: 1rem;
+    }
+
     .project-retro p {
         font-family: var(--font-main);
         color: var(--clr-gray);
@@ -98,6 +139,7 @@
     }
 
     .expo-card {
+        background: linear-gradient(0deg, #111b2c, #131f33);
         display: flex;
         justify-content: center;
         width: auto;
@@ -139,6 +181,18 @@
         pointer-events: none;
     }
 
+    .div-btns-project {
+        margin-top: 1rem;
+        display: grid;
+        width: auto;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .btn {
+        font-size: 1.2rem;
+    }
+
     .section-project-data {
         margin-top: 3rem;
     }
@@ -153,7 +207,7 @@
     .three-rows-grid {
         width: min-content;
         display: grid;
-        gap: 1rem;
+        gap: 2rem;
     }
 
     .two-columns-grid,
@@ -183,6 +237,7 @@
     }
 
     .btn-icon {
+        margin-top: 1rem;
         padding: 0.5rem;
         padding-inline: 0.8rem;
         width: fit-content;
@@ -192,7 +247,10 @@
         margin-top: 1rem;
     }
 
-    @media(min-width: 1000px) {
+    @media(min-width: 1235px) {
+        .div-btns-project {
+            grid-template-columns: auto auto;
+        }
 
         .three-rows-grid {
             display: grid;
@@ -283,6 +341,14 @@
             padding-inline: 6rem;
         }
     }
+
+    @media(max-width: 1000px) {
+
+        .two-columns-grid,
+        .three-columns-grid {
+            justify-items: center;
+        }
+    }
 </style>
 
 <body>
@@ -302,12 +368,12 @@
         </container>
 
         <section class="section-project-data">
-            <container class="expo-card">
+            <container class="expo-card main-card">
 
                 <form>
                     <div class="section-project-header">
-                        <h2>Nombre del proyecto</h2>
-                        <h3>Materia</h3>
+                        <h2 id="name">Nombre del proyecto</h2>
+                        <h3 id="subject">Materia</h3>
                     </div>
 
                     <div class="two-columns-grid general-grid">
@@ -317,14 +383,14 @@
 
                                 <div class="two-columns-grid two-category-grid">
                                     <span>Id del proyecto:</span>
-                                    <p>123</p>
+                                    <p id="id">123</p>
                                     <span>Maestro:</span>
-                                    <p>Severus Snape</p>
+                                    <p id="teacher">Severus Snape</p>
                                 </div>
 
                                 <div class="two-columns-grid two-category-grid">
                                     <span>Semestre:</span>
-                                    <p>Sexto</p>
+                                    <p id="semester">Sexto</p>
                                 </div>
 
                             </div>
@@ -348,26 +414,29 @@
 
                                 <div class="three-columns-grid three-category-grid">
                                     <span>Video promocional:</span>
-                                    <p id="link-video-project">https://unlinkrandomayoutube.com/nose</p>
-                                    <button class="btn btn-purple btn-icon"><img
-                                            src="{{ asset('assets/guest/upload.png') }}"></button>
+                                    <!--<p id="link-video-project" id="link-promotional">https://unlinkrandomayoutube.com/nose</p>-->
+                                    <input type="text" class="input-c" id="link-promotional-edit"/>
+                                    <!--<button class="btn btn-purple btn-icon" id="link-promotional-copy"><img
+                                            src="{{ asset('assets/guest/upload.png') }}"></button>-->
                                 </div>
 
                                 <div class="three-columns-grid three-category-grid">
                                     <span>Enlace a proyecto:</span>
-                                    <p id="link-repo-project">https://otrolinkrandomgithub.com/nosetampoco</p>
-                                    <button class="btn btn-purple btn-icon"><img
-                                            src="{{ asset('assets/guest/upload.png') }}"></button>
+                                    <!--<p id="link-repo-project" id="link-repo">https://otrolinkrandomgithub.com/nosetampoco</p>-->
+                                    <input type="text" class="input-c" id="link-repo-edit"/>
+                                    <!--<button class="btn btn-purple btn-icon" id="link-repo-copy"><img
+                                            src="{{ asset('assets/guest/upload.png') }}"></button>-->
                                 </div>
 
                                 <div class="two-columns-grid two-category-grid">
                                     <span>Descripción:</span>
-                                    <p id="description-project">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    <!--<p id="description-project">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                         Pellentesque ullamcorper porta feugiat.
                                         Pellentesque volutpat massa et neque facilisis pellentesque.
                                         Mauris id urna et libero luctus tincidunt tincidunt non ipsum.
                                         Nullam suscipit dapibus nunc quis suscipit.
-                                        Aenean molestie laoreet volutpat. </p>
+                                        Aenean molestie laoreet volutpat. </p>-->
+                                    <textarea class="input-description"></textarea>
                                 </div>
 
                             </div>
@@ -376,6 +445,10 @@
 
                         <div class="img-project">
                             <img src="{{ asset('assets/guest/imageloading.png') }}" class="img-fluid">
+
+                            <div class="div-btn-changeimage">
+                                <button type="button" class="btn btn-blue">Cambiar imagen</button>
+                            </div>
                         </div>
 
                     </div>
@@ -387,9 +460,9 @@
 
                 <section class="project-retro">
                     <h4>Estado del proyecto</h4>
-                    <p>En revisión, ¡No olvides estar al pendiente!</p>
+                    <p id="state">En revisión, ¡No olvides estar al pendiente!</p>
 
-                    <container class="expo-card project-retro-msg">
+                    <container class="expo-card project-retro-msg" id="message">
                         <span>Mensaje del congreso:</span>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             Pellentesque ullamcorper porta feugiat.
@@ -398,6 +471,14 @@
                             Nullam suscipit dapibus nunc quis suscipit.
                             Aenean molestie laoreet volutpat. </p>
                     </container>
+
+                    <div class="div-btns-project">
+                        <button type="button" class="btn btn-blue" id="edit">Editar proyectos</button>
+                        <button type="button" class="btn btn-darkpur" id="resend">Reenviar proyecto</button>
+
+                        <button type="button" class="btn btn-blue" id="save">Guardar cambios</button>
+                        <button type="button" class="btn btn-purple" id="back">Regresar</button>
+                    </div>
 
                 </section>
 
