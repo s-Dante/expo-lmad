@@ -497,5 +497,13 @@
 
     </main>
 
+    <div id="custom-modal" class="modal-overlay d-none">
+        <div class="modal-content">
+            <h3 class="modal-title" id="modal-title">Aviso</h3>
+            <p class="modal-message" id="modal-msg-text"></p>
+            <button type="button" class="btn btn-blue" id="modal-close">Entendido</button>
+        </div>
+    </div>
+
     @vite('resources/js/student/show-hide-elements.js')
 </body>
