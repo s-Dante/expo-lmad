@@ -26,6 +26,7 @@ export default defineConfig({
 
                 "resources/css/student/registro-proyecto.css",
                 "resources/css/student/lista-exposiones.css",
+                "resources/css/superadmin/revision-proyecto.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
@@ -36,7 +37,8 @@ export default defineConfig({
                 "resources/js/guest/revealAnimation.js",
                 "resources/js/components/sidebar.js",
                 "resources/js/teacher/agregarIntegrantes.js",
-                "resources/js/teacher/modalEditar.js"
+                "resources/js/teacher/modalEditar.js",
+                 "resources/js/superadmin/actions-check.js"
             ],
             refresh: true,
         }),

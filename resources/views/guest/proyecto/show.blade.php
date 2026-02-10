@@ -35,34 +35,42 @@
     <section class="section-proyecto-info" id="">
 
         @foreach($proyecto->multimedia as $media)
+            {{-- 1. SI ES LA PORTADA (IMAGEN LOCAL) --}}
             @if ($loop->iteration > 2)
                 @break
             @endif
             @if ($media->es_portada)
                 <container class="container-proyecto-info">
-                    <img class="img-proyecto" src="{{ $media->url }}">
+                    {{-- CORRECCIÓN: Usar asset('storage/...') para generar la URL pública --}}
+                    <img class="img-proyecto" src="{{ asset('storage/' . $media->url) }}">
                     <p>{{ $proyecto->descripcion }}</p>
+                
                     <container class="container-proyecto-tags">
                         <p> Creado con </p>
                         <div class="tags-list">
                             @foreach($proyecto->softwares as $software)
                                 <div class="tooltip">
                                     <p>
-                                        {{ $software->software_name }}
+                                        {{ $software->nombre }}
                                     </p>
-                                    <span class="tooltiptext">{{ $software->software_description }}</span>
+                                    <span class="tooltiptext">{{ $software->descripcion }}</span>
                                 </div>
                             @endforeach
                         </div>
                     </container>
                 </container>
+
+            {{-- 2. SI NO ES PORTADA (ASUMIMOS QUE ES EL VIDEO DE YOUTUBE) --}}
             @else
-                <container class="container-proyecto-video">
-                    <iframe src="{{ $media->url }}" class="video-project img-fluid" frameborder="0"
-                        allow="accelerometer; autoplay=true; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen="" autoplay="true">
-                    </iframe>
-                </container>
+                {{-- Nota: Validamos que sea tipo youtube para evitar errores si suben más imágenes --}}
+                @if($media->tipo === 'youtube')
+                    <container class="container-proyecto-video">
+                        <iframe src="{{ $media->url }}" class="video-project img-fluid" frameborder="0"
+                            allow="accelerometer; autoplay=true; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen="" autoplay="true">
+                        </iframe>
+                    </container>
+                @endif
             @endif
         @endforeach
     </section>

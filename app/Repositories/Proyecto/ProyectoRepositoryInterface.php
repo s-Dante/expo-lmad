@@ -6,6 +6,8 @@ namespace App\Repositories\Proyecto;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
+use App\Models\Proyecto;
+
 interface ProyectoRepositoryInterface
 {
     /**
@@ -14,5 +16,5 @@ interface ProyectoRepositoryInterface
      */
     public function obtenerParaGaleria(?string $categoria = null, int $perPage = 12): LengthAwarePaginator;
 
-    public function obtenerDetallePorSlug(string $slug): ?\App\Models\Proyecto;
+    public function obtenerDetallePorSlug(string $slug): ?Proyecto;
 }

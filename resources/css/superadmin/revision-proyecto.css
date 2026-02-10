@@ -1,0 +1,571 @@
+@import url(/resources/css/tokens.css);
+
+body {
+    background: var(--bg-page-gradient);
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+    background-color: var(--bg-flat);
+}
+.main-content {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-main {
+    color: var(--contrast-color-D);
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 300;
+
+    margin-bottom: 3rem;
+    margin-top: 1.5rem;
+}
+
+.line {
+    display: block;
+    width: 100%;
+    height: 3px;
+    margin: -1.2rem auto 2rem;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--contrast-color-D),
+        transparent
+    );
+}
+
+/* ----- Card del proyecto ----- */
+.project-card {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    padding: 2px;
+    background: linear-gradient(
+        to top,
+        var(--contrast-color-E),
+        var(--contrast-color-D)
+    );
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.card-inner {
+    background: var(--bg-page-gradient-invert);
+    border-radius: 13px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+.inner-title {
+    text-align: center;
+    font-family: var(--font-main);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: -1.2rem;
+    margin-top: -1rem;
+
+    background: linear-gradient(
+        to top,
+        var(--contrast-color-E),
+        var(--contrast-color-D)
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.inner-subject {
+    color: var(--contrast-color-D);
+    font-family: var(--font-title-bold);
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+/* Informaciòn */
+.project-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.group-container {
+    margin-bottom: 30px;
+}
+
+.info-row {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+.label {
+    color: var(--contrast-color-D);
+    font-family: var(--font-title-bold);
+    font-size: 1.2rem;
+
+    width: 180px;
+    text-align: right;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+.value {
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    font-size: 1.2rem;
+}
+.val-id {
+    min-width: 50px;
+    margin-right: 190px;
+}
+.label-inline {
+    width: auto;
+}
+
+/*Alumnos*/
+.students-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+.student-item {
+    display: flex;
+    justify-content: flex-start;
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    font-size: 1.2rem;
+}
+.student-name {
+    width: 220px;
+    flex-shrink: 0;
+}
+.student-id {
+    color: var(--text-primary);
+    opacity: 0.9;
+}
+
+/*links*/
+.link-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: space-between;
+    padding-right: 15px;
+}
+.url-text {
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    text-decoration: none;
+    font-size: 1.2rem;
+    max-width: 300px;
+    word-break: break-all;
+    line-height: 1.2;
+}
+.btn-copy {
+    background: var(--gradient-E);
+    border: none;
+    color: var(--text-primary);
+
+    width: 45px;
+    height: 45px;
+    min-width: 38px;
+
+    border-radius: 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    flex-shrink: 0;
+}
+.btn-copy:hover {
+    transform: scale(1.1);
+}
+.btn-copy img {
+    width: 18px;
+    height: auto;
+    opacity: 0.8;
+}
+
+/*Descripción*/
+.description-text {
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    font-size: 1.3rem;
+    line-height: 1;
+    margin: 0;
+    text-align: justify;
+    padding-right: 20px;
+}
+.description-section .label {
+    align-self: flex-start;
+    padding-top: 2px;
+}
+
+/*Imagen*/
+.image-side {
+    width: 350px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10px;
+}
+.image-box {
+    width: 100%;
+    /* border: 1.5px solid var(--contrast-color-D);*/
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+}
+.image-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    object-fit: cover;
+}
+
+/*----- Botones del proyecto -----*/
+.project-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 30px;
+}
+.action-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+.row-top {
+    margin-bottom: 50px;
+}
+.row-top,
+.row-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.btn-pill {
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 16px;
+    color: var(--text-primary);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 280px;
+    height: 54px;
+    flex-shrink: 0;
+
+    transition: all 0.3s ease;
+}
+.btn-purple {
+    background: var(--gradient-E);
+}
+.btn-cyan {
+    background: var(--gradient-btn-positive);
+}
+.btn-blue {
+    background: var(--gradient-btn-middle);
+}
+.btn-magenta {
+    background: var(--gradient-btn-negative);
+}
+
+.btn-blue-dark {
+    background: var(--gradient-btn-dark);
+}
+.btn-pill:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.icon-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-left: -30px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+
+    transform: scale(1.2);
+}
+.hidden {
+    display: none !important;
+}
+
+/*help icon*/
+.help-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+}
+.help-svg {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+.help-link:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px var(--contrast-color-D));
+}
+
+/*Descripción editable*/
+.description-editor {
+    width: 451px;
+    min-height: 140px;
+    background: var(--input-flat);
+    border: 0;
+    border-bottom: 3px solid var(--contrast-color-D);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    font-size: 1.3rem;
+    padding: 10px;
+    outline: none;
+    resize: vertical;
+    line-height: 1;
+}
+.description-editor:focus {
+    border-bottom: 3px solid var(--contrast-color-E);
+}
+#return-panel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+}
+.return-content {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+}
+.return-label {
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    opacity: 0.9;
+}
+#return-msg {
+    width: 100%;
+    min-height: 200px;
+}
+.second {
+    width: 60%;
+}
+.btn-group-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/*Animaciones de entrada*/
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.98) translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.animate-in {
+    animation: fadeInScale 0.3s ease-out forwards;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+@media (max-width: 650px) {
+    .main-content {
+        margin-left: 0;
+        margin-top: 50px;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .text-main {
+        font-size: 1.4rem;
+        text-align: center;
+        letter-spacing: 1px;
+        margin-bottom: 35px;
+    }
+
+    .card-inner {
+        padding: 1.5rem 1rem;
+    }
+
+    .inner-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: -10px;
+        margin-bottom: -15px;
+    }
+
+    .inner-subject {
+        font-size: 1.2rem;
+    }
+
+    /* Informaciòn */
+    .project-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+
+    .label {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 2px;
+        font-size: 1rem;
+    }
+
+    .value,
+    .student-item,
+    .url-text {
+        font-size: 1.1rem;
+        padding-left: 8px;
+    }
+    .header-info .label {
+        width: auto;
+        text-align: left;
+        margin-right: 0;
+    }
+    .header-info .value {
+        font-size: 0.95rem;
+    }
+    .header-info .val-id {
+        margin-right: -10px;
+    }
+    .header-info .info-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .image-side {
+        width: 90%;
+        order: -1;
+        margin-bottom: 20px;
+    }
+    .link-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+    }
+    .btn-copy {
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .row-top,
+    .row-bottom {
+        gap: 20px;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-right: 35px;
+    }
+
+    .description-text {
+        font-size: 1.2rem;
+        padding-right: 0px;
+    }
+
+    .description-editor {
+        width: 270px;
+        min-height: 200px;
+        font-size: 1.2rem;
+        line-height: 1;
+        text-align: justify;
+    }
+
+    #return-panel {
+        width: 94%;
+    }
+    .return-label {
+        font-size: 1rem;
+    }
+    .second {
+        width: 100%;
+    }
+
+    .btn-pill {
+        font-size: 1rem;
+        width: 225px;
+        height: 50px;
+    }
+    .icon-container {
+        width: 30px;
+        height: 40px;
+
+        margin-left: -20px;
+        margin-right: 10px;
+    }
+
+    .btn-icon {
+        width: 35px;
+        height: 40px;
+        object-fit: contain;
+
+        transform: scale(1.2);
+    }
+
+    /*help icon*/
+    .help-svg {
+        width: 25px;
+    }
+
+    .center {
+        align-items: flex-end;
+        margin-right: -10px;
+    }
+}

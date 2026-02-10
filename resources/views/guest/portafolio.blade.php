@@ -34,15 +34,15 @@
             <input type="text" disabled class="hr-gradient">
         </center>
 
-        {{-- CAMBIO 1: MENÚ DINÁMICO DESDE LA BASE DE DATOS --}}
+        {{-- MENÚ DINÁMICO --}}
         <div class="portafolio-menu">
             {{-- El botón "Todos" siempre va fijo --}}
             <a href="{{ route('portafolio.index', ['category' => 'todos']) }}" class="btn-portafolio BrunoAce-font">
                 Todos
             </a>
 
-            {{-- Iteramos las categorías que trajimos de la tabla tbl_categorias --}}
             @foreach($categorias as $cat)
+                <a href="{{ route('portafolio.index', ['category' => $cat->slug]) }}" class="btn-portafolio BrunoAce-font">
                 <a href="{{ route('portafolio.index', ['category' => $cat->slug]) }}" class="btn-portafolio BrunoAce-font">
                     {{ $cat->nombre }}
                 </a>
@@ -56,11 +56,22 @@
 
             @php
                 $bgStyle = '';
-                if ($proyecto->portada) {
-                    // CAMBIO 2: Aseguramos usar 'url' que es como lo definimos en el modelo Multimedia
-                    // Antes decía 'ruta_archivo', verifica cual es el nombre real en tu tabla
-                    $url = asset('storage/' . $proyecto->portada->url);
-                    $bgStyle = "background-image: url('$url');";
+                // 1. Obtener objeto portada
+                $portada = $proyecto->multimedia->where('es_portada', true)->first();
+
+                if ($portada) {
+                    $ruta = $portada->url;
+
+                    // 2. CORRECCIÓN: Verificar si es URL externa (Seeder) o Archivo Local (Upload)
+                    if (str_starts_with($ruta, 'http')) {
+                        // Es un link externo (ej: via.placeholder.com), se usa tal cual
+                        $finalUrl = $ruta;
+                    } else {
+                        // Es un archivo local, agregamos el path de storage
+                        $finalUrl = asset('storage/' . $ruta);
+                    }
+
+                    $bgStyle = "background-image: url('$finalUrl');";
                 }
             @endphp
 
@@ -69,8 +80,8 @@
             </a>
 
         @empty
-            <div style="grid-column: 1 / -1; text-align: center; color: white;">
-                <p>No hay proyectos disponibles en esta categoría.</p>
+            <div style="grid-column: 1 / -1; text-align: center; color: white; padding: 2rem;">
+                <p>No hay proyectos disponibles en esta categoría por el momento.</p>
             </div>
         @endforelse
     </section>

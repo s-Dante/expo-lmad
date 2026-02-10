@@ -15,20 +15,20 @@ class SoftwareSeeder extends Seeder
     public function run(): void
     {
         $softwares = [
-            ['software_name' => 'Blender', 'software_description' => 'Modelado y animación 3D'],
-            ['software_name' => 'Unity', 'software_description' => 'Motor de videojuegos'],
-            ['software_name' => 'Unreal Engine', 'software_description' => 'Motor de videojuegos'],
-            ['software_name' => 'After Effects', 'software_description' => 'Postproducción'],
-            ['software_name' => 'Photoshop', 'software_description' => 'Edición de imagen'],
-            ['software_name' => 'Premiere Pro', 'software_description' => 'Edición de video'],
-            ['software_name' => 'Maya', 'software_description' => 'Modelado 3D'],
-            ['software_name' => 'Visual Studio Code', 'software_description' => 'Editor de código'],
-            ['software_name' => 'Figma', 'software_description' => 'Diseño de interfaces'],
+            ['nombre' => 'Blender', 'descripcion' => 'Modelado y animación 3D'],
+            ['nombre' => 'Unity', 'descripcion' => 'Motor de videojuegos'],
+            ['nombre' => 'Unreal Engine', 'descripcion' => 'Motor de videojuegos'],
+            ['nombre' => 'After Effects', 'descripcion' => 'Postproducción'],
+            ['nombre' => 'Photoshop', 'descripcion' => 'Edición de imagen'],
+            ['nombre' => 'Premiere Pro', 'descripcion' => 'Edición de video'],
+            ['nombre' => 'Maya', 'descripcion' => 'Modelado 3D'],
+            ['nombre' => 'Visual Studio Code', 'descripcion' => 'Editor de código'],
+            ['nombre' => 'Figma', 'descripcion' => 'Diseño de interfaces'],
         ];
 
         foreach ($softwares as $software) {
             Software::firstOrCreate(
-                ['software_name' => $software['software_name']],
+                ['nombre' => $software['nombre']],
                 $software
             );
         }

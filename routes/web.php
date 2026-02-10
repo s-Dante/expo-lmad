@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
 use App\Http\Controllers\Guest\PortafolioController;
+use App\Http\Controllers\Student\EstudianteController;
+use App\Http\Controllers\Teacher\ProfesorController;
+use App\Http\Controllers\SuperAdmin\SuperAdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Guest\ProyectoController;
 
 // Rutas de paginas publicas
@@ -54,7 +58,7 @@ RUTAS PARA INICIAR Y CERRAR SESION
 
 Pos aqui se hace todo para iniciar o cerrar una sesion con el controlador Auth, asi nomas sin tanto rollo que no es sushi.
 */
-Route::post('/auth/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])
+Route::post('/auth/login', [AuthController::class, 'login'])
     ->name('auth.login');
 
 Route::get('/auth/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])
@@ -74,6 +78,10 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
     Route::get('/superadmin/dashboard', function () {
         return view('superadmin.dashboard');
     })->name('superadmin.dashboard');
+
+    Route::get('/superadmin/revision-proyecto', function () {
+        return view('superadmin.revision-proyecto');
+    })->name('superadmin.revision-proyecto');
 });
 
 //Rutas de Admin
@@ -98,6 +106,14 @@ Route::middleware(['auth', 'role:estudiante'])->group(function () {
     })->name('estudiante.lista-exposiones');
 
 
+    Route::get('/estudiante/dashboard', [EstudianteController::class, 'dashboard'])->name('estudiante.dashboard');
+
+    Route::get('/estudiante/asistencia-qr', [EstudianteController::class, 'asistenciaQr'])->name('estudiante.qr');
+
+    Route::get('/estudiante/proyectos', [EstudianteController::class, 'index'])->name('estudiante.proyectos.index');
+    Route::get('/estudiante/proyectos/{id}/editar', [EstudianteController::class, 'edit'])->name('estudiante.proyectos.edit');
+    Route::put('/estudiante/proyectos/{id}', [EstudianteController::class, 'update'])->name('estudiante.proyectos.update');
+    Route::get('/estudiante/proyectos/{id}', [EstudianteController::class, 'show'])->name('estudiante.proyectos.show');
 });
 
 //Rutas de Profesor
@@ -106,10 +122,10 @@ Route::middleware(['auth', 'role:profesor'])->group(function () {
         return view('teacher.dashboard');
     })->name('profesor.dashboard');
 
-    Route::get('/profesor/registro-expositores', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarRegistroExpositores'])
+    Route::get('/profesor/registro-expositores', [ProfesorController::class, 'cargarRegistroExpositores'])
         ->name('teacher.registro-expositores');
 
-    Route::post('/profesor/cargar-proyecto', [App\Http\Controllers\Teacher\ProfesorController::class, 'cargarProyecto'])
+    Route::post('/profesor/cargar-proyecto', [ProfesorController::class, 'cargarProyecto'])
         ->name('teacher.cargar-proyecto');
 
     Route::get('/profesor/lista-proyectos', [App\Http\Controllers\Teacher\ProfesorController::class, 'listadoProyectos'])

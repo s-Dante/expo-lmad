@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('tbl_softwares', function (Blueprint $table) {
             $table->id();
-            $table->string('software_name')->unique();
-            $table->text('software_description')->nullable();
+            $table->string('nombre')->unique();
+            $table->text('descripcion')->nullable();
             $table->boolean('estatus')->default(true);
             $table->softDeletes();
             $table->timestamps();

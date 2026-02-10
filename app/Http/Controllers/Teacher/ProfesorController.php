@@ -8,6 +8,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
+use App\Repositories\Teacher\ProfesorRepositoryInterface;
+use App\Services\Teacher\ProfesorEmailService;
 
 use App\Models\Estudiante;
 use App\Models\Proyecto;
@@ -15,18 +19,20 @@ use App\Models\User;
 
 class ProfesorController extends Controller
 {
+    public function __construct(
+        protected ProfesorRepositoryInterface $profesorRepository,
+        protected ProfesorEmailService $emailService
+    ) {}
+
     public function cargarRegistroExpositores()
     {
-        $profesor = auth()->user();
-
+        $profesor = Auth::user();
         $materiasProfesor = $profesor->profesor->materias()->with('planAcademico')->get();
-
         return view('teacher.registro-expositores', compact('materiasProfesor'));
     }
 
     public function cargarProyecto(Request $request)
     {
-
         $request->validate([
             'estudiantes' => 'required|array',
             'estudiantes.*.matricula' => 'required|exists:tbl_estudiantes,matricula',
@@ -40,7 +46,7 @@ class ProfesorController extends Controller
 
 
 
-            $profesorReal = auth()->user()->profesor;
+            $profesorReal = Auth::user()->profesor;
 
 
             if (!$profesorReal) {
@@ -101,16 +107,47 @@ class ProfesorController extends Controller
 
     }
 
+    public function cargarProyecto2(Request $request)
+    {
+        // 1. Podriamos ahcer un FormRequest
+        $validated = $request->validate([
+            'estudiantes' => 'required|array',
+            'estudiantes.*.matricula' => 'required|exists:tbl_estudiantes,matricula',
+            'estudiantes.*.nombre' => 'required|string',
+            'periodo_semestral' => 'required',
+            'materia_id' => 'required'
+        ]);
+
+        $profesor = Auth::user()->profesor;
+        if (!$profesor) {
+            return back()->withErrors(['msg' => 'Usuario no es profesor.']);
+        }
+
+        // 2. Llamada al Repositorio
+        $resultado = $this->profesorRepository->crearProyectoConEstudiantes($validated, $profesor);
+
+        // 3. Llamada al Servicio (Correos)
+        try {
+            $this->emailService->enviarCorreosAsignacion(
+                $resultado['proyecto'], 
+                $resultado['codigo'], 
+                $resultado['usuarios']
+            );
+        } catch (\Exception $e) {
+            // Log::error('Error enviando correos: ' . $e->getMessage());
+            return redirect()->back()->with('Warning', 'Proyecto creado, pero hubo un error enviando los correos.');
+        }
+
+        return redirect()->back()->with('Exito', 'Proyecto registrado y notificaciones enviadas. Código: ' . $resultado['codigo']);
+    }
+
     public function listadoProyectos()
     {
-        $usuario = auth()->user();
-
+        $usuario = Auth::user();
         $profesor = $usuario->profesor;
-
         $proyectosProfesor = Proyecto::where('profesor_id', $profesor->id)
             ->with(['autores', 'materia'])
             ->get();
-
 
         $materias = $usuario->profesor->materias()->with('planAcademico')->get();
 
@@ -175,6 +212,5 @@ class ProfesorController extends Controller
             return redirect()->back()->with('Exito', 'Proyecto actualizado con éxito.');
 
         }));
-
     }
 }
