@@ -8,7 +8,8 @@
 
     @vite([
         'resources/css/guest/template.css',
-        'resources/css/student/revisar-exposicion.css'
+        'resources/css/student/revisar-exposicion.css',
+        'resources/js/student/copy-link.js'
     ])
 
 </head>
@@ -87,7 +88,7 @@
         width: -webkit-fill-available;
     }
 
-    .div-btn-changeimage{
+    .div-btn-changeimage {
         margin-top: 1rem;
     }
 
@@ -198,9 +199,9 @@
     }
 
     #link-repo-project,
-    #link-video-project,
+    #link-promotional-project,
     #description-project {
-        width: auto;
+        width: -webkit-fill-available;
         word-wrap: break-word;
     }
 
@@ -368,9 +369,9 @@
         </container>
 
         <section class="section-project-data">
-            <container class="expo-card main-card">
+            <form action="" class="expo-card main-card">
 
-                <form>
+                <section>
                     <div class="section-project-header">
                         <h2 id="name">Nombre del proyecto</h2>
                         <h3 id="subject">Materia</h3>
@@ -414,29 +415,35 @@
 
                                 <div class="three-columns-grid three-category-grid">
                                     <span>Video promocional:</span>
-                                    <!--<p id="link-video-project" id="link-promotional">https://unlinkrandomayoutube.com/nose</p>-->
-                                    <input type="text" class="input-c" id="link-promotional-edit"/>
-                                    <!--<button class="btn btn-purple btn-icon" id="link-promotional-copy"><img
-                                            src="{{ asset('assets/guest/upload.png') }}"></button>-->
+                                    <p id="link-promotional-project" class="state-saved">
+                                        https://unlinkrandomayoutube.com/nose</p>
+                                    <input type="text" class="input-c state-editing" id="link-promotional-edit" />
+                                    <button class="btn btn-purple btn-icon state-saved" id="link-promotional-copy"
+                                        data-target="link-promotional-project"><img
+                                            src="{{ asset('assets/guest/upload.png') }}"></button>
                                 </div>
 
                                 <div class="three-columns-grid three-category-grid">
                                     <span>Enlace a proyecto:</span>
-                                    <!--<p id="link-repo-project" id="link-repo">https://otrolinkrandomgithub.com/nosetampoco</p>-->
-                                    <input type="text" class="input-c" id="link-repo-edit"/>
-                                    <!--<button class="btn btn-purple btn-icon" id="link-repo-copy"><img
-                                            src="{{ asset('assets/guest/upload.png') }}"></button>-->
+                                    <p id="link-repo-project" class="state-saved">
+                                        https://otrolinkrandomgithub.com/nosetampoco</p>
+                                    <input type="text" class="input-c state-editing" id="link-repo-edit" />
+                                    <button class="btn btn-purple btn-icon state-saved" id="link-repo-copy"
+                                        data-target="link-repo-project"><img
+                                            src="{{ asset('assets/guest/upload.png') }}"></button>
                                 </div>
 
                                 <div class="two-columns-grid two-category-grid">
                                     <span>Descripción:</span>
-                                    <!--<p id="description-project">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    <p id="description-project" class="state-saved">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                         Pellentesque ullamcorper porta feugiat.
                                         Pellentesque volutpat massa et neque facilisis pellentesque.
                                         Mauris id urna et libero luctus tincidunt tincidunt non ipsum.
                                         Nullam suscipit dapibus nunc quis suscipit.
-                                        Aenean molestie laoreet volutpat. </p>-->
-                                    <textarea class="input-description"></textarea>
+                                        Aenean molestie laoreet volutpat. 
+                                    </p>
+                                    <textarea class="input-description state-editing" id="description-edit"></textarea>
                                 </div>
 
                             </div>
@@ -447,12 +454,12 @@
                             <img src="{{ asset('assets/guest/imageloading.png') }}" class="img-fluid">
 
                             <div class="div-btn-changeimage">
-                                <button type="button" class="btn btn-blue">Cambiar imagen</button>
+                                <button type="button" class="btn btn-blue state-editing">Cambiar imagen</button>
                             </div>
                         </div>
 
                     </div>
-                </form>
+                </section>
 
                 <center>
                     <input type="text" disabled class="hr-gradient">
@@ -460,11 +467,13 @@
 
                 <section class="project-retro">
                     <h4>Estado del proyecto</h4>
-                    <p id="state">En revisión, ¡No olvides estar al pendiente!</p>
+                    <p id="state">En revisión, ¡No olvides estar al pendiente!
+                        Se han encontrado aspectos en los que puedes mejorar. Tan pronto como termines de optimizar tu proyecto enviálo de nuevo
+                    </p>
 
                     <container class="expo-card project-retro-msg" id="message">
                         <span>Mensaje del congreso:</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        <p id="msg">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             Pellentesque ullamcorper porta feugiat.
                             Pellentesque volutpat massa et neque facilisis pellentesque.
                             Mauris id urna et libero luctus tincidunt tincidunt non ipsum.
@@ -473,19 +482,20 @@
                     </container>
 
                     <div class="div-btns-project">
-                        <button type="button" class="btn btn-blue" id="edit">Editar proyectos</button>
-                        <button type="button" class="btn btn-darkpur" id="resend">Reenviar proyecto</button>
+                        <button type="button" class="btn btn-blue state-saved" id="edit">Editar proyecto</button>
+                        <button type="submit" class="btn btn-darkpur state-saved" id="resend">Reenviar proyecto</button>
 
-                        <button type="button" class="btn btn-blue" id="save">Guardar cambios</button>
-                        <button type="button" class="btn btn-purple" id="back">Regresar</button>
+                        <button type="button" class="btn btn-blue state-editing" id="save">Guardar cambios</button>
+                        <button type="button" class="btn btn-purple state-editing" id="back">Regresar</button>
                     </div>
 
                 </section>
 
-            </container>
+            </form>
 
         </section>
 
     </main>
 
+    @vite('resources/js/student/show-hide-elements.js')
 </body>

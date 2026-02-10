@@ -36,8 +36,11 @@ export default defineConfig({
                 "resources/js/guest/showButtonMenu.js",
                 "resources/js/guest/revealAnimation.js",
                 "resources/js/components/sidebar.js",
+
                 "resources/js/teacher/agregarIntegrantes.js",
-                "resources/js/teacher/modalEditar.js"
+                "resources/js/teacher/modalEditar.js",
+                "resources/js/student/copy-link.js",
+                "resources/js/student/show-hide-elements.js"
             ],
             refresh: true,
         }),
