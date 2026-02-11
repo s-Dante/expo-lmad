@@ -41,7 +41,7 @@ export default defineConfig({
 
                 "resources/js/teacher/agregarIntegrantes.js",
                 "resources/js/teacher/modalEditar.js",
-                 "reources/js/superadmin/actions-check.js",
+                "resources/js/superadmin/actions-check.js",
                 "resources/js/student/copy-link.js",
                 "resources/js/student/show-hide-elements.js"
             ],
