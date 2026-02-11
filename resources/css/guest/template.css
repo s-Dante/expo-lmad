@@ -385,6 +385,17 @@ button,
         transform: translate(-50%, 0);
     }
 }
+
+@keyframes modalUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 /* ---- --------------- ---- */
 
 /*------------ Paginación ---------------*/
@@ -405,6 +416,50 @@ button,
     display: flex;
     justify-content: center;
     padding: 2rem;
+}
+
+/*----------------------------*/
+
+/*------------ Alerts --------*/
+.modal-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 21, 29, 0.85);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    margin-inline: 5%;
+    background: var(--blue-950);
+    border: 1px solid var(--blue-600);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(95, 226, 255, 0.15);
+    animation: modalUp 0.4s ease-out;
+}
+
+.modal-title {
+    font-family: var(--kodchasan-font);
+    color: var(--blue-100);
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.modal-message {
+    font-family: var(--inter-font);
+    color: var(--white);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
 }
 
 /*----------------------------*/
@@ -453,5 +508,9 @@ button,
 }
 
 .text-align-center {
+    text-align: center;
+}
+
+.text-align-center{
     text-align: center;
 }

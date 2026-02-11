@@ -101,10 +101,9 @@ Route::middleware(['auth', 'role:estudiante'])->group(function () {
         return view('student.registro-proyecto');
     })->name('estudiante.registro-proyecto');
 
-    Route::get('/estudiante/lista-exposiones', function () {
-        return view('student.lista-exposiones');
-    })->name('estudiante.lista-exposiones');
-
+    Route::get('/estudiante/lista-exposiciones', function () {
+        return view('student.lista-exposiciones');
+    })->name('estudiante.lista-exposiciones');
 
     Route::get('/estudiante/dashboard', [EstudianteController::class, 'dashboard'])->name('estudiante.dashboard');
 
