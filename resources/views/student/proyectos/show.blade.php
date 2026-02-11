@@ -31,7 +31,7 @@
         </container>
 
         <section class="section-project-data">
-            <form action="" class="expo-card main-card">
+            <form action="{{ route('estudiante.proyectos.update', $proyecto->id) }}" method="POST" enctype="multipart/form-data" id="projectForm" class="expo-card main-card">
 
                 <section>
                     <div class="section-project-header">
@@ -169,7 +169,8 @@
                         $soyLider = $miParticipacion ? $miParticipacion->pivot->es_lider : false;
                     @endphp
 
-                    @if($proyecto->estatus === 'rechazado' && $proyecto->retroalimentacion && $soyLider)
+                    @if($proyecto->estatus === 'rechazado' && $proyecto->retroalimentacion && $soyLider
+                    )
                         <div class="div-btns-project">
 
                             <button type="button" class="btn btn-blue state-saved" id="edit">Editar proyecto</button>
