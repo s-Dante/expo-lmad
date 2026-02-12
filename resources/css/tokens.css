@@ -39,9 +39,12 @@
     /* Púrpuras/Rosas */
     --clr-purple-200: #a748ca;
     --clr-purple-300: #9958f5;
+    --clr-purple-320: #8a2be2;
     --clr-purple-400: #9a08d7;
     --clr-purple-800: #5825e9;
+
     --clr-pink-500: #8e06a4;
+    --clr-pink-800: #ff007f;
 
     /*Rojos*/
     --clr-red-600: #be185d;
@@ -78,7 +81,7 @@
 
     --bg-page-gradient-invert: linear-gradient(
         180deg,
-        color-mix(in srgb, var(--clr-blue-900), transparent 5%) 10%,
+        var(--clr-blue-900) 0%,
         var(--clr-blue-800) 100%
     );
 
@@ -152,6 +155,12 @@
         90deg,
         var(--clr-blue-600) 0%,
         var(--clr-blue-800) 100%
+    );
+
+    --progress-bar-gradient: linear-gradient(
+        to right,
+        var(--clr-purple-320),
+        var(--clr-pink-800)
     );
 
     --btn-flat: var(--clr-black);

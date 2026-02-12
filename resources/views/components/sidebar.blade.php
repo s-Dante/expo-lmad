@@ -50,7 +50,7 @@
 
         <!-- NAVBAR PARA SUPER ADMIN -->
         @elseif(auth()->user()->rol == 'super_admin')
-        <a href="" class="sidebar-item ">
+        <a href="{{ route('superadmin.dashboard') }}" class="sidebar-item ">
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
             <span>Inicio</span>
         </a>
