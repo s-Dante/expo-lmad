@@ -1,0 +1,314 @@
+@import url(/resources/css/tokens.css);
+
+body {
+    background: var(--bg-page-gradient);
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+    background-color: var(--bg-flat);
+}
+
+.main-content {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.text-main {
+    color: var(--contrast-color-D);
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 300;
+
+    text-align: center;
+
+    margin-bottom: 3rem;
+    margin-top: 1.5rem;
+}
+.line {
+    display: block;
+    width: 500px;
+    height: 2.5px;
+    margin: -1.4rem auto 0.5rem;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--contrast-color-D),
+        transparent
+    );
+}
+
+/* Sección de estadísticas */
+.section-title {
+    font-family: var(--font-main);
+    color: var(--text-primary);
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.stats-container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.stat-card {
+    border: 1px solid var(--contrast-color-D);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: var(--text-primary);
+}
+
+/*circulo*/
+.main-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 35px solid transparent;
+    background:
+        linear-gradient(var(--bg-flat), var(--bg-flat)) padding-box,
+        linear-gradient(
+                to bottom,
+                var(--contrast-color-D) 45%,
+                var(--contrast-color-C)
+            )
+            border-box;
+}
+.circle-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.main-circle .number {
+    font-size: 5rem;
+    font-family: var(--font-main);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+
+    background: linear-gradient(
+        to bottom,
+        var(--contrast-color-D),
+        var(--contrast-color-E)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.main-circle .label {
+    font-size: 1.4rem;
+    font-family: var(--font-alt);
+    color: var(--text-primary);
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+
+/*alumnos*/
+.tall-card {
+    width: 180px;
+    height: 300px;
+    border-radius: 12px;
+
+    border: 1.5px solid transparent;
+    background:
+        var(--bg-page-gradient-invert) padding-box,
+        linear-gradient(
+                to bottom,
+                var(--contrast-color-D),
+                var(--contrast-color-E)
+            )
+            border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.tall-card .number {
+    font-size: 4rem;
+    font-weight: 500;
+    font-family: var(--font-main);
+
+    background: linear-gradient(
+        to bottom,
+        var(--contrast-color-D),
+        var(--contrast-color-E)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    line-height: 1;
+}
+
+.tall-card .label {
+    font-size: 1.2rem;
+    font-family: var(--font-alt);
+    color: var(--text-primary);
+    letter-spacing: 1.5px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+/*setso*/
+.combined-card {
+    border: none;
+    background: transparent;
+    padding: 0;
+    gap: 30px;
+}
+.combined-card .top-val {
+    width: 220px;
+    height: 140px;
+    border-radius: 12px;
+    border: 1.5px solid transparent;
+    background:
+        var(--bg-page-gradient-invert) padding-box,
+        linear-gradient(
+                to bottom,
+                var(--contrast-color-D),
+                var(--contrast-color-E)
+            )
+            border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.combined-card .top-val .number {
+    font-family: var(--font-main);
+    font-size: 3.3rem;
+    font-weight: 500;
+    background: linear-gradient(
+        to bottom,
+        var(--contrast-color-D),
+        var(--contrast-color-E)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.top-val .label {
+    font-size: 1.2rem;
+    font-family: var(--font-alt);
+    color: var(--text-primary);
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.bottom-vals {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+}
+.bottom-vals div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sub-num {
+    font-size: 2.5rem;
+    font-weight: 500;
+    font-family: var(--font-main);
+    background: linear-gradient(
+        to bottom,
+        var(--contrast-color-D),
+        var(--contrast-color-E)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sub-label {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+
+.no-binario-val {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -30px;
+}
+
+/*minicard*/
+.mini-cards-col {
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.mini-card {
+    background: var(--bg-page-gradient-invert);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 280px;
+    height: 110px;
+}
+.mini-icon {
+    margin-left: -10px;
+    width: 150px;
+    height: auto;
+}
+.mini-data {
+    margin-left: -20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+.mini-number {
+    font-family: var(--font-main);
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+.mini-label {
+    font-family: var(--font-alt);
+    font-size: 2rem;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+}
+.line2 {
+    display: block;
+    width: 500px;
+    height: 2.5px;
+    margin: 4rem auto 1.5rem;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--contrast-color-D),
+        transparent
+    );
+}

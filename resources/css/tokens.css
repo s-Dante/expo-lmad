@@ -78,7 +78,7 @@
 
     --bg-page-gradient-invert: linear-gradient(
         180deg,
-        color-mix(in srgb, var(--clr-blue-900), transparent 5%) 10%,
+        var(--clr-blue-900) 0%,
         var(--clr-blue-800) 100%
     );
 

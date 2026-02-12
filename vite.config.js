@@ -27,7 +27,7 @@ export default defineConfig({
                 "resources/css/student/registro-proyecto.css",
                 "resources/css/student/lista-exposiones.css",
                 "resources/css/student/revisar-exposicion.css",
-
+                "resources/css/superadmin/dashboard.css",
                 "resources/css/superadmin/revision-proyecto.css",
 
                 "resources/js/guest/expandImage.js",
@@ -41,9 +41,9 @@ export default defineConfig({
 
                 "resources/js/teacher/agregarIntegrantes.js",
                 "resources/js/teacher/modalEditar.js",
-                 "reources/js/superadmin/actions-check.js",
+                "resources/js/superadmin/actions-check.js",
                 "resources/js/student/copy-link.js",
-                "resources/js/student/show-hide-elements.js"
+                "resources/js/student/show-hide-elements.js",
             ],
             refresh: true,
         }),
