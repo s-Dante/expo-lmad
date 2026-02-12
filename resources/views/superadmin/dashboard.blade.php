@@ -76,6 +76,52 @@
 
         <section class="events-section">
             <h2 class="section-title">Asistencia a eventos</h2>
+
+            <div class="events-grid">
+
+                <div class="event-name">FROM IDEA TO SCREEN: DEVELOPING, WRITING AND DIRECTING A FILM</div>
+                <div class="progress-wrapper">
+                    <div class="progress-bar" style="width: 90%;"></div>
+                </div>
+                <div class="event-number">120</div>
+
+                <div class="event-name">DIBUJANDO MIS SUEÑOS</div>
+                <div class="progress-wrapper">
+                    <div class="progress-bar" style="width: 45%;"></div>
+                </div>
+                <div class="event-number">47</div>
+
+                <div class="event-name">TALLER: APRENDE A PROGRAMAR CON CODEWARS</div>
+                <div class="progress-wrapper">
+                    <div class="progress-bar" style="width: 25%;"></div>
+                </div>
+                <div class="event-number">20</div>
+
+                 <div class="event-name">FROM IDEA TO SCREEN: DEVELOPING, WRITING AND DIRECTING A FILM</div>
+                <div class="progress-wrapper">
+                    <div class="progress-bar" style="width: 60%;"></div>
+                </div>
+                <div class="event-number">120</div>
+
+                <div class="event-name">DIBUJANDO MIS SUEÑOS</div>
+                <div class="progress-wrapper">
+                    <div class="progress-bar" style="width: 23%;"></div>
+                </div>
+                <div class="event-number">47</div>
+
+                <div class="event-name">TALLER: APRENDE A PROGRAMAR CON CODEWARS</div>
+                <div class="progress-wrapper">
+                    <div class="progress-bar" style="width: 10%;"></div>
+                </div>
+                <div class="event-number">20</div>
+
+            </div>
+
+            <div class="export-container">
+                <button class="btn-export">Exportar a excel</button>
+            </div>
+
+
         </section>
 
 

@@ -28,15 +28,15 @@
                     <div class="fila-flex">
                         <div class="item">
                             <label>Plan:</label>
-                            <input type="text" id="modal-plan_academico" readonly>
+                            <input class="input-c" type="text" id="modal-plan_academico" readonly>
                         </div>
                         <div class="item">
                             <label>Semestre:</label>
-                            <input type="text" id="modal-semestre" readonly>
+                            <input class="input-c" type="text" id="modal-semestre" readonly>
                         </div>
                     </div>
 
-                    <select name="periodo_semestral" id="modal-periodo-semestral">
+                    <select class="input-c" name="periodo_semestral" id="modal-periodo-semestral">
                         <option value="" selected disabled>Selecciona un periodo semestral</option>
                         <option value="Enero - Junio 2026">Enero - Junio 2026</option>
                         <option value="Agosto - Diciembre 2025">Agosto - Diciembre 2025</option>
@@ -44,7 +44,7 @@
 
                     <div class="fila-full">
                         <label>Número de integrantes:</label>
-                        <input type="number" id="modal-num-integrantes">
+                        <input class="input-c" type="number" id="modal-num-integrantes">
                     </div>
                 </div>
 

@@ -41,7 +41,7 @@ body {
 .section-title {
     font-family: var(--font-main);
     color: var(--text-primary);
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 500;
     text-align: center;
     margin-bottom: 0px;
@@ -49,7 +49,7 @@ body {
 
 .stats-container {
     display: flex;
-    gap: 50px;
+    gap: 20px;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
@@ -69,10 +69,10 @@ body {
 
 /*circulo*/
 .main-circle {
-    width: 200px;
-    height: 200px;
+    width: 260px;
+    height:  260px;
     border-radius: 50%;
-    border: 35px solid transparent;
+    border: 45px solid transparent;
     background:
         linear-gradient(var(--bg-flat), var(--bg-flat)) padding-box,
         linear-gradient(
@@ -90,11 +90,11 @@ body {
 }
 
 .main-circle .number {
-    font-size: 5rem;
+    font-size: 6rem;
     font-family: var(--font-main);
     font-weight: 600;
     line-height: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
 
     background: linear-gradient(
         to bottom,
@@ -109,7 +109,7 @@ body {
 }
 
 .main-circle .label {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-family: var(--font-alt);
     color: var(--text-primary);
     letter-spacing: 2px;
@@ -311,4 +311,78 @@ body {
         var(--contrast-color-D),
         transparent
     );
+}
+
+/*---- Asistencias eventos ---- */
+.events-section {
+    width: 100%;
+    max-width: 1200px;
+}
+.events-grid {
+    display: grid;
+    grid-template-columns: 400px minmax(200px, 1fr) 80px;
+    column-gap: 20px;
+    row-gap: 35px;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+.event-name {
+    color: var(--text-primary);
+    font-family: var(--font-alt);
+    font-size: 1.1rem;
+    text-align: right;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 1px;
+}
+
+.progress-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+    height: 35px;
+    border-radius: 10px;
+    position: relative;
+}
+.progress-bar {
+    height: 100%;
+    background: var(--progress-bar-gradient);
+    border-radius: 10px;
+}
+.event-number {
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/*botoncin*/
+.export-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.btn-export {
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    color: var(--text-primary);
+    cursor: pointer;
+    background: var(--gradient-E);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 280px;
+    height: 54px;
+    margin-bottom: 6%;
+    transition: all 0.3s ease;
+}
+.btn-export:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
