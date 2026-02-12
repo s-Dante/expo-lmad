@@ -488,11 +488,11 @@ body {
         height: auto;
     }
     .mini-number {
-        font-size: 3.5rem;
+        font-size: 3.4rem;
         margin-bottom: 5px;
     }
     .mini-label {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
     }
     .mini-cards-col {
         gap: 15px;
