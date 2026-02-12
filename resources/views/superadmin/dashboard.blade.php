@@ -82,6 +82,8 @@
                 <div class="event-name">FROM IDEA TO SCREEN: DEVELOPING, WRITING AND DIRECTING A FILM</div>
                 <div class="progress-wrapper">
                     <div class="progress-bar" style="width: 90%;"></div>
+                    <!-- Ejemplo de maso como hacer funcional las barras (de forma facil y de momentop)
+                    style="width: {($evento->asistentes / 150) * 100 }}%;"> -->
                 </div>
                 <div class="event-number">120</div>
 
@@ -97,7 +99,7 @@
                 </div>
                 <div class="event-number">20</div>
 
-                 <div class="event-name">FROM IDEA TO SCREEN: DEVELOPING, WRITING AND DIRECTING A FILM</div>
+                <div class="event-name">FROM IDEA TO SCREEN: DEVELOPING, WRITING AND DIRECTING A FILM</div>
                 <div class="progress-wrapper">
                     <div class="progress-bar" style="width: 60%;"></div>
                 </div>
@@ -121,9 +123,7 @@
                 <button class="btn-export">Exportar a excel</button>
             </div>
 
-
         </section>
-
 
     </div>
 
