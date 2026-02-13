@@ -40,6 +40,8 @@ edit.addEventListener("click", (e) => {
     show_hide_list(inputs_editing, "block");
 });
 
+//PENDIENTE ver como guardar los cambios del proyecto para luego enviarlos (evento aparte)
+
 save.addEventListener("click", (e) => {
     e.preventDefault();
 
