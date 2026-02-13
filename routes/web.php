@@ -82,6 +82,10 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
     Route::get('/superadmin/revision-proyecto', function () {
         return view('superadmin.revision-proyecto');
     })->name('superadmin.revision-proyecto');
+
+    Route::get('/superadmin/proyectos', function () {
+        return view('superadmin.proyectos');
+    })->name('superadmin.proyectos');
 });
 
 //Rutas de Admin

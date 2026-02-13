@@ -60,7 +60,7 @@
             <span>Maestros</span>
         </a>
 
-        <a href="" class="sidebar-item ">
+        <a href="{{ route('superadmin.proyectos') }}" class="sidebar-item ">
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Idea-1.png') }}" alt="" />
             <span>Proyectos</span>
         </a>

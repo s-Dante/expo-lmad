@@ -29,6 +29,7 @@ export default defineConfig({
                 "resources/css/student/revisar-exposicion.css",
                 "resources/css/superadmin/dashboard.css",
                 "resources/css/superadmin/revision-proyecto.css",
+                "resources/css/superadmin/proyectos.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
