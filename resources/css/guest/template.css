@@ -420,6 +420,103 @@ button,
 
 /*----------------------------*/
 
+/*--------- Etiquetas --------*/
+
+.container-proyecto-tags { /* este tal lo quitemos de aquí*/
+    text-align: center;
+    margin: 1rem;
+    width: auto;
+    display: flow-root;
+    margin-bottom: 2.1rem;
+}
+
+.container-proyecto-tags p, label{
+    color: var(--clr-white);
+    font-family: var(--font-main);
+}
+
+.tags-list { /* este tal lo quitemos de aquí*/
+    margin: 1rem;
+    display: flex;
+    width: auto;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tags-list p, label{
+    margin: 0rem;
+    padding: 0.4rem;
+    width: max-content;
+    color: var(--clr-white);
+    font-family: var(--font-main);
+    background-color: var(--clr-blue-650);
+    border-radius: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.tags-list label:hover {
+    background-color: var(--clr-blue-600);
+    cursor: pointer;
+}
+
+.tags-list input[type="checkbox"] {
+    display: none;
+}
+
+.tags-list input:checked + label {
+    background-color: var(--clr-blue-200);
+    color: var(--clr-blue-900);
+}
+
+/*----------------------------*/
+
+/*--------- Tooltips ---------*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    font-family: var(--font-main);
+    width: auto;
+    max-width: 300px; /* Adjust as needed */
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--clr-black) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*----------------------------*/
+
 /*------------ Alerts --------*/
 .modal-overlay {
     position: fixed;

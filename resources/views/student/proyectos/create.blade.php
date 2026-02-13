@@ -53,7 +53,8 @@
                 <span>Software utilizado: </span>
                 <container class="container-proyecto-tags tags-list">
                     @foreach($softwares as $software)
-                        <x-tag-checkbox name="softwares[]" value="{{ $software->id }}" label="{{ $software->software_name }}" />    
+                        <x-tag-checkbox name="softwares[]" id="{{ $software->id }}" value="{{ $software->id }}"
+                            label="{{ $software->nombre }}" />
                     @endforeach
                 </container>
 

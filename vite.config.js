@@ -40,10 +40,12 @@ export default defineConfig({
                 "resources/js/components/sidebar.js",
 
                 "resources/js/teacher/agregarIntegrantes.js",
+                "resources/js/teacher/mostrarInfoMateria.js",
                 "resources/js/teacher/modalEditar.js",
                 "resources/js/superadmin/actions-check.js",
                 "resources/js/student/copy-link.js",
-                "resources/js/student/show-hide-elements.js",
+                "resources/js/student/show-hide-elements.js"
+
             ],
             refresh: true,
         }),

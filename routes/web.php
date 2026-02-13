@@ -111,6 +111,7 @@ Route::middleware(['auth', 'role:estudiante'])->group(function () {
 
     Route::get('/estudiante/proyectos', [EstudianteController::class, 'index'])->name('estudiante.proyectos.index');
     Route::get('/estudiante/proyectos/{id}/editar', [EstudianteController::class, 'edit'])->name('estudiante.proyectos.edit');
+    Route::get('/estudiante/proyectos/registro', [EstudianteController::class, 'create'])->name('estudiante.proyectos.create');
     Route::put('/estudiante/proyectos/{id}', [EstudianteController::class, 'update'])->name('estudiante.proyectos.update');
     Route::get('/estudiante/proyectos/{id}', [EstudianteController::class, 'show'])->name('estudiante.proyectos.show');
 });

@@ -81,6 +81,13 @@ class EstudianteController extends Controller
         return view('student.proyectos.edit', compact('proyecto', 'softwares'));
     }
 
+    public function create()
+    {
+        $softwares = $this->studentRepo->getAllSoftwares();
+
+        return view('student.proyectos.create', compact( 'softwares'));
+    }
+
     public function update(Request $request, $id)
     {
         // Validación extendida
