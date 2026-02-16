@@ -44,7 +44,8 @@ export default defineConfig({
                 "resources/js/teacher/modalEditar.js",
                 "resources/js/superadmin/actions-check.js",
                 "resources/js/student/copy-link.js",
-                "resources/js/student/show-hide-elements.js"
+                "resources/js/student/show-hide-elements.js",
+                'resources/js/student/validaciones-proyectos.js'
 
             ],
             refresh: true,
