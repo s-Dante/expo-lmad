@@ -24,6 +24,7 @@ class EloquentEstudianteRepository implements EstudianteRepositoryInterface
         ->get();
     }
 
+    //necesitamos una función que permita hacer lo mismo pero con el token(código de autorización)
     public function findProyectoDelEstudiante(int $proyectoId, int $estudianteId): ?Proyecto
     {
         return Proyecto::where('id', $proyectoId)

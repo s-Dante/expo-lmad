@@ -81,11 +81,16 @@ class EstudianteController extends Controller
         return view('student.proyectos.edit', compact('proyecto', 'softwares'));
     }
 
-    public function create()
+    public function firts_Show()
     {
         $softwares = $this->studentRepo->getAllSoftwares();
 
         return view('student.proyectos.create', compact( 'softwares'));
+    }
+
+    //para la primera vez que se meten los datos al proyecto
+    public function firts_update(Request $request, $id){
+        
     }
 
     public function update(Request $request, $id)

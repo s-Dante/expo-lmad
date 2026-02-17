@@ -9,7 +9,9 @@
     @vite([
         'resources/css/guest/template.css',
         'resources/css/student/revisar-exposicion.css',
-        'resources/js/student/copy-link.js'
+        'resources/js/student/copy-link.js',
+        'resources/js/student/load-portrait.js',
+        'resources/js/student/update-project.js'
     ])
 
 </head>
@@ -31,7 +33,8 @@
         </container>
 
         <section class="section-project-data">
-            <form action="{{ route('estudiante.proyectos.update', $proyecto->id) }}" method="POST" enctype="multipart/form-data" id="projectForm" class="expo-card main-card">
+            <form action="{{ route('estudiante.proyectos.update', $proyecto->id) }}" method="POST"
+                enctype="multipart/form-data" id="projectForm" class="expo-card main-card">
 
                 <section>
                     <div class="section-project-header">
@@ -123,10 +126,13 @@
                         </div>
 
                         <div class="img-project">
-                            <img src="{{ asset('assets/guest/imageloading.png') }}" class="img-fluid">
+                            <img src="{{ asset('assets/guest/imageloading.png') }}" class="img-fluid project-card" id="project-portrait">
 
                             <div class="div-btn-changeimage">
-                                <button type="button" class="btn btn-blue state-editing">Cambiar imagen</button>
+                                <button type="button" id="upload-photo" class="btn btn-blue state-editing">Cambiar
+                                    imagen</button>
+                                <input type="file" id="file-upload" name="poster" accept="image/*"
+                                    style="display: none;">
                             </div>
                         </div>
 
@@ -140,14 +146,18 @@
                 <section class="project-retro">
                     <h4>Estado del proyecto</h4>
 
-                    @if($proyecto->estatus === 'rechazado' && $proyecto->retroalimentacion)
+                    @if($proyecto->estatus === 'rechazado')
                         <p id="state">
                             Se han encontrado aspectos en los que puedes mejorar. Tan pronto como termines de optimizar tu
                             proyecto enviálo de nuevo.
                         </p>
                         <div class="expo-card project-retro-msg" id="message">
                             <span>Mensaje del congreso:</span>
-                            <p id="msg">{{ $proyecto->retroalimentacion }}</p>
+                            @if($proyecto->retroalimentacion)
+                                <p id="msg">{{ $proyecto->retroalimentacion }}</p>
+                            @else
+                                <p id="msg">Póngase en contacto con expo.lmad@uanl.edu.mx</p>
+                            @endif
                         </div>
                     @elseif ($proyecto->estatus === 'borrador' || $proyecto->estatus === 'enviado')
                         <p id="state">
@@ -157,7 +167,7 @@
                         <p id="state">
                             Aceptado
                         </p>
-                    @elseif ($proyecto->estatus === 'rechazado' || $proyecto->estatus === 'eliminado')
+                    @elseif ($proyecto->estatus === 'eliminado')
                         <p id="state">
                             Rechazao
                         </p>
@@ -169,8 +179,9 @@
                         $soyLider = $miParticipacion ? $miParticipacion->pivot->es_lider : false;
                     @endphp
 
-                    @if($proyecto->estatus === 'rechazado' && $proyecto->retroalimentacion && $soyLider
-                    )
+                    @if(
+                            $proyecto->estatus === 'rechazado' && $soyLider
+                        )
                         <div class="div-btns-project">
 
                             <button type="button" class="btn btn-blue state-saved" id="edit">Editar proyecto</button>

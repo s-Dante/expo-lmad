@@ -45,7 +45,9 @@ export default defineConfig({
                 "resources/js/superadmin/actions-check.js",
                 "resources/js/student/copy-link.js",
                 "resources/js/student/show-hide-elements.js",
-                'resources/js/student/validaciones-proyectos.js'
+                'resources/js/student/create-project.js',
+                'resources/js/student/update-project.js',
+                'resources/js/student/load-portrait.js'
 
             ],
             refresh: true,

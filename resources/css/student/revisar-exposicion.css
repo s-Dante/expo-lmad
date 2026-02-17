@@ -237,6 +237,13 @@ center {
     margin-top: 1rem;
 }
 
+.project-card {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 1rem;
+    justify-self: center;
+}
+
 @media (min-width: 1235px) {
     .div-btns-project {
         grid-template-columns: auto auto;
