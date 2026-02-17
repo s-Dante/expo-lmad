@@ -12,9 +12,8 @@
 </head>
 
 <body>
-    <div class="sidebar">
-        <x-sidebar />
-    </div>
+    <x-sidebar />
+
     <main class="main-content">
 
         <header>

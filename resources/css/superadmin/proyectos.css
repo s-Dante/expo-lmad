@@ -313,7 +313,7 @@ body {
     align-items: center;
     gap: 30px;
     margin-top: 40px;
-    padding-bottom: 50px;
+    margin-bottom: 30px;
 }
 .page-arrow {
     background: transparent;
@@ -416,3 +416,104 @@ body {
     }
 }
 
+@media (max-width: 650px) {
+    .main-content {
+        margin-left: 0;
+        margin-top: 50px;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .text-main {
+        font-size: 1.8rem;
+        text-align: center;
+        letter-spacing: 1px;
+        margin-bottom: 35px;
+    }
+    .line {
+        width: 320px;
+    }
+
+    /* Stats */
+    .stats-grid-projects {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+    .stat-value {
+        font-size: 2.5rem;
+    }
+    .stat-label {
+        font-size: 1rem;
+        margin-top: 8px;
+    }
+
+    .filter-tabs {
+        align-items: center;
+        gap: 15px;
+    }
+    .tab-btn {
+        width: 160px;
+        height: 42px;
+        font-size: 0.8rem;
+    }
+
+    .subtitle {
+        margin-top: 30px;
+        font-size: 1.4rem;
+    }
+    .filter-row {
+        gap: 20px;
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    .select-group {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .select-group label {
+        font-size: 0.8rem;
+    }
+    .select-group select {
+        width: 100%;
+        font-size: 0.6rem;
+    }
+
+    .proyectos-table thead th {
+        padding: 10px 5px;
+        font-size: 0.9rem;
+    }
+    .proyectos-table tbody td {
+        padding: 20px 10px;
+        font-size: 0.8rem;
+    }
+
+    .btn-revisar {
+        padding: 0 10px 0 30px;
+        font-size: 0.6rem;
+        height: 32px;
+    }
+    .btn-ver {
+        height: 32px;
+        padding: 0 22px;
+        font-size: 0.6rem;
+    }
+    .btn-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .page-arrow img {
+        width: 10px;
+        height: auto;
+        display: block;
+    }
+    .page-number {
+        font-size: 0.9rem;
+    }
+    .info-title {
+        font-size: 0.8rem;
+    }
+}
