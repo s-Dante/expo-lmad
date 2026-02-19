@@ -4,10 +4,12 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EXPO LMAD - SuperAdmin</title>
     @vite([
-    "resources/css/superadmin/revision-proyecto.css",
-    "resources/js/superadmin/actions-check.js"
+        "resources/css/superadmin/revision-proyecto.css",
+        "resources/js/superadmin/actions-check.js",
+        "resources/js/superadmin/revisar-proyecto.js"
     ])
 </head>
 
@@ -24,8 +26,11 @@
         <section class="project-card">
             <div class="card-inner">
 
-                <h2 class="inner-title">Nombre del proyecto</h2>
-                <p class="inner-subject">MATERIA</p>
+                <h2 class="inner-title">{{ $proyecto->titulo }}</h2>
+                <p class="inner-subject">{{ $proyecto->materia->nombre }}</p>
+
+                <input type="hidden" id="proyecto_id_input" name="proyecto_id" value="{{ $proyecto->id }}">
+                <input type="hidden" id="descripcion_input" name="descripcion" value="{{ $proyecto->descripcion }}">
 
                 <div class="project-content">
 
@@ -35,15 +40,16 @@
 
                             <div class="info-row">
                                 <span class="label">ID DEL PROYECTO:</span>
-                                <span class="value val-id">123</span>
+                                <span class="value val-id">{{ $proyecto->id }}</span>
 
                                 <span class="label label-inline">SEMESTRE:</span>
-                                <span class="value">SEXTO</span>
+                                <span class="value">{{ $proyecto->materia->semestre }}</span>
                             </div>
 
                             <div class="info-row">
                                 <span class="label">MAESTRO:</span>
-                                <span class="value">Diego Alan Adame</span>
+                                <span
+                                    class="value">{{ $proyecto->profesor->nombre . ' ' . $proyecto->profesor->apellido_paterno . ' ' . $proyecto->profesor->apellido_materno }}</span>
                             </div>
 
                         </div>
@@ -53,18 +59,16 @@
                                 <span class="label">ALUMNOS:</span>
 
                                 <div class="students-list">
-                                    <div class="student-item">
-                                        <span class="student-name">Juanito Alcachofa</span>
-                                        <span class="student-id">123567</span>
-                                    </div>
-                                    <div class="student-item">
-                                        <span class="student-name">Fulanito Perez</span>
-                                        <span class="student-id">123568</span>
-                                    </div>
-                                    <div class="student-item">
-                                        <span class="student-name">Merengano Manzana</span>
-                                        <span class="student-id">123569</span>
-                                    </div>
+                                    @foreach ($proyecto->autores as $autor)
+                                        <div class="student-item">
+
+                                            <span
+                                                class="student-name">{{ $autor->nombre . ' ' . $autor->apellido_paterno . ' ' . $autor->apellido_materno   }}</span>
+                                            <span class="student-id">{{ $autor->matricula }}</span>
+
+
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -73,18 +77,26 @@
                             <div class="info-row">
                                 <span class="label">VIDEO PROMOCIONAL:</span>
                                 <div class="link-wrapper">
-                                    <a href="#" class="url-text">https://www.youtube.com/watch?v=-4muHaXdZ6s&rco=1</a>
-                                    <button class="btn-copy"><img src="{{ asset('assets/teacher/CopiarVector.png') }}"
-                                            alt="Copiar"></img></button>
+                                    @foreach ($proyecto->multimedia as $multimedia)
+                                        @if ($multimedia->tipo == 'youtube')
+                                            <a href="{{ $multimedia->url }}" class="url-text">{{ $multimedia->url }}</a>
+                                            <button class="btn-copy"><img src="{{ asset('assets/teacher/CopiarVector.png') }}"
+                                                    alt="Copiar"></img></button>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
 
                             <div class="info-row">
                                 <span class="label">ENLACE A PROYECTO:</span>
                                 <div class="link-wrapper">
-                                    <a href="#" class="url-text">https://github.com</a>
-                                    <button class="btn-copy"><img src="{{ asset('assets/teacher/CopiarVector.png') }}"
-                                            alt="Copiar"></img></button>
+                                    @foreach ($proyecto->multimedia as $multimedia)
+                                        @if ($multimedia->tipo == 'drive' || $multimedia->tipo == 'github')
+                                            <a href="{{ $multimedia->url }}" class="url-text">{{ $multimedia->url }}</a>
+                                            <button class="btn-copy"><img src="{{ asset('assets/teacher/CopiarVector.png') }}"
+                                                    alt="Copiar"></img></button>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -93,11 +105,7 @@
                             <div class="info-row">
                                 <span class="label">DESCRIPCIÓN:</span>
                                 <p id="text-desc" class="description-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-                                    ullamcorper porta feugiat. Pellentesque volutpat massa et neque
-                                    facilisis pellentesque. Mauris id urna et libero luctus tincidunt
-                                    tincidunt non ipsum. Nullam suscipit dapibus nunc quis suscipit.
-                                    Aenean molestie laoreet volutpat.
+                                    {{ $proyecto->descripcion }}
                                 </p>
 
                                 <textarea id="edit-desc" class="description-editor hidden"></textarea>
@@ -108,7 +116,12 @@
 
                     <div class="image-side">
                         <div class="image-box">
-                            <img src="{{ asset('assets/superadmin/img-default.png') }}" alt="Preview">
+                            @foreach ($proyecto->multimedia as $multimedia)
+                                @if ($multimedia->tipo == 'imagen')
+                                    <img src="{{ asset('storage/' . $multimedia->url) }}" alt="Imagen del proyecto"
+                                        class="project-image">
+                                @endif
+                            @endforeach
                         </div>
                     </div>
 
@@ -152,8 +165,9 @@
                                 <!-- Devolver proyecto-->
                                 <button id="btn-open-return" class="btn-pill btn-blue">
                                     <div class="icon-container">
-                                        <img src="{{ asset('assets/superadmin/flecha-izquierda-1.svg') }}" alt="" class="btn-icon">
-                                    </div> Devolver proyecto
+                                        <img src="{{ asset('assets/superadmin/flecha-izquierda-1.svg') }}" alt=""
+                                            class="btn-icon">
+                                    </div> Rechazar proyecto
                                 </button>
                             </div>
 
@@ -161,7 +175,7 @@
                             <button id="btn-reject-project" class="btn-pill btn-magenta">
                                 <div class="icon-container">
                                     <img src="{{ asset('assets/superadmin/cruz-1.svg') }}" alt="" class="btn-icon">
-                                </div>Rechazar proyecto
+                                </div>Eliminar proyecto
                             </button>
 
                         </div>
@@ -184,7 +198,8 @@
                             Mensaje con las correcciones solicitadas al alumno para su aceptación en el CONGRESO LMAD:
                         </p>
 
-                        <textarea id="return-msg" class="description-editor" placeholder="Escribe aquí las observaciones..."></textarea>
+                        <textarea id="return-msg" class="description-editor"
+                            placeholder="Escribe aquí las observaciones..."></textarea>
                     </div>
 
                     <div class="project-actions ">

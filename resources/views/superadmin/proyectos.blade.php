@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SuperAdmin Proyectos</title>
     @vite([
-    "resources/css/superadmin/proyectos.css",
-    "resources/js/superadmin/proyectos-handler.js"
+        "resources/css/superadmin/proyectos.css",
+        "resources/js/superadmin/proyectos-handler.js",
+        "resources/js/superadmin/dashboard-info.js"
     ])
 </head>
 
@@ -25,22 +26,22 @@
             <div class="stats-grid-projects">
 
                 <div class="stat-mini-card">
-                    <span class="stat-value">201</span>
+                    <span class="stat-value" id="expositores-span">0</span>
                     <span class="stat-label">EXPOSITORES</span>
                 </div>
 
                 <div class="stat-mini-card">
-                    <span class="stat-value">53</span>
-                    <span class="stat-label">PROYECTOS ACEPTADOS</span>
-                </div>
-
-                <div class="stat-mini-card">
-                    <span class="stat-value">80</span>
+                    <span class="stat-value" id="proyectos-span">0</span>
                     <span class="stat-label">PROYECTOS RECIBIDOS</span>
                 </div>
 
                 <div class="stat-mini-card">
-                    <span class="stat-value">12</span>
+                    <span class="stat-value" id="aceptados-span">0</span>
+                    <span class="stat-label">PROYECTOS ACEPTADOS</span>
+                </div>
+
+                <div class="stat-mini-card">
+                    <span class="stat-value" id="rechazados-span">0</span>
                     <span class="stat-label">PROYECTOS RECHAZADOS</span>
                 </div>
 
@@ -62,13 +63,21 @@
                 <div class="select-group">
                     <label>MATERIA:</label>
                     <select>
-                        <option>Seleccione una opción</option>
+                        <option selected disabled>Seleccione una opción</option>
+                        @foreach ($materias as $materia)
+                            <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="select-group">
                     <label>DOCENTE:</label>
                     <select>
-                        <option>Seleccione una opción</option>
+                        <option selected disabled>Seleccione una opción</option>
+                        @foreach ($profesores as $profesor)
+                            <option value="{{ $profesor->id }}">
+                                {{ $profesor->nombre . ' ' . $profesor->apellido_paterno . ' ' . $profesor->apellido_materno}}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -86,72 +95,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>123</td>
-                            <td>Producción multimedia</td>
-                            <td>Diego Alan Adame</td>
-                            <td>
-                                <button class="btn-revisar">
-                                    <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar" class="btn-icon">
-                                    Revisar proyecto
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>26</td>
-                            <td>Modelos de administración de datos</td>
-                            <td>Juan Alejandro Villareal Mojica</td>
-                            <td>
-                                <button class="btn-revisar">
-                                    <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar" class="btn-icon">
-                                    Revisar proyecto
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>78</td>
-                            <td>Modelado orgánico</td>
-                            <td>Alberta Abigail Palacios Garza</td>
-                            <td>
-                                <button class="btn-revisar">
-                                    <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar" class="btn-icon">
-                                    Revisar proyecto
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123</td>
-                            <td>Producción multimedia</td>
-                            <td>Diego Alan Adame</td>
-                            <td>
-                                <button class="btn-revisar">
-                                    <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar" class="btn-icon">
-                                    Revisar proyecto
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>26</td>
-                            <td>Modelos de administración de datos</td>
-                            <td>Juan Alejandro Villareal Mojica</td>
-                            <td>
-                                <button class="btn-revisar">
-                                    <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar" class="btn-icon">
-                                    Revisar proyecto
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>78</td>
-                            <td>Modelado orgánico</td>
-                            <td>Alberta Abigail Palacios Garza</td>
-                            <td>
-                                <button class="btn-revisar">
-                                    <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar" class="btn-icon">
-                                    Revisar proyecto
-                                </button>
-                            </td>
-                        </tr>
+
+                        @foreach ($proyectosRevision as $revisadendo)
+                            <tr>
+                                <td>{{ $revisadendo->id }}</td>
+                                <td>{{ $revisadendo->materia->nombre }}</td>
+                                <td>{{ $revisadendo->profesor->nombre . ' ' . $revisadendo->profesor->apellido_paterno . ' ' . $revisadendo->profesor->apellido_materno }}
+                                </td>
+                                <td>
+                                    <button class="btn-revisar"
+                                        onclick="window.location.href='/superadmin/revision-proyecto/{{ $revisadendo->id }}'">
+                                        <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar"
+                                            class="btn-icon">
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -167,54 +126,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>123</td>
-                            <td>Producción multimedia</td>
-                            <td>Mamá coco</td>
-                            <td>
-                                <button class="btn-ver"> Ver proyecto </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>26</td>
-                            <td>Modelos de administración de datos</td>
-                            <td>Juan Alejandro Villareal Mojica</td>
-                            <td>
-                                <button class="btn-ver"> Ver proyecto </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>78</td>
-                            <td>Modelado orgánico</td>
-                            <td>Alberta Abigail Palacios Garza</td>
-                            <td>
-                                <button class="btn-ver"> Ver proyecto </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123</td>
-                            <td>Producción multimedia</td>
-                            <td>Diego Alan Adame</td>
-                            <td>
-                                <button class="btn-ver"> Ver proyecto </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>26</td>
-                            <td>Modelos de administración de datos</td>
-                            <td>Juan Alejandro Villareal Mojica</td>
-                            <td>
-                                <button class="btn-ver"> Ver proyecto </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>78</td>
-                            <td>Modelado orgánico</td>
-                            <td>Alberta Abigail Palacios Garza</td>
-                            <td>
-                                <button class="btn-ver"> Ver proyecto </button>
-                            </td>
-                        </tr>
+                        @foreach ($proyectosAprobados as $aprobadendos)
+                            <tr>
+                                <td>{{ $aprobadendos->id }}</td>
+                                <td>{{ $aprobadendos->materia->nombre }} </td>
+                                <td>{{ $aprobadendos->profesor->nombre . ' ' . $aprobadendos->profesor->apellido_paterno . ' ' . $aprobadendos->profesor->apellido_materno}}
+                                </td>
+                                <td>
+                                    <button class="btn-ver"
+                                        onclick="window.location.href='/Portafolio/{{ $aprobadendos->slug }}'"> Ver en
+                                        portafolio </button>
+                                    <button class="btn-revisar"
+                                        onclick="window.location.href='/superadmin/revision-proyecto/{{ $aprobadendos->id }}'">
+                                        <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar"
+                                            class="btn-icon">
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+
+
                     </tbody>
                 </table>
             </div>
@@ -235,5 +166,5 @@
         </section>
 
     </main>
-    
+
 </body>

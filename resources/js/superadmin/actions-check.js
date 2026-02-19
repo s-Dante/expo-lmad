@@ -64,6 +64,6 @@ btnCancelReturn.addEventListener("click", () => {
 // Confirmar devolución
 btnConfirmReturn.addEventListener("click", () => {
     returnPanel.classList.add("hidden");
-    alert("Orale va");
+    //alert("Orale va");
     mostrarConAnimacion(groupReview);
 });
