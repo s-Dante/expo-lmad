@@ -43,7 +43,7 @@ class AuthController extends Controller
             case 'admin':
                 return redirect()->route('admin.dashboard');
             case 'profesor':
-                return redirect()->route('teacher.registro-expositores');
+                return redirect()->route('teacher.lista-proyectos');
             case 'estudiante':
                 return redirect()->route('estudiante.registro-proyecto');
             case 'staff':
