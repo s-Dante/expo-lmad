@@ -17,7 +17,8 @@ class EstudianteController extends Controller
     public function __construct(
         protected EstudianteRepositoryInterface $studentRepo,
         protected EstudianteService $studentService
-    ) {}
+    ) {
+    }
 
     public function dashboard()
     {
@@ -81,16 +82,34 @@ class EstudianteController extends Controller
         return view('student.proyectos.edit', compact('proyecto', 'softwares'));
     }
 
-    public function firts_Show()
+    public function firts_Show($id)
     {
+        $estudianteId = \Illuminate\Support\Facades\Auth::user()->estudiante->id;
+        $proyecto = $this->studentRepo->findProyectoDelEstudiante($id, $estudianteId);
+
+        if (!$proyecto) {
+            return redirect()->route('estudiante.proyectos.index')->with('error', 'Proyecto no encontrado.');
+        }
+
+        $esLider = $proyecto->autores()
+            ->where('tbl_estudiantes.id', $estudianteId)
+            ->wherePivot('es_lider', true)
+            ->exists();
+
+        if (!$esLider) {
+            return redirect()->route('estudiante.proyectos.index')
+                ->with('error', 'Solo el líder del equipo tiene permisos para registrar o editar la información.');
+        }
+
         $softwares = $this->studentRepo->getAllSoftwares();
 
-        return view('student.proyectos.create', compact( 'softwares'));
+        return view('student.proyectos.create', compact('proyecto','softwares'));
     }
 
     //para la primera vez que se meten los datos al proyecto
-    public function firts_update(Request $request, $id){
-        
+    public function firts_update(Request $request, $id)
+    {
+
     }
 
     public function update(Request $request, $id)
@@ -112,7 +131,8 @@ class EstudianteController extends Controller
         $estudianteId = \Illuminate\Support\Facades\Auth::user()->estudiante->id;
         $proyecto = $this->studentRepo->findProyectoDelEstudiante($id, $estudianteId);
 
-        if (!$proyecto) abort(404);
+        if (!$proyecto)
+            return redirect()->route('estudiante.proyectos.index')->with('error', 'Proyecto no encontrado.');
 
         $esLider = $proyecto->autores()
             ->where('tbl_estudiantes.id', $estudianteId)
@@ -120,7 +140,7 @@ class EstudianteController extends Controller
             ->exists();
 
         if (!$esLider) {
-            abort(403, 'Acción no autorizada. Solo el líder puede guardar cambios.');
+            return redirect()->route('estudiante.proyectos.index')->with('error', 'Acción no autorizada. Solo el líder puede guardar cambios.');
         }
 
         if ($validated['codigo_acceso'] !== $proyecto->codigo_acceso) {

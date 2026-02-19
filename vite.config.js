@@ -38,6 +38,7 @@ export default defineConfig({
                 "resources/js/guest/showButtonMenu.js",
                 "resources/js/guest/revealAnimation.js",
                 "resources/js/components/sidebar.js",
+                'resources/js/components/alerts.js',
 
                 "resources/js/teacher/agregarIntegrantes.js",
                 "resources/js/teacher/mostrarInfoMateria.js",

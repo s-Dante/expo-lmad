@@ -16,6 +16,13 @@
 </head>
 
 <style>
+    h2 {
+        font-family: var(--font-main);
+        color: var(--clr-white);
+        font-size: 1.2rem;
+        margin-top: 0%;
+    }
+
     .btn-purple {
         font-size: 1.5rem;
     }
@@ -26,16 +33,49 @@
         margin-top: 1rem;
     }
 
+    .codigo div p {
+        font-family: var(--font-main);
+        color: var(--clr-gray);
+        margin: 0%;
+    }
+
+    .codigo div {
+        display: flex;
+        margin-bottom: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .project-info {
         margin-bottom: 1rem;
     }
 
+    .checkbox-card {
+        width: fit-content;
+        margin-bottom: unset;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.2rem;
+    }
+
+    .section-send {
+        display: flex;
+        gap: 1rem;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 
 <body>
     <x-sidebar />
 
-    <form class="main-content">
+    <form class="main-content" action="{{ route('estudiante.proyectos.update', $proyecto->id) }}" method="POST"
+        enctype="multipart/form-data" id="projectForm">
+        @csrf
+        @method('PUT')
+
         <h1>REGISTRO DE PROYECTO</h1>
 
         <div class="project-info">
@@ -43,16 +83,27 @@
                 <section class="expo-card project-data">
 
                     <span>Nombre del proyecto: </span>
-                    <input type="text" id="name">
+                    <input type="text" id="name" name="titulo" value="{{ old('titulo', $proyecto->titulo) }}" required>
 
                     <span>Descripción del proyecto: </span>
-                    <textarea type="text" class="input-description" id="description-project"></textarea>
+                    <textarea type="text" class="input-description" id="description-project" name="descripcion"
+                        required>{{ old('descripcion', $proyecto->descripcion) }}</textarea>
 
+                    @php $youtube = $proyecto->multimedia->where('tipo', 'youtube')->first(); @endphp
                     <span>Enlace a video promocional: </span>
-                    <input type="text" id="link-promotional-project">
+                    <input type="url" id="link-promotional-project" name="link_youtube"
+                        placeholder="https://www.youtube.com/..." value="{{ old('link_youtube', $youtube?->url) }}"
+                        required>
 
+                    @php $drive = $proyecto->multimedia->where('tipo', 'drive')->first(); @endphp
+                    <span>Enlace a Google Drive (Documentación): </span>
+                    <input type="url" id="link-drive-project" name="link_drive" placeholder="Enlace a Drive (Opcional)"
+                        value="{{ old('link_drive', $drive?->url) }}">
+
+                    @php $github = $proyecto->multimedia->where('tipo', 'github')->first(); @endphp
                     <span>Enlace a proyecto: </span>
-                    <input type="text" id="link-repo-project" placeholder="drive, github, dropbox...">
+                    <input type="url" id="link-repo-project" name="link_github"
+                        placeholder="drive, github, dropbox..." value="{{ old('link_github', $github?->url) }}">
 
                     <span>Software utilizado: </span>
                     <div class="container-proyecto-tags tags-list" id="software">
@@ -67,8 +118,9 @@
                 <section class="expo-card email-data">
                     <span>Correo universitario: </span>
                     <div class="div-email">
-                        <input type="text" class="input-mail" id="email">
-                        <span>@uanl.edu.mx</span>
+                        <div class="div-email">
+                            <span>{{ auth()->user()->email }}</span>
+                        </div>
                     </div>
 
                     <span class="info-secondary">
@@ -91,14 +143,77 @@
                 </span>
 
                 <section class="expo-card codigo">
+
+                    <div>
+                        <h2>Información del proyecto</h2>
+                        <p>
+                            ID:
+                            <span>
+                                {{ $proyecto->id }}
+                            </span>
+                        </p>
+                        <p>
+                            Maestro:
+                            <span>
+                                {{ $proyecto->profesor->apellido_paterno }}
+                            </span>
+                        </p>
+                        <p>
+                            Materia:
+                            <span>
+                                {{ $proyecto->materia->nombre }}
+                            </span>
+                        </p>
+                    </div>
+
                     <span>Código de autorización: </span>
-                    <input type="text" class="input-codigo" id="token" placeholder="proporcionado por el docente">
+                    <input type="text" class="input-codigo" id="token" name="codigo_acceso"
+                        placeholder="proporcionado por el docente" value="{{ old('codigo_acceso') }}" required>
                 </section>
             </section>
         </div>
 
-        <button id="save" type="submit" class="btn btn-purple">Enviar</button>
+        <div class="section-send">
+            <button id="save" type="submit" class="btn btn-purple">Guardar</button>
+
+            <div class="tooltip">
+                <section class="checkbox-card">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="enviar_revision" name="enviar_revision" value="1"
+                            class="checkbox-input" {{ old('enviar_revision') ? 'checked' : '' }}>
+                    </div>
+                    <div for="enviar_revision" class="checkbox-label">
+                        <span class="checkbox-title">Enviar a revisión al finalizar</span>
+                    </div>
+                </section>
+                <span class="tooltiptext" style="width: 250px;">Si marcas esta casilla, el proyecto será enviado
+                    inmediatamente luego de presionar "Guardar" para su
+                    evaluación. De lo contrario, se guardará como <strong>borrador</strong>.</span>
+            </div>
+        </div>
+
 
     </form>
 
+    <script type="module">
+        import { showModal } from "{{ Vite::asset('resources/js/components/alerts.js') }}";
+
+        @if (session('success'))
+            showModal("Aviso", @json(session('success')));
+        @endif
+
+        @if (session('error'))
+            showModal("Error", @json(session('error')));
+        @endif
+
+        @if ($errors->any())
+            let errorHtml = '<p style="font-weight: bold; margin-bottom: 0.5rem;">Por favor corrige los siguientes errores:</p>';
+            errorHtml += '<ul style="text-align: left; list-style-type: disc; padding-left: 1.5rem;">';
+            @foreach ($errors->all() as $error)
+                errorHtml += '<li>' + @json($error) + '</li>';
+            @endforeach
+            errorHtml += '</ul>';
+            showModal("Datos inválidos", errorHtml);
+        @endif
+    </script>
 </body>

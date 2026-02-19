@@ -1,6 +1,6 @@
 import { showModal } from "./alerts.js";
 
-export function validation_Length(data, limit, input) {
+export function validation_Length(data, min, limit, input) {
     if (data.length > limit) {
         showModal(
             "Datos inválidos",
@@ -8,6 +8,18 @@ export function validation_Length(data, limit, input) {
                 input +
                 " excede el máximo de caracteres (" +
                 limit +
+                ")",
+        );
+        return true;
+    }
+
+    if (data.length < min) {
+        showModal(
+            "Datos inválidos",
+            "El campo " +
+                input +
+                " carce del mínimo de caracteres (" +
+                min +
                 ")",
         );
         return true;
@@ -26,11 +38,17 @@ export function validation_Link(data, type, input) {
             );
             return true;
         }
+    } else if (type === "drive") {
+        if (!/^(https?:\/\/)?(www\.)?drive\.google\.com\/.+/.test(data)) {
+            showModal(
+                "El enlace " +
+                    input +
+                    " no es válido (drive.google.com/).",
+            );
+            return true;
+        }
     } else {
-        if (
-            !/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(
-                data,
-            )
+        if (!/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(data,)
         ) {
             showModal("El enlace de " + input + " no es válido.");
             return true;

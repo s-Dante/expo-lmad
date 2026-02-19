@@ -35,6 +35,8 @@
         <section class="section-project-data">
             <form action="{{ route('estudiante.proyectos.update', $proyecto->id) }}" method="POST"
                 enctype="multipart/form-data" id="projectForm" class="expo-card main-card">
+                @csrf
+                @method('PUT')
 
                 <section>
                     <div class="section-project-header">
@@ -84,15 +86,44 @@
                                     <span>Video promocional:</span>
 
                                     @php $video = $proyecto->multimedia->where('tipo', 'youtube')->first(); @endphp
-                                    @if($video)
-                                        <p id="link-promotional-project" class="state-saved">
+
+                                    <p id="link-promotional-project" class="state-saved">
+                                        @if($video)
                                             {{ $video->url }}
-                                        </p>
-                                    @endif
-                                    
+                                        @else
+                                            No disponible.
+                                        @endif
+                                    </p>
+
+                                    <input type="text" name="link_youtube" class="input-c state-editing"
+                                        id="link-promotional-edit" value="{{ $video?->url }}" />
+
                                     <button class="btn btn-purple btn-icon state-saved" id="link-promotional-copy"
-                                        data-target="link-promotional-project"><img
-                                            src="{{ asset('assets/guest/upload.png') }}"></button>
+                                        data-target="link-promotional-project">
+                                        <img src="{{ asset('assets/guest/upload.png') }}">
+                                    </button>
+                                </div>
+
+                                <div class="three-columns-grid three-category-grid">
+                                    <span>Documentación:</span>
+
+                                    @php $drive = $proyecto->multimedia->where('tipo', 'drive')->first(); @endphp
+
+                                    <p id="link-drive-project" class="state-saved">
+                                        @if($drive)
+                                            {{ $drive->url }}
+                                        @else
+                                            No disponible.
+                                        @endif
+                                    </p>
+
+                                    <input type="text" name="link_drive" class="input-c state-editing"
+                                        id="link-drive-edit" value="{{ $drive?->url }}" />
+
+                                    <button class="btn btn-purple btn-icon state-saved" id="link-drive-copy"
+                                        data-target="link-drive-project">
+                                        <img src="{{ asset('assets/guest/upload.png') }}">
+                                    </button>
                                 </div>
 
                                 <div class="three-columns-grid three-category-grid">
@@ -102,10 +133,17 @@
                                         $repo = $proyecto->multimedia->whereIn('tipo', ['drive', 'github'])->first();
                                     @endphp
 
-                                    @if($repo)
-                                        <p id="link-repo-project" class="state-saved">{{ $repo->url }}</p>
-                                    @endif
-                                    <input type="text" class="input-c state-editing" id="link-repo-edit" />
+                                    <p id="link-repo-project" class="state-saved">
+                                        @if($repo)
+                                            {{ $repo->url }}
+                                        @else
+                                            No disponible
+                                        @endif
+                                    </p>
+
+                                    <input type="text" name="link_repo" class="input-c state-editing"
+                                        id="link-repo-edit" value="{{ $repo?->url }}" />
+
                                     <button class="btn btn-purple btn-icon state-saved" id="link-repo-copy"
                                         data-target="link-repo-project"><img
                                             src="{{ asset('assets/guest/upload.png') }}"></button>
@@ -116,8 +154,8 @@
                                     <p id="description-project" class="state-saved">
                                         {{ $proyecto->descripcion ?? 'Sin descripción disponible.' }}
                                     </p>
-                                    <textarea class="input-description state-editing" id="description-edit"
-                                        value="{{ $proyecto->descripcion ?? 'Sin descripción disponible.' }}"></textarea>
+                                    <textarea name="descripcion" class="input-description state-editing"
+                                        id="description-edit">{{ $proyecto->descripcion ?? 'Sin descripción disponible.' }}</textarea>
                                 </div>
 
                             </div>
@@ -125,7 +163,14 @@
                         </div>
 
                         <div class="img-project">
-                            <img src="{{ asset('assets/guest/imageloading.png') }}" class="img-fluid project-card" id="project-portrait">
+
+                            @php
+                                $portada = $proyecto->multimedia->where('es_portada', true)->first();
+                                $defaultImg = 'https://via.placeholder.com/300x300?text=Subir+Imagen';
+                                $currentImg = $portada ? asset('storage/' . $portada->url) : $defaultImg;
+                            @endphp
+
+                            <img src="{{ $currentImg }}" class="img-fluid project-card" id="project-portrait">
 
                             <div class="div-btn-changeimage">
                                 <button type="button" id="upload-photo" class="btn btn-blue state-editing">Cambiar
@@ -145,42 +190,38 @@
                 <section class="project-retro">
                     <h4>Estado del proyecto</h4>
 
-                    @if($proyecto->estatus === 'rechazado')
-                        <p id="state">
-                            Se han encontrado aspectos en los que puedes mejorar. Tan pronto como termines de optimizar tu
-                            proyecto enviálo de nuevo.
-                        </p>
-                        <div class="expo-card project-retro-msg" id="message">
-                            <span>Mensaje del congreso:</span>
-                            @if($proyecto->retroalimentacion)
-                                <p id="msg">{{ $proyecto->retroalimentacion }}</p>
-                            @else
-                                <p id="msg">Póngase en contacto con expo.lmad@uanl.edu.mx</p>
-                            @endif
-                        </div>
-                    @elseif ($proyecto->estatus === 'borrador' || $proyecto->estatus === 'enviado')
-                        <p id="state">
-                            En revisión, ¡No olvides estar al pendiente!
-                        </p>
+                    <p id="state">
+                        @if($proyecto->estatus === 'rechazado')
+                            <p id="state">
+                                Se han encontrado aspectos en los que puedes mejorar. <br> Tan pronto como termines de optimizar
+                                tu
+                                proyecto enviálo de nuevo.
+                            </p>
+                            <div class="expo-card project-retro-msg" id="message">
+                                <span>Mensaje del congreso:</span>
+                                @if($proyecto->retroalimentacion)
+                                    <p id="msg">{{ $proyecto->retroalimentacion }}</p>
+                                @else
+                                    <p id="msg">Póngase en contacto con expo.lmad@uanl.edu.mx</p>
+                                @endif
+                            </div>
+                        @elseif ($proyecto->estatus === 'borrador')
+                        Sin enviar. ¡Recuerda enviar el proyecto a revisión!
+                    @elseif ($proyecto->estatus === 'enviado')
+                        En revisión, ¡No olvides estar al pendiente!
                     @elseif ($proyecto->estatus === 'aprobado')
-                        <p id="state">
-                            Aceptado
-                        </p>
+                        Aceptado
                     @elseif ($proyecto->estatus === 'eliminado')
-                        <p id="state">
-                            Rechazao
-                        </p>
+                        Rechazao
                     @endif
-
+                    </p>
 
                     @php
                         $miParticipacion = $proyecto->autores->find(auth()->user()->estudiante->id);
                         $soyLider = $miParticipacion ? $miParticipacion->pivot->es_lider : false;
                     @endphp
 
-                    @if(
-                            $proyecto->estatus === 'rechazado' && $soyLider
-                        )
+                    @if(($proyecto->estatus === 'rechazado' || $proyecto->estatus === 'borrador') && $soyLider)
                         <div class="div-btns-project">
 
                             <button type="button" class="btn btn-blue state-saved" id="edit">Editar proyecto</button>

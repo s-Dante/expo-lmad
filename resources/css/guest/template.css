@@ -420,9 +420,54 @@ button,
 
 /*----------------------------*/
 
+/*--------- Checkboxes --------*/
+
+.checkbox-card {
+    margin-bottom: unset;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.checkbox-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-input {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    accent-color: #6b21a8;
+}
+
+.checkbox-label {
+    cursor: pointer;
+    flex: 1;
+}
+
+.checkbox-title {
+    display: block;
+    font-family: var(--kodchasan-font);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.checkbox-description {
+    display: block;
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+/*----------------------------*/
+
 /*--------- Etiquetas --------*/
 
-.container-proyecto-tags { /* este tal lo quitemos de aquí*/
+.container-proyecto-tags {
+    /* este tal lo quitemos de aquí*/
     text-align: center;
     margin: 1rem;
     width: auto;
@@ -430,12 +475,14 @@ button,
     margin-bottom: 2.1rem;
 }
 
-.container-proyecto-tags p, label{
+.container-proyecto-tags p,
+label {
     color: var(--clr-white);
     font-family: var(--font-main);
 }
 
-.tags-list { /* este tal lo quitemos de aquí*/
+.tags-list {
+    /* este tal lo quitemos de aquí*/
     margin: 1rem;
     display: flex;
     width: auto;
@@ -447,7 +494,8 @@ button,
     gap: 0.5rem;
 }
 
-.tags-list p, label{
+.tags-list p,
+label {
     margin: 0rem;
     padding: 0.4rem;
     width: max-content;
@@ -478,6 +526,8 @@ button,
 .tooltip {
     position: relative;
     display: inline-block;
+    width: fit-content;
+    height: fit-content;
 }
 
 .tooltip .tooltiptext {
@@ -608,6 +658,6 @@ button,
     text-align: center;
 }
 
-.text-align-center{
+.text-align-center {
     text-align: center;
 }

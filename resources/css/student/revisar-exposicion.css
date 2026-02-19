@@ -252,7 +252,7 @@ center {
     .three-rows-grid {
         display: grid;
         gap: 2rem;
-        width: -webkit-fill-available;
+        width: min-content;
     }
 
     .two-columns-grid {

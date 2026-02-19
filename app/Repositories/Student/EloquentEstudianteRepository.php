@@ -38,10 +38,13 @@ class EloquentEstudianteRepository implements EstudianteRepositoryInterface
     {
         // Actualizamos campos básicos
         // Nota: El estatus se maneja en el Servicio, aquí solo persistencia pura
-        return $proyecto->update([
-            'titulo' => $datos['titulo'],
-            'descripcion' => $datos['descripcion'],
-        ]);
+        $data = ['descripcion' => $datos['descripcion']];
+
+        if (isset($datos['titulo'])) {
+            $data['titulo'] = $datos['titulo'];
+        }
+
+        return $proyecto->update($data);
     }
 
     public function verificarAsistenciaGeneral(int $estudianteId): bool
