@@ -8,7 +8,6 @@
     @vite(['resources/css/guest/landing-page.css'])
     @vite([
     'resources/js/guest/revealAnimation.js',
-    'resources/js/guest/showButtonMenu.js'
     ])
 </head>
 

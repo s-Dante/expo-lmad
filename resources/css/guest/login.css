@@ -156,8 +156,9 @@ body {
 
 .btn {
     font-family: var(--font-main);
-    font-size: 0.7rem;
-    padding: 0.6rem 4rem;
+    font-size: 0.8rem;
+    padding: 0.8rem 4rem;
+    border: 0px;
     border-radius: 20px;
     text-decoration: none;
     transition:

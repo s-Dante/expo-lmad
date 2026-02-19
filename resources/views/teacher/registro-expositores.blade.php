@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    
     <x-sidebar />
     <main class="main-content">
         <h1 class="text-main">REGISTRO DE PROYECTOS</h1>
@@ -77,7 +78,5 @@
         </section>
 
     </main>
-
-
 
 </body>

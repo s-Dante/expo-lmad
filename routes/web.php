@@ -39,7 +39,7 @@ Route::get('/NuestrasEstrellas', function () {
  */
 Route::get('/Cronograma', function () {
     return view('guest.cronograma');
-});
+})->name('cronograma');;
 
 /**
  * Vista de Portafolio
