@@ -89,8 +89,7 @@
                                             {{ $video->url }}
                                         </p>
                                     @endif
-
-                                    <input type="text" class="input-c state-editing" id="link-promotional-edit" />
+                                    
                                     <button class="btn btn-purple btn-icon state-saved" id="link-promotional-copy"
                                         data-target="link-promotional-project"><img
                                             src="{{ asset('assets/guest/upload.png') }}"></button>
