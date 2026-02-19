@@ -73,7 +73,7 @@
     justify-content: center;
     margin-bottom: 6rem;
     width: 640px;
-    height: fit-content;
+    height: 500px;
     position: relative;
 
     border-radius: 18px;
@@ -181,7 +181,7 @@
     align-items: center;
 
     width: 100%;
-    max-height: 200px;
+    height: 180px;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 15px;
