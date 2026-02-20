@@ -189,6 +189,7 @@ center {
 
 #link-repo-project,
 #link-promotional-project,
+#link-drive-project,
 #description-project {
     width: -webkit-fill-available;
     word-wrap: break-word;
@@ -305,6 +306,7 @@ center {
         text-align: left;
         font-family: var(--font-main);
         color: var(--clr-white);
+        word-break: break-word;
     }
 
     .general-grid {

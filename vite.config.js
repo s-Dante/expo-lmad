@@ -48,6 +48,8 @@ export default defineConfig({
 
                 "resources/js/superadmin/actions-check.js",
                 "resources/js/superadmin/proyectos-handler.js",
+                "resources/js/superadmin/dashboard-info.js",
+                "resources/js/superadmin/revisar-proyecto.js",
 
                 "resources/js/student/copy-link.js",
                 "resources/js/student/show-hide-elements.js",

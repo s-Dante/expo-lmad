@@ -128,7 +128,7 @@ class EstudianteController extends Controller
             'enviar_revision' => 'nullable' // Checkbox
         ]);
 
-        $estudianteId = \Illuminate\Support\Facades\Auth::user()->estudiante->id;
+        $estudianteId = Auth::user()->estudiante->id;
         $proyecto = $this->studentRepo->findProyectoDelEstudiante($id, $estudianteId);
 
         if (!$proyecto)
@@ -144,7 +144,7 @@ class EstudianteController extends Controller
         }
 
         if ($validated['codigo_acceso'] !== $proyecto->codigo_acceso) {
-            return back()->withErrors(['codigo_acceso' => 'El código de seguridad es incorrecto.'])->withInput();
+            return back()->with('error', 'El código de seguridad es incorrecto.')->withInput();
         }
 
         // Llamada al servicio
