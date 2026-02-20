@@ -13,6 +13,22 @@
 
 </head>
 
+<style>
+    .btn-purple {
+        font-size: 1.5rem;
+    }
+
+    .codigo {
+        justify-content: center;
+    }
+
+    .project-info {
+        margin-bottom: 1rem;
+    }
+
+    .container-proyecto-tags {}
+</style>
+
 <body>
     <x-sidebar />
 
@@ -34,8 +50,12 @@
                 <span>Enlace a proyecto: </span>
                 <input type="text" class="" placeholder="drive, github, dropbox...">
 
-                <span>Código de autorización: </span>
-                <input type="text" class="" placeholder="proporcionado por el docente">
+                <span>Software utilizado: </span>
+                <container class="container-proyecto-tags tags-list">
+                    @foreach($softwares as $software)
+                        <x-tag-checkbox name="softwares[]" value="{{ $software->id }}" label="{{ $software->software_name }}" />    
+                    @endforeach
+                </container>
 
             </section>
 
@@ -48,26 +68,31 @@
                     El tamaño máximo para la foto es de *inserte medidas*
                 </span>
             </section>
+
+            <section class="expo-card email-data">
+                <span>Correo universitario: </span>
+                <div class="div-email">
+                    <input type="text" class="input-mail">
+                    <span>@uanl.edu.mx</span>
+                </div>
+
+                <span class="info-secondary">Este correo será utilizado como medio de comunicación con el estudiante
+                    para
+                    notificarle si su
+                    proyecto fue aceptado, rechazado o si se necesitan hacer cambios para ser admitido.
+                    <br><br>
+                    Favor de estar al pendiente una vez enviado el proyecto</span>
+            </section>
+
+            <section class="expo-card codigo">
+                <span>Código de autorización: </span>
+                <input type="text" class="input-codigo" placeholder="proporcionado por el docente">
+            </section>
+
         </div>
-
-        <section class="expo-card email-data">
-            <span>Correo universitario: </span>
-            <div class="div-email">
-                <input type="text" class="input-mail">
-                <span>@uanl.edu.mx</span>
-            </div>
-
-            <span class="info-secondary">Este correo será utilizado como medio de comunicación con el estudiante para
-                notificarle si su
-                proyecto fue aceptado, rechazado o si se necesitan hacer cambios para ser admitido.
-                <br><br>
-                Favor de estar al pendiente una vez enviado el proyecto</span>
-        </section>
 
         <button type="submit" class="btn btn-purple">Enviar</button>
 
     </form>
-
-
 
 </body>

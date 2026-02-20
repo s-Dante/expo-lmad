@@ -580,9 +580,9 @@
                                     @php
                                         $isChecked = in_array($software->id, old('softwares', $proyecto->softwares->pluck('id')->toArray()));
                                     @endphp
-                                    <label class="tech-item" data-name="{{ strtolower($software->nombre) }}">
+                                    <label class="tech-item" data-name="{{ strtolower($software->software_name) }}">
                                         <input type="checkbox" name="softwares[]" value="{{ $software->id }}" {{ $isChecked ? 'checked' : '' }}>
-                                        <span class="tech-badge">{{ $software->nombre }}</span>
+                                        <span class="tech-badge">{{ $software->software_name }}</span>
                                     </label>
                                 @endforeach
                             </div>

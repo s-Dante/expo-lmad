@@ -24,6 +24,7 @@ class EloquentEstudianteRepository implements EstudianteRepositoryInterface
         ->get();
     }
 
+    //necesitamos una función que permita hacer lo mismo pero con el token(código de autorización)
     public function findProyectoDelEstudiante(int $proyectoId, int $estudianteId): ?Proyecto
     {
         return Proyecto::where('id', $proyectoId)
@@ -37,10 +38,13 @@ class EloquentEstudianteRepository implements EstudianteRepositoryInterface
     {
         // Actualizamos campos básicos
         // Nota: El estatus se maneja en el Servicio, aquí solo persistencia pura
-        return $proyecto->update([
-            'titulo' => $datos['titulo'],
-            'descripcion' => $datos['descripcion'],
-        ]);
+        $data = ['descripcion' => $datos['descripcion']];
+
+        if (isset($datos['titulo'])) {
+            $data['titulo'] = $datos['titulo'];
+        }
+
+        return $proyecto->update($data);
     }
 
     public function verificarAsistenciaGeneral(int $estudianteId): bool

@@ -40,53 +40,7 @@ edit.addEventListener("click", (e) => {
     show_hide_list(inputs_editing, "block");
 });
 
-save.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    let description = input_description_edit.value.trim();
-    let link_promo = input_promo_edit.value.trim();
-    let link_repo = input_repo_edit.value.trim();
-
-    if (!description || !link_promo || !link_repo) {
-        showModal("Datos inválidos", "Por favor, llena todos los campos.");
-        return;
-    }
-
-    if (
-        description.length > 700 ||
-        link_promo.length > 254 ||
-        link_repo.length > 254
-    ) {
-        showModal(
-            "La descripción o los enlaces exceden la longitud permitida.",
-        );
-        return;
-    }
-
-    if (!/^(https?:\/\/)?www\.youtube\.com\/.+/.test(link_promo)) {
-        showModal(
-            "El enlace promocional debe ser de YouTube (www.youtube.com/).",
-        );
-        return;
-    }
-
-    if (
-        !/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(
-            link_repo,
-        )
-    ) {
-        showModal("El enlace del proyecto no es válido.");
-        return;
-    }
-
-    show_hide_list(inputs_saved, "block");
-
-    input_description.innerHTML = description;
-    input_promo.innerHTML = link_promo;
-    input_repo.innerHTML = link_repo;
-
-    show_hide_list(inputs_editing, "none");
-});
+//PENDIENTE ver como guardar los cambios del proyecto para luego enviarlos (evento aparte)
 
 back.addEventListener("click", (e) => {
     e.preventDefault();

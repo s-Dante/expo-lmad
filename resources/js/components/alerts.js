@@ -1,37 +1,3 @@
-/*
-    alerts personalizadas para mensajes rápidos o validaciones
-
-    ========== para poner en otro .js ============
-        import { showModal } from "../components/alerts.js";
-
-    
-    
-    ========= para usar en otro .js ==========
-    
-    ------------------ estandar
-    showModal(
-                "Greetings programs!",
-            );
-            return;
-
-
-    ------------------ con título personalizado
-    showModal(
-            "Yo, Robot",
-            "There have always been ghosts in the machine"
-        );
-        return;
-    
-    
-    ========= poner al final del .blade.php antes del </body> =========
-        (Ya no es necesario, se genera dinámicamente)
-
-    
-    ========= NOTA =========
-    No necesita importarse en el .blade.php
-
-*/
-
 export function showModal(arg1, arg2) {
     const message = arg2 === undefined ? arg1 : arg2;
     const _title = arg2 === undefined ? "Aviso" : arg1;

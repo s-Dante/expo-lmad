@@ -171,11 +171,12 @@ input {
     }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 690px) {
     .project-info {
         display: grid;
         grid-template-columns: 52vw auto;
         gap: 1rem;
+        margin-bottom: 0rem;
     }
 
     .expo-card {
