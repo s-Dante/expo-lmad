@@ -33,15 +33,18 @@
         </container>
 
         <section class="section-project-data">
-            <form action="{{ route('estudiante.proyectos.update', $proyecto->id) }}" method="POST"
+            <form action="{{ route('estudiante.proyectos.updateEdit', $proyecto->id) }}" method="POST"
                 enctype="multipart/form-data" id="projectForm" class="expo-card main-card">
                 @csrf
                 @method('PUT')
 
                 <section>
                     <div class="section-project-header">
-                        <h2 id="name">{{ $proyecto->titulo ?? 'Sin título definido' }}</h2>
-                        <h3 id="subject">{{ $proyecto->materia->nombre }}</h3>
+                        <h2 id="name">
+                            {{ $proyecto->titulo ?? 'Sin título definido' }}
+                        </h2>
+                        <input type="hidden" name="titulo" value="{{ old('titulo', $proyecto->titulo) }}">
+                        <h3 id=" subject">{{ $proyecto->materia->nombre }}</h3>
                     </div>
 
                     <div class="two-columns-grid general-grid">
@@ -141,7 +144,7 @@
                                         @endif
                                     </p>
 
-                                    <input type="text" name="link_repo" class="input-c state-editing"
+                                    <input type="text" name="link_github" class="input-c state-editing"
                                         id="link-repo-edit" value="{{ $repo?->url }}" />
 
                                     <button class="btn btn-purple btn-icon state-saved" id="link-repo-copy"
@@ -177,7 +180,44 @@
                                     imagen</button>
                                 <input type="file" id="file-upload" name="poster" accept="image/*"
                                     style="display: none;">
+                                <input type="hidden" id="has-image" value="{{ $portada ? 'true' : 'false' }}">
                             </div>
+
+
+                            <div class="project-softwares">
+                                <span>Software utilizado: </span>
+                                <div class="state-saved">
+                                    <div class="tags-list">
+                                        @foreach($proyecto->softwares as $software)
+                                            <div class="tooltip">
+                                                <p>
+                                                    {{ $software->nombre }}
+                                                </p>
+                                                <span class="tooltiptext">{{ $software->descripcion }}</span>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                <div class="state-editing">
+                                    <div class="container-proyecto-tags tags-list" id="software">
+                                        @php
+                                            $selectedSoftwares = $proyecto->softwares->pluck('id')->toArray();
+                                        @endphp
+                                        @foreach($softwares as $software)
+                                            <x-tag-checkbox name="softwares[]" id="{{ $software->id }}"
+                                                value="{{ $software->id }}" label="{{ $software->nombre }}"
+                                                :checked="in_array($software->id, $selectedSoftwares)" />
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                <span class="d-none" id="token">
+                                    {{ $proyecto->codigo_acceso }}
+                                </span>
+                                <input type="hidden" name="codigo_acceso" value="{{ $proyecto->codigo_acceso }}">
+                            </div>
+
                         </div>
 
                     </div>
@@ -225,7 +265,7 @@
                         <div class="div-btns-project">
 
                             <button type="button" class="btn btn-blue state-saved" id="edit">Editar proyecto</button>
-                            <button type="submit" class="btn btn-darkpur state-saved" id="resend">Reenviar proyecto</button>
+                            <button type="button" class="btn btn-darkpur state-saved" id="resend">Reenviar proyecto</button>
 
                             <button type="button" class="btn btn-blue state-editing" id="save">Guardar cambios</button>
                             <button type="button" class="btn btn-purple state-editing" id="back">Regresar</button>
@@ -242,4 +282,23 @@
     </main>
 
     @vite('resources/js/student/show-hide-elements.js')
+    <script type="module">
+        import { showServerMessages } from "{{ Vite::asset('resources/js/components/flash-alerts.js') }}";
+
+        showServerMessages(
+            @json(session('success')),
+            @json(session('error')),
+            @json($errors->all())
+        );
+
+        const btnResend = document.getElementById('resend');
+        if (btnResend) {
+            btnResend.addEventListener('click', () => {
+                const form = document.getElementById('projectForm');
+                form.action = "{{ route('estudiante.proyectos.send', $proyecto->id) }}";
+                form.submit();
+            });
+        }
+    </script>
+
 </body>
