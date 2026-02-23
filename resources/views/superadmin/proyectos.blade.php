@@ -125,9 +125,9 @@
                             <th>Acción</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="pagination-container">
                         @foreach ($proyectosAprobados as $aprobadendos)
-                            <tr>
+                            <tr class="paginated-item">
                                 <td>{{ $aprobadendos->id }}</td>
                                 <td>{{ $aprobadendos->materia->nombre }} </td>
                                 <td>{{ $aprobadendos->profesor->nombre . ' ' . $aprobadendos->profesor->apellido_paterno . ' ' . $aprobadendos->profesor->apellido_materno}}

@@ -1,4 +1,3 @@
-
 /*----- LÓGICA: Botones y cambio de tabla -----*/
 const btnRev = document.getElementById("btn-revisión");
 const btnAcept = document.getElementById("btn-aceptado");
@@ -27,8 +26,8 @@ function cambiarVista(nuevoTitulo, botonActivo, modo) {
     }
 
     paginaActual = 1;
-    document.querySelector(".page-number").innerText = paginaActual;
 
+    actualizarPaginacion();
     actualizarBotones(botonActivo);
 }
 
@@ -39,34 +38,61 @@ function actualizarBotones(botonActivo) {
     botonActivo.classList.add("active");
 }
 
-
 /*----- LÓGICA: Paginación -----*/
+let paginaActual = 1;
+const filasPorPagina = 5;
+
 const btnPrev = document.querySelector(".page-arrow.prev");
 const btnNext = document.querySelector(".page-arrow.next");
 const pageDisplay = document.querySelector(".page-number");
 
-let paginaActual = 1;
+function actualizarPaginacion() {
+
+    const tablaActiva = document.querySelector(".table-wrapper:not(.hidden)");
+    const filas = Array.from(tablaActiva.querySelectorAll("tbody tr"));
+
+    const totalPaginas = Math.ceil(filas.length / filasPorPagina);
+
+    if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+    if (paginaActual < 1) paginaActual = 1;
+
+
+    filas.forEach((fila, index) => {
+        const inicio = (paginaActual - 1) * filasPorPagina;
+        const fin = inicio + filasPorPagina;
+
+        if (index >= inicio && index < fin) {
+            fila.style.display = ""; 
+        } else {
+            fila.style.display = "none";
+        }
+    });
+
+ 
+    pageDisplay.innerText = paginaActual;
+
+    btnPrev.style.opacity = paginaActual === 1 ? "0.3" : "1";
+    btnNext.style.opacity = paginaActual >= totalPaginas ? "0.3" : "1";
+}
+
+/*----- EVENTOS DE LAS FLECHAS -----*/
 
 btnPrev.addEventListener("click", () => {
     if (paginaActual > 1) {
         paginaActual--;
-        actualizarTablaPorPagina();
+        actualizarPaginacion();
     }
 });
 
 btnNext.addEventListener("click", () => {
-    paginaActual++;
-    actualizarTablaPorPagina();
+    const tablaActiva = document.querySelector(".table-wrapper:not(.hidden)");
+    const filas = tablaActiva.querySelectorAll("tbody tr").length;
+    const totalPaginas = Math.ceil(filas / filasPorPagina);
+
+    if (paginaActual < totalPaginas) {
+        paginaActual++;
+        actualizarPaginacion();
+    }
 });
 
-function actualizarTablaPorPagina() {
-    pageDisplay.innerText = paginaActual;
-
-
-    const tabla = document.querySelector(".proyectos-table tbody");
-    tabla.style.opacity = "0.5";
-    
-    setTimeout(() => {
-        tabla.style.opacity = "1";
-    }, 200);
-}
+actualizarPaginacion();
