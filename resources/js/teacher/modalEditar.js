@@ -6,7 +6,9 @@ window.abrirModal = function (button) {
     const token = card.dataset.proyectoToken;
 
     if (modal) {
-        modal.style.display = 'flex';
+        modal.style.visibility = 'visible';
+        modal.classList.add('modal-open');
+        document.body.classList.add('modal-open');
         buscarProyectoModal(token);
     }
 
@@ -102,7 +104,11 @@ document.getElementById('modal-materia').addEventListener('change', function () 
 window.cerrarModal = function () {
     const modal = document.getElementById('modal-edicion');
     if (modal) {
-        modal.style.display = 'none';
+        modal.classList.remove('modal-open');
+        document.body.classList.remove('modal-open');
+        setTimeout(() => {
+            modal.style.visibility = 'hidden';
+        }, 300);
     }
 }
 

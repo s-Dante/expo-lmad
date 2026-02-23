@@ -9,10 +9,13 @@
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
 }
 
 .modal-content {
@@ -22,6 +25,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    opacity: 0;
+    transform: scale(0.95);
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
 }
 
 .modal-content .expo-card {
@@ -34,7 +42,7 @@
     align-items: center;
 }
 .modal-content .text-main {
-    margin-top: 4rem;
+    margin-top: 2rem;
     margin-bottom: 1.2rem;
     font-size: 1.6rem;
     text-align: center;
@@ -43,7 +51,7 @@
 
 .close-modal {
     position: absolute;
-    top: 50px;
+    top: 30px;
     right: -40px;
     background: none;
     border: none;
@@ -65,7 +73,7 @@
     justify-content: center;
     margin-bottom: 6rem;
     width: 640px;
-    height: fit-content;
+    height: 500px;
     position: relative;
 
     border-radius: 18px;
@@ -173,7 +181,7 @@
     align-items: center;
 
     width: 100%;
-    max-height: 250px;
+    height: 180px;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 15px;
@@ -351,4 +359,21 @@ select.input-c {
         top: -5px;
         font-size: 1.8rem;
     }
+}
+
+/*ajuste para que no se mueva la barra*/
+body.modal-open {
+    overflow: hidden;
+    padding-right: 15px;
+}
+
+/*animaciones*/
+.modal-overlay.modal-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.modal-open .modal-content {
+    opacity: 1;
+    transform: scale(1);
 }

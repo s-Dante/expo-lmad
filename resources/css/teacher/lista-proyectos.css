@@ -41,7 +41,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-   
+    animation: scaleIn 0.7s ease-out both;
 }
 
 .card-project::before {
@@ -348,3 +348,18 @@ body {
         height: 40px;
     }
 }
+
+
+/* ---Animaciones--- */
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+

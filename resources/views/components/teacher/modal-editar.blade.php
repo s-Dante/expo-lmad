@@ -17,10 +17,10 @@
                         <select class="input-c" id="modal-materia" name="materia_id">
                             <option value="" disabled>Selecciona una materia</option>
                             @foreach ($materias as $materia)
-                                <option value="{{ $materia->id }}" data-plan="{{ $materia->planAcademico->nombre }}"
-                                    data-semestre="{{ $materia->semestre }}">
-                                    {{ $materia->nombre }}
-                                </option>
+                            <option value="{{ $materia->id }}" data-plan="{{ $materia->planAcademico->nombre }}"
+                                data-semestre="{{ $materia->semestre }}">
+                                {{ $materia->nombre }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -44,7 +44,7 @@
 
                     <div class="fila-full">
                         <label>Número de integrantes:</label>
-                        <input class="input-c" type="number" id="modal-num-integrantes">
+                        <input class="input-c" type="number" id="modal-num-integrantes" min="1" max="10" value="0" onkeydown="return false">
                     </div>
                 </div>
 
