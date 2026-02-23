@@ -534,7 +534,7 @@ label {
     visibility: hidden;
     font-family: var(--font-main);
     width: auto;
-    max-width: 300px; /* Adjust as needed */
+    width: 250px; /* Adjust as needed */
     background-color: var(--clr-black);
     color: var(--clr-white);
     text-align: center;

@@ -103,13 +103,7 @@ class EstudianteController extends Controller
 
         $softwares = $this->studentRepo->getAllSoftwares();
 
-        return view('student.proyectos.create', compact('proyecto','softwares'));
-    }
-
-    //para la primera vez que se meten los datos al proyecto
-    public function firts_update(Request $request, $id)
-    {
-
+        return view('student.proyectos.create', compact('proyecto', 'softwares'));
     }
 
     public function update(Request $request, $id)
@@ -157,16 +151,166 @@ class EstudianteController extends Controller
         return redirect()->route('estudiante.proyectos.index')->with('success', 'Proyecto actualizado correctamente.');
     }
 
+    /*
 
-    public function show($id)
+    DANTE: 
+    1. Hace falta una consulta que permita enviar las
+        modificaciones (descripción, links (3) y portada) solo pidiedon el ID del proyecto.
+
+    2. Tambien necesitamos una consulta que nos permita cambiar el estatus del proyecto como 
+        a "enviado" para cuando el alumno reenvie sus cambios.
+
+    */
+    public function updateEdit(Request $request, $id)
     {
-        $estudianteId = Auth::user()->estudiante->id;
+        // Validación extendida
+        $validated = $request->validate([
+            'titulo' => 'required|string|max:200',
+            'descripcion' => 'required|string|min:20',
+            'poster' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // 5MB
+            'link_youtube' => 'required|url', // Obligatorio según tu descripción
+            'link_drive' => 'nullable|url',
+            'link_github' => 'nullable|url',
+            'softwares' => 'required|array|min:1', // Al menos 1 software
+            'softwares.*' => 'exists:tbl_softwares,id',
+            'codigo_acceso' => 'required',
+            'enviar_revision' => 'nullable' // Checkbox
+        ]);
+
+        $estudianteId = \Illuminate\Support\Facades\Auth::user()->estudiante->id;
+        $proyecto = $this->studentRepo->findProyectoDelEstudiante($id, $estudianteId);
+
+        if (!$proyecto)
+            return redirect()->route('estudiante.proyectos.index')->with('error', 'Proyecto no encontrado.');
+
+        $esLider = $proyecto->autores()
+            ->where('tbl_estudiantes.id', $estudianteId)
+            ->wherePivot('es_lider', true)
+            ->exists();
+
+        if (!$esLider) {
+            return redirect()->route('estudiante.proyectos.index')->with('error', 'Acción no autorizada. Solo el líder puede guardar cambios.');
+        }
+
+        if ($validated['codigo_acceso'] !== $proyecto->codigo_acceso) {
+            return back()->withErrors(['codigo_acceso' => 'El código de seguridad es incorrecto.'])->withInput();
+        }
+
+        // Llamada al servicio
+        $this->studentService->procesarActualizacionProyecto(
+            $proyecto,
+            $validated,
+            $request->file('poster')
+        );
+
+        $estudianteId = \Illuminate\Support\Facades\Auth::user()->estudiante->id;
         $proyecto = $this->studentRepo->findProyectoDelEstudiante($id, $estudianteId);
 
         if (!$proyecto) {
-            return redirect()->route('student.proyectos.index')->with('error', 'Proyecto no encontrado.');
+            return redirect()->route('estudiante.proyectos.index')->with('error', 'Proyecto no encontrado.');
         }
 
-        return view('student.proyectos.show', compact('proyecto'));
+        $esLider = $proyecto->autores()
+            ->where('tbl_estudiantes.id', $estudianteId)
+            ->wherePivot('es_lider', true)
+            ->exists();
+
+        if (!$esLider) {
+            return redirect()->route('estudiante.proyectos.index')
+                ->with('error', 'Solo el líder del equipo tiene permisos para registrar o editar la información.');
+        }
+
+        $softwares = $this->studentRepo->getAllSoftwares();
+
+        return view('student.proyectos.show', compact('proyecto', 'softwares'));
+    }
+
+    public function send(Request $request, $id)
+    {
+        // Validación extendida
+        $validated = $request->validate([
+            'titulo' => 'required|string|max:200',
+            'descripcion' => 'required|string|min:20',
+            'poster' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // 5MB
+            'link_youtube' => 'required|url', // Obligatorio según tu descripción
+            'link_drive' => 'nullable|url',
+            'link_github' => 'nullable|url',
+            'softwares' => 'required|array|min:1', // Al menos 1 software
+            'softwares.*' => 'exists:tbl_softwares,id',
+            'codigo_acceso' => 'required',
+            'enviar_revision' => 'nullable' // Checkbox
+        ]);
+
+        $estudianteId = \Illuminate\Support\Facades\Auth::user()->estudiante->id;
+        $proyecto = $this->studentRepo->findProyectoDelEstudiante($id, $estudianteId);
+
+        if (!$proyecto)
+            return redirect()->route('estudiante.proyectos.index')->with('error', 'Proyecto no encontrado.');
+
+        $esLider = $proyecto->autores()
+            ->where('tbl_estudiantes.id', $estudianteId)
+            ->wherePivot('es_lider', true)
+            ->exists();
+
+        if (!$esLider) {
+            return redirect()->route('estudiante.proyectos.index')->with('error', 'Acción no autorizada. Solo el líder puede guardar cambios.');
+        }
+
+        if ($validated['codigo_acceso'] !== $proyecto->codigo_acceso) {
+            return back()->withErrors(['codigo_acceso' => 'El código de seguridad es incorrecto.'])->withInput();
+        }
+
+        $validated['enviar_revision'] = true;
+        // Llamada al servicio
+        $this->studentService->procesarActualizacionProyecto(
+            $proyecto,
+            $validated,
+            $request->file('poster')
+        );
+
+        $estudianteId = \Illuminate\Support\Facades\Auth::user()->estudiante->id;
+        $proyecto = $this->studentRepo->findProyectoDelEstudiante($id, $estudianteId);
+
+        if (!$proyecto) {
+            return redirect()->route('estudiante.proyectos.index')->with('error', 'Proyecto no encontrado.');
+        }
+
+        $esLider = $proyecto->autores()
+            ->where('tbl_estudiantes.id', $estudianteId)
+            ->wherePivot('es_lider', true)
+            ->exists();
+
+        if (!$esLider) {
+            return redirect()->route('estudiante.proyectos.index')
+                ->with('error', 'Solo el líder del equipo tiene permisos para registrar o editar la información.');
+        }
+
+        $softwares = $this->studentRepo->getAllSoftwares();
+
+        return view('student.proyectos.show', compact('proyecto', 'softwares'));
+    }
+
+    public function show($id)
+    {
+        $estudianteId = \Illuminate\Support\Facades\Auth::user()->estudiante->id;
+        $proyecto = $this->studentRepo->findProyectoDelEstudiante($id, $estudianteId);
+
+        if (!$proyecto) {
+            return redirect()->route('estudiante.proyectos.index')->with('error', 'Proyecto no encontrado.');
+        }
+
+        $esLider = $proyecto->autores()
+            ->where('tbl_estudiantes.id', $estudianteId)
+            ->wherePivot('es_lider', true)
+            ->exists();
+
+        if (!$esLider) {
+            return redirect()->route('estudiante.proyectos.index')
+                ->with('error', 'Solo el líder del equipo tiene permisos para registrar o editar la información.');
+        }
+
+        $softwares = $this->studentRepo->getAllSoftwares();
+
+        return view('student.proyectos.show', compact('proyecto', 'softwares'));
     }
 }

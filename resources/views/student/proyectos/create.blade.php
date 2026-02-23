@@ -196,24 +196,12 @@
     </form>
 
     <script type="module">
-        import { showModal } from "{{ Vite::asset('resources/js/components/alerts.js') }}";
+        import { showServerMessages } from "{{ Vite::asset('resources/js/components/flash-alerts.js') }}";
 
-        @if (session('success'))
-            showModal("Aviso", @json(session('success')));
-        @endif
-
-        @if (session('error'))
-            showModal("Error", @json(session('error')));
-        @endif
-
-        @if ($errors->any())
-            let errorHtml = '<p style="font-weight: bold; margin-bottom: 0.5rem;">Por favor corrige los siguientes errores:</p>';
-            errorHtml += '<ul style="text-align: left; list-style-type: disc; padding-left: 1.5rem;">';
-            @foreach ($errors->all() as $error)
-                errorHtml += '<li>' + @json($error) + '</li>';
-            @endforeach
-            errorHtml += '</ul>';
-            showModal("Datos inválidos", errorHtml);
-        @endif
+        showServerMessages(
+            @json(session('success')),
+            @json(session('error')),
+            @json($errors->all())
+        );
     </script>
 </body>

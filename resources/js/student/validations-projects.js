@@ -26,6 +26,7 @@ const input_link_repo =
 const file_upload = document.getElementById("file-upload");
 
 const input_token = document.getElementById("token");
+const input_has_image = document.getElementById("has-image");
 
 export async function update_project(first_time) {
     if (first_time) {
@@ -75,8 +76,13 @@ export async function update_project(first_time) {
     if (validation_Length(link_promo, 0, 254, "enlace promocional")) return true;
     if (validation_Length(link_repo, 0, 254, "enlace repositorio")) return true;
 
-    if (validation_Image(file_upload, "portada")) return true;
-    if (await validation_ImageSize(file_upload, "portada")) return true;
+    const hasImage = input_has_image && input_has_image.value === 'true';
+
+    if (file_upload.files.length > 0) {
+        if (await validation_ImageSize(file_upload, "portada")) return true;
+    } else if (!hasImage) {
+        if (validation_Image(file_upload, "portada")) return true;
+    }
 
     if (validation_Link(link_promo, "youtube", "promocional")) return true;
     if (validation_Link(link_repo, "", "proyecto")) return true;

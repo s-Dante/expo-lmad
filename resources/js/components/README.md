@@ -19,14 +19,10 @@ alerts personalizadas para mensajes rápidos o validaciones
 
     ------------------ con título personalizado
     showModal(
-            "Yo, Robot",
+            "I, Robot",
             "There have always been ghosts in the machine"
         );
         return;
-
-
-    ========= poner al final del .blade.php antes del </body> =========
-        (Ya no es necesario, se genera dinámicamente)
 
 
     ========= NOTA =========
