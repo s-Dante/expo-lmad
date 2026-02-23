@@ -207,11 +207,12 @@
         @endif
 
         @if ($errors->any())
-            let errorHtml = '<p style="font-weight: bold; margin-bottom: 0.5rem;">Por favor corrige los siguientes errores:</p>';
-            errorHtml += '<ul style="text-align: left; list-style-type: disc; padding-left: 1.5rem;">';
-            @foreach ($errors->all() as $error)
-                errorHtml += '<li>' + @json($error) + '</li>';
-            @endforeach
+            let errorHtml = '<p class="modal-message" style="font-weight: bold; margin-bottom: 0.5rem;">Por favor corrige los siguientes errores:</p>';
+            errorHtml += '<ul class="modal-message" style="text-align: left; list-style-type: disc; padding-left: 1.5rem;">';
+            const errors = @json($errors->all());
+            errors.forEach(error => {
+                errorHtml += `<li>${error}</li>`;
+            });
             errorHtml += '</ul>';
             showModal("Datos inválidos", errorHtml);
         @endif

@@ -8,5 +8,5 @@ save.addEventListener("click", async (e) => {
 
     if (await update_project(false)) return;
 
-    form.submit();
+    form.requestSubmit();
 });
