@@ -96,3 +96,37 @@ btnNext.addEventListener("click", () => {
 });
 
 actualizarPaginacion();
+
+/*----- LÓGICA: Modal -----*/
+function abrirModal() {
+    const modal = document.getElementById("modal-proyecto");
+    if (modal) {
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; 
+    }
+}
+function cerrarModal() {
+    const modal = document.getElementById("modal-proyecto");
+    if (modal) {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto"; 
+    }
+}
+
+window.abrirModal = abrirModal;
+window.cerrarModal = cerrarModal;
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnCerrar = document.getElementById("btn-cerrar-modal");
+    const btnX = document.getElementById("btn-x-modal");
+    const modalOverlay = document.getElementById("modal-proyecto");
+
+    if (btnCerrar) btnCerrar.onclick = cerrarModal;
+    if (btnX) btnX.onclick = cerrarModal;
+
+    if (modalOverlay) {
+        modalOverlay.onclick = (e) => {
+            if (e.target === modalOverlay) cerrarModal();
+        };
+    }
+});
