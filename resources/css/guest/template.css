@@ -231,6 +231,11 @@ button,
     );
 }
 
+.btn-draft {
+    color: var(--white);
+    background: var(--clr-blue-700);
+}
+
 .btn-darkpur {
     color: var(--white);
     background: linear-gradient(
@@ -284,6 +289,10 @@ button,
     }
 }
 
+.anim-heroFade{
+    animation: heroFade 0.4s ease-out forwards;
+}
+
 @keyframes navDrop {
     from {
         opacity: 0;
@@ -294,6 +303,46 @@ button,
         transform: translateY(0);
     }
 }
+
+.anim-navDrop{
+    animation: navDrop 0.4s ease-out forwards;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+/* Animaciones de estado (referencia modalUp) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+.anim-appear {
+    animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.anim-disappear {
+    animation: fadeOutDown 0.4s ease-out forwards;
+}
+
 
 /* ---- --------------- ---- */
 

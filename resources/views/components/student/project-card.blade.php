@@ -1,11 +1,20 @@
-@props(['titulo', 'materia', 'estado'])
+@props(['titulo', 'materia', 'estado', 'descripcion'])
 
 @php
     $btnClass = match ($estado) {
-        'Aceptado' => 'btn-accepted',
-        'Rechazado' => 'btn-rejected',
-        'Correciones' => 'btn-warning',
+        'aprobado' => 'btn-accepted',
+        'eliminado' => 'btn-rejected',
+        'rechazado' => 'btn-warning',
+        'borrador' => 'btn-draft',
         default => 'btn-ghost',
+    };
+
+    $msj = match ($estado) {
+        'aprobado' => 'Aprobado',
+        'eliminado' => 'Rechazado',
+        'rechazado' => 'Correcciones',
+        'borrador' => 'Borrador',
+        default => 'En revisión',
     };
 @endphp
 
@@ -16,6 +25,8 @@
             <input type="text" disabled class="hr-gradient">
         </center>
         <h3>{{ $materia }}</h3>
+
+        <p>{{ $descripcion }}</p>
     </div>
-    <button class="btn {{ $btnClass }}">{{ $estado }} <span class="legend">Ver proyecto</span></button>
+    <button class="btn {{ $btnClass }}">{{ $msj }} <span class="legend">Ver proyecto</span></button>
 </div>

@@ -41,6 +41,7 @@ export default defineConfig({
 
                 "resources/js/components/sidebar.js",
                 'resources/js/components/alerts.js',
+                "resources/js/components/show-hide-elements.js",
 
                 "resources/js/teacher/agregarIntegrantes.js",
                 "resources/js/teacher/mostrarInfoMateria.js",
@@ -52,7 +53,7 @@ export default defineConfig({
                 "resources/js/superadmin/revisar-proyecto.js",
 
                 "resources/js/student/copy-link.js",
-                "resources/js/student/show-hide-elements.js",
+                "resources/js/student/actions-revisar-exposicion.js",
                 'resources/js/student/create-project.js',
                 'resources/js/student/update-project.js',
                 'resources/js/student/load-portrait.js'

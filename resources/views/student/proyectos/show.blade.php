@@ -99,12 +99,9 @@
                                     </p>
 
                                     <input type="text" name="link_youtube" class="input-c state-editing"
-                                        id="link-promotional-edit" value="{{ $video?->url }}" />
+                                        id="link-promotional-edit" value="{{ $video?->url }}" style="display: none;" />
 
-                                    <button class="btn btn-purple btn-icon state-saved" id="link-promotional-copy"
-                                        data-target="link-promotional-project">
-                                        <img src="{{ asset('assets/guest/upload.png') }}">
-                                    </button>
+                                    <x-btn-copy id="link-promotional-copy" target="link-promotional-project" />
                                 </div>
 
                                 <div class="three-columns-grid three-category-grid">
@@ -121,12 +118,9 @@
                                     </p>
 
                                     <input type="text" name="link_drive" class="input-c state-editing"
-                                        id="link-drive-edit" value="{{ $drive?->url }}" />
+                                        id="link-drive-edit" value="{{ $drive?->url }}" style="display: none;" />
 
-                                    <button class="btn btn-purple btn-icon state-saved" id="link-drive-copy"
-                                        data-target="link-drive-project">
-                                        <img src="{{ asset('assets/guest/upload.png') }}">
-                                    </button>
+                                    <x-btn-copy id="link-drive-copy" target="link-drive-project" />
                                 </div>
 
                                 <div class="three-columns-grid three-category-grid">
@@ -145,11 +139,9 @@
                                     </p>
 
                                     <input type="text" name="link_github" class="input-c state-editing"
-                                        id="link-repo-edit" value="{{ $repo?->url }}" />
+                                        id="link-repo-edit" value="{{ $repo?->url }}" style="display: none;" />
 
-                                    <button class="btn btn-purple btn-icon state-saved" id="link-repo-copy"
-                                        data-target="link-repo-project"><img
-                                            src="{{ asset('assets/guest/upload.png') }}"></button>
+                                        <x-btn-copy id="link-repo-copy" target="link-repo-project" />
                                 </div>
 
                                 <div class="two-columns-grid two-category-grid">
@@ -158,7 +150,7 @@
                                         {{ $proyecto->descripcion ?? 'Sin descripción disponible.' }}
                                     </p>
                                     <textarea name="descripcion" class="input-description state-editing"
-                                        id="description-edit">{{ $proyecto->descripcion ?? 'Sin descripción disponible.' }}</textarea>
+                                        id="description-edit" style="display: none;">{{ $proyecto->descripcion ?? 'Sin descripción disponible.' }}</textarea>
                                 </div>
 
                             </div>
@@ -176,7 +168,7 @@
                             <img src="{{ $currentImg }}" class="img-fluid project-card" id="project-portrait">
 
                             <div class="div-btn-changeimage">
-                                <button type="button" id="upload-photo" class="btn btn-blue state-editing">Cambiar
+                                <button type="button" id="upload-photo" class="btn btn-blue state-editing" style="display: none;">Cambiar
                                     imagen</button>
                                 <input type="file" id="file-upload" name="poster" accept="image/*"
                                     style="display: none;">
@@ -199,7 +191,7 @@
                                     </div>
                                 </div>
 
-                                <div class="state-editing">
+                                <div class="state-editing" style="display: none;">
                                     <div class="container-proyecto-tags tags-list" id="software">
                                         @php
                                             $selectedSoftwares = $proyecto->softwares->pluck('id')->toArray();
@@ -264,11 +256,19 @@
                     @if(($proyecto->estatus === 'rechazado' || $proyecto->estatus === 'borrador') && $soyLider)
                         <div class="div-btns-project">
 
-                            <button type="button" class="btn btn-blue state-saved" id="edit">Editar proyecto</button>
-                            <button type="button" class="btn btn-darkpur state-saved" id="resend">Reenviar proyecto</button>
+                            <div class="state-saved">
+                                <div class="d-flex" style="gap: 1rem; justify-content: center;">
+                                    <button type="button" class="btn btn-blue" id="edit">Editar proyecto</button>
+                                    <button type="button" class="btn btn-darkpur" id="resend">Reenviar proyecto</button>
+                                </div>
+                            </div>
 
-                            <button type="button" class="btn btn-blue state-editing" id="save">Guardar cambios</button>
-                            <button type="button" class="btn btn-purple state-editing" id="back">Regresar</button>
+                            <div class="state-editing" style="display: none;">
+                                <div class="d-flex" style="gap: 1rem; justify-content: center;">
+                                    <button type="button" class="btn btn-blue" id="save">Guardar cambios</button>
+                                    <button type="button" class="btn btn-purple" id="back">Regresar</button>
+                                </div>
+                            </div>
 
                         </div>
                     @endif
@@ -281,7 +281,7 @@
 
     </main>
 
-    @vite('resources/js/student/show-hide-elements.js')
+    @vite('resources/js/student/actions-revisar-exposicion.js')
     <script type="module">
         import { showServerMessages } from "{{ Vite::asset('resources/js/components/flash-alerts.js') }}";
 

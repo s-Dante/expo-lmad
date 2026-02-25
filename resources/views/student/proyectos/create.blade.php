@@ -15,59 +15,6 @@
 
 </head>
 
-<style>
-    h2 {
-        font-family: var(--font-main);
-        color: var(--clr-white);
-        font-size: 1.2rem;
-        margin-top: 0%;
-    }
-
-    .btn-purple {
-        font-size: 1.5rem;
-    }
-
-    .codigo {
-        justify-content: center;
-        width: -webkit-fill-available;
-        margin-top: 1rem;
-    }
-
-    .codigo div p {
-        font-family: var(--font-main);
-        color: var(--clr-gray);
-        margin: 0%;
-    }
-
-    .codigo div {
-        display: flex;
-        margin-bottom: 1rem;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .project-info {
-        margin-bottom: 1rem;
-    }
-
-    .checkbox-card {
-        width: fit-content;
-        margin-bottom: unset;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.2rem;
-    }
-
-    .section-send {
-        display: flex;
-        gap: 1rem;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-</style>
-
 <body>
     <x-sidebar />
 
@@ -192,7 +139,7 @@
             </div>
         </div>
 
-
+s
     </form>
 
     <script type="module">
