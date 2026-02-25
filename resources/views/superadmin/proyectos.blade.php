@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SuperAdmin Proyectos</title>
     @vite([
-        "resources/css/superadmin/proyectos.css",
-        "resources/js/superadmin/proyectos-handler.js",
-        "resources/js/superadmin/dashboard-info.js"
+    "resources/css/superadmin/proyectos.css",
+    "resources/css/components/superadmin/modal-ver.css",
+    "resources/js/superadmin/proyectos-handler.js",
+    "resources/js/superadmin/dashboard-info.js"
+
     ])
 </head>
 
@@ -65,7 +67,7 @@
                     <select>
                         <option selected disabled>Seleccione una opción</option>
                         @foreach ($materias as $materia)
-                            <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
+                        <option value="{{ $materia->id }}">{{ $materia->nombre }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -74,9 +76,9 @@
                     <select>
                         <option selected disabled>Seleccione una opción</option>
                         @foreach ($profesores as $profesor)
-                            <option value="{{ $profesor->id }}">
-                                {{ $profesor->nombre . ' ' . $profesor->apellido_paterno . ' ' . $profesor->apellido_materno}}
-                            </option>
+                        <option value="{{ $profesor->id }}">
+                            {{ $profesor->nombre . ' ' . $profesor->apellido_paterno . ' ' . $profesor->apellido_materno}}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -97,19 +99,19 @@
                     <tbody>
 
                         @foreach ($proyectosRevision as $revisadendo)
-                            <tr>
-                                <td>{{ $revisadendo->id }}</td>
-                                <td>{{ $revisadendo->materia->nombre }}</td>
-                                <td>{{ $revisadendo->profesor->nombre . ' ' . $revisadendo->profesor->apellido_paterno . ' ' . $revisadendo->profesor->apellido_materno }}
-                                </td>
-                                <td>
-                                    <button class="btn-revisar"
-                                        onclick="window.location.href='/superadmin/revision-proyecto/{{ $revisadendo->id }}'">
-                                        <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar"
-                                            class="btn-icon">
-                                    </button>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{ $revisadendo->id }}</td>
+                            <td>{{ $revisadendo->materia->nombre }}</td>
+                            <td>{{ $revisadendo->profesor->nombre . ' ' . $revisadendo->profesor->apellido_paterno . ' ' . $revisadendo->profesor->apellido_materno }}
+                            </td>
+                            <td>
+                                <button class="btn-revisar"
+                                    onclick="window.location.href='/superadmin/revision-proyecto/{{ $revisadendo->id }}'">
+                                    <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar"
+                                        class="btn-icon">
+                                </button>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -125,24 +127,19 @@
                             <th>Acción</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="pagination-container">
                         @foreach ($proyectosAprobados as $aprobadendos)
-                            <tr>
-                                <td>{{ $aprobadendos->id }}</td>
-                                <td>{{ $aprobadendos->materia->nombre }} </td>
-                                <td>{{ $aprobadendos->profesor->nombre . ' ' . $aprobadendos->profesor->apellido_paterno . ' ' . $aprobadendos->profesor->apellido_materno}}
-                                </td>
-                                <td>
-                                    <button class="btn-ver"
-                                        onclick="window.location.href='/Portafolio/{{ $aprobadendos->slug }}'"> Ver en
-                                        portafolio </button>
-                                    <button class="btn-revisar"
-                                        onclick="window.location.href='/superadmin/revision-proyecto/{{ $aprobadendos->id }}'">
-                                        <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar"
-                                            class="btn-icon">
-                                    </button>
-                                </td>
-                            </tr>
+                        <tr class="paginated-item">
+                            <td>{{ $aprobadendos->id }}</td>
+                            <td>{{ $aprobadendos->materia->nombre }} </td>
+                            <td>{{ $aprobadendos->profesor->nombre . ' ' . $aprobadendos->profesor->apellido_paterno . ' ' . $aprobadendos->profesor->apellido_materno}}
+                            </td>
+                            <td>
+                                <button class="btn-ver" onclick="abrirModal()">
+                                    Ver proyecto
+                                </button>
+                            </td>
+                        </tr>
                         @endforeach
 
 
@@ -167,4 +164,5 @@
 
     </main>
 
+  <x-superadmin.modal-ver/>
 </body>
