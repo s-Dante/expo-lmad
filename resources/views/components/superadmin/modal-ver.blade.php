@@ -1,4 +1,4 @@
-<div id="modal-proyecto" class="modal-overlay hidden">
+<div id="modal-proyecto" class="modal-overlay hidden" data-copy-icon="{{ asset('assets/teacher/CopiarVector.png') }}">
    
 
     <section class="project-card">
@@ -12,33 +12,25 @@
                     <div class="group-container header-info">
                         <div class="info-row">
                             <span class="label">ID DEL PROYECTO:</span>
-                            <span class="value val-id" id="modal-id">00</span>
+                            <span class="value val-id" id="modal-id"></span>
                             <span class="label label-inline">SEMESTRE:</span>
-                            <span class="value" id="modal-semestre">0</span>
+                            <span class="value" id="modal-semestre"></span>
                         </div>
                         <div class="info-row">
                             <span class="label">MAESTRO:</span>
-                            <span class="value" id="modal-maestro">Nombre del Docente</span>
+                            <span class="value" id="modal-maestro"></span>
                         </div>
                     </div>
 
                     <div class="group-container students-section">
                         <div class="info-row">
                             <span class="label">ALUMNOS:</span>
-                            <div class="students-list">
-                                <div class="student-item">
-                                    <span class="student-name">Nombre Alumno</span>
-                                    <span class="student-id">000000</span>
-                                </div>
-                                <div class="student-item">
-                                    <span class="student-name">Nombre Alumno</span>
-                                    <span class="student-id">000000</span>
-                                </div>
+                            <div class="students-list" id="students-list">
                             </div>
                         </div>
                     </div>
 
-                    <div class="group-container links-section">
+                    <div class="group-container links-section" id="modal-links-section">
                         <div class="info-row">
                             <span class="label">VIDEO PROMOCIONAL:</span>
                             <div class="link-wrapper">
@@ -64,7 +56,7 @@
                         <div class="info-row">
                             <span class="label">DESCRIPCIÓN:</span>
                             <p class="description-text" id="modal-descripcion">
-                                Aquí va la descripción detallada del proyecto...
+                            
                             </p>
                         </div>
                     </div>

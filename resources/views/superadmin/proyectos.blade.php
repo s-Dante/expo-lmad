@@ -135,7 +135,7 @@
                             <td>{{ $aprobadendos->profesor->nombre . ' ' . $aprobadendos->profesor->apellido_paterno . ' ' . $aprobadendos->profesor->apellido_materno}}
                             </td>
                             <td>
-                                <button class="btn-ver" onclick="abrirModal()">
+                                <button class="btn-ver" onclick="abrirModal({{ $aprobadendos }})">
                                     Ver proyecto
                                 </button>
                             </td>

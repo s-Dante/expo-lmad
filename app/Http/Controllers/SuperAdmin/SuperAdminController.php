@@ -34,7 +34,7 @@ class SuperAdminController extends Controller
             ->get();
 
         $proyectosAprobados = Proyecto::where('estatus', 'aprobado')
-            ->with(['materia', 'profesor'])
+            ->with(['materia', 'profesor', 'autores', 'multimedia'])
             ->get();
             
         //$proyectosAprobados = Proyecto::where('estatus', 'aprobado');

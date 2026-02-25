@@ -62,13 +62,13 @@ function actualizarPaginacion() {
         const fin = inicio + filasPorPagina;
 
         if (index >= inicio && index < fin) {
-            fila.style.display = ""; 
+            fila.style.display = "";
         } else {
             fila.style.display = "none";
         }
     });
 
- 
+
     pageDisplay.innerText = paginaActual;
 
     btnPrev.style.opacity = paginaActual === 1 ? "0.3" : "1";
@@ -98,18 +98,112 @@ btnNext.addEventListener("click", () => {
 actualizarPaginacion();
 
 /*----- LÓGICA: Modal -----*/
-function abrirModal() {
+function abrirModal(proyecto) {
     const modal = document.getElementById("modal-proyecto");
+    const copyIconUrl = modal.getAttribute('data-copy-icon');
+    
     if (modal) {
         modal.classList.remove("hidden");
-        document.body.style.overflow = "hidden"; 
+        document.body.style.overflow = "hidden";
+
+        console.log(proyecto);
+
+        const modalTitulo = document.getElementById("modal-titulo");
+        modalTitulo.innerText = '';
+        modalTitulo.innerText = proyecto.titulo;
+
+        const modalMateria = document.getElementById("modal-materia");
+        modalMateria.innerText = '';
+        modalMateria.innerText = proyecto.materia.nombre;
+
+        const modalId = document.getElementById("modal-id");
+        modalId.innerText = '';
+        modalId.innerText = proyecto.id;
+
+        const modalSemestre = document.getElementById("modal-semestre");
+        modalSemestre.innerText = '';
+        modalSemestre.innerText = proyecto.materia.semestre;
+
+        const modalDocente = document.getElementById("modal-maestro");
+        modalDocente.innerText = '';
+        modalDocente.innerText = proyecto.profesor.nombre + " " + proyecto.profesor.apellido_paterno + " " + proyecto.profesor.apellido_materno;
+
+        const modalStudentList = document.getElementById("students-list");
+        modalStudentList.innerHTML = '';
+        proyecto.autores.forEach(autor => {
+            modalStudentList.innerHTML +=
+                `<div class="student-item">
+                <span class="student-name">${autor.nombre + " " + autor.apellido_paterno + " " + autor.apellido_materno}</span>
+                <span class="student-id">${autor.matricula}</span>
+            </div>`;
+        });
+
+        const modalDescripcion = document.getElementById("modal-descripcion");
+        modalDescripcion.innerText = '';
+        modalDescripcion.innerText = proyecto.descripcion;
+
+        const modalImagen = document.getElementById("modal-imagen");
+        modalImagen.src = '';
+        modalImagen.alt = 'No hay imagen';
+
+        const modalLinks = document.getElementById("modal-links-section");
+        modalLinks.innerHTML = '';
+
+
+        proyecto.multimedia.forEach(multimedia => {
+            if (multimedia.tipo === 'github') {
+                modalLinks.innerHTML +=
+                    `<div class="info-row">
+                    <span class="label">ENLACE A PROYECTO (GITHUB):</span>
+                    <div class="link-wrapper">
+                        <a href="${multimedia.url}" id="modal-proyecto-url" class="url-text" target="_blank">${multimedia.url}</a>
+                        <button class="btn-copy">
+                            <img src="${copyIconUrl}" alt="Copiar">
+                        </button>
+                     </div>
+                </div>`;
+            }
+
+            if (multimedia.tipo === 'drive') {
+                modalLinks.innerHTML +=
+                    `<div class="info-row">
+                    <span class="label">ENLACE A PROYECTO (DRIVE):</span>
+                        <div class="link-wrapper">
+                            <a href="${multimedia.url}" id="modal-proyecto-url" class="url-text" target="_blank">${multimedia.url}</a>
+                            <button class="btn-copy">
+                                <img src="${copyIconUrl}" alt="Copiar">
+                            </button>
+                        </div>
+                </div>`;
+            }
+
+            if (multimedia.tipo === 'youtube') {
+                modalLinks.innerHTML +=
+                    `<div class="info-row">
+                    <span class="label">VIDEO PROMOCIONAL (YOUTUBE):</span>
+                        <div class="link-wrapper">
+                            <a href="${multimedia.url}" id="modal-video-url" class="url-text" target="_blank">${multimedia.url}</a>
+                            <button class="btn-copy">
+                                <img src="${copyIconUrl}" alt="Copiar">
+                            </button>
+                        </div>
+                </div>`;
+            }
+
+
+            if (multimedia.tipo === 'imagen') {
+                modalImagen.src = multimedia.url;
+            }
+        });
+
     }
 }
+
 function cerrarModal() {
     const modal = document.getElementById("modal-proyecto");
     if (modal) {
         modal.classList.add("hidden");
-        document.body.style.overflow = "auto"; 
+        document.body.style.overflow = "auto";
     }
 }
 
