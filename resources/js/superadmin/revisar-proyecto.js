@@ -79,12 +79,11 @@ function revisarInfo(data) {
             return response.json();
         })
         .then(dataServidor => {
-            console.log("Respuesta de Laravel:", dataServidor);
-            // Ahora que confirmaste que llegó bien, puedes redirigir:
             window.location.replace('/superadmin/proyectos');
         })
         .catch(error => {
             console.error("Error: ", error);
         });
+        
 
 }

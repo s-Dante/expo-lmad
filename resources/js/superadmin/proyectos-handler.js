@@ -98,10 +98,13 @@ btnNext.addEventListener("click", () => {
 actualizarPaginacion();
 
 /*----- LÓGICA: Modal -----*/
+var idProyecto = 0;
+
 function abrirModal(proyecto) {
     const modal = document.getElementById("modal-proyecto");
     const copyIconUrl = modal.getAttribute('data-copy-icon');
-    
+    idProyecto = 0;
+
     if (modal) {
         modal.classList.remove("hidden");
         document.body.style.overflow = "hidden";
@@ -119,6 +122,7 @@ function abrirModal(proyecto) {
         const modalId = document.getElementById("modal-id");
         modalId.innerText = '';
         modalId.innerText = proyecto.id;
+        idProyecto = proyecto.id;
 
         const modalSemestre = document.getElementById("modal-semestre");
         modalSemestre.innerText = '';
@@ -201,6 +205,7 @@ function abrirModal(proyecto) {
 
 function cerrarModal() {
     const modal = document.getElementById("modal-proyecto");
+    idProyecto = 0;
     if (modal) {
         modal.classList.add("hidden");
         document.body.style.overflow = "auto";
@@ -223,4 +228,32 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.target === modalOverlay) cerrarModal();
         };
     }
+});
+
+const mandarRevisionButton = document.getElementById("btn-mandar-modal");
+
+mandarRevisionButton.addEventListener("click", () => {
+
+    if (idProyecto === 0) {
+        alert("No es un numero valido para mandar a revision");
+        return;
+    }
+
+    fetch(`/superadmin/mandarRevisionProyecto/${idProyecto}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en el servidor: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(dataServido => {
+            cerrarModal();
+            window.location.reload();
+
+        })
+        .catch(error => {
+            console.error("Error: ", error);
+        });
+
+
 });

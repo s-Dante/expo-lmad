@@ -42,7 +42,7 @@ class SuperAdminController extends Controller
         return view('superadmin.proyectos', compact('materias', 'profesores', 'proyectosRevision', 'proyectosAprobados'));
     }
 
-    public function revisionProyecto($id)
+    public function paginaRevisionProyecto($id)
     {
         $proyecto = Proyecto::with(['materia', 'profesor', 'autores', 'multimedia'])->findOrFail($id);
         //dd($proyecto);
@@ -62,6 +62,17 @@ class SuperAdminController extends Controller
         return response()->json([
             'mensaje' => 'Datos recibidos correctamente',
             'recibido' => $request->all()
+        ]);
+
+    }
+    public function mandarRevisionProyecto($id){
+
+        $proyecto = Proyecto::findOrFail($id);
+        $proyecto->estatus = 'enviado';
+        $proyecto->save();
+
+        return response()->json([
+            'mensaje' => 'Proyecto enviado para revisión'
         ]);
 
     }
