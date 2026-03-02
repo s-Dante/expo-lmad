@@ -8,7 +8,8 @@ h1 {
 }
 
 h2,
-h3 {
+h3,
+h4 {
     font-family: var(--font-main);
     margin: 0rem;
 }
@@ -20,6 +21,11 @@ h2 {
 h3 {
     font-size: 1rem;
     color: var(--clr-purple-200);
+}
+
+h4 {
+    font-size: 1rem;
+    color: var(--clr-blue-300);
 }
 
 span {
@@ -46,11 +52,38 @@ main {
 }
 
 .div-project-data p {
+    font-family: var(--font-alt);
     text-align: justify;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     margin: 0%;
     margin-top: 1rem;
     color: var(--clr-white);
+}
+
+.div-project-data h2,
+h3,
+h4 {
+    text-align: justify;
+}
+
+.div-project-team {
+    margin-top: 15px;
+}
+
+.div-project-team p {
+    font-size: 0.9rem;
+    margin: 5px;
+    font-family: var(--font-main);
+}
+
+.div-project-teacher p {
+    color: var(--clr-gray);
+    font-weight: 100;
+}
+
+.div-project-teacher span {
+    font-size: 0.9rem;
+    font-weight: 100;
     font-family: var(--font-main);
 }
 
@@ -104,8 +137,13 @@ main {
 }
 
 .legend {
-    font-family: var(--font-dislay);
-    font-size: 0.8rem;
+    font-size: 1rem;
+    margin: 0%;
+}
+
+.div-accepted-btns{
+    display: grid;
+    gap: 0.5rem;
 }
 
 @media (min-width: 650px) {
@@ -116,7 +154,7 @@ main {
 }
 
 @media (min-width: 900px) {
-    .section-expositions {        
+    .section-expositions {
         grid-template-columns: auto auto;
     }
 
@@ -124,14 +162,18 @@ main {
         padding: 3.5rem;
         height: auto;
     }
+
+    .div-project-header {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+    }
 }
 
 @media (min-width: 1200px) {
-    /*
-    .section-expositions {
-        grid-template-columns: auto auto auto;
+    .div-accepted-btns{
+        grid-template-columns: auto auto;
     }
-    */
 }
 
 @media (min-width: 1350px) {

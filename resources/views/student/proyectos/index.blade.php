@@ -17,14 +17,13 @@
     <x-sidebar />
 
     <main>
-        <h1>Exposiciones</h1>
+        <h1>Proyectos a exponer</h1>
 
         <section class="section-expositions">
 
             @forelse($proyectos as $proyecto)
 
-                <x-student.project-card titulo="{{ $proyecto->titulo ?? 'Sin asignar.' }}" materia="{{ $proyecto->materia->nombre }}"
-                    estado="{{ $proyecto->estatus }}" descripcion="{{ $proyecto->descripcion ?? 'Sin asignar.' }}" />
+                <x-student.project-card :data="$proyecto" />
 
             @empty
             @endforelse
