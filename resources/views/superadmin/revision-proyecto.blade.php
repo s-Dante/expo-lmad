@@ -146,7 +146,9 @@
                                 </button>
                             </div>
 
-                            <button class="btn-pill btn-purple">Regresar</button>
+                            <button class="btn-pill btn-purple" onclick="window.location.href='/superadmin/proyectos'">
+                               Regresar
+                            </button>
                         </div>
 
                         <div class="row-bottom">
