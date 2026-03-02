@@ -34,10 +34,13 @@
 
 /* ----- Card del proyecto ----- */
 .project-card {
+    overflow-y: auto;
     position: relative;
     width: 100%;
     max-width: 1100px;
+
     padding: 2px;
+
     background: linear-gradient(
         to top,
         var(--contrast-color-E),
@@ -54,9 +57,21 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    min-height: 400px;
+    max-height: 85vh;
+    overflow-y: auto;
 }
-
+.card-inner::-webkit-scrollbar {
+     width: 4px;
+}
+.card-inner::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+.card-inner::-webkit-scrollbar-thumb {
+    background: var(--contrast-color-D);
+    border-radius: 10px;
+    box-shadow: 0 0 5px var(--contrast-color-D);
+}
 .inner-title {
     text-align: center;
     font-family: var(--font-main);
@@ -195,10 +210,11 @@
 }
 
 /*Descripción*/
+
 .description-text {
     color: var(--text-primary);
     font-family: var(--font-alt);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     line-height: 1;
     margin: 0;
     text-align: justify;
@@ -239,7 +255,6 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    margin-top: 30px;
 }
 .action-group {
     display: flex;
