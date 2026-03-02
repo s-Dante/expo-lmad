@@ -109,7 +109,7 @@
                                     onclick="window.location.href='/superadmin/revision-proyecto/{{ $revisadendo->id }}'">
                                     Revisar proyecto
                                     <img src="{{ asset('assets/superadmin/revisar 1.png') }}" alt="Revisar"
-                                        class="btn-icon">
+                                        class="btn-icon"/>
                                 </button>
                             </td>
                         </tr>

@@ -50,7 +50,6 @@
     overflow: hidden;
     margin-bottom: 2rem;
 }
-
 .card-inner {
     background: var(--bg-page-gradient-invert);
     border-radius: 13px;
@@ -61,7 +60,7 @@
     overflow-y: auto;
 }
 .card-inner::-webkit-scrollbar {
-     width: 4px;
+    width: 4px;
 }
 .card-inner::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
@@ -210,11 +209,10 @@
 }
 
 /*Descripción*/
-
 .description-text {
     color: var(--text-primary);
     font-family: var(--font-alt);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1;
     margin: 0;
     text-align: justify;
@@ -290,7 +288,6 @@
 
     transition: all 0.3s ease;
 }
-
 .btn-magenta {
     background: var(--gradient-btn-negative);
 }
@@ -305,4 +302,112 @@
 
 .hidden {
     display: none !important;
+}
+
+@media (max-width: 650px) {
+    .project-card {
+        width: 90%;
+        max-width: 850px;
+        margin: auto;
+    }
+    .card-inner {
+        padding: 1.5rem;
+        max-height: 80vh;
+    }
+    .inner-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: -10px;
+        margin-bottom: -15px;
+    }
+    .inner-subject {
+        font-size: 1.2rem;
+    }
+    .modal-x-btn {
+        top: 8px;
+        right: 8px;
+        font-size:2.5rem;
+    }
+    /* Informaciòn */
+    .project-content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .label {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 2px;
+        font-size: 0.9rem;
+    }
+
+    .value,
+    .student-item,
+    .url-text {
+        font-size: 1rem;
+        padding-left: 8px;
+    }
+    .header-info .label {
+        width: auto;
+        text-align: left;
+        margin-right: 0;
+    }
+    .header-info .value {
+        font-size: 0.9rem;
+    }
+    .header-info .val-id {
+        margin-right: -10px;
+    }
+    .header-info .info-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .image-side {
+        width: 90%;
+        order: -1;
+        margin-bottom: 20px;
+    }
+    .link-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+    }
+    .btn-copy {
+        width: 35px;
+        height: 35px;
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .row-top,
+    .row-bottom {
+        gap: 20px;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-right: 35px;
+    }
+
+    .description-text {
+        font-size: 1rem;
+        padding-right: 0px;
+    }
+    .return-label {
+        font-size: 1rem;
+    }
+
+    .btn-pill {
+        font-size: 0.9rem;
+        width: 200px;
+        height: 40px;
+    }
 }

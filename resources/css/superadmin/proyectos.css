@@ -497,14 +497,15 @@ body {
         font-size: 0.6rem;
         height: 32px;
     }
+    .btn-icon {
+        width: 30px;
+        margin-left: -5px;
+    }
+
     .btn-ver {
         height: 32px;
         padding: 0 22px;
         font-size: 0.6rem;
-    }
-    .btn-icon {
-        width: 20px;
-        height: 20px;
     }
 
     .page-arrow img {
