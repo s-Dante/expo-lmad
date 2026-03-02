@@ -27,6 +27,8 @@ export default defineConfig({
                 "resources/css/student/registro-proyecto.css",
                 "resources/css/student/lista-exposiones.css",
                 "resources/css/student/revisar-exposicion.css",
+                "resources/css/student/qr.css",
+
                 "resources/css/superadmin/dashboard.css",
                 "resources/css/superadmin/revision-proyecto.css",
                 "resources/css/superadmin/proyectos.css",
