@@ -6,7 +6,7 @@ main {
     position: absolute;
     padding: 1rem;
     width: -webkit-fill-available;
-    height: -webkit-fill-available;
+    height: fit-content;
     justify-content: center;
     display: grid;
     align-items: center;
@@ -233,6 +233,7 @@ main {
         margin-left: 7rem;
         top: 0%;
         padding: 0%;
+        height: -webkit-fill-available;
     }
 
     .card {
