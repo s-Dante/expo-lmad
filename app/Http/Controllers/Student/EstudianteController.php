@@ -222,7 +222,8 @@ class EstudianteController extends Controller
 
         $softwares = $this->studentRepo->getAllSoftwares();
 
-        return view('student.proyectos.show', compact('proyecto', 'softwares'));
+        return back()->with('success', 'El proyecto ha sido guardado exitosamente.');
+        //return view('student.proyectos.show', compact('proyecto', 'softwares'));
     }
 
     public function send(Request $request, $id)

@@ -196,7 +196,7 @@ center {
 }
 
 .three-rows-grid {
-    width: min-content;
+    width: auto;
     display: grid;
     gap: 2rem;
 }
@@ -350,4 +350,16 @@ center {
     .three-columns-grid {
         justify-items: center;
     }
+}
+
+@keyframes fadeInOut {
+    from{
+        opacity: 1;
+    } to{
+        opacity: 0.18;
+    }
+}
+
+.btn-icon:active{
+    background: var(--clr-blue-300);
 }

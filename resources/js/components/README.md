@@ -1,7 +1,8 @@
 DOCUMENTACIÓN
 
 ============================= ALERTS.JS =========================================
-alerts personalizadas para mensajes rápidos o validaciones
+alerts personalizadas para mensajes rápidos o validaciones.
+-archivo de ejem. 'validations-projects.js'
 
     ========== para poner en otro .js ============
         import { showModal } from "../components/alerts.js";
@@ -25,13 +26,52 @@ alerts personalizadas para mensajes rápidos o validaciones
         return;
 
 
-    ========= NOTA =========
-    No necesita importarse en el .blade.php
+
+    ========== para mensajes de error del back ===========
+    ------------------- archivo de ejem. EstudianteController.php
+
+
+    ------------------- módulo de .js al final del .blade.php (antes del </body>)
+      <script type="module">
+         import { showServerMessages } from "{{ Vite::asset('resources/js/components/flash-alerts.js') }}";
+
+         showServerMessages(
+               @json(session('success')),
+               @json(session('error')),
+               @json($errors->all())
+         );
+      </script>
+
+    -------------- retorno para los mensajes desde el Controller.php ---------------
+    
+    ....................... para el caso de errores:
+    return back()->with('error', 'Mensaje de error.')->withInput();
+
+
+    ...................... para operaciones realizadas correctamente:
+    return redirect()->route('página')->with('success', 'Mensaje exitoso.');
+
+
+    ...................... para aborts no previstos:
+    el módulo concatena los errores en la operación y las manda en la variable $errors
 
 
 
 =============================== VALIDATIONS.JS =======================================
-funciones con validaciones rápidas para formularios con alerts predefinidas incluídas
+funciones con validaciones rápidas para formularios con alerts predefinidas incluídas.
+-archivo de ejem. 'validations-projects.js'
+
+================== como importarlo en otro .js =======================
+import {
+validation_Length,
+validation_Link,
+validation_Image,
+validation_ImageSize,
+validation_Select,
+validation_TextClean
+} from "../components/validations.js";
+
+================== como mandar a llamar ===============================
 
     1. validation_Length(data, limit, input)
        Verifica si la longitud de 'data' es mayor a 'limit'.

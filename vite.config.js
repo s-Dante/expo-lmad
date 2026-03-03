@@ -27,6 +27,9 @@ export default defineConfig({
                 "resources/css/student/registro-proyecto.css",
                 "resources/css/student/lista-exposiones.css",
                 "resources/css/student/revisar-exposicion.css",
+                "resources/css/student/qr.css",
+                "resources/css/student/dashboard.css",
+
                 "resources/css/superadmin/dashboard.css",
                 "resources/css/superadmin/revision-proyecto.css",
                 "resources/css/superadmin/proyectos.css",
@@ -41,7 +44,8 @@ export default defineConfig({
                 "resources/js/guest/revealAnimation.js",
 
                 "resources/js/components/sidebar.js",
-                "resources/js/components/alerts.js",
+                'resources/js/components/alerts.js',
+                "resources/js/components/show-hide-elements.js",
 
                 "resources/js/teacher/agregarIntegrantes.js",
                 "resources/js/teacher/mostrarInfoMateria.js",
@@ -57,6 +61,8 @@ export default defineConfig({
                 "resources/js/student/create-project.js",
                 "resources/js/student/update-project.js",
                 "resources/js/student/load-portrait.js",
+                "resources/js/student/actions-revisar-exposicion.js"
+
             ],
             refresh: true,
         }),

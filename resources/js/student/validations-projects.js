@@ -48,7 +48,7 @@ export async function update_project(first_time) {
         if (validation_TextClean(name, "nombre del proyecto")) return true;
 
         if (validation_Length(token, 0, 255, "token")) return true;
-        if (validation_Select(softwares, "software utiliziado")) return true;
+        if (validation_Select(softwares, "software utilizado")) return true;
     }
 
     let description = input_description.value.trim();
