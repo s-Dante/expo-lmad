@@ -100,6 +100,27 @@ actualizarPaginacion();
 /*----- LÓGICA: Modal -----*/
 var idProyecto = 0;
 
+window.prepararModal = prepararModal;
+
+async function prepararModal(id) {
+
+    try {
+        const response = await fetch(`/api/obtener-proyecto-id/${id}`);
+
+        if (!response.ok) {
+            throw new Error("No se pudo obtener la información del proyecto");
+        }
+
+        const proyecto = await response.json();
+
+        abrirModal(proyecto);
+
+    } catch (error) {
+        console.error("Error al cargar el proyecto:", error);
+
+    }
+}
+
 function abrirModal(proyecto) {
     const modal = document.getElementById("modal-proyecto");
     const copyIconUrl = modal.getAttribute('data-copy-icon');
@@ -109,7 +130,7 @@ function abrirModal(proyecto) {
         modal.classList.remove("hidden");
         document.body.style.overflow = "hidden";
 
-        console.log(proyecto);
+        //console.log(proyecto);
 
         const modalTitulo = document.getElementById("modal-titulo");
         modalTitulo.innerText = '';

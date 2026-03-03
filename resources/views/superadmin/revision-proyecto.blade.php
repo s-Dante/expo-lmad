@@ -74,31 +74,51 @@
                         </div>
 
                         <div class="group-container links-section">
-                            <div class="info-row">
-                                <span class="label">VIDEO PROMOCIONAL:</span>
-                                <div class="link-wrapper">
-                                    @foreach ($proyecto->multimedia as $multimedia)
-                                        @if ($multimedia->tipo == 'youtube')
-                                            <a href="{{ $multimedia->url }}" class="url-text">{{ $multimedia->url }}</a>
-                                            <button class="btn-copy"><img src="{{ asset('assets/teacher/CopiarVector.png') }}"
-                                                    alt="Copiar"></img></button>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
+                            @foreach ($proyecto->multimedia as $multimedia)
 
-                            <div class="info-row">
-                                <span class="label">ENLACE A PROYECTO:</span>
-                                <div class="link-wrapper">
-                                    @foreach ($proyecto->multimedia as $multimedia)
-                                        @if ($multimedia->tipo == 'drive' || $multimedia->tipo == 'github')
-                                            <a href="{{ $multimedia->url }}" class="url-text">{{ $multimedia->url }}</a>
-                                            <button class="btn-copy"><img src="{{ asset('assets/teacher/CopiarVector.png') }}"
-                                                    alt="Copiar"></img></button>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
+                                {{-- Caso GITHUB --}}
+                                @if ($multimedia->tipo === 'github')
+                                    <div class="info-row">
+                                        <span class="label">ENLACE A PROYECTO (GITHUB):</span>
+                                        <div class="link-wrapper">
+                                            <a href="{{ $multimedia->url }}" class="url-text"
+                                                target="_blank">{{ $multimedia->url }}</a>
+                                            <button class="btn-copy">
+                                                <img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar">
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                {{-- Caso DRIVE --}}
+                                @if ($multimedia->tipo === 'drive')
+                                    <div class="info-row">
+                                        <span class="label">ENLACE A PROYECTO (DRIVE):</span>
+                                        <div class="link-wrapper">
+                                            <a href="{{ $multimedia->url }}" class="url-text"
+                                                target="_blank">{{ $multimedia->url }}</a>
+                                            <button class="btn-copy">
+                                                <img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar">
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                {{-- Caso YOUTUBE --}}
+                                @if ($multimedia->tipo === 'youtube')
+                                    <div class="info-row">
+                                        <span class="label">VIDEO PROMOCIONAL (YOUTUBE):</span>
+                                        <div class="link-wrapper">
+                                            <a href="{{ $multimedia->url }}" class="url-text"
+                                                target="_blank">{{ $multimedia->url }}</a>
+                                            <button class="btn-copy">
+                                                <img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar">
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+
+                            @endforeach
                         </div>
 
                         <div class="group-container description-section">
@@ -147,7 +167,7 @@
                             </div>
 
                             <button class="btn-pill btn-purple" onclick="window.location.href='/superadmin/proyectos'">
-                               Regresar
+                                Regresar
                             </button>
                         </div>
 

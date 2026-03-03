@@ -9,7 +9,7 @@ use App\Models\Estudiante;
 
 class ApiController extends Controller
 {
-    public function buscarEstudiante($matricula)
+    public function buscarEstudiantePorMatricula($matricula)
     {
         $estudiante = Estudiante::where('matricula', $matricula)->first();
 
@@ -48,6 +48,21 @@ class ApiController extends Controller
         }
 
 
-}
+    }
+
+    public function obtenerProyectoPorId($id)
+    {
+        $proyecto = Proyecto::where('id', $id)
+            ->with(['materia', 'profesor', 'autores', 'multimedia'])
+            ->findOrFail($id);
+
+        if (!$proyecto) {
+            return response()->json(['error' => 'Proyecto no encontrado'], 404);
+        }
+
+        return response()->json($proyecto);
+
+
+    }
 
 }

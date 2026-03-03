@@ -160,5 +160,6 @@ La verdad creo que dentro de lo planeado no teniamos pensado algo asi, pero es c
 
 */
 
-Route::get('/api/buscar-estudiante/{matricula}', [App\Http\Controllers\api\ApiController::class, 'buscarEstudiante']);
+Route::get('/api/buscar-estudiante/{matricula}', [App\Http\Controllers\api\ApiController::class, 'buscarEstudiantePorMatricula']);
 Route::get('/api/obtener-proyecto-token/{token}', [App\Http\Controllers\api\ApiController::class, 'obtenerProyectoPorToken']);
+Route::get('/api/obtener-proyecto-id/{id}', [App\Http\Controllers\api\ApiController::class, 'obtenerProyectoPorId']);
