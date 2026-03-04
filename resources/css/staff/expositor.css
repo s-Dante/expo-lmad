@@ -114,3 +114,48 @@ body {
     margin-bottom: 20px;
     filter: drop-shadow(0 0 10px var(--contrast-color-D));
 }
+
+@media (max-width: 650px) {
+    .main-content {
+        margin-left: 0;
+        margin-top: 50px;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .text-main {
+        font-size: 1.6rem;
+        margin-bottom: 35px;
+        margin-top: 35px;
+    }
+
+    .scanner-container {
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 0rem;
+        width: 90%;
+    }
+    .card {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 25px 20px;
+    }
+    .card-left,
+    .card-right {
+        flex: none;
+        width: 100%;
+    }
+
+    .barcode-ico {
+        width: 100%;
+        max-width: 230px;
+    }
+    .btn-primary {
+        width: 100%;
+        max-width: 280px;
+        font-size: 0.8rem;
+    }
+    .custom-select {
+        font-size: 0.8rem;
+    }
+}
