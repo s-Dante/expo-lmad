@@ -34,7 +34,9 @@ export default defineConfig({
                 "resources/css/superadmin/revision-proyecto.css",
                 "resources/css/superadmin/proyectos.css",
                 "resources/css/components/superadmin/modal-ver.css",
-                
+
+                "resources/css/staff/expositor.css",
+
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
                 "resources/js/guest/cronogramaS1.js",
@@ -44,7 +46,7 @@ export default defineConfig({
                 "resources/js/guest/revealAnimation.js",
 
                 "resources/js/components/sidebar.js",
-                'resources/js/components/alerts.js',
+                "resources/js/components/alerts.js",
                 "resources/js/components/show-hide-elements.js",
 
                 "resources/js/teacher/agregarIntegrantes.js",
@@ -60,8 +62,7 @@ export default defineConfig({
                 "resources/js/student/create-project.js",
                 "resources/js/student/update-project.js",
                 "resources/js/student/load-portrait.js",
-                "resources/js/student/actions-revisar-exposicion.js"
-
+                "resources/js/student/actions-revisar-exposicion.js",
             ],
             refresh: true,
         }),

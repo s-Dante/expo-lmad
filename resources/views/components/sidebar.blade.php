@@ -92,7 +92,6 @@
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
             <span class="span-sidebar">Expositores</span>
         </a>
-
         @endif
     </nav>
 
