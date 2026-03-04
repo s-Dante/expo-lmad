@@ -89,7 +89,6 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
     Route::post("/superadmin/actualizarRevisionProyecto", [SuperAdminController::class, 'actualizarRevisionProyecto']);
 
     Route::get('/superadmin/mandarRevisionProyecto/{id}', [SuperAdminController::class, 'mandarRevisionProyecto']);
-
 });
 
 //Rutas de Admin
@@ -150,6 +149,10 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
     Route::get('/staff/dashboard', function () {
         return view('staff.dashboard');
     })->name('staff.dashboard');
+
+    Route::get('/staff/expositor', function () {
+        return view('staff.expositor');
+    })->name('staff.expositor');
 });
 
 

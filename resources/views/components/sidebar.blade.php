@@ -12,8 +12,9 @@
         <img class="logo-sidebar" src="{{ asset('assets/guest/LOGOEXPO2.png') }}" alt="" />
     </div>
 
-    <!-- NAVBAR PARA PROFESORES -->
+
     <nav class="sidebar-nav">
+        <!-- NAVBAR PARA PROFESORES -->
         @if(auth()->user()->rol == 'profesor')
 
         <a href="{{ route('teacher.registro-expositores') }}" class="sidebar-item ">
@@ -65,6 +66,33 @@
             <span class="span-sidebar">Proyectos</span>
         </a>
         <!-- FIN DEL NAVBAR PARA SUPER ADMIN -->
+
+        @elseif(auth()->user()->rol == 'staff')
+        <a href="{{ route('staff.dashboard') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
+            <span class="span-sidebar">Inicio</span>
+        </a>
+
+        <a href="" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Eventos-1.png') }}" alt="" />
+            <span class="span-sidebar">Eventos</span>
+        </a>
+
+        <a href="" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+            <span class="span-sidebar">Visitantes</span>
+        </a>
+
+        <a href="" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Empresas-1.png') }}" alt="" />
+            <span class="span-sidebar">Empresas</span>
+        </a>
+
+        <a href="" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
+            <span class="span-sidebar">Expositores</span>
+        </a>
+
         @endif
     </nav>
 
