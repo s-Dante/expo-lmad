@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://unpkg.com/html5-qrcode"></script>
     <title>EXPO LMAD - SuperAdmin</title>
     @vite([
-    "resources/css/staff/expositor.css"
+    "resources/css/staff/expositor.css",
+    "resources/js/staff/qr-handler.js"
     ])
 </head>
 
@@ -24,10 +26,17 @@
         <section class="scanner-container">
 
             <div class="card card-left">
-                <div class="icon-placeholder">
-                    <img src="{{ asset('assets/staff/QR-1.png') }}" alt="Barcode Icon" class="barcode-ico">
+                <div id="reader-container" class="icon-placeholder">
+                    <img src="{{ asset('assets/staff/QR-1.png') }}" alt="Barcode Icon" id="barcode-placeholder" class="barcode-ico">
+                    <div id="reader"></div>
                 </div>
-                <button class="btn-primary">Solicitar permisos de cámara</button>
+                
+                <!--Esto es de prueba para mostrar el valor del QR escaneado, se puede eliminar después-->
+                <div id="scanned-result" style="color: white; margin-top: 10px; margin-bottom: 20px;">
+                    Valor: <span id="qr-value"></span>
+                </div>
+
+                <button id="btn-permissions" class="btn-primary">Solicitar permisos de cámara</button>
             </div>
 
             <div class="card card-right">
@@ -37,7 +46,7 @@
                         <option value="">Selecciona una cámara</option>
                     </select>
                 </div>
-                <button class="btn-primary btn-large">Empezar a escanear</button>
+                <button id="btn-start-scan" class="btn-primary ">Empezar a escanear</button>
             </div>
 
         </section>

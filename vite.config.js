@@ -63,6 +63,8 @@ export default defineConfig({
                 "resources/js/student/update-project.js",
                 "resources/js/student/load-portrait.js",
                 "resources/js/student/actions-revisar-exposicion.js",
+
+                "resources/js/staff/qr-handler.js",
             ],
             refresh: true,
         }),
