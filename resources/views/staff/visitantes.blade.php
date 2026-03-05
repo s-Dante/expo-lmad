@@ -8,7 +8,8 @@
     <script src="https://unpkg.com/html5-qrcode"></script>
     <title>EXPO LMAD - SuperAdmin</title>
     @vite([
-    "resources/css/staff/visitantes.css"
+    "resources/css/staff/visitantes.css",
+    "resources/js/staff/visitantes-actions.js"
     ])
 </head>
 
@@ -37,8 +38,10 @@
             </div>
 
             <div class="form-group">
-                <label for="matricula">Matrícula:</label>
-                <input type="text" id="matricula" name="matricula" required>
+                <div id="container-matricula">
+                    <label for="matricula">Matrícula:</label>
+                    <input type="text" id="matricula" name="matricula" required>
+                </div>
 
                 <label for="nombre">Nombre completo:</label>
                 <input type="text" id="nombre" name="nombre" required>

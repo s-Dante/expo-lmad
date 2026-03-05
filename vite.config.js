@@ -66,6 +66,7 @@ export default defineConfig({
                 "resources/js/student/actions-revisar-exposicion.js",
 
                 "resources/js/staff/qr-handler.js",
+                "resources/js/staff/visitantes-actions.js",
             ],
             refresh: true,
         }),
