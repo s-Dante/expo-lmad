@@ -36,6 +36,7 @@ export default defineConfig({
                 "resources/css/components/superadmin/modal-ver.css",
 
                 "resources/css/staff/expositor.css",
+                "resources/css/staff/visitantes.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",

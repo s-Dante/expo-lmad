@@ -153,6 +153,10 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
     Route::get('/staff/expositor', function () {
         return view('staff.expositor');
     })->name('staff.expositor');
+
+     Route::get('/staff/visitantes', function () {
+        return view('staff.visitantes');
+    })->name('staff.visitantes');
 });
 
 
