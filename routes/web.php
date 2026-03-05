@@ -157,6 +157,14 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
      Route::get('/staff/visitantes', function () {
         return view('staff.visitantes');
     })->name('staff.visitantes');
+
+     Route::get('/staff/empresas', function () {
+        return view('staff.empresas');
+    })->name('staff.empresas');
+
+        Route::get('/staff/empresa/asistencia', function () {
+        return view('staff.empresas-asist');
+    })->name('staff.empresa-asistencia');
 });
 
 

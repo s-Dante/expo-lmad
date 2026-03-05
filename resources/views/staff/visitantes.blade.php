@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://unpkg.com/html5-qrcode"></script>
-    <title>EXPO LMAD - SuperAdmin</title>
+    <title>EXPO LMAD - Staff</title>
     @vite([
     "resources/css/staff/visitantes.css",
     "resources/js/staff/visitantes-actions.js"

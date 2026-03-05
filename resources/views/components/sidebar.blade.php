@@ -83,7 +83,7 @@
             <span class="span-sidebar">Visitantes</span>
         </a>
 
-        <a href="" class="sidebar-item ">
+        <a href="{{ route('staff.empresas') }}" class="sidebar-item ">
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Empresas-1.png') }}" alt="" />
             <span class="span-sidebar">Empresas</span>
         </a>
