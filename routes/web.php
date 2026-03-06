@@ -153,6 +153,8 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
     Route::get('/staff/expositor', function () {
         return view('staff.expositor');
     })->name('staff.expositor');
+
+    Route::get('/staff/registro-asistencia-expositor/{matricula}', [App\Http\Controllers\Staff\StaffController::class, 'registrarAsistenciaExpositor']);
 });
 
 

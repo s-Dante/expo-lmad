@@ -1,7 +1,9 @@
 const btnPermissions = document.getElementById("btn-permissions");
 const cameraSelect = document.getElementById("camera-select");
 const btnStartScan = document.getElementById("btn-start-scan");
-const qrValueSpan = document.getElementById("qr-value");
+//const qrValueSpan = document.getElementById("qr-value");
+//const studentNameSpan = document.getElementById("student-name");
+const registrarAsistenciaButton = document.getElementById("btn-registrar-asistencia");
 const scanner = new Html5Qrcode("reader");
 
 cameraSelect.addEventListener("change", () => {
@@ -70,19 +72,107 @@ function ejecutarStart(id) {
         });
 }
 
-function handleSuccess(value) {
-    scanner
-        .stop()
-        .then(() => {
-            qrValueSpan.innerText = value;
-            document.getElementById("scanned-result").style.display = "block";
+const modalRegistrarAsistencia = document.getElementById("fondo-oscuro-modal");
+var matriculaScaneada = "";
+var nombreExpositorScaneado = "";
 
-            resetInterface();
+async function handleSuccess(value) {
+    try {
+        await scanner.stop();
 
+        let nombreExpositor = await obtenerExpositorPorMatricula(value);
+
+        //document.getElementById("scanned-result").style.display = "block";
+        //qrValueSpan.innerText = value;
+        matriculaScaneada = value;
+        //studentNameSpan.innerText = nombreExpositor;
+        nombreExpositorScaneado = nombreExpositor || "No encontrado";
+        abrirModal();
+
+        resetInterface();
+    } catch (err) {
+        console.error("Error en el proceso:", err);
+    }
+
+}
+
+async function obtenerExpositorPorMatricula(matricula) {
+    try {
+        const response = await fetch(`/api/buscar-estudiante/${matricula}`);
+
+        if (!response.ok) {
+            console.warn(`Estudiante con matrícula ${matricula} no encontrado.`);
+            return 'No encontrado';
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+            return data.nombre;
+        } else {
+            return 'No encontrado';
+        }
+    } catch (error) {
+        console.error("Error de red o conexión:", error);
+        return 'Error de conexión';
+    }
+}
+
+function abrirModal() {
+    modalRegistrarAsistencia.style.display = "flex";
+    document.getElementById("modal-qr-value").innerText = matriculaScaneada || "Desconocida";
+    document.getElementById("modal-student-name").innerText = nombreExpositorScaneado || "Desconocido";
+}
+
+
+function cerrarModal() {
+    modalRegistrarAsistencia.style.display = "none";
+    matriculaScaneada = "";
+    nombreExpositorScaneado = "";
+}
+
+const btnCloseModal = document.getElementById("btn-close-modal");
+
+btnCloseModal.addEventListener("click", () => {
+    cerrarModal();
+});
+
+registrarAsistenciaButton.addEventListener("click", () => {
+
+    if (matriculaScaneada && matriculaScaneada !== "") {
+        registrarAsistencia(matriculaScaneada);
+    } else {
+        alert("Primero escanea un código QR válido.");
+    }
+});
+
+function registrarAsistencia(matricula) {
+    fetch(`/staff/registro-asistencia-expositor/${matricula}`)
+        .then(response => {
+            return response.json().then(data => {
+                if (!response.ok) {
+                    throw new Error(data.message || "Error desconocido");
+                    cerrarModal();
+                    matriculaScaneada = "";
+                    nombreExpositorScaneado = "";
+                }
+                return data;
+            });
         })
-        .catch((err) => console.error("Error al detener:", err));
-
-    // Aqui puede entrar el backend o sino desde el front con el valor 
+        .then(data => {
+            alert(data.message);
+            cerrarModal();
+            matriculaScaneada = "";
+            nombreExpositorScaneado = "";
+            resetInterface();
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            cerrarModal();
+            matriculaScaneada = "";
+            nombreExpositorScaneado = "";
+            alert(error.message);
+        });
 }
 
 function resetInterface() {
