@@ -33,13 +33,13 @@
                     <tr>
                         <td>Wacom</td>
                         <td>
-                            <button class="btn-accion">
+                            <button class="btn-accion" onclick="window.location.href='/staff/empresas/asistencia'">
                                 Asistencia
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td>Wacom</td>
+                        <td>Wacom2</td>
                         <td>
                             <button class="btn-accion">
                                 Asistencia
@@ -47,7 +47,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Wacom</td>
+                        <td>Wacom3</td>
                         <td>
                             <button class="btn-accion">
                                 Asistencia
