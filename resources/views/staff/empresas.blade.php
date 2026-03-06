@@ -8,13 +8,57 @@
     <script src="https://unpkg.com/html5-qrcode"></script>
     <title>EXPO LMAD - Staff</title>
     @vite([
-    
+    "resources/css/staff/empresas.css"
     ])
 </head>
 
 <body>
     <x-sidebar />
     <main class="main-content">
+        <header>
+            <h1 class="text-main">EMPRESAS</h1>
+            <span class="line"></span>
+        </header>
+
+        <div id="tabla-revision" class="table-wrapper">
+            <table class="proyectos-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>Wacom</td>
+                        <td>
+                            <button class="btn-accion">
+                                Asistencia
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wacom</td>
+                        <td>
+                            <button class="btn-accion">
+                                Asistencia
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wacom</td>
+                        <td>
+                            <button class="btn-accion">
+                                Asistencia
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
 
     </main>
 

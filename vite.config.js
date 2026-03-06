@@ -37,6 +37,7 @@ export default defineConfig({
 
                 "resources/css/staff/expositor.css",
                 "resources/css/staff/visitantes.css",
+                "resources/css/staff/empresas.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
