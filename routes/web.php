@@ -155,6 +155,19 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
     })->name('staff.expositor');
 
     Route::get('/staff/registro-asistencia-expositor/{matricula}', [App\Http\Controllers\Staff\StaffController::class, 'registrarAsistenciaExpositor']);
+
+     Route::get('/staff/visitantes', function () {
+        return view('staff.visitantes');
+    })->name('staff.visitantes');
+
+     Route::get('/staff/empresas', function () {
+        return view('staff.empresas');
+    })->name('staff.empresas');
+
+        Route::get('/staff/empresas/asistencia', function () {
+        return view('staff.empresas-asist');
+    })->name('staff.empresa-asistencia');
+
 });
 
 

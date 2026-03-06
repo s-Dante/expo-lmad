@@ -131,7 +131,7 @@
     --gradient-E: linear-gradient(
         90deg,
         var(--clr-purple-400) 0%,
-        var(--clr-blue-800) 100%
+        rgba(33, 49, 109, 0.2) 100%
     );
 
     /* Degradado de botones*/

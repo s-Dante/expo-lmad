@@ -36,6 +36,8 @@ export default defineConfig({
                 "resources/css/components/superadmin/modal-ver.css",
 
                 "resources/css/staff/expositor.css",
+                "resources/css/staff/visitantes.css",
+                "resources/css/staff/empresas.css",
 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
@@ -65,6 +67,7 @@ export default defineConfig({
                 "resources/js/student/actions-revisar-exposicion.js",
 
                 "resources/js/staff/qr-handler.js",
+                "resources/js/staff/visitantes-actions.js",
             ],
             refresh: true,
         }),
