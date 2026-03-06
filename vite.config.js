@@ -19,7 +19,9 @@ export default defineConfig({
 
                 "resources/css/guest/landing-page.css",
                 "resources/css/guest/login.css",
+                
                 "resources/css/components/sidebar.css",
+
                 "resources/css/teacher/registro-expositores.css",
                 "resources/css/teacher/lista-proyectos.css",
                 "resources/css/components/teacher/modal-editar.css",
@@ -29,6 +31,9 @@ export default defineConfig({
                 "resources/css/student/revisar-exposicion.css",
                 "resources/css/student/qr.css",
                 "resources/css/student/dashboard.css",
+
+                "resources/css/admin/dashboard.css",
+                "resources/css/admin/empresas-lista.css",
 
                 "resources/css/superadmin/dashboard.css",
                 "resources/css/superadmin/revision-proyecto.css",
@@ -46,6 +51,7 @@ export default defineConfig({
                 "resources/js/components/sidebar.js",
                 'resources/js/components/alerts.js',
                 "resources/js/components/show-hide-elements.js",
+                "resources/js/components/load-portrait.js",
 
                 "resources/js/teacher/agregarIntegrantes.js",
                 "resources/js/teacher/mostrarInfoMateria.js",
@@ -59,7 +65,6 @@ export default defineConfig({
                 "resources/js/student/copy-link.js",
                 "resources/js/student/create-project.js",
                 "resources/js/student/update-project.js",
-                "resources/js/student/load-portrait.js",
                 "resources/js/student/actions-revisar-exposicion.js"
 
             ],

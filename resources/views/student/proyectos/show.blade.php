@@ -10,8 +10,8 @@
         'resources/css/guest/template.css',
         'resources/css/student/revisar-exposicion.css',
         'resources/js/student/copy-link.js',
-        'resources/js/student/load-portrait.js',
-        'resources/js/student/update-project.js'
+        'resources/js/student/update-project.js',
+        'resources/js/components/load-portrait.js'
     ])
 
 </head>

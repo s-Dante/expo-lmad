@@ -84,7 +84,7 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
     Route::get('/superadmin/proyectos', [SuperAdminController::class, 'paginaProyectos'])
         ->name('superadmin.proyectos');
 
-    Route::get('/superadmin/getDashboardInfo', [SuperAdminController::class, 'getDashboardInfo']);
+    Route::post("/superadmin/actualizarRevisionProyecto", [SuperAdminController::class, 'actualizarRevisionProyecto']);Route::get('/superadmin/getDashboardInfo', [SuperAdminController::class, 'getDashboardInfo']);
 
     Route::post("/superadmin/actualizarRevisionProyecto", [SuperAdminController::class, 'actualizarRevisionProyecto']);
 
@@ -97,6 +97,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+
+    Route::get('/admin/companies', function () {
+        return view('admin.companies.show');
+    })->name('admin.show');
+
 });
 
 //Rutas de Estudiante 

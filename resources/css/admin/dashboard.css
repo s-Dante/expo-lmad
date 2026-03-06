@@ -1,0 +1,24 @@
+@import url(/resources/css/tokens.css);
+
+body {
+    padding: unset;
+}
+
+main {
+    padding-top: 45px;
+    padding-inline: 3%;
+}
+
+h1{
+    text-align: center;
+    font-family: var(--font-display);
+    color: var(--clr-blue-100);
+    font-weight: 100;
+}
+
+@media (min-width: 650px) {
+    main {
+        padding: unset;
+        padding-left: 120px;
+    }
+}
