@@ -57,6 +57,9 @@ export default defineConfig({
                 "resources/js/teacher/mostrarInfoMateria.js",
                 "resources/js/teacher/modalEditar.js",
 
+                "resources/js/admin/actions-empresas.js",
+                "resources/js/admin/carrusel.js",
+
                 "resources/js/superadmin/actions-check.js",
                 "resources/js/superadmin/proyectos-handler.js",
                 "resources/js/superadmin/dashboard-info.js",
