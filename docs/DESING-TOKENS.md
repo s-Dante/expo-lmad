@@ -2,7 +2,7 @@
 
 ### 📘 Nomenclatura y explicación de variables de color y estilos del proyecto
 
-En el archivo de **variables** se definen todos aquellos valores reutilizables del proyecto, como **colores, fuentes y estilos repetitivos**, así como la **paleta de la marca**.
+En el archivo de **tokens** se definen todos aquellos valores reutilizables del proyecto, como **colores, fuentes y estilos repetitivos**, así como la **paleta de la marca**.
 El objetivo principal es **centralizar estos valores** para facilitar el mantenimiento y la consistencia visual.
 
 > ⚠️ **No se deben usar colores “en crudo” directamente en el proyecto**.
