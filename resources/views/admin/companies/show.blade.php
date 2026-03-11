@@ -13,8 +13,9 @@
         'resources/js/admin/actions-empresas.js',
         'resources/js/admin/carrusel.js',
 
-        'resources/js/components/carousel.js',
+
         'resources/css/components/carousel.css'
+
     ]);
 
 </head>
@@ -133,7 +134,7 @@
         <section class="section-carousel-c">
             <button class="carousel-backbtn-c">Anterior</button>
             <button class="carousel-nextbtn-c">Siguiente</button>
-            <div  class="container-carousel-c">
+            <div class="container-carousel-c">
 
                 <div id="carousel" class="carousel-group-c">
 
@@ -156,12 +157,16 @@
 
                 </div>
                 -->
-                
+
 
             </div>
         </section>
 
     </main>
+
+    @vite([
+        'resources/js/components/carousel.js'
+    ]);
 
 </body>
 

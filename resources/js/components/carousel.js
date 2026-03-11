@@ -8,7 +8,7 @@ class BaseCarousel {
     el=null;
     items=[];
     size=1;
-    gap=0;
+    gap=3.5;
     item={
         width: 0,
         gap: 0,
@@ -36,20 +36,25 @@ class BaseCarousel {
 
     async getSize(){
         let w=this.el.clientWidth;
-        w=w/this.size;
+        console.log("w: " + w);
+        w=w/this.size - this.gap;
+        console.log("w: " + w);
         return w;
     }
 
     async build() {
         for(let i=0; i < this.items.length; i++){
-            this.items[i].style.width = this.item.width + "px";
-            this.items[i].style.left = (this.item.width * i) + "px";
+            this.items[i].style.marginLeft = this.gap + "rem";
+            this.items[i].style.width = this.item.width  + "px";
+            this.items[i].style.left = this.item.width * i + "px";
         }
     }
 
 }
 
-const el = document.getElementById("carousel");
-if (el) {
-    new BaseCarousel(el);
-}
+window.addEventListener("load", () => {
+    const el = document.getElementById("carousel");
+    if (el) {
+        new BaseCarousel(el);
+    }
+});

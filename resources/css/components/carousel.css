@@ -31,11 +31,7 @@
     font-size: 5rem;
     text-align: center;
     align-content: center;
-    flex: 0 0 20rem;
-    width: 20rem;
-    height: 30rem;
     background: blue;
-    margin-left: 3.5rem;
 }
 
 @keyframes spin-rTOl {
