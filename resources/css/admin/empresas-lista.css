@@ -267,7 +267,6 @@ h1 {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 1rem;
     padding-bottom: 1rem;
     scroll-behavior: smooth;
     scrollbar-width: none;
@@ -278,7 +277,9 @@ h1 {
 }
 
 .card-company {
-    flex: 0 0 80%;
+    margin-left: 3rem;
+    margin-right: 0.5rem;
+    flex: 0 0 5em;
     scroll-snap-align: center;
     height: 29rem;
     display: flex;
@@ -474,6 +475,24 @@ span {
     max-height: 13rem;
 }
 
+@keyframes spin{
+    from {translate: 0;}
+    to {translate: -100%;}
+}
+
+.carousel-group{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 99rem;
+    flex-grow: 1;
+    animation: spin 30s infinite linear;
+}
+
+.carousel-group.paused {
+    animation-play-state: paused;
+}
+
 .sponsor-data {
     display: none;
 }
@@ -527,7 +546,6 @@ span {
 
     .container-carrusel {
         width: 100%;
-        gap: 4rem;
         margin-inline: 3rem;
     }
 

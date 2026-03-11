@@ -11,7 +11,10 @@
         'resources/css/admin/empresas-lista.css',
         'resources/js/components/load-portrait.js',
         'resources/js/admin/actions-empresas.js',
-        'resources/js/admin/carrusel.js'
+        'resources/js/admin/carrusel.js',
+
+        'resources/js/components/carousel.js',
+        'resources/css/components/carousel.css'
     ]);
 
 </head>
@@ -95,44 +98,70 @@
             <div class="carousel-wrapper">
                 <button class="carousel-btn btn-prev" aria-label="Anterior">&#10094;</button>
 
-                <container class="container-carrusel-boxfade">
+                <div class="container-carrusel-boxfade">
+
                     <div class="container-carrusel">
 
-                        <x-admin.company-card name="OXXO" />
-                        <x-admin.company-card image="{{asset('assets/guest/sponsor(1).svg')}}" name="Epic Games"
-                            tier="Titanium" />
-                        <x-admin.company-card image="{{asset('assets/guest/sponsor(2).svg')}}" name="Coca Cola"
-                            tier="Gold" />
-                        <x-admin.company-card image="{{asset('assets/guest/sponsor(3).svg')}}" name="Accenture"
-                            tier="Bronze" />
+                        <div class="carousel-group">
+                            <x-admin.company-card name="OXXO" />
+                            <x-admin.company-card image="{{asset('assets/guest/sponsor(1).svg')}}" name="Epic Games"
+                                tier="Titanium" />
+                            <x-admin.company-card image="{{asset('assets/guest/sponsor(2).svg')}}" name="Coca Cola"
+                                tier="Gold" />
+                            <x-admin.company-card image="{{asset('assets/guest/sponsor(3).svg')}}" name="Accenture"
+                                tier="Bronze" />
+                        </div>
+
+                        <div aria-hidden class="carousel-group">
+                            <x-admin.company-card name="OXXO" />
+                            <x-admin.company-card image="{{asset('assets/guest/sponsor(1).svg')}}" name="Epic Games"
+                                tier="Titanium" />
+                            <x-admin.company-card image="{{asset('assets/guest/sponsor(2).svg')}}" name="Coca Cola"
+                                tier="Gold" />
+                            <x-admin.company-card image="{{asset('assets/guest/sponsor(3).svg')}}" name="Accenture"
+                                tier="Bronze" />
+                        </div>
 
                     </div>
-                </container>
+
+                </div>
 
                 <button class="carousel-btn btn-next" aria-label="Siguiente">&#10095;</button>
             </div>
         </section>
 
+        <section class="section-carousel-c">
+            <button class="carousel-backbtn-c">Anterior</button>
+            <button class="carousel-nextbtn-c">Siguiente</button>
+            <div  class="container-carousel-c">
+
+                <div id="carousel" class="carousel-group-c">
+
+                    <div class="card-test">1</div>
+                    <div class="card-test">2</div>
+                    <div class="card-test">3</div>
+                    <div class="card-test">4</div>
+                    <div class="card-test">5</div>
+
+                </div>
+
+                <!--
+                <div aria-hidden class="carousel-group-c">
+
+                    <div class="card-test">1</div>
+                    <div class="card-test">2</div>
+                    <div class="card-test">3</div>
+                    <div class="card-test">4</div>
+                    <div class="card-test">5</div>
+
+                </div>
+                -->
+                
+
+            </div>
+        </section>
+
     </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const container = document.querySelector('.container-carrusel');
-            const btnPrev = document.querySelector('.btn-prev');
-            const btnNext = document.querySelector('.btn-next');
-
-            const scrollCarousel = (direction) => {
-                const card = container.querySelector('.card-company');
-                if (!card) return;
-                const gap = parseInt(window.getComputedStyle(container).gap) || 16;
-                const scrollAmount = card.offsetWidth + gap;
-                container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-            };
-
-            btnPrev.addEventListener('click', () => scrollCarousel(-1));
-            btnNext.addEventListener('click', () => scrollCarousel(1));
-        });
-    </script>
 
 </body>
 

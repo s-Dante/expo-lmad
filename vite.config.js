@@ -38,7 +38,9 @@ export default defineConfig({
                 "resources/css/superadmin/dashboard.css",
                 "resources/css/superadmin/revision-proyecto.css",
                 "resources/css/superadmin/proyectos.css",
+
                 "resources/css/components/superadmin/modal-ver.css",
+                "resources/css/components/carousel.css",
                 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
@@ -51,7 +53,10 @@ export default defineConfig({
                 "resources/js/components/sidebar.js",
                 'resources/js/components/alerts.js',
                 "resources/js/components/show-hide-elements.js",
+                "resources/js/components/resize-page-smooth.js",
+                "resources/js/components/move-elements.js",
                 "resources/js/components/load-portrait.js",
+                "resources/js/components/carousel.js",
 
                 "resources/js/teacher/agregarIntegrantes.js",
                 "resources/js/teacher/mostrarInfoMateria.js",
