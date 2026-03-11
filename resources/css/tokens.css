@@ -166,6 +166,7 @@
 
     --btn-flat: var(--clr-black);
     --input-flat: var(--clr-blue-650);
+    --tooltip-flat: rgb(0, 0, 0, 0.8);
 
     /*Card Inferior*/
     --bg-info-card: var(--clr-blue-950);

@@ -10,11 +10,10 @@
 
 <body>
 
-    <main class="log-in">
-        <img class="planet" src="{{ asset('assets/guest/planet-1.png') }}" alt="" />
+    <p class="text-top">EXPANDIENDO LA REALIDAD</p>
 
-        <header class="text-top">EXPANDIENDO LA REALIDAD</header>
-    </main>
+
+
     <form class="login-form" action="{{ route('auth.login')}}" method="post">
 
         @csrf
@@ -23,18 +22,32 @@
 
         <div class="input-container">
             <div class="input-group">
-                <input name="email" type="text" class="input-clave" placeholder="Clave de usuario" />
+                <input name="email" type="text" placeholder="Clave de usuario" />
                 <span class="line"></span>
             </div>
 
             <div class="input-group">
-                <input name="password" type="password" class="input-contrasena" placeholder="Contraseña" />
+                <input name="password" type="password" placeholder="Contraseña" />
                 <span class="line"></span>
             </div>
 
             <button type="submit" class="btn btn-purple">Iniciar Sesión</button>
         </div>
     </form>
+
+    <img class="planet" src="{{ asset('assets/guest/planet-1.png') }}" alt="" />
+
+    <script type="module">
+        import {
+            showServerMessages
+        } from "{{ Vite::asset('resources/js/components/flash-alerts.js') }}";
+
+        showServerMessages(
+            @json(session('success')),
+            @json(session('error')),
+            @json($errors -> all())
+        );
+    </script>
 </body>
 
 </html>

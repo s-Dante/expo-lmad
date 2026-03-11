@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EXPO LMAD - SuperAdmin</title>
     @vite([
-        "resources/css/superadmin/revision-proyecto.css",
-        "resources/js/superadmin/actions-check.js",
-        "resources/js/superadmin/revisar-proyecto.js"
+    "resources/css/superadmin/revision-proyecto.css",
+    "resources/js/superadmin/actions-check.js",
+    "resources/js/superadmin/revisar-proyecto.js"
     ])
 </head>
 
@@ -60,14 +60,14 @@
 
                                 <div class="students-list">
                                     @foreach ($proyecto->autores as $autor)
-                                        <div class="student-item">
+                                    <div class="student-item">
 
-                                            <span
-                                                class="student-name">{{ $autor->nombre . ' ' . $autor->apellido_paterno . ' ' . $autor->apellido_materno   }}</span>
-                                            <span class="student-id">{{ $autor->matricula }}</span>
+                                        <span
+                                            class="student-name">{{ $autor->nombre . ' ' . $autor->apellido_paterno . ' ' . $autor->apellido_materno   }}</span>
+                                        <span class="student-id">{{ $autor->matricula }}</span>
 
 
-                                        </div>
+                                    </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -76,47 +76,47 @@
                         <div class="group-container links-section">
                             @foreach ($proyecto->multimedia as $multimedia)
 
-                                {{-- Caso GITHUB --}}
-                                @if ($multimedia->tipo === 'github')
-                                    <div class="info-row">
-                                        <span class="label">ENLACE A PROYECTO (GITHUB):</span>
-                                        <div class="link-wrapper">
-                                            <a href="{{ $multimedia->url }}" class="url-text"
-                                                target="_blank">{{ $multimedia->url }}</a>
-                                            <button class="btn-copy">
-                                                <img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar">
-                                            </button>
-                                        </div>
-                                    </div>
-                                @endif
+                            {{-- Caso GITHUB --}}
+                            @if ($multimedia->tipo === 'github')
+                            <div class="info-row">
+                                <span class="label">ENLACE A PROYECTO (GITHUB):</span>
+                                <div class="link-wrapper">
+                                    <a href="{{ $multimedia->url }}" class="url-text"
+                                        target="_blank">{{ $multimedia->url }}</a>
+                                    <button class="btn-copy">
+                                        <img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar">
+                                    </button>
+                                </div>
+                            </div>
+                            @endif
 
-                                {{-- Caso DRIVE --}}
-                                @if ($multimedia->tipo === 'drive')
-                                    <div class="info-row">
-                                        <span class="label">ENLACE A PROYECTO (DRIVE):</span>
-                                        <div class="link-wrapper">
-                                            <a href="{{ $multimedia->url }}" class="url-text"
-                                                target="_blank">{{ $multimedia->url }}</a>
-                                            <button class="btn-copy">
-                                                <img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar">
-                                            </button>
-                                        </div>
-                                    </div>
-                                @endif
+                            {{-- Caso DRIVE --}}
+                            @if ($multimedia->tipo === 'drive')
+                            <div class="info-row">
+                                <span class="label">ENLACE A PROYECTO (DRIVE):</span>
+                                <div class="link-wrapper">
+                                    <a href="{{ $multimedia->url }}" class="url-text"
+                                        target="_blank">{{ $multimedia->url }}</a>
+                                    <button class="btn-copy">
+                                        <img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar">
+                                    </button>
+                                </div>
+                            </div>
+                            @endif
 
-                                {{-- Caso YOUTUBE --}}
-                                @if ($multimedia->tipo === 'youtube')
-                                    <div class="info-row">
-                                        <span class="label">VIDEO PROMOCIONAL (YOUTUBE):</span>
-                                        <div class="link-wrapper">
-                                            <a href="{{ $multimedia->url }}" class="url-text"
-                                                target="_blank">{{ $multimedia->url }}</a>
-                                            <button class="btn-copy">
-                                                <img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar">
-                                            </button>
-                                        </div>
-                                    </div>
-                                @endif
+                            {{-- Caso YOUTUBE --}}
+                            @if ($multimedia->tipo === 'youtube')
+                            <div class="info-row">
+                                <span class="label">VIDEO PROMOCIONAL (YOUTUBE):</span>
+                                <div class="link-wrapper">
+                                    <a href="{{ $multimedia->url }}" class="url-text"
+                                        target="_blank">{{ $multimedia->url }}</a>
+                                    <button class="btn-copy">
+                                        <img src="{{ asset('assets/teacher/CopiarVector.png') }}" alt="Copiar">
+                                    </button>
+                                </div>
+                            </div>
+                            @endif
 
                             @endforeach
                         </div>
@@ -137,10 +137,10 @@
                     <div class="image-side">
                         <div class="image-box">
                             @foreach ($proyecto->multimedia as $multimedia)
-                                @if ($multimedia->tipo == 'imagen')
-                                    <img src="{{ asset('storage/' . $multimedia->url) }}" alt="Imagen del proyecto"
-                                        class="project-image">
-                                @endif
+                            @if ($multimedia->tipo == 'imagen')
+                            <img src="{{ asset('storage/' . $multimedia->url) }}" alt="Imagen del proyecto"
+                                class="project-image">
+                            @endif
                             @endforeach
                         </div>
                     </div>
@@ -153,9 +153,15 @@
                     <div class="action-group" id="group-review">
                         <div class="row-top">
                             <div class="btn-group-container">
-                                <button class="help-link" title="Más información">
-                                    <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
-                                </button>
+                                <div class="tooltip-container">
+                                    <button class="help-link" title="Más información">
+                                        <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
+                                    </button>
+                                    <span class="tooltip-text">
+                                        Editar la descripción no
+                                        notificará al expositor.
+                                    </span>
+                                </div>
 
                                 <!-- Editar Descripción btn -->
                                 <button id="btn-edit-desc" class="btn-pill btn-purple">
@@ -180,9 +186,19 @@
                                 </div> Aceptar proyecto
                             </button>
                             <div class="btn-group-container">
-                                <button class="help-link" title="Más información">
-                                    <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
-                                </button>
+                                <div class="tooltip-container">
+                                    <button class="help-link" title="Más información">
+                                        <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
+                                    </button>
+                                    <span class="tooltip-text">
+                                        Devolver el proyecto permite al
+                                        expositor corregir o mejorar
+                                        información sobre su exposición.
+                                        Se le notifica automáticamente
+                                        al expositor por correo.
+                                    </span>
+
+                                </div>
 
                                 <!-- Devolver proyecto-->
                                 <button id="btn-open-return" class="btn-pill btn-blue">

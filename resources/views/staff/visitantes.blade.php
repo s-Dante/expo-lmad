@@ -56,6 +56,15 @@
             </div>
 
             <button type="submit" class="btn-primary">Registrar Visitante</button>
+
+            <div class="tooltip-container">
+                <button class="btn-help"><i class="fas fa-question"></i></button>
+                <span class="tooltip-text">
+                    No se necesita registrar la salida.
+                    Este registro no valida el AFI.
+                </span>
+
+            </div>
         </form>
 
     </main>
