@@ -33,8 +33,15 @@
                         <label for="asistio" class="custom-checkbox"></label>
                         <span>Asistió</span>
                     </div>
+                    <div class="tooltip-container">
+                        <button class="btn-help"><i class="fas fa-question"></i></button>
+                        <span class="tooltip-text">
+                            Favor de agregar a todos
+                            los asistentes antes de enviar
+                            el formulario de asistencia.
+                        </span>
 
-                    <button class="btn-help"><i class="fas fa-question"></i></button>
+                    </div>
                     <button type="submit" class="btn-accion">Enviar</button>
                 </div>
 
