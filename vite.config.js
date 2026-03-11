@@ -19,9 +19,12 @@ export default defineConfig({
 
                 "resources/css/guest/landing-page.css",
                 "resources/css/guest/login.css",
-                "resources/css/components/sidebar.css",
+
                 "resources/css/teacher/registro-expositores.css",
                 "resources/css/teacher/lista-proyectos.css",
+
+                "resources/css/components/sidebar.css",
+                "resources/css/components/alerts.css",
                 "resources/css/components/teacher/modal-editar.css",
 
                 "resources/css/student/registro-proyecto.css",
