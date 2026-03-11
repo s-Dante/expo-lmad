@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>EXPO LMAD - Iniciar Sesión</title>
-    @vite(['resources/css/guest/login.css'])
+    @vite(['resources/css/guest/login.css',
+    "resources/css/components/alerts.css"])
 </head>
 
 <body>
 
     <p class="text-top">EXPANDIENDO LA REALIDAD</p>
-
-
 
     <form class="login-form" action="{{ route('auth.login')}}" method="post">
 
@@ -48,6 +47,7 @@
             @json($errors -> all())
         );
     </script>
+
 </body>
 
 </html>

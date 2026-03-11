@@ -1,66 +1,66 @@
-/*------------ Alerts --------*/
+
 @import url(/resources/css/tokens.css);
 
+/*------------ Alerts --------*/
 .modal-overlay {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(16, 21, 29, 0.85);
+    inset: 0;
+    background-color: rgba(8, 12, 19, 0.9);
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(8px);
 }
-
 .modal-content {
     margin-inline: 5%;
-    background: var(--blue-950);
-    border: 1px solid var(--blue-600);
-    border-radius: 20px;
-    padding: 2rem;
+    background: var(--alert-bg);
+    border: 1px solid var(--alert-glass-border);
+    border-radius: var(--radius-rounded);
+    padding: 2.5rem 2rem;
     width: 90%;
-    max-width: 400px;
+    max-width: 420px;
     text-align: center;
-    box-shadow: 0 0 30px rgba(95, 226, 255, 0.15);
-    animation: modalUp 0.4s ease-out;
-}
+    box-shadow: var(--alert-glow);
 
+    position: relative;
+    overflow: hidden;
+    animation: modalUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
 .modal-title {
-    font-family: var(--kodchasan-font);
-    color: var(--blue-100);
-    font-size: 1.5rem;
-    margin-top: 0;
+    font-family: var(--font-display);
+    color: var(--text-accent);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
     margin-bottom: 1rem;
+    text-transform: uppercase;
 }
-
 .modal-message {
-    font-family: var(--inter-font);
-    color: var(--white);
-    font-size: 1rem;
+    font-family: var(--font-readability);
+    color: var(--text-primary);
+    font-size: 1.05rem;
     margin-bottom: 2rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    opacity: 0.9;
 }
 
 .btn-blue {
-    color: var(--white);
-    background: linear-gradient(
-        90deg,
-        var(--blue-100) 0%,
-        var(--blue-600) 100%
-    );
+    font-family: var(--font-tech-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    border: none;
+    color: var(--text-primary);
+    background: var(--gradient-B);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(76, 165, 231, 0.3);
+    transition: all 0.3s ease;
+}
+.btn-blue:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 165, 231, 0.5);
+    filter: brightness(1.1);
 }
 
-.btn {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    justify-self: center;
-    justify-content: center;
-    justify-items: center;
-    border: none;
-}
+

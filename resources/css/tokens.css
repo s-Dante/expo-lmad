@@ -171,4 +171,20 @@
     /*Card Inferior*/
     --bg-info-card: var(--clr-blue-950);
     --border-card: var(--clr-blue-700);
+
+    /* ---- MODAL DE ALERTS ---*/
+    --alert-bg: rgba(16, 21, 41, 0.8); 
+    --alert-glass-border: rgba(95, 226, 255, 0.3); 
+    --alert-glow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+
+    --text-accent: var(--clr-blue-100);
+    --text-muted: rgba(255, 255, 255, 0.6);
+
+    /* Gradiente para el borde (efecto premium) */
+    --gradient-alert-border: linear-gradient(
+        135deg,
+        var(--clr-blue-200),
+        var(--clr-purple-300),
+        transparent
+    );
 }
