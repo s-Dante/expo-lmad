@@ -102,7 +102,7 @@ class ProfesorController extends Controller
                     'es_portada' => true,
                 ]);
             }
-            return redirect()->back()->with('Exito', 'Proyecto registrado con éxito. Código: ' . $codigo);
+            return redirect()->back()->with('Exito', 'Proyecto registrado con éxito.');/* Código: ' . $codigo);*/
         });
 
     }

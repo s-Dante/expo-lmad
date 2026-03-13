@@ -1,30 +1,8 @@
 @import url(/resources/css/tokens.css);
-
-body {
-    background: var(--bg-page-gradient);
-    background-size: 100% 100vh;
-    background-repeat: no-repeat;
-    background-color: var(--bg-flat);
-}
-.main-content {
-    margin-left: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.text-main {
-    color: var(--contrast-color-D);
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: 3px;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-}
+@import url(/resources/css/layouts/admin-layout.css);
+@import url(/resources/css/components/alerts.css);
 
 /* ----Form de registro ----*/
-
 .expo-card {
     display: flex;
     justify-content: center;
@@ -36,7 +14,6 @@ body {
     border-radius: 18px;
     animation: scaleIn 0.5s ease both;
 }
-
 .expo-card::before {
     content: "";
     position: absolute;
@@ -67,7 +44,6 @@ body {
 
     pointer-events: none;
 }
-
 .card-title {
     text-align: center;
     font-family: var(--font-display);
@@ -80,18 +56,6 @@ body {
 }
 
 /* ----Dato Box ----*/
-.input-c {
-    background: var(--input-flat);
-    border: 0;
-    border-bottom: 3px solid var(--contrast-color-D);
-    border-radius: 10px;
-    color: var(--text-primary);
-    font-family: var(--font-main);
-    padding: 8px 15px;
-    outline: none;
-    text-align: center;
-    position: relative;
-}
 .datos-box {
     display: flex;
     flex-direction: column;
@@ -134,6 +98,7 @@ body {
 .input-c.periodo {
     width: 160px;
 }
+
 /* ----Alumnos Box ----*/
 .alumnos-box {
     display: flex;
@@ -166,35 +131,6 @@ body {
     margin-right: 5px;
 }
 
-.btn-save {
-    display: block;
-    margin: 40px auto 0 auto;
-
-    background: var(--gradient-E);
-    border: none;
-    border-radius: 30px;
-
-    color: var(--text-primary);
-    font-family: var(--font-main);
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: 12px 40px;
-
-    cursor: pointer;
-    transition: all 0.3s ease;
-    animation: slideInUp 0.4s ease 0.1s both;
-}
-.btn-save:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(127, 0, 255, 0.5);
-}
-.btn-save:active {
-    transform: scale(0.98);
-}
-
-.input-c:focus {
-    border-bottom: 3px solid var(--contrast-color-E);
-}
 .seccion-titulo {
     font-family: var(--font-display);
     color: var(--text-primary);
@@ -204,7 +140,6 @@ body {
     letter-spacing: 1px;
     text-shadow: 0 0 5px var(--contrast-color-D);
 }
-
 h3.seccion-titulo:nth-of-type(2) {
     margin-top: 0px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -228,20 +163,6 @@ h3.seccion-titulo:nth-of-type(2) {
 }
 
 @media (max-width: 650px) {
-    .main-content {
-        margin-left: 0;
-        margin-top: 50px;
-        padding: 10px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .text-main {
-        font-size: 1.4rem;
-        text-align: center;
-        letter-spacing: 1px;
-        margin-bottom: 20px;
-    }
 
     .expo-card {
         width: 95%;
@@ -249,28 +170,23 @@ h3.seccion-titulo:nth-of-type(2) {
     }
 
     /*---Datos box---*/
-
     .datos-box {
         gap: 15px;
         width: 100%;
     }
-
     .fila-full {
         flex-direction: row !important;
         width: 100%;
     }
-
     .fila-full select.input-c:not(.corto) {
         width: 60% !important;
     }
-
     .fila-flex {
         flex-direction: row !important;
         justify-content: space-between;
         gap: 5px;
         width: 100%;
     }
-
     .fila-flex .input-c {
         width: 60px !important;
         min-width: 50px;
@@ -278,7 +194,6 @@ h3.seccion-titulo:nth-of-type(2) {
     }
 
     /*---Alumnos box---*/
-
     .fila-alumno {
         width: 100%;
         gap: 5px;

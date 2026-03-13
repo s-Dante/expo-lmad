@@ -64,7 +64,7 @@
 
                 </div>
 
-                <button type="submit" class="btn-save">Guardar cambios</button>
+                <button type="submit" class="btn-lg">Guardar cambios</button>
 
             </form>
         </article>

@@ -1,27 +1,7 @@
 @import url(/resources/css/tokens.css);
+@import url(/resources/css/layouts/admin-layout.css);
 
-body {
-    background: var(--bg-page-gradient);
-    background-size: 100% 100vh;
-    background-repeat: no-repeat;
-    background-color: var(--bg-flat);
-}
-.main-content {
-    margin-left: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.text-main {
-    color: var(--contrast-color-D);
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: 3px;
-    margin-bottom: 3rem;
-    margin-top: 2rem;
-}
+/*----GRID DE PROYECTOS Y CARTAS--*/
 
 .projects-grid {
     display: grid;
@@ -32,7 +12,6 @@ body {
     padding-bottom: 50px;
     align-items: center;
 }
-
 .card-project {
     position: relative;
     background: var(--bg-card);
@@ -43,7 +22,6 @@ body {
     height: 100%;
     animation: scaleIn 0.7s ease-out both;
 }
-
 .card-project::before {
     content: "";
     position: absolute;
@@ -84,7 +62,6 @@ body {
     text-align: center;
     text-shadow: 0 0 8px rgba(0, 234, 255, 0.8);
 }
-
 .project-subtitle {
     color: var(--contrast-color-D);
     font-family: var(  --font-title-bold);
@@ -112,7 +89,6 @@ body {
     margin: 5px auto;
     box-sizing: border-box;
 }
-
 .token-container span {
     font-weight: bold;
     white-space: nowrap;
@@ -120,7 +96,7 @@ body {
     text-overflow: ellipsis;
 }
 
-.btn-copy {
+.btn-copy-circle {
     background: var(--gradient-E);
     border: none;
     color: var(--text-primary);
@@ -136,11 +112,10 @@ body {
     cursor: pointer;
     transition: transform 0.2s ease;
 }
-.btn-copy:hover {
+.btn-copy-circle:hover {
     transform: scale(1.1);
 }
-
-.btn-copy img {
+.btn-copy-circle img {
     width: 15px;
     height: auto;
 }
@@ -167,7 +142,6 @@ body {
     margin: 2px;
     padding: 0;
 }
-
 .status-check {
     display: flex;
     align-items: center;
@@ -185,7 +159,6 @@ body {
 .status-check input[type="checkbox"] {
     display: none;
 }
-
 .status-check label {
     display: flex;
     align-items: center;
@@ -195,7 +168,6 @@ body {
     font-size: 0.9rem;
     cursor: pointer;
 }
-
 .status-check label::before {
     content: "";
     width: 15px;
@@ -220,7 +192,6 @@ body {
     color: var(--text-primary);
     background: transparent;
 }
-
 .status-check:hover label::before {
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
@@ -233,7 +204,7 @@ body {
     margin-bottom: 10px;
 }
 
-.btn-action {
+.btn-edit {
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -245,17 +216,17 @@ body {
     font-size: 1.2rem;
     border: none;
 }
-.btn-action i {
+.btn-edit i {
     pointer-events: none;
     font-size: 1.5rem;
     font-weight: 1000;
     opacity: 0.9;
 }
-.btn-action img {
+.btn-edit img {
     width: 30px;
     height: 30px;
 }
-.btn-action.edit {
+.btn-edit {
     width: 50px;
     border-radius: 50%;
     background: linear-gradient(90deg, #1a4f95 0%, #0d254600 100%);
@@ -263,22 +234,10 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.btn-action.help {
-    background: transparent;
-    border: 2px solid var(--contrast-color-D);
-    color: var(--contrast-color-D);
-}
-
-.btn-action:hover {
-    transform: translateY(-3px);
+.btn-edit:hover {
+    transform: translateY(-2px);
     filter: brightness(2);
     box-shadow: 0 0 10px var(--hover-btn);
-}
-
-.btn-action.help:hover {
-    background: var(--contrast-color-D);
-    color: var(--bg-flat);
-    box-shadow: 0 0 10px var(--contrast-color-D);
 }
 
 @media (max-width: 650px) {

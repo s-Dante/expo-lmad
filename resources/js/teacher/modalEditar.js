@@ -1,4 +1,5 @@
 
+
 window.abrirModal = function (button) {
     const modal = document.getElementById('modal-edicion');
 
