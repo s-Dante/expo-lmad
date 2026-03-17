@@ -68,13 +68,16 @@
 .expo-card {
     display: flex;
     justify-content: center;
+    padding: 2.5rem 2rem; 
     margin-bottom: 6rem;
     width: 640px;
-    height: 500px;
+    height: auto;      
     position: relative;
 
     border-radius: 18px;
+    
 }
+
 .expo-card::before {
     content: "";
     position: absolute;
@@ -303,4 +306,56 @@ body.modal-open {
 .modal-overlay.modal-open .modal-content {
     opacity: 1;
     transform: scale(1);
+}
+
+
+
+/* ---- Estilo de la Alerta Interna del Modal ---- */
+#modal-error-container {
+    display: none;
+    margin: 1rem;
+    margin-bottom: -1rem;
+    animation: slideInError 0.3s ease-out forwards;
+}
+.alert-mini {
+    position: relative;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    border: 1.5px solid var(--contrast-color-E); 
+    border-radius: 12px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#modal-error-text {
+    color:var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+@keyframes slideInError {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajuste para móviles */
+@media (max-width: 650px) {
+    #modal-error-container {
+        width: 90%;
+    }
+    .alert-mini {
+        padding: 8px 12px;
+    }
+    #modal-error-text {
+        font-size: 0.75rem;
+    }
 }
