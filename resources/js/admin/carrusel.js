@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let animationTimeout;
 
     const scrollCarousel = (direction) => {
-        const card = container.querySelector(".card-company");
+        const card = container.querySelector(".card-c");
         if (!card) return;
         const gap = parseInt(window.getComputedStyle(container).gap) || 16;
         const scrollAmount = card.offsetWidth + gap;

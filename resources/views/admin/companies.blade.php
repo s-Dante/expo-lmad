@@ -11,7 +11,8 @@
         'resources/css/admin/empresas-lista.css',
         'resources/js/components/load-portrait.js',
         'resources/js/admin/actions-empresas.js',
-        'resources/js/admin/carrusel.js'
+        'resources/js/admin/carrusel.js',
+        'resources/css/components/carrusel.css'
 
     ]);
 
@@ -118,7 +119,81 @@
             </div>
         </section>
 
+        <!-- Modal de Edición Dinámico -->
+        <dialog id="edit-modal" class="dialog-edit">
+            <form method="POST" id="edit-form" action="#" style="width: auto; display: flex; flex-grow: 1;">
+                @method('PUT')
+                @csrf
+                <container class="expo-card container-companies-create" style="position: relative; width: 80vw">
+                    <!-- Botón de cerrar (X) -->
+                    <button type="button" onclick="document.getElementById('edit-modal').close()"
+                        style="position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none; color: var(--clr-white); font-size: 2rem; cursor: pointer; z-index: 50; line-height: 1; padding: 0.5rem;">
+                        &times;
+                    </button>
+
+                    <div class="div-companies-create">
+                        <div class="d-grid-gap company-data">
+                            <span>Nombre de la empresa:</span>
+                            <input type="text" id="edit-company-name" name="company-name" class="input-c" value="">
+
+                            <span>Representante:</span>
+                            <input type="text" id="edit-company-rep" name="company-representative" class="input-c"
+                                value="">
+
+                            <div class="checkbox-card">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" id="edit-patrocinador" name="patrocinador" value="1"
+                                        class="checkbox-input">
+                                </div>
+                                <label for="edit-patrocinador" class="checkbox-label quit-highlight">
+                                    <span class="checkbox-description">Patrocinador</span>
+                                </label>
+                            </div>
+
+                            <div class="sponsor-data">
+                                <container class="container-company-sponsor">
+                                    <div class="d-grid-gap">
+                                        <div>
+                                            <span>Grado:</span>
+                                            <select type="listbox" id="edit-company-tier" name="company-tier"
+                                                class="input-c">
+                                                <option value="" disabled selected>Selecciona un grado</option>
+                                                <option value="Titanium">Titanium</option>
+                                                <option value="Diamante">Diamante</option>
+                                                <option value="Oro">Oro</option>
+                                                <option value="Plata">Plata</option>
+                                                <option value="Bronce">Bronce</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </container>
+                            </div>
+                        </div>
+
+                        <div class="sponsor-data">
+                            <container class="container-company-sponsor">
+                                <div class="div-company-logo d-grid-gap">
+                                    <span>Logo Actual:</span>
+                                    <img id="edit-current-logo" src="" alt="Logo" class="img-fluid sponsor"
+                                        style="max-width: 6rem; margin: auto; display: none;">
+                                    <span id="edit-no-logo"
+                                        style="color: var(--clr-gray); font-size: 0.7rem; display: block;">Sin logo
+                                        previo</span>
+
+                                    <span style="margin-top: 1rem;">Actualizar Logo:</span>
+                                    <x-image-uploader-company />
+                                </div>
+                            </container>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn" style="margin-top: 1.5rem;">Guardar Cambios</button>
+                </container>
+            </form>
+        </dialog>
+
     </main>
+
 
 </body>
 

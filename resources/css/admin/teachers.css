@@ -16,7 +16,7 @@ h1 {
     font-weight: 100;
 }
 
-.section-companies-create {
+.section-teachers-create {
     justify-self: center;
     width: 100%;
 }
@@ -66,19 +66,37 @@ h1 {
     pointer-events: none;
 }
 
-.container-companies-create {
+.container-teachers-create {
     padding: 2rem;
 }
 
-.div-companies-create {
+.container-teachers-create-d {
+    width: 100%;
+    justify-content: center;
+}
+
+.div-teachers-create {
     display: flex;
     gap: 1rem;
     justify-items: center;
     align-items: center;
     width: 100%;
+    margin-bottom: 1rem;
 }
 
-.div-companies-create span {
+.div-teachers-create-d {
+    display: flex;
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.div-teachers-create span,
+.div-teachers-create-d span {
     color: var(--clr-white);
     font-family: var(--font-main);
 }
@@ -111,13 +129,13 @@ h1 {
     gap: 0.5rem;
 }
 
-.container-company-sponsor {
+.container-teachers-sponsor {
     display: grid;
     gap: 0.8rem;
     width: 100%;
 }
 
-.div-company-logo {
+.div-teachers-logo {
     margin-top: 3rem;
 }
 
@@ -251,11 +269,11 @@ h1 {
     margin-top: 3rem;
 }
 
-.section-companies-list {
+.section-teachers-list {
     margin-top: 3rem;
 }
 
-.card-company-info-sponsor h3 {
+.card-teachers-info-sponsor h3 {
     font-family: var(--font-body);
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -271,7 +289,7 @@ h1 {
     color: var(--clr-purple-320);
 }
 
-.card-company-logo {
+.card-teachers-logo {
     display: flex;
     height: 14rem;
     align-items: center;
@@ -285,20 +303,24 @@ h1 {
 }
 
 @media (min-width: 1000px) {
-    .container-companies-create {
+    .container-teachers-create {
         padding: 2rem;
         margin: 5rem;
         width: 60%;
         justify-self: center;
     }
 
-    .div-companies-create {
+    .container-teachers-create-d {
+        width: 50%;
+    }
+
+    .div-teachers-create {
         grid-template-columns: 50% 32%;
         justify-content: center;
         padding-inline: 1rem;
     }
 
-    .div-company-logo {
+    .div-teachers-logo {
         margin-top: unset;
     }
 
@@ -306,12 +328,12 @@ h1 {
         margin-left: 1rem;
     }
 
-    .company-data {
+    .teachers-data {
         justify-self: center;
         max-width: 30rem;
     }
 
-    .section-companies-list {
+    .section-teachers-list {
         width: 90%;
         justify-self: center;
     }

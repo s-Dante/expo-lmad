@@ -34,13 +34,16 @@ export default defineConfig({
 
                 "resources/css/admin/dashboard.css",
                 "resources/css/admin/empresas-lista.css",
+                "resources/css/admin/guest.css",
+                "resources/css/admin/teachers.css",
 
                 "resources/css/superadmin/dashboard.css",
                 "resources/css/superadmin/revision-proyecto.css",
                 "resources/css/superadmin/proyectos.css",
 
                 "resources/css/components/superadmin/modal-ver.css",
-                "resources/css/components/carousel.css",
+                "resources/css/components/carousel.css", //wip
+                "resources/css/components/carrusel.css", //funcional (finito)
                 
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
@@ -63,6 +66,7 @@ export default defineConfig({
                 "resources/js/teacher/modalEditar.js",
 
                 "resources/js/admin/actions-empresas.js",
+                "resources/js/admin/actions-guest.js",
                 "resources/js/admin/carrusel.js",
 
                 "resources/js/superadmin/actions-check.js",
