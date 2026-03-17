@@ -98,9 +98,25 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
+    Route::get('/admin/events', function () {
+        return view('admin.events');
+    })->name('admin.events');
+
+    Route::get('/admin/guest', function () {
+        return view('admin.guest');
+    })->name('admin.guest');
+
     Route::get('/admin/companies', function () {
-        return view('admin.companies.show');
-    })->name('admin.show');
+        return view('admin.companies');
+    })->name('admin.companies');
+    
+    Route::get('/admin/teachers', function () {
+        return view('admin.teachers');
+    })->name('admin.teachers');
+
+    Route::get('/admin/staff', function () {
+        return view('admin.staff');
+    })->name('admin.staff');
 
 });
 

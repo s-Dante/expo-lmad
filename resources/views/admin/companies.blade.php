@@ -11,10 +11,7 @@
         'resources/css/admin/empresas-lista.css',
         'resources/js/components/load-portrait.js',
         'resources/js/admin/actions-empresas.js',
-        'resources/js/admin/carrusel.js',
-
-
-        'resources/css/components/carousel.css'
+        'resources/js/admin/carrusel.js'
 
     ]);
 
@@ -113,16 +110,6 @@
                                 tier="Bronze" />
                         </div>
 
-                        <div aria-hidden class="carousel-group">
-                            <x-admin.company-card name="OXXO" />
-                            <x-admin.company-card image="{{asset('assets/guest/sponsor(1).svg')}}" name="Epic Games"
-                                tier="Titanium" />
-                            <x-admin.company-card image="{{asset('assets/guest/sponsor(2).svg')}}" name="Coca Cola"
-                                tier="Gold" />
-                            <x-admin.company-card image="{{asset('assets/guest/sponsor(3).svg')}}" name="Accenture"
-                                tier="Bronze" />
-                        </div>
-
                     </div>
 
                 </div>
@@ -131,42 +118,7 @@
             </div>
         </section>
 
-        <section class="section-carousel-c">
-            <button class="carousel-backbtn-c">Anterior</button>
-            <button class="carousel-nextbtn-c">Siguiente</button>
-            <div class="container-carousel-c">
-
-                <div id="carousel" class="carousel-group-c">
-
-                    <div class="card-test">1</div>
-                    <div class="card-test">2</div>
-                    <div class="card-test">3</div>
-                    <div class="card-test">4</div>
-                    <div class="card-test">5</div>
-
-                </div>
-
-                <!--
-                <div aria-hidden class="carousel-group-c">
-
-                    <div class="card-test">1</div>
-                    <div class="card-test">2</div>
-                    <div class="card-test">3</div>
-                    <div class="card-test">4</div>
-                    <div class="card-test">5</div>
-
-                </div>
-                -->
-
-
-            </div>
-        </section>
-
     </main>
-
-    @vite([
-        'resources/js/components/carousel.js'
-    ]);
 
 </body>
 

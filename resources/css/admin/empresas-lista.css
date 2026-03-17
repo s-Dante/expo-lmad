@@ -282,6 +282,7 @@ h1 {
     flex: 0 0 5em;
     scroll-snap-align: center;
     height: 29rem;
+    min-width: 13rem;
     display: flex;
     justify-content: space-between;
 }
@@ -486,11 +487,15 @@ span {
     justify-content: flex-start;
     min-width: 99rem;
     flex-grow: 1;
-    animation: spin 30s infinite linear;
+    /*animation: spin 30s infinite linear;*/
 }
 
 .carousel-group.paused {
     animation-play-state: paused;
+}
+
+.container-carrusel-boxfade {
+    max-width: 100%;
 }
 
 .sponsor-data {
