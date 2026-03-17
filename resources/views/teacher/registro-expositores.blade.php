@@ -79,15 +79,13 @@
         </section>
 
     </main>
-    
+
     @if(session('Exito'))
     <script type="module">
         import {
             showModal
         } from "{{ Vite::asset('resources/js/components/alerts.js') }}";
-        document.addEventListener('DOMContentLoaded', () => {
-            showModal("¡Buen trabajo!", "{{ session('Exito') }}");
-        });
+        showModal("¡Buen trabajo!", "{{ session('Exito') }}");
     </script>
     @endif
 
@@ -96,9 +94,7 @@
         import {
             showModal
         } from "{{ Vite::asset('resources/js/components/alerts.js') }}";
-        document.addEventListener('DOMContentLoaded', () => {
-            showModal("Atención", "{{ session('Warning') }}");
-        });
+        showModal("Atención", "{{ session('Warning') }}");
     </script>
     @endif
 
@@ -107,9 +103,9 @@
         import {
             showModal
         } from "{{ Vite::asset('resources/js/components/alerts.js') }}";
-        document.addEventListener('DOMContentLoaded', () => {
-            showModal("Error en el registro", "{{ $errors->first() }}");
-        });
+
+        showModal("Error en el registro", "{{ $errors->first() }}");
     </script>
     @endif
+
 </body>
