@@ -91,7 +91,6 @@ export default defineConfig({
 
                 "resources/js/student/copy-link.js",
                 "resources/js/student/create-project.js",
-                "resources/js/student/load-portrait.js",
                 "resources/js/student/actions-revisar-exposicion.js",
 
                 "resources/js/staff/qr-handler.js",
