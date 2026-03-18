@@ -37,7 +37,7 @@ if (check_sponsor_edit) {
 }
 
 window.openEditModal = function(name, rep, tier, image, editUrl) {
-    document.getElementById("edit-form").action = editUrl;
+    if (editUrl) document.getElementById("edit-form").action = editUrl;
 
     document.getElementById("edit-company-name").value = name;
     document.getElementById("edit-company-rep").value = rep;

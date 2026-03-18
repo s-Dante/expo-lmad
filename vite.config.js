@@ -36,6 +36,7 @@ export default defineConfig({
                 "resources/css/admin/empresas-lista.css",
                 "resources/css/admin/guest.css",
                 "resources/css/admin/teachers.css",
+                "resources/css/admin/staff.css",
 
                 "resources/css/superadmin/dashboard.css",
                 "resources/css/superadmin/revision-proyecto.css",
@@ -67,6 +68,9 @@ export default defineConfig({
 
                 "resources/js/admin/actions-empresas.js",
                 "resources/js/admin/actions-guest.js",
+                "resources/js/admin/actions-events.js",
+                "resources/js/admin/actions-staff.js",
+                "resources/js/admin/actions-teachers.js",
                 "resources/js/admin/carrusel.js",
 
                 "resources/js/superadmin/actions-check.js",

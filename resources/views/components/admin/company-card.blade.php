@@ -26,7 +26,7 @@
         <div class="card-actions">
 
             <button id="btn-edit" class="btn btn-purple btn-icon" type="button"
-                onclick="openEditModal('{{ addslashes($name) }}', '{{ addslashes($representative) }}'">>
+                onclick="openEditModal('{{ addslashes($name) }}', '{{ addslashes($representative) }}', '{{ addslashes($tier ?? '') }}', '{{ addslashes($image ?? '') }}', '{{ $editUrl }}')">
                 <img class="img-fluid img-icon" src="{{ asset('assets/admin/EditarIcon.png') }}">
             </button>
             <form action="{{ $deleteUrl }}" method="POST">

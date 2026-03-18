@@ -102,6 +102,7 @@
                     <div class="container-carrusel">
 
                         <div class="carousel-group">
+
                             <x-admin.company-card name="OXXO" />
                             <x-admin.company-card image="{{asset('assets/guest/sponsor(1).svg')}}" name="Epic Games"
                                 tier="Titanium" />
@@ -109,6 +110,7 @@
                                 tier="Gold" />
                             <x-admin.company-card image="{{asset('assets/guest/sponsor(3).svg')}}" name="Accenture"
                                 tier="Bronze" />
+                                
                         </div>
 
                     </div>

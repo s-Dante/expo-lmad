@@ -8,8 +8,8 @@
 
     @vite([
         'resources/css/guest/template.css',
-        'resources/css/admin/staff.css',
         'resources/css/components/carrusel.css',
+        'resources/css/admin/staff.css',
         'resources/js/components/load-portrait.js',
         'resources/js/admin/actions-staff.js',
         'resources/js/admin/carrusel.js'
@@ -23,25 +23,19 @@
     <x-sidebar />
 
     <main>
-        <h1>Eventos</h1>
+        <h1>Staff</h1>
 
-        <section class="section-guest-create">
+        <section class="section-teachers-create">
             <form>
-                <container class="expo-card container-guest-create">
-                    <div class="div-guest-create">
+                <container class="expo-card container-teachers-create">
+                    <div class="div-teachers-create">
 
-                        <div class="d-grid-gap guest-data">
-                            <span>Nombre del invitado:</span>
-                            <input type="text" id="company-name" name="company-name" class="input-c">
+                        <div class="d-grid-gap teachers-data">
+                            <span>Clave:</span>
+                            <input type="text" id="staff-code" name="staff-code" class="input-c">
 
-                            <span>Empresa:</span>
-                            <select type="listbox" id="company-name" name="company-name" class="input-c">
-                                <option value="" disabled selected>Selecciona una empresa</option>
-                                <option>OXXO</option>
-                                <option>Epic Games</option>
-                                <option>Coca Cola</option>
-                                <option>Accenture</option>
-                            </select>
+                            <span>Contraseña:</span>
+                            <input type="text" id="staff-pass" name="staff-pass" class="input-c">
 
                         </div>
 
@@ -54,7 +48,7 @@
             </form>
         </section>
 
-        <section class="section-guest-list">
+        <section class="section-teachers-list">
             <div class="carousel-wrapper">
                 <button class="carousel-btn btn-prev" aria-label="Anterior">&#10094;</button>
 
@@ -63,13 +57,11 @@
                     <div class="container-carrusel">
 
                         <div class="carousel-group">
-                            <x-admin.guest-card name="OXXO" representative="Jane Doe" />
-                            <x-admin.guest-card image="{{asset('assets/guest/sponsor(1).svg')}}" name="Epic Games"
-                                tier="Titanium" representative="Jane Doe" />
-                            <x-admin.guest-card image="{{asset('assets/guest/sponsor(2).svg')}}" name="Coca Cola"
-                                tier="Gold" representative="Jane Doe" />
-                            <x-admin.guest-card image="{{asset('assets/guest/sponsor(3).svg')}}" name="Accenture"
-                                tier="Bronze" representative="Jane Doe" />
+                            <x-admin.staff-card code="1234567" />
+                            <x-admin.staff-card code="1234567" />
+                            <x-admin.staff-card code="1234567" />
+                            <x-admin.staff-card code="1234567" />
+                            <x-admin.staff-card code="1234567" />
                         </div>
 
                     </div>
@@ -85,7 +77,7 @@
                 @method('PUT')
                 @csrf
 
-                <container class="expo-card container-guest-create-d" style="position: relative;">
+                <container class="expo-card container-teachers-create-d" style="position: relative;">
 
                     <!-- Botón de cerrar (X) -->
                     <button type="button" onclick="document.getElementById('edit-modal').close()"
@@ -93,21 +85,13 @@
                         &times;
                     </button>
 
-                    <div class="div-guest-create-d">
+                    <div class="div-teachers-create-d">
+                        <div class="d-grid-gap teachers-data">
+                            <span>Clave:</span>
+                            <input type="text" id="edit-staff-code" name="staff-code" class="input-c">
 
-                        <div class="d-grid-gap guest-data">
-                            <span>Nombre del invitado:</span>
-                            <input type="text" id="edit-guest-name" name="guest-name" class="input-c">
-
-                            <span>Empresa:</span>
-                            <select type="listbox" id="edit-guest-company" name="company-name" class="input-c">
-                                <option value="" disabled selected>Selecciona una empresa</option>
-                                <option value="OXXO">OXXO</option>
-                                <option value="Epic Games">Epic Games</option>
-                                <option value="Coca Cola">Coca Cola</option>
-                                <option value="Accenture">Accenture</option>
-                            </select>
-
+                            <span>Contraseña:</span>
+                            <input type="text" id="edit-staff-pass" name="staff-pass" class="input-c">
                         </div>
                     </div>
 
