@@ -1,4 +1,6 @@
 @import url(/resources/css/tokens.css);
+@import url(/resources/css/layouts/admin-layout.css);
+
 
 /* ---- Modal Editar Proyecto ---- */
 .modal-overlay {
@@ -17,7 +19,6 @@
     visibility: hidden;
     transition: opacity 0.3s ease;
 }
-
 .modal-content {
     position: relative;
     width: 100%;
@@ -31,7 +32,6 @@
         opacity 0.3s ease,
         transform 0.3s ease;
 }
-
 .modal-content .expo-card {
     margin-bottom: 3rem;
     background: var(--bg-card);
@@ -61,22 +61,22 @@
     z-index: 10000;
     transition: transform 0.2s;
 }
-
 .close-modal:hover {
     transform: scale(1.1);
 }
 
 /* ----Form de registro ----*/
-
 .expo-card {
     display: flex;
     justify-content: center;
+    padding: 2.5rem 2rem; 
     margin-bottom: 6rem;
     width: 640px;
-    height: 500px;
+    height: auto;      
     position: relative;
 
     border-radius: 18px;
+    
 }
 
 .expo-card::before {
@@ -109,7 +109,6 @@
 
     pointer-events: none;
 }
-
 .card-title {
     text-align: center;
     font-family: var(--font-display);
@@ -122,16 +121,6 @@
 }
 
 /* ----Dato Box ----*/
-.input-c {
-    background: var(--input-flat);
-    border: 0;
-    border-bottom: 3px solid var(--contrast-color-D);
-    border-radius: 10px;
-    color: var(--text-primary);
-    font-family: var(--font-main);
-    padding: 8px 15px;
-    outline: none;
-}
 .datos-box {
     display: flex;
     flex-direction: column;
@@ -191,12 +180,10 @@
 .alumnos-box::-webkit-scrollbar {
     width: 4px;
 }
-
 .alumnos-box::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
-
 .alumnos-box::-webkit-scrollbar-thumb {
     background: var(--contrast-color-D);
     border-radius: 10px;
@@ -227,42 +214,6 @@
     margin-right: 5px;
 }
 
-.btn-save {
-    display: block;
-    margin: 30px auto -15px auto;
-
-    background: var(--gradient-E);
-    border: none;
-    border-radius: 30px;
-
-    color: var(--text-primary);
-    font-family: var(--font-main);
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: 12px 40px;
-
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.btn-save:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(127, 0, 255, 0.5);
-}
-.btn-save:active {
-    transform: scale(0.98);
-}
-
-select.input-c {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='cyan' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1em;
-    padding-right: 2.5rem;
-}
-
 @media (max-width: 650px) {
     .modal-content {
         width: 90%;
@@ -284,34 +235,24 @@ select.input-c {
         margin-top: 5px;
     }
 
-    .input-c {
-        font-size: 0.8rem;
-        padding: 6px 10px;
-    }
-
     /*---Datos box---*/
-
     .datos-box {
         gap: 10px;
         width: 100%;
     }
-
     .fila-full {
         flex-direction: row !important;
         width: 120%;
     }
-
     .fila-full select.input-c:not(.corto) {
         width: 60% !important;
     }
-
     .fila-flex {
         flex-direction: row !important;
         justify-content: space-between;
         gap: 5px;
         width: 100%;
     }
-
     .fila-flex .input-c {
         width: 80px !important;
         min-width: 50px;
@@ -323,16 +264,13 @@ select.input-c {
         padding-right: 10px;
         max-height: 220px;
     }
-
     .fila-alumno {
         width: 100%;
         gap: 5px;
     }
-
     .alumnos-box .item {
         justify-content: flex-start;
     }
-
     .alumnos-box label,
     .datos-box label {
         font-size: 0.75rem;
@@ -347,18 +285,12 @@ select.input-c {
         max-height: 200px;
         gap: 15px;
     }
-    .btn-save {
-        width: 60%;
-        font-size: 0.8rem;
-        padding: 10px 20px;
-        margin-top: 20px;
-    }
-
     .close-modal {
         right: 0px;
         top: -5px;
         font-size: 1.8rem;
     }
+    
 }
 
 /*ajuste para que no se mueva la barra*/
@@ -372,8 +304,59 @@ body.modal-open {
     opacity: 1;
     visibility: visible;
 }
-
 .modal-overlay.modal-open .modal-content {
     opacity: 1;
     transform: scale(1);
+}
+
+
+
+/* ---- Estilo de la Alerta Interna del Modal ---- */
+#modal-error-container {
+    display: none;
+    margin: 1rem;
+    margin-bottom: -1rem;
+    animation: slideInError 0.3s ease-out forwards;
+}
+.alert-mini {
+    position: relative;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    border: 1.5px solid var(--contrast-color-E); 
+    border-radius: 12px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#modal-error-text {
+    color:var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+@keyframes slideInError {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajuste para móviles */
+@media (max-width: 650px) {
+    #modal-error-container {
+        width: 90%;
+    }
+    .alert-mini {
+        padding: 8px 12px;
+    }
+    #modal-error-text {
+        font-size: 0.75rem;
+    }
 }

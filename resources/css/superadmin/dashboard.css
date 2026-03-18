@@ -1,31 +1,6 @@
-@import url(/resources/css/tokens.css);
+@import url(/resources/css/layouts/admin-layout.css);
 
-body {
-    background: var(--bg-page-gradient);
-    background-size: 100% 100vh;
-    background-repeat: no-repeat;
-    background-color: var(--bg-flat);
-}
-
-.main-content {
-    margin-left: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.text-main {
-    color: var(--contrast-color-D);
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    font-weight: 300;
-
-    text-align: center;
-
-    margin-bottom: 3rem;
-    margin-top: 1.5rem;
-    
-}
-.line {
+/*.line {
     display: block;
     width: 500px;
     height: 2.5px;
@@ -37,7 +12,7 @@ body {
         transparent
     );
     animation: slideInLeft 0.6s ease-out;
-}
+}*/
 
 /* Sección de estadísticas */
 .section-title {
@@ -104,7 +79,6 @@ body {
     align-items: center;
     text-align: center;
 }
-
 .main-circle .number {
     font-size: 6rem;
     font-family: var(--font-main);
@@ -123,7 +97,6 @@ body {
 
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
-
 .main-circle .label {
     font-size: 1.8rem;
     font-family: var(--font-alt);
@@ -154,7 +127,6 @@ body {
     align-items: center;
     gap: 10px;
 }
-
 .tall-card .number {
     font-size: 4rem;
     font-weight: 500;
@@ -171,7 +143,6 @@ body {
 
     line-height: 1;
 }
-
 .tall-card .label {
     font-size: 1.2rem;
     font-family: var(--font-alt);
@@ -313,6 +284,7 @@ body {
     color: var(--text-primary);
     letter-spacing: 1px;
 }
+
 .line2 {
     display: block;
     width: 500px;
@@ -357,11 +329,9 @@ body {
 .events-grid > :nth-child(3n+1) {
     animation-delay: 0.1s;
 }
-
 .events-grid > :nth-child(3n+2) {
     animation-delay: 0.15s;
 }
-
 .events-grid > :nth-child(3n) {
     animation-delay: 0.2s;
 }
@@ -384,57 +354,10 @@ body {
     font-size: 1rem;
 }
 
-/*botoncin*/
-.export-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.btn-export {
-    font-family: var(--font-main);
-    font-weight: 600;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 30px;
-    color: var(--text-primary);
-    cursor: pointer;
-    background: var(--gradient-E);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 280px;
-    height: 54px;
-    margin-bottom: 6%;
-    transition: all 0.3s ease;
-    animation: slideInUp 0.6s ease-out 0.3s backwards;
-}
-.btn-export:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.2);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
 
 /*----Responsividd-----*/
 @media (max-width: 650px) {
-    .main-content {
-        margin-left: 0;
-        margin-top: 50px;
-        padding: 10px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    .text-main {
-        font-size: 1.8rem;
-        text-align: center;
-        letter-spacing: 1px;
-        margin-bottom: 35px;
-    }
-    .line {
-        width: 320px;
-    }
+
     .line2 {
         width: 320px;
         margin-top: 50px;

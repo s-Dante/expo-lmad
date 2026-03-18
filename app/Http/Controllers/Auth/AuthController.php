@@ -15,17 +15,19 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => 'required|exists:tbl_usuarios,email',
             'password' => 'required|string',
+        ], [
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.exists' => 'Este usuario no existe en nuestros registros.',
+            'password.required' => 'La contraseña es obligatoria.',
         ]);
 
-        if(Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
+        if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
             $usuarios =  Auth::user();
 
             return $this->redireccionPorRol($usuarios);
-            
         }
         return back()->withErrors(['clave' => 'Credenciales incorrectas.']);
-
     }
 
     public function logout(Request $request)
@@ -36,8 +38,9 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    public function redireccionPorRol($usuario){
-        switch($usuario->rol){
+    public function redireccionPorRol($usuario)
+    {
+        switch ($usuario->rol) {
             case 'super_admin':
                 return redirect()->route('superadmin.dashboard');
             case 'admin':

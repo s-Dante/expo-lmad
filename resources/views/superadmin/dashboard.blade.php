@@ -70,6 +70,7 @@
                         </div>
                     </div>
                 </div>
+
         </section>
 
         <span class="line2"></span>
@@ -119,9 +120,7 @@
 
             </div>
 
-            <div class="export-container">
-                <button class="btn-export">Exportar a excel</button>
-            </div>
+            <button class="btn-lg btn-purple">Exportar a excel</button>
 
         </section>
 

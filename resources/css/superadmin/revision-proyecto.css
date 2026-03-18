@@ -1,40 +1,5 @@
-@import url(/resources/css/tokens.css);
-
-body {
-    background: var(--bg-page-gradient);
-    background-size: 100% 100vh;
-    background-repeat: no-repeat;
-    background-color: var(--bg-flat);
-}
-.main-content {
-    margin-left: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.text-main {
-    color: var(--contrast-color-D);
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    font-weight: 300;
-
-    margin-bottom: 3rem;
-    margin-top: 1.5rem;
-}
-
-.line {
-    display: block;
-    width: 100%;
-    height: 3px;
-    margin: -1.2rem auto 2rem;
-    background: linear-gradient(
-        to right,
-        transparent,
-        var(--contrast-color-D),
-        transparent
-    );
-}
+@import url(/resources/css/layouts/admin-layout.css);
+@import url(/resources/css/components/alerts.css);
 
 /* ----- Card del proyecto ----- */
 .project-card {
@@ -51,7 +16,6 @@ body {
     overflow: hidden;
     margin-bottom: 2rem;
 }
-
 .card-inner {
     background: var(--bg-page-gradient-invert);
     border-radius: 13px;
@@ -60,7 +24,6 @@ body {
     flex-direction: column;
     min-height: 400px;
 }
-
 .inner-title {
     text-align: center;
     font-family: var(--font-main);
@@ -80,7 +43,6 @@ body {
 
     color: transparent;
 }
-
 .inner-subject {
     color: var(--contrast-color-D);
     font-family: var(--font-title-bold);
@@ -287,7 +249,7 @@ body {
 .btn-cyan {
     background: var(--gradient-btn-positive);
 }
-.btn-blue {
+.btn-blue-medium {
     background: var(--gradient-btn-middle);
 }
 .btn-magenta {
@@ -322,26 +284,6 @@ body {
     display: none !important;
 }
 
-/*help icon*/
-.help-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    text-decoration: none;
-    background-color: transparent;
-    border: none;
-}
-.help-svg {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-}
-.help-link:hover {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 8px var(--contrast-color-D));
-}
 
 /*Descripción editable*/
 .description-editor {
@@ -417,22 +359,8 @@ body {
 }
 
 @media (max-width: 650px) {
-    .main-content {
-        margin-left: 0;
-        margin-top: 50px;
-        padding: 10px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .text-main {
-        font-size: 1.4rem;
-        text-align: center;
-        letter-spacing: 1px;
-        margin-bottom: 35px;
-    }
-
-    .card-inner {
+  
+  .card-inner {
         padding: 1.5rem 1rem;
     }
 
@@ -567,44 +495,4 @@ body {
         align-items: flex-end;
         margin-right: -10px;
     }
-}
-
-
-/* ToolTips*/
-.tooltip-container {
-    position: relative;
-    display: inline-block;
-}
-.tooltip-text {
-    visibility: hidden;
-    width: 200px;
-    background-color: var(--tooltip-flat);
-    color: var(--text-primary);
-    text-align: center;
-    border-radius: 20px;
-    padding: 10px;
-    position: absolute;
-    z-index: 10;
-    bottom: 125%; 
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-.tooltip-text::after {
-    content: "";
-    position: absolute;
-    top: 100%; 
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: var(--tooltip-flat)transparent transparent transparent;
-}
-.tooltip-container:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
 }

@@ -1,3 +1,4 @@
+import { showConfirm } from "../components/confirm-modal.js";
 
 const devolverProyectoBtn = document.getElementById("btn-confirm-return");
 const aceptarProyectoBtn = document.getElementById("btn-accept-project");
@@ -11,79 +12,92 @@ const textareaDescripcion = document.getElementById("edit-desc");
 
 const aceptarCambiosDescripcion = document.getElementById("btn-save-desc");
 aceptarCambiosDescripcion.addEventListener("click", () => {
-
     descripcionEditada = textareaDescripcion.value;
-
 });
 
-devolverProyectoBtn.addEventListener("click", (event) => {
+devolverProyectoBtn.addEventListener("click", async (event) => {
+    const confirmacion = await showConfirm(
+        "Confirmar Devolución",
+        "¿Estás seguro de que deseas devolver este proyecto para correcciones?",
+    );
 
-    var mensajeDevolucion = document.getElementById("return-msg").value;
+    if (confirmacion) {
+        var mensajeDevolucion = document.getElementById("return-msg").value;
 
-    const data = {
-        accion: 'rechazado',
-        proyecto_id: proyecto_id,
-        descripcion: descripcionEditada,
-        mensaje: mensajeDevolucion
+        const data = {
+            accion: "rechazado",
+            proyecto_id: proyecto_id,
+            descripcion: descripcionEditada,
+            mensaje: mensajeDevolucion,
+        };
+
+        revisarInfo(data);
     }
-
-    revisarInfo(data);
-
 });
 
-aceptarProyectoBtn.addEventListener("click", (event) => {
+aceptarProyectoBtn.addEventListener("click", async (event) => {
+    const confirmacion = await showConfirm(
+        "Confirmar Aceptación",
+        "¿Estás seguro de que deseas aceptar este proyecto?",
+    );
 
-    const data = {
-        accion: 'aprobado',
-        proyecto_id: proyecto_id,
-        descripcion: descripcionEditada,
-        mensaje: ""
+    if (confirmacion) {
+        const data = {
+            accion: "aprobado",
+            proyecto_id: proyecto_id,
+            descripcion: descripcionEditada,
+            mensaje: "",
+        };
+
+        revisarInfo(data);
     }
-
-    revisarInfo(data);
 });
 
-rechazarProyectoBtn.addEventListener("click", (event) => {
+rechazarProyectoBtn.addEventListener("click", async (event) => {
+    const confirmacion = await showConfirm(
+        "Confirmar Rechazo",
+        "¿Estás seguro de que deseas rechazar este proyecto?",
+    );
 
-    const data = {
-        accion: 'eliminado',
-        proyecto_id: proyecto_id,
-        descripcion: descripcionEditada,
-        mensaje: ""
+    if (confirmacion) {
+        const data = {
+            accion: "eliminado",
+            proyecto_id: proyecto_id,
+            descripcion: descripcionEditada,
+            mensaje: "",
+        };
+
+        revisarInfo(data);
     }
-
-    revisarInfo(data);
-
 });
 
 function revisarInfo(data) {
-
     //console.log(data);
 
     const jsonData = {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content"),
         },
         body: JSON.stringify(data),
     };
 
     //    console.log(jsonData);
 
-    fetch('/superadmin/actualizarRevisionProyecto', jsonData)
-        .then(response => {
+    fetch("/superadmin/actualizarRevisionProyecto", jsonData)
+        .then((response) => {
             if (!response.ok) {
-                throw new Error('Error en el servidor: ' + response.statusText);
+                throw new Error("Error en el servidor: " + response.statusText);
             }
             return response.json();
         })
-        .then(dataServidor => {
-            window.location.replace('/superadmin/proyectos');
+        .then((dataServidor) => {
+            window.location.replace("/superadmin/proyectos");
         })
-        .catch(error => {
+        .catch((error) => {
             console.error("Error: ", error);
         });
-        
-
 }
