@@ -70,8 +70,8 @@
                         </div>
                     </div>
                 </div>
-      
-            </section>
+
+        </section>
 
         <span class="line2"></span>
 
@@ -120,8 +120,8 @@
 
             </div>
 
-                <button class="btn-lg btn-purple">Exportar a excel</button>
- 
+            <button class="btn-lg btn-purple">Exportar a excel</button>
+
         </section>
 
     </div>

@@ -1,41 +1,5 @@
-@import url(/resources/css/tokens.css);
+@import url(/resources/css/layouts/admin-layout.css);
 @import url(/resources/css/components/alerts.css);
-
-body {
-    background: var(--bg-page-gradient);
-    background-size: 100% 100vh;
-    background-repeat: no-repeat;
-    background-color: var(--bg-flat);
-}
-.main-content {
-    margin-left: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    animation: fadeIn 0.6s ease-out both;
-}
-.text-main {
-    color: var(--contrast-color-D);
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    font-weight: 300;
-
-    margin-bottom: 3rem;
-    margin-top: 1.5rem;
-}
-.line {
-    display: block;
-    width: 100%;
-    height: 2px;
-    margin: -2rem auto 2rem;
-    background: linear-gradient(
-        to right,
-        transparent,
-        var(--contrast-color-D),
-        transparent
-    );
-}
 
 .scanner-container {
     display: flex;
@@ -82,38 +46,12 @@ body {
     font-family: var(--font-main);
     font-size: 16px;
 }
-.custom-select {
+.input-c {
     width: 100%;
-    background: var(--input-flat);
-    border: 0;
-    border-bottom: 3px solid var(--contrast-color-D);
-    border-radius: 10px;
-    color: var(--text-primary);
-    font-family: var(--font-main);
     padding: 6px 15px;
-    outline: none;
-    text-align: center;
-    position: relative;
 }
-
-.btn-primary {
-    background: var(--gradient-E);
-    font-family: var(--font-main);
-    color: var(--text-primary);
-    border: none;
-    padding: 11px 28px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9rem;
+.btn-medium{
     width: 300px;
-
-    margin-bottom: 10px;
-    transition: transform 0.2s;
-}
-.btn-primary:hover {
-    transform: scale(1.02);
-    filter: brightness(1.2);
 }
 .barcode-ico {
     width: 250px;
@@ -235,9 +173,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    
 }
-
 
 .modal-content {
     background-color: var(--bg-flat);

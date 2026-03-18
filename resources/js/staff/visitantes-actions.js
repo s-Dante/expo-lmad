@@ -19,6 +19,7 @@ radioExterno.addEventListener("change", toggleMatricula);
 
 toggleMatricula();
 
+
 /*---VALIDACIONES ---*/
 const form = document.getElementById("form-visitante");
 

@@ -204,10 +204,10 @@
         rgba(33, 49, 109, 0) 100%
     );
 }
-
 .proyectos-table tbody tr:nth-child(odd) {
     background: transparent;
 }
+
 /*.proyectos-table tbody tr:hover {
     filter: brightness(1.2);
     transition: background 0.3s ease;
