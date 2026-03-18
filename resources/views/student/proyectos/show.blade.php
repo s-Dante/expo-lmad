@@ -11,8 +11,8 @@
         'resources/css/student/revisar-exposicion.css',
         'resources/css/components/alerts.css',
         'resources/js/student/copy-link.js',
-        'resources/js/student/load-portrait.js',
-        'resources/js/student/update-project.js'
+        'resources/js/student/update-project.js',
+        'resources/js/components/load-portrait.js'
     ])
 
 </head>

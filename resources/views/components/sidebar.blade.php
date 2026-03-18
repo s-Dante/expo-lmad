@@ -49,6 +49,39 @@
         </nav>
         <!-- FIN NAVBAR PARA ESTUDIANTES -->
 
+        <!-- NAVBAR PARA ADMINS -->
+        @elseif(auth()->user()->rol == 'admin')
+        <a href="{{ route('admin.dashboard') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
+            <span class="span-sidebar">Inicio</span>
+        </a>
+
+        <a href="{{ route('admin.events') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/calendario-1.png') }}" alt="" />
+            <span class="span-sidebar">Eventos</span>
+        </a>
+
+        <a href="{{ route('admin.guest') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+            <span class="span-sidebar">Invitados</span>
+        </a>
+
+        <a href="{{ route('admin.companies') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Company-1.png') }}" alt="" />
+            <span class="span-sidebar">Empresas</span>
+        </a>
+
+        <a href="{{ route('admin.teachers') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Teachers-1.png') }}" alt="" />
+            <span class="span-sidebar">Maestros</span>
+        </a>
+
+        <a href="{{ route('admin.staff') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Staff-1.png') }}" alt="" />
+            <span class="span-sidebar">Staff</span>
+        </a>
+        <!-- FIN NAVBAR PARA ADMINS -->  
+
         <!-- NAVBAR PARA SUPER ADMIN -->
         @elseif(auth()->user()->rol == 'super_admin')
         <a href="{{ route('superadmin.dashboard') }}" class="sidebar-item ">

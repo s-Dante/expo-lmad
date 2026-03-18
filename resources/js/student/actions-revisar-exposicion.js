@@ -1,11 +1,10 @@
 /*
-    para mostrar/ocultar los campos de modificación del proyecto
+    acciones que se pueden realizar en los campos de modificación del proyecto
 */
 
 import { show_hide_list } from "../components/show-hide-elements.js";
 
 const edit = document.getElementById("edit");
-const save = document.getElementById("save");
 
 const back = document.getElementById("back");
 

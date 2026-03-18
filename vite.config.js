@@ -19,6 +19,8 @@ export default defineConfig({
 
                 "resources/css/guest/landing-page.css",
                 "resources/css/guest/login.css",
+                
+                "resources/css/components/sidebar.css",
 
                 "resources/css/teacher/registro-expositores.css",
                 "resources/css/teacher/lista-proyectos.css",
@@ -33,15 +35,25 @@ export default defineConfig({
                 "resources/css/student/qr.css",
                 "resources/css/student/dashboard.css",
 
+                "resources/css/admin/dashboard.css",
+                "resources/css/admin/empresas-lista.css",
+                "resources/css/admin/guest.css",
+                "resources/css/admin/teachers.css",
+                "resources/css/admin/staff.css",
+
                 "resources/css/superadmin/dashboard.css",
                 "resources/css/superadmin/revision-proyecto.css",
                 "resources/css/superadmin/proyectos.css",
+
                 "resources/css/components/superadmin/modal-ver.css",
 
                 "resources/css/staff/expositor.css",
                 "resources/css/staff/visitantes.css",
                 "resources/css/staff/empresas.css",
 
+                "resources/css/components/carousel.css", //wip
+                "resources/css/components/carrusel.css", //funcional (finito)
+                
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
                 "resources/js/guest/cronogramaS1.js",
@@ -53,10 +65,21 @@ export default defineConfig({
                 "resources/js/components/sidebar.js",
                 "resources/js/components/alerts.js",
                 "resources/js/components/show-hide-elements.js",
+                "resources/js/components/resize-page-smooth.js",
+                "resources/js/components/move-elements.js",
+                "resources/js/components/load-portrait.js",
+                "resources/js/components/carousel.js",
 
                 "resources/js/teacher/agregarIntegrantes.js",
                 "resources/js/teacher/mostrarInfoMateria.js",
                 "resources/js/teacher/modalEditar.js",
+
+                "resources/js/admin/actions-empresas.js",
+                "resources/js/admin/actions-guest.js",
+                "resources/js/admin/actions-events.js",
+                "resources/js/admin/actions-staff.js",
+                "resources/js/admin/actions-teachers.js",
+                "resources/js/admin/carrusel.js",
 
                 "resources/js/superadmin/actions-check.js",
                 "resources/js/superadmin/proyectos-handler.js",
@@ -65,12 +88,11 @@ export default defineConfig({
 
                 "resources/js/student/copy-link.js",
                 "resources/js/student/create-project.js",
-                "resources/js/student/update-project.js",
                 "resources/js/student/load-portrait.js",
                 "resources/js/student/actions-revisar-exposicion.js",
 
                 "resources/js/staff/qr-handler.js",
-                "resources/js/staff/visitantes-actions.js",
+                "resources/js/staff/visitantes-actions.js"
             ],
             refresh: true,
         }),

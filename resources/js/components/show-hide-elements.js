@@ -1,10 +1,13 @@
+/*
+    para mostrar/ocultar elementos
+*/
+
 export function show_hide_list(input_list, state) {
     const promises = [];
 
     input_list.forEach((input_e) => {
         const p = new Promise((resolve) => {
             if (state === 'none') {
-                // Si ya está oculto, resolvemos inmediatamente
                 if (window.getComputedStyle(input_e).display === 'none') {
                     resolve();
                     return;

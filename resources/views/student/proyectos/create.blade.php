@@ -10,7 +10,7 @@
         'resources/css/guest/template.css',
         'resources/css/student/registro-proyecto.css',
         'resources/js/student/create-project.js',
-        'resources/js/student/load-portrait.js'
+        'resources/js/components/load-portrait.js'
     ])
 
 </head>
@@ -81,10 +81,9 @@
 
             <section class="expo-card picture-datas align-items-center">
                 <span class="text-align-center">Foto del proyecto</span>
-                <img id="project-portrait" src="{{ asset('assets/guest/imageloading.png') }}"
-                    class="img-fluid project-card" />
-                <input type="file" id="file-upload" name="poster" accept="image/*" style="display: none;">
-                <x-btn-icon id="upload-photo" icon="{{ asset('assets/guest/upload.png') }}" />
+                
+                <x-image-uploader />
+                
                 <span class="info-secondary">
                     El tamaño preciso para la foto es de 1024 x 1024 ppx
                 </span>
