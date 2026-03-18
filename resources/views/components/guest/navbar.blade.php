@@ -9,7 +9,7 @@
             <img src="{{ asset('assets/guest/btn-burger-grad.png') }}" alt="Botón de menú" />
         </button>
 
-        <a href="" class="btn btn-purple-nav">Mapa del evento</a>
+        <a href="{{ route('registro') }}" class="btn btn-purple-nav">Asistencia</a>
         <a href="{{ route('cronograma') }}" class="btn btn-darkpur-nav">Cronograma</a>
 
         <a href="{{ route('portafolio.index') }}" class="btn btn-ghost-nav">Portafolio</a>

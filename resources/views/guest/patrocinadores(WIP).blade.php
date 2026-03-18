@@ -35,7 +35,20 @@
         <img src="{{ asset('assets/guest/Cancha_v1.png') }}" class="header-expo-3" style="padding: 0" />
 
         <div class="container-gradient">
-            <h1 class="title">MUY PRONTO</h1>
+            <h1 class="title">NUESTRAS ESTRELLAS</h1>
+
+            <section class="container-sponsors">
+                <x-guest.sponsor-card :imageUrl="asset('assets/guest/sponsor(1).svg')" />
+                <x-guest.sponsor-card :imageUrl="asset('assets/guest/sponsor(2).svg')" />
+                <x-guest.sponsor-card :imageUrl="asset('assets/guest/sponsor(3).svg')" />
+                <x-guest.sponsor-card :imageUrl="asset('assets/guest/sponsor(1).svg')" />
+                <x-guest.sponsor-card :imageUrl="asset('assets/guest/sponsor(2).svg')" />
+                <x-guest.sponsor-card :imageUrl="asset('assets/guest/sponsor(1).svg')" />
+                <x-guest.sponsor-card :imageUrl="asset('assets/guest/sponsor(2).svg')" />
+                <x-guest.sponsor-card :imageUrl="asset('assets/guest/sponsor(3).svg')" />
+                <x-guest.sponsor-card :imageUrl="asset('assets/guest/sponsor(1).svg')" />
+                <x-guest.sponsor-card :imageUrl="asset('assets/guest/sponsor(2).svg')" />
+            </section>
         </div>
     </div>
 

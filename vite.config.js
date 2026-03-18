@@ -16,6 +16,7 @@ export default defineConfig({
                 "resources/css/guest/glassimorfismo.css",
                 "resources/css/guest/portafolio-proyecto.css",
                 "resources/css/guest/portafolio.css",
+                "resources/css/guest/registro.css",
 
                 "resources/css/guest/landing-page.css",
                 "resources/css/guest/login.css",
@@ -61,6 +62,7 @@ export default defineConfig({
                 "resources/js/guest/cronogramaS3.js",
                 "resources/js/guest/showButtonMenu.js",
                 "resources/js/guest/revealAnimation.js",
+                "resources/js/guest/actions-registro.js",
 
                 "resources/js/components/sidebar.js",
                 "resources/js/components/alerts.js",

@@ -42,59 +42,7 @@
 
         <div class="container-gradient">
 
-            <h1 class="title">HORARIO</h1>
-
-            <section class="section-horario">
-
-                <div class="container-grid-horario">
-
-                    <div class="container-grid-horario-map">
-                        <div class="glassContainer horario-map">
-                            <canvas id="MapaInteractivo"></canvas>
-                            <div class="glassContainer button-sm" id="MapaInteractivo-L1">
-                                L1
-                            </div>
-                            <div class="glassContainer button-sm" id="MapaInteractivo-L2">
-                                L2
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container-grid-horario-flyer">
-                        <img id="eventsMap" src="{{ asset('assets/guest/AmbassadorSchedules.jpg') }}"
-                            class="img-fluid horario-flyer" />
-                    </div>
-
-                </div>
-
-                <div class="container-gradient-segment-horario"></div>
-
-            </section>
-
-            <section class="section-conferencias">
-                <h1 class="title-conferencias">CONFERENCIAS</h1>
-
-                <div class="container-grid-conferencias">
-
-                    <div class="container-grid-conferencias-flyer">
-                        <img id="conference-image" src="{{ asset('assets/guest/CRONOGRAMA1.png') }}"
-                            class="img-fluid conferencia-flyer" />
-                    </div>
-
-                    <div class="container-grid-conferencias-list"> </div>
-
-                    <div style="max-width: 98dvw;overflow-x: scroll;margin: 0rem;">
-                        <img id="conference-background-image" style="margin: 0rem;overflow-x: auto;"
-                            class="confe-backimage" src="{{ asset('assets/guest/CRONOGRAMA1.png') }}" />
-                    </div>
-
-                </div>
-
-            </section>
-
-            <section class="section-talleres">
-                <h1>TALLERES</h1>
-            </section>
+            <h1 class="title">MUY PRONTO</h1>
 
         </div>
     </div>

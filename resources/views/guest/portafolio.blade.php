@@ -81,7 +81,7 @@
 
         @empty
             <div style="grid-column: 1 / -1; text-align: center; color: white; padding: 2rem;">
-                <p>No hay proyectos disponibles en esta categoría por el momento.</p>
+                <p>No hay proyectos disponibles por el momento.</p>
             </div>
         @endforelse
     </section>

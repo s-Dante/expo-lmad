@@ -35,11 +35,25 @@ Route::get('/NuestrasEstrellas', function () {
 });
 
 /**
+ * Vista de Registro de AFI
+ */
+Route::get('/Registro', function () {
+    return view('guest.registro');
+})->name('registro');
+
+/**
+ * Vista de Asistencia de AFI
+ */
+Route::get('/Asistencia', function () {
+    return view('guest.asistencia');
+})->name('asistencia');
+
+/**
  * Vista de Cronograma
  */
 Route::get('/Cronograma', function () {
     return view('guest.cronograma');
-})->name('cronograma');;
+})->name('cronograma');
 
 /**
  * Vista de Portafolio
