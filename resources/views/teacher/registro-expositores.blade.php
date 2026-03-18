@@ -72,7 +72,7 @@
                 <div class="alumnos-box" id="contenedor-alumnos">
                 </div>
 
-                <button type="submit" class="btn-lg">Guardar</button>
+                <button type="submit" class="btn-lg btn-purple">Guardar</button>
 
             </form>
 

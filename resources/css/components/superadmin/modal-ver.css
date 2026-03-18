@@ -1,4 +1,5 @@
 @import url(/resources/css/tokens.css);
+@import url(/resources/css/components/alerts.css);
 
 .modal-overlay {
     position: fixed;

@@ -1,6 +1,7 @@
 @import url(/resources/css/tokens.css);
 @import url(/resources/css/layouts/admin-layout.css);
 
+
 /* ---- Modal Editar Proyecto ---- */
 .modal-overlay {
     position: fixed;

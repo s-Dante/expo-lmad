@@ -201,7 +201,7 @@
                                 </div>
 
                                 <!-- Devolver proyecto-->
-                                <button id="btn-open-return" class="btn-pill btn-blue">
+                                <button id="btn-open-return" class="btn-pill btn-blue-medium">
                                     <div class="icon-container">
                                         <img src="{{ asset('assets/superadmin/flecha-izquierda-1.svg') }}" alt=""
                                             class="btn-icon">

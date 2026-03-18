@@ -70,7 +70,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn-lg">Guardar cambios</button>
+                <button type="submit" class="btn-lg btn-purple">Guardar cambios</button>
 
             </form>
         </article>
