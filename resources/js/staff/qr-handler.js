@@ -1,9 +1,13 @@
+import { showModal } from "../components/alerts.js";
+
 const btnPermissions = document.getElementById("btn-permissions");
 const cameraSelect = document.getElementById("camera-select");
 const btnStartScan = document.getElementById("btn-start-scan");
 //const qrValueSpan = document.getElementById("qr-value");
 //const studentNameSpan = document.getElementById("student-name");
-const registrarAsistenciaButton = document.getElementById("btn-registrar-asistencia");
+const registrarAsistenciaButton = document.getElementById(
+    "btn-registrar-asistencia",
+);
 const scanner = new Html5Qrcode("reader");
 
 cameraSelect.addEventListener("change", () => {
@@ -34,7 +38,10 @@ btnPermissions.addEventListener("click", () => {
 btnStartScan.addEventListener("click", () => {
     const selectedCameraId = cameraSelect.value;
     if (!selectedCameraId) {
-        alert("Por favor, selecciona una cámara primero.");
+        showModal(
+            "Datos inválidos",
+            "Por favor, selecciona una cámara primero.",
+        );
         return;
     }
 
@@ -93,7 +100,6 @@ async function handleSuccess(value) {
     } catch (err) {
         console.error("Error en el proceso:", err);
     }
-
 }
 
 async function obtenerExpositorPorMatricula(matricula) {
@@ -101,8 +107,10 @@ async function obtenerExpositorPorMatricula(matricula) {
         const response = await fetch(`/api/buscar-estudiante/${matricula}`);
 
         if (!response.ok) {
-            console.warn(`Estudiante con matrícula ${matricula} no encontrado.`);
-            return 'No encontrado';
+            console.warn(
+                `Estudiante con matrícula ${matricula} no encontrado.`,
+            );
+            return "No encontrado";
         }
 
         const data = await response.json();
@@ -110,20 +118,21 @@ async function obtenerExpositorPorMatricula(matricula) {
         if (data.success) {
             return data.nombre;
         } else {
-            return 'No encontrado';
+            return "No encontrado";
         }
     } catch (error) {
         console.error("Error de red o conexión:", error);
-        return 'Error de conexión';
+        return "Error de conexión";
     }
 }
 
 function abrirModal() {
     modalRegistrarAsistencia.style.display = "flex";
-    document.getElementById("modal-qr-value").innerText = matriculaScaneada || "Desconocida";
-    document.getElementById("modal-student-name").innerText = nombreExpositorScaneado || "Desconocido";
+    document.getElementById("modal-qr-value").innerText =
+        matriculaScaneada || "Desconocida";
+    document.getElementById("modal-student-name").innerText =
+        nombreExpositorScaneado || "Desconocido";
 }
-
 
 function cerrarModal() {
     modalRegistrarAsistencia.style.display = "none";
@@ -138,7 +147,6 @@ btnCloseModal.addEventListener("click", () => {
 });
 
 registrarAsistenciaButton.addEventListener("click", () => {
-
     if (matriculaScaneada && matriculaScaneada !== "") {
         registrarAsistencia(matriculaScaneada);
     } else {
@@ -148,8 +156,8 @@ registrarAsistenciaButton.addEventListener("click", () => {
 
 function registrarAsistencia(matricula) {
     fetch(`/staff/registro-asistencia-expositor/${matricula}`)
-        .then(response => {
-            return response.json().then(data => {
+        .then((response) => {
+            return response.json().then((data) => {
                 if (!response.ok) {
                     throw new Error(data.message || "Error desconocido");
                     cerrarModal();
@@ -159,14 +167,14 @@ function registrarAsistencia(matricula) {
                 return data;
             });
         })
-        .then(data => {
+        .then((data) => {
             alert(data.message);
             cerrarModal();
             matriculaScaneada = "";
             nombreExpositorScaneado = "";
             resetInterface();
         })
-        .catch(error => {
+        .catch((error) => {
             console.error("Error:", error);
             cerrarModal();
             matriculaScaneada = "";

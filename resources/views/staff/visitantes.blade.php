@@ -22,7 +22,7 @@
             <span class="line"></span>
         </header>
 
-        <form action="" method="POST" class="form-visitor">
+        <form id="form-visitante" action="" method="POST" class="form-visitor">
             <div class="type-vistor">
 
                 <div class="group-radio">
@@ -40,14 +40,14 @@
             <div class="form-group">
                 <div id="container-matricula">
                     <label for="matricula">Matrícula:</label>
-                    <input type="text" id="matricula" name="matricula" required>
+                    <input type="text" id="matricula" name="matricula" >
                 </div>
 
                 <label for="nombre">Nombre completo:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="nombre" >
 
                 <label for="genero">Género:</label>
-                <select id="genero" name="genero" required>
+                <select id="genero" name="genero" >
                     <option value="">Seleccionar</option>
                     <option value="masculino">Masculino</option>
                     <option value="femenino">Femenino</option>
