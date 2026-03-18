@@ -11,14 +11,15 @@
 </head>
 
 <body>
-    
+
     <x-sidebar />
+
     <main class="main-content">
         <h1 class="text-main">REGISTRO DE PROYECTOS</h1>
 
         <section class="expo-card">
 
-            <form method="post" action="{{ route('teacher.cargar-proyecto') }}" class="expo-form">
+            <form id="form-registro" method="post" action="{{ route('teacher.cargar-proyecto') }}" class="expo-form">
                 @csrf
 
                 <input type="hidden" name="profesor_id" value="{{ auth()->user()->id }}">
@@ -61,7 +62,7 @@
                     <div class="fila-full">
                         <div class="item">
                             <label>Numero de integrantes:</label>
-                            <input type="number" id="num-integrantes" class="input-c corto" min="1" max="10" value="0" onkeydown="return false">
+                            <input type="number" id="num-integrantes" class="input-c corto" min="0" max="10" value="0" onkeydown="return false">
                         </div>
 
                     </div>
@@ -71,12 +72,40 @@
                 <div class="alumnos-box" id="contenedor-alumnos">
                 </div>
 
-                <button type="submit" class="btn-save">Guardar</button>
+                <button type="submit" class="btn-lg btn-purple">Guardar</button>
 
             </form>
 
         </section>
 
     </main>
+
+    @if(session('Exito'))
+    <script type="module">
+        import {
+            showModal
+        } from "{{ Vite::asset('resources/js/components/alerts.js') }}";
+        showModal("¡Buen trabajo!", "{{ session('Exito') }}");
+    </script>
+    @endif
+
+    @if(session('Warning'))
+    <script type="module">
+        import {
+            showModal
+        } from "{{ Vite::asset('resources/js/components/alerts.js') }}";
+        showModal("Atención", "{{ session('Warning') }}");
+    </script>
+    @endif
+
+    @if($errors->any())
+    <script type="module">
+        import {
+            showModal
+        } from "{{ Vite::asset('resources/js/components/alerts.js') }}";
+
+        showModal("Error en el registro", "{{ $errors->first() }}");
+    </script>
+    @endif
 
 </body>

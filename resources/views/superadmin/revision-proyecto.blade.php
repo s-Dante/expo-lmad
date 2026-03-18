@@ -153,10 +153,11 @@
                     <div class="action-group" id="group-review">
                         <div class="row-top">
                             <div class="btn-group-container">
+
+
                                 <div class="tooltip-container">
-                                    <button class="help-link" title="Más información">
-                                        <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
-                                    </button>
+                                    <button class="btn-help" ><i class="fas fa-question"></i></button>
+
                                     <span class="tooltip-text">
                                         Editar la descripción no
                                         notificará al expositor.
@@ -187,9 +188,8 @@
                             </button>
                             <div class="btn-group-container">
                                 <div class="tooltip-container">
-                                    <button class="help-link" title="Más información">
-                                        <img src="{{ asset('assets/superadmin/Help-1.svg') }}" alt="Ayuda" class="help-svg">
-                                    </button>
+                                     <button class="btn-help" ><i class="fas fa-question"></i></button>
+
                                     <span class="tooltip-text">
                                         Devolver el proyecto permite al
                                         expositor corregir o mejorar
@@ -201,7 +201,7 @@
                                 </div>
 
                                 <!-- Devolver proyecto-->
-                                <button id="btn-open-return" class="btn-pill btn-blue">
+                                <button id="btn-open-return" class="btn-pill btn-blue-medium">
                                     <div class="icon-container">
                                         <img src="{{ asset('assets/superadmin/flecha-izquierda-1.svg') }}" alt=""
                                             class="btn-icon">

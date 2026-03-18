@@ -5,7 +5,7 @@
         <h1 class="text-main">EDICIÓN DE EXPOSITORES</h1>
 
         <article class="expo-card">
-            <form method="post" action="{{ route('teacher.actualizar-proyecto') }}">
+            <form id="form-editar" method="post" action="{{ route('teacher.actualizar-proyecto') }}">
                 @csrf
                 <h2 class="card-title" id="modal-titulo">ADADAT</h2>
 
@@ -64,7 +64,13 @@
 
                 </div>
 
-                <button type="submit" class="btn-save">Guardar cambios</button>
+                <div id="modal-error-container">
+                    <div class="alert-mini">
+                        <span id="modal-error-text"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-lg btn-purple">Guardar cambios</button>
 
             </form>
         </article>

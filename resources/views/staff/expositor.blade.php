@@ -43,17 +43,17 @@
                 </div>
                 -->
 
-                <button id="btn-permissions" class="btn-primary">Solicitar permisos de cámara</button>
+                <button id="btn-permissions" class="btn-medium btn-purple">Solicitar permisos de cámara</button>
             </div>
 
             <div class="card card-right">
                 <div class="form-group">
                     <label for="camera-select">Cámara:</label>
-                    <select id="camera-select" class="custom-select">
+                    <select id="camera-select" class="input-c">
                         <option value="">Selecciona una cámara</option>
                     </select>
                 </div>
-                <button id="btn-start-scan" class="btn-primary ">Empezar a escanear</button>
+                <button id="btn-start-scan" class="btn-medium btn-purple">Empezar a escanear</button>
             </div>
 
         </section>
@@ -67,7 +67,6 @@
                 <button class="btn-primary" id="btn-registrar-asistencia">Registrar asistencia</button>
             </div>
         </div>
-
 
     </main>
 

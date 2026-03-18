@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>EXPO LMAD - Landing Page</title>
-    @vite(['resources/css/guest/landing-page.css'])
-    @vite([
-    'resources/js/guest/revealAnimation.js',
-    ])
+    @vite(['resources/css/guest/landing-page.css',
+    'resources/js/guest/revealAnimation.js'])
+
 </head>
 
 <body>
     <div class="bg-navbar d-none"></div>
+
     <header class="hero">
         <video
             class="hero-banner"
@@ -98,11 +98,6 @@
 
 
     <footer class="footer"></footer>
-
-    <article class="card-info">
-        <span>EXPO LMAD - Mayo - 2026</span>
-        <img src="img/icon-arrow-down.png" alt="" />
-    </article>
 
 </body>
 
