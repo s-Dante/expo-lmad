@@ -9,7 +9,7 @@ main {
     padding-inline: 3%;
 }
 
-h1{
+h1 {
     text-align: center;
     font-family: var(--font-display);
     color: var(--clr-blue-100);
@@ -21,4 +21,374 @@ h1{
         padding: unset;
         padding-left: 120px;
     }
+}
+
+/*
+
+CSS BRUTO, PENDIENTE PULIR
+
+*/
+
+@import url(/resources/css/tokens.css);
+
+main {
+    top: 4rem;
+    position: absolute;
+    padding: 1rem;
+    width: -webkit-fill-available;
+    justify-content: center;
+    display: grid;
+
+    transition: margin-left 0.3s ease;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--clr-blue-100);
+    text-align: center;
+}
+
+.subtitle {
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    color: var(--clr-gray);
+    margin-top: 0.25rem;
+    text-align: center;
+}
+
+.user-info {
+    text-align: right;
+    font-family: var(--font-main);
+    font-size: 3rem;
+
+    background: linear-gradient(
+        90deg,
+        var(--clr-cian-500) 0%,
+        var(--clr-purple-320) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--clr-purple-320);
+}
+
+.user-name {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.user-meta {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.section-export{
+    margin-top: 2%;
+}
+
+.cards {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: linear-gradient(
+        0deg,
+        var(--clr-blue-800) 0%,
+        var(--clr-blue-900) 100%
+    );
+    border: 1px solid var(--clr-blue-100);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.3s ease;
+}
+
+.card-s {
+    background: linear-gradient(
+        0deg,
+        var(--clr-blue-800) 0%,
+        var(--clr-blue-900) 100%
+    );
+    border: 1px solid var(--clr-blue-100);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    padding-inline: 1rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.3s ease;
+}
+
+.sub-group {
+    display: grid;
+    gap: 0.3rem;
+}
+
+.card-s p {
+    font-size: 0.7rem;
+}
+
+.card-s span {
+    font-size: 1rem;
+}
+
+.margin-mid {
+    margin-top: 1.9rem;
+}
+
+.sub-card {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.card-label {
+    font-family: var(--font-readability);
+    font-size: 1.5rem;
+    font-weight: 200;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clr-blue-white);
+    margin: unset;
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    height: fit-content;
+}
+
+.card-number {
+    font-family: var(--font-tech-accent);
+    font-size: 5rem;
+    font-weight: 800;
+    margin: unset;
+}
+
+.blue {
+    background: linear-gradient(
+        0deg,
+        var(--clr-blue-600) 0%,
+        var(--clr-blue-900) 100%
+    );
+    border-color: var(--clr-blue-300);
+
+    color: var(--clr-blue-200);
+}
+
+.yellow {
+    background: linear-gradient(
+        0deg,
+        var(--clr-pink-800) -150%,
+        var(--clr-blue-900) 100%
+    );
+    border-color: var(--clr-pink-800);
+
+    color: var(--clr-warning);
+}
+
+.green {
+    background: linear-gradient(
+        0deg,
+        var(--clr-accepted) -100%,
+        var(--clr-blue-900) 100%
+    );
+
+    border-color: var(--clr-accepted);
+
+    color: var(--clr-cian-500);
+}
+
+.green-s {
+    background: linear-gradient(
+        0deg,
+        var(--clr-accepted) -400%,
+        var(--clr-blue-900) 100%
+    );
+
+    border-color: var(--clr-accepted);
+
+    color: var(--clr-cian-500);
+}
+
+.icon {
+    background: transparent;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon svg {
+    width: 50px;
+    height: 50px;
+}
+
+.info {
+    align-content: center;
+    justify-items: center;
+    height: 15rem;
+    width: auto;
+    text-align: center;
+    background: transparent;
+    border: 1px solid var(--clr-blue-200);
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 2rem;
+    box-shadow: inset 0 0 20px
+        color-mix(in srgb, var(--clr-blue-200), transparent 55%);
+}
+
+.info-header {
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--clr-blue-200);
+}
+
+.info-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--clr-blue-200);
+    margin: unset;
+}
+
+.info h2 {
+    font-family: var(--font-title-bold);
+    font-weight: 100;
+    list-style: none;
+    font-size: 6rem;
+    color: var(--clr-blue-200);
+    padding: initial;
+    margin: unset;
+}
+
+.info li {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.section-data-event {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.table-data-conferences {
+    /* Asegura que los bordes de la tabla estén separados para permitir espacios */
+    border-collapse: separate;
+    /* El primer valor es el espacio horizontal (0) y el segundo el vertical (1rem) */
+    border-spacing: 0 1.5rem; 
+}
+
+.td-data-conference {
+    background: linear-gradient(
+        90deg,
+        var(--clr-cian-500) 0%,
+        var(--clr-purple-320) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--clr-purple-320);
+
+    margin: unset;
+    text-align: right;
+    padding-right: 1rem;
+
+    width: 70%;
+
+    font-family: var(--font-display);
+}
+
+.td-data {
+    color: var(--clr-white);
+    font-family: var(--font-display);
+    text-align: left;
+}
+
+.section-other-data{
+    margin-top: 2rem;
+    display: grid;
+    gap: 0.5rem;
+}
+
+@media (min-width: 650px) {
+    main {
+        margin-left: 7rem;
+        top: 4%;
+        padding: unset;
+        padding-bottom: 5%;
+    }
+}
+
+@media (min-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (min-width: 911px) {
+    main {
+        margin-left: 7.5rem;
+        top: 1rem;
+        padding-inline: 5%;
+    }
+
+    .card {
+        min-height: 10rem;
+    }
+
+    .info {
+        justify-self: center;
+        width: 20rem;
+        height: 18rem;
+        padding: 1%;
+        padding-inline: 2%;
+    }
+}
+
+@media (min-width: 936px) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .section-data-event {
+        grid-template-columns: auto auto auto;
+        gap: 2rem;
+        justify-content: center;
+    }
+}
+
+body {
+    padding-bottom: unset;
 }

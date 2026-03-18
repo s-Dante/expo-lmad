@@ -79,6 +79,7 @@ export default defineConfig({
                 "resources/js/admin/actions-events.js",
                 "resources/js/admin/actions-staff.js",
                 "resources/js/admin/actions-teachers.js",
+                "resources/js/admin/data-export.js",
                 "resources/js/admin/carrusel.js",
 
                 "resources/js/superadmin/actions-check.js",
