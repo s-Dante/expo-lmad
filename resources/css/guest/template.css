@@ -54,7 +54,7 @@ a {
 /* ---- Banner y Navbar ---- */
 .hero {
     position: relative;
-    height: 45vh;
+    height: 25rem; /* 45vh */
     overflow: hidden;
 }
 

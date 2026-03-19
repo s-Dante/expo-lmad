@@ -1,4 +1,4 @@
-import { show_hide_list } from '../components/show-hide-elements.js';
+import { show_hide_list } from '../../components/show-hide-elements.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     const selectFacultad = document.getElementById("select-facultad");
@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const containerDependencia = document.getElementById("container-dependencia");
     const inputDependencia = document.getElementById("input-dependencia");
 
-    // Retiramos d-none para que el componente manipule el elemento mediante style.display
     if (containerDependencia && containerDependencia.classList.contains("d-none")) {
         containerDependencia.classList.remove("d-none");
         containerDependencia.style.display = "none";

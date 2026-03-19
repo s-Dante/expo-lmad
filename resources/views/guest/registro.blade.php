@@ -4,31 +4,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portafolio - EXPO LMAD</title>
+    <title>Registro AFI - EXPO LMAD</title>
 
     @vite([
         'resources/css/guest/template.css',
         'resources/css/guest/registro.css',
         'resources/css/components/sidebar.css',
-        'resources/js/guest/actions-registro.js'
+        'resources/js/guest/afi/actions-registro.js',
+        'resources/js/guest/afi/register-afi.js'
     ])
 </head>
 
 <body>
 
-    {{-- Navbar --}}
-
     <header class="hero">
         <div class="bg-navbar d-none"></div>
         <img src="{{ asset('assets/guest/expolmadimg.png') }}" alt="EXPO LMAD" class="hero-banner" />
-        <img src="{{ asset('assets/guest/LMAD_BLOOM.png') }}" class="hero-logo">
+        <x-guest.header-title>Registro de AFI</x-guest.header-title>
         <x-guest.navbar />
     </header>
 
-    {{-- TÍTULO --}}
-    <section>
+    <section class="section-main">
 
-        <form>
+        <form id="form-register">
 
             <container class="card-expo">
 
@@ -85,19 +83,23 @@
                         </div>
 
                         <p>AFI</p>
-                        <select id="conferencias" name="conferencias"></select>
+                        <select id="conferencias" name="conferencias">
+                            <option value="" disabled selected>Selecciona una conferencia</option>
+                            <option value="dummy">Opcion dummy para test</option>
+                        </select>
                     </div>
 
                     <div>
                         <p>Nombre completo</p>
-                        <input type="text">
+                        <input type="text" id="nombre" name="nombre">
 
                         <p>Matrícula</p>
-                        <input type="text">
+                        <input type="text" id="matricula" name="matricula">
 
                         <p>Correo universitario</p>
                         <div>
-                            <input type="text"> <span>@uanl.edu.mx</span>
+                            <input type="text" id="email" name="email">
+                            <span>@uanl.edu.mx</span>
                         </div>
 
                     </div>

@@ -4,38 +4,39 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portafolio - EXPO LMAD</title>
+    <title>Asistencia AFI - EXPO LMAD</title>
 
     @vite([
         'resources/css/guest/template.css',
         'resources/css/guest/registro.css',
         'resources/css/components/sidebar.css',
-        'resources/js/guest/actions-registro.js'
+        'resources/js/guest/afi/actions-registro.js',
+        'resources/js/guest/afi/attendace-afi.js'
     ])
 </head>
 
 <body>
 
-    <header class="hero">
+   <header class="hero">
         <div class="bg-navbar d-none"></div>
         <img src="{{ asset('assets/guest/expolmadimg.png') }}" alt="EXPO LMAD" class="hero-banner" />
-        <img src="{{ asset('assets/guest/LMAD_BLOOM.png') }}" class="hero-logo">
+        <x-guest.header-title>Asistencia de AFI</x-guest.header-title>
         <x-guest.navbar />
     </header>
 
-    <section>
+    <section class="section-main">
 
-        <form>
+        <form id="form" name="form">
 
             <container class="card-expo">
 
-                <p>Nombre completo</p>
-                <input type="text">
+                <p>ID</p>
+                <input type="text" id="studentId" name="studentId">
 
-                <p>Matrícula</p>
-                <input type="text">
+                <p>Palabra clave</p>
+                <input type="text" id="key" name="key">
 
-                <button class="btn btn-purple" id="btn-registrar"> Registrar </button>
+                <button class="btn btn-purple" id="btn-registrar" name="btn-registrar"> Registrar </button>
 
             </container>
 

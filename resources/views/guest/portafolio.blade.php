@@ -20,7 +20,9 @@
     <header class="hero">
         <div class="bg-navbar d-none"></div>
         <img src="{{ asset('assets/guest/expolmadimg.png') }}" alt="EXPO LMAD" class="hero-banner" />
-        <img src="{{ asset('assets/guest/LMAD_BLOOM.png') }}" class="hero-logo">
+        <a href="/">
+            <img src="{{ asset('assets/guest/LMAD_BLOOM.png') }}" class="hero-logo">
+        </a>
         <x-guest.navbar />
     </header>
 
@@ -43,9 +45,10 @@
 
             @foreach($categorias as $cat)
                 <a href="{{ route('portafolio.index', ['category' => $cat->slug]) }}" class="btn-portafolio BrunoAce-font">
-                <a href="{{ route('portafolio.index', ['category' => $cat->slug]) }}" class="btn-portafolio BrunoAce-font">
-                    {{ $cat->nombre }}
-                </a>
+                    <a href="{{ route('portafolio.index', ['category' => $cat->slug]) }}"
+                        class="btn-portafolio BrunoAce-font">
+                        {{ $cat->nombre }}
+                    </a>
             @endforeach
         </div>
     </section>

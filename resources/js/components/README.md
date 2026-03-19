@@ -112,7 +112,7 @@ validation_TextClean
        - Retorna: true si falla (caracteres inválidos), false si es exitosa.
 
     7. validation_UANLUser(data, input)
-       Verifica el formato de usuario UANL (nombre.apellido).
+       Verifica el formato de usuario UANL (SOLO nombre.apellido, NO PIDE CORREO COMPLETO).
        - data: String a validar.
        - input: String, nombre del campo para el mensaje de error.
        - Retorna: true si falla (formato incorrecto), false si es exitosa.

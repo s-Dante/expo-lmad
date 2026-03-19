@@ -139,11 +139,24 @@ export function validation_TextClean(data, input) {
     return false;
 }
 
-export function validation_UANLUser(data, input) {
+export function validation_TextNumbers(data, input){
+    if (!/^[0-9\s]+$/.test(data)) {
+        showModal(
+            "Datos inválidos",
+            "El campo " +
+                input +
+                " solo puede contener solo números.",
+        );
+        return true;
+    }
+    return false;
+}
+
+export function validation_UANLUser(data) {
     if (!/^[a-z]+\.[a-z]+$/.test(data)) {
         showModal(
             "Datos inválidos",
-            "El " + input + " debe ser en minúsculas, sin caracteres especiales y con el formato 'nombre.apellido'.",
+            "El correo universitario debe ser en minúsculas, sin caracteres especiales y con el formato 'nombre.apellido'.",
         );
         return true;
     }
