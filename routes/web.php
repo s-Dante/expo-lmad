@@ -107,30 +107,61 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
 
 //Rutas de Admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    // Dashboard
+    Route::get('/admin/dashboard', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])
+        ->name('admin.dashboard');
+    Route::get('/admin/dashboard/exportar', [App\Http\Controllers\Admin\AdminDashboardController::class, 'exportar'])
+        ->name('admin.dashboard.export');
 
-    Route::get('/admin/events', function () {
-        return view('admin.events');
-    })->name('admin.events');
+    // Eventos
+    Route::get('/admin/events', [App\Http\Controllers\Admin\AdminEventoController::class, 'index'])
+        ->name('admin.events');
+    Route::post('/admin/eventos', [App\Http\Controllers\Admin\AdminEventoController::class, 'store'])
+        ->name('admin.eventos.store');
+    Route::put('/admin/eventos/{evento}', [App\Http\Controllers\Admin\AdminEventoController::class, 'update'])
+        ->name('admin.eventos.update');
+    Route::delete('/admin/eventos/{evento}', [App\Http\Controllers\Admin\AdminEventoController::class, 'destroy'])
+        ->name('admin.eventos.destroy');
 
-    Route::get('/admin/guest', function () {
-        return view('admin.guest');
-    })->name('admin.guest');
+    // Conferencistas (Guests)
+    Route::get('/admin/guest', [App\Http\Controllers\Admin\AdminConferencistaController::class, 'index'])
+        ->name('admin.guest');
+    Route::post('/admin/conferencistas', [App\Http\Controllers\Admin\AdminConferencistaController::class, 'store'])
+        ->name('admin.conferencistas.store');
+    Route::put('/admin/conferencistas/{conferencista}', [App\Http\Controllers\Admin\AdminConferencistaController::class, 'update'])
+        ->name('admin.conferencistas.update');
+    Route::delete('/admin/conferencistas/{conferencista}', [App\Http\Controllers\Admin\AdminConferencistaController::class, 'destroy'])
+        ->name('admin.conferencistas.destroy');
 
-    Route::get('/admin/companies', function () {
-        return view('admin.companies');
-    })->name('admin.companies');
-    
-    Route::get('/admin/teachers', function () {
-        return view('admin.teachers');
-    })->name('admin.teachers');
+    // Empresas / Patrocinadores
+    Route::get('/admin/companies', [App\Http\Controllers\Admin\AdminPatrocinadorController::class, 'index'])
+        ->name('admin.companies');
+    Route::post('/admin/patrocinadores', [App\Http\Controllers\Admin\AdminPatrocinadorController::class, 'store'])
+        ->name('admin.patrocinadores.store');
+    Route::put('/admin/patrocinadores/{patrocinador}', [App\Http\Controllers\Admin\AdminPatrocinadorController::class, 'update'])
+        ->name('admin.patrocinadores.update');
+    Route::delete('/admin/patrocinadores/{patrocinador}', [App\Http\Controllers\Admin\AdminPatrocinadorController::class, 'destroy'])
+        ->name('admin.patrocinadores.destroy');
 
-    Route::get('/admin/staff', function () {
-        return view('admin.staff');
-    })->name('admin.staff');
+    // Maestros (Teachers)
+    Route::get('/admin/teachers', [App\Http\Controllers\Admin\AdminTeacherController::class, 'index'])
+        ->name('admin.teachers');
+    Route::post('/admin/teachers', [App\Http\Controllers\Admin\AdminTeacherController::class, 'store'])
+        ->name('admin.teachers.store');
+    Route::put('/admin/teachers/{profesor}', [App\Http\Controllers\Admin\AdminTeacherController::class, 'update'])
+        ->name('admin.teachers.update');
+    Route::delete('/admin/teachers/{profesor}', [App\Http\Controllers\Admin\AdminTeacherController::class, 'destroy'])
+        ->name('admin.teachers.destroy');
 
+    // Staff
+    Route::get('/admin/staff', [App\Http\Controllers\Admin\AdminStaffController::class, 'index'])
+        ->name('admin.staff');
+    Route::post('/admin/staff', [App\Http\Controllers\Admin\AdminStaffController::class, 'store'])
+        ->name('admin.staff.store');
+    Route::put('/admin/staff/{staff}', [App\Http\Controllers\Admin\AdminStaffController::class, 'update'])
+        ->name('admin.staff.update');
+    Route::delete('/admin/staff/{staff}', [App\Http\Controllers\Admin\AdminStaffController::class, 'destroy'])
+        ->name('admin.staff.destroy');
 });
 
 //Rutas de Estudiante 

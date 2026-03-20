@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Maestros</title>
 
     @vite([
@@ -13,9 +14,7 @@
         'resources/js/components/load-portrait.js',
         'resources/js/admin/actions-teachers.js',
         'resources/js/admin/carrusel.js'
-
     ]);
-
 </head>
 
 <body>
@@ -25,17 +24,55 @@
     <main>
         <h1>Maestros</h1>
 
+        {{-- Mensajes flash --}}
+        @if (session('success'))
+            <div class="alert-success" style="background: rgba(46,204,113,0.15); color: #2ecc71; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert-error" style="background: rgba(231,76,60,0.15); color: #e74c3c; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                <ul style="margin: 0; padding-left: 1.2rem;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <section class="section-teachers-create">
-            <form>
+            <form action="{{ route('admin.teachers.store') }}" method="POST">
+                @csrf
                 <container class="expo-card container-teachers-create">
                     <div class="div-teachers-create">
 
                         <div class="d-grid-gap teachers-data">
-                            <span>Nombre del maestro:</span>
-                            <input type="text" id="teacher-name" name="teacher-name" class="input-c">
+                            <span>Profesor del padrón:</span>
+                            <select id="teacher-select" name="profesor_id" class="input-c" required
+                                    onchange="prefillEmail(this)">
+                                <option value="" disabled selected>Selecciona un profesor</option>
+                                @foreach ($profesoresSinCuenta as $prof)
+                                    <option value="{{ $prof->id }}"
+                                            data-email="{{ $prof->email ?? '' }}"
+                                            {{ old('profesor_id') == $prof->id ? 'selected' : '' }}>
+                                        {{ $prof->nombre }} {{ $prof->apellido_paterno }} {{ $prof->apellido_materno ?? '' }}
+                                        ({{ $prof->numero_empleado }})
+                                    </option>
+                                @endforeach
+                            </select>
 
                             <span>Correo del maestro:</span>
-                            <input type="text" id="teacher-email" name="teacher-email" class="input-c">
+                            <input type="email" id="teacher-email" name="email" class="input-c"
+                                   value="{{ old('email') }}" required>
+
+                            <span>Contraseña:</span>
+                            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                <input type="text" id="teacher-pass" name="password" class="input-c"
+                                       placeholder="Se genera automáticamente" required>
+                                <button type="button" class="btn" style="white-space: nowrap; padding: 0.5rem 1rem; font-size: 0.8rem;"
+                                        onclick="generatePassword()">Generar</button>
+                            </div>
 
                         </div>
 
@@ -57,11 +94,13 @@
                     <div class="container-carrusel">
 
                         <div class="carousel-group">
-                            <x-admin.teacher-card name="Abigail Palacios" user="Abi" pass="rosa" email="alberta.palaciosgrz@uanl.edu.mx" />
-                            <x-admin.teacher-card name="Abigail Palacios" user="Abi" pass="rosa" email="alberta.palaciosgrz@uanl.edu.mx" />
-                            <x-admin.teacher-card name="Abigail Palacios" user="Abi" pass="rosa" email="alberta.palaciosgrz@uanl.edu.mx" />
-                            <x-admin.teacher-card name="Abigail Palacios" user="Abi" pass="rosa" email="alberta.palaciosgrz@uanl.edu.mx" />
-                            <x-admin.teacher-card name="Abigail Palacios" user="Abi" pass="rosa" email="alberta.palaciosgrz@uanl.edu.mx" />
+                            @forelse ($profesoresConCuenta as $prof)
+                                <x-admin.teacher-card :profesor="$prof" />
+                            @empty
+                                <p style="color: var(--clr-gray); text-align: center; width: 100%;">
+                                    No hay profesores con cuenta registrada aún.
+                                </p>
+                            @endforelse
                         </div>
 
                     </div>
@@ -79,7 +118,6 @@
 
                 <container class="expo-card container-teachers-create-d" style="position: relative;">
 
-                    <!-- Botón de cerrar (X) -->
                     <button type="button" onclick="document.getElementById('edit-modal').close()"
                         style="position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none; color: var(--clr-white); font-size: 2rem; cursor: pointer; z-index: 50; line-height: 1; padding: 0.5rem;">
                         &times;
@@ -87,17 +125,12 @@
 
                     <div class="div-teachers-create-d">
                         <div class="d-grid-gap teachers-data">
-                            <span>Nombre del maestro:</span>
-                            <input type="text" id="edit-teacher-name" name="teacher-name" class="input-c">
-
                             <span>Correo del maestro:</span>
-                            <input type="email" id="edit-teacher-email" name="teacher-email" class="input-c">
+                            <input type="email" id="edit-teacher-email" name="email" class="input-c">
 
-                            <span>Usuario:</span>
-                            <input type="text" id="edit-teacher-user" name="teacher-user" class="input-c">
-
-                            <span>Contraseña:</span>
-                            <input type="text" id="edit-teacher-pass" name="teacher-pass" class="input-c">
+                            <span>Nueva contraseña (dejar vacío para no cambiar):</span>
+                            <input type="password" id="edit-teacher-pass" name="password" class="input-c"
+                                   placeholder="Dejar vacío para mantener actual">
                         </div>
                     </div>
 
@@ -107,6 +140,20 @@
         </dialog>
 
     </main>
+
+    <script>
+        function prefillEmail(select) {
+            const selectedOption = select.options[select.selectedIndex];
+            const email = selectedOption.getAttribute('data-email');
+            const emailInput = document.getElementById('teacher-email');
+            if (email) {
+                emailInput.value = email;
+            } else {
+                emailInput.value = '';
+                emailInput.focus();
+            }
+        }
+    </script>
 
 </body>
 

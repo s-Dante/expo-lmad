@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Empresas</title>
 
     @vite([
@@ -13,7 +14,6 @@
         'resources/js/admin/actions-empresas.js',
         'resources/js/admin/carrusel.js',
         'resources/css/components/carrusel.css'
-
     ]);
 
 </head>
@@ -25,19 +25,38 @@
     <main>
         <h1>Empresas</h1>
 
+        {{-- Mensajes flash --}}
+        @if (session('success'))
+            <div class="alert-success" style="background: rgba(46,204,113,0.15); color: #2ecc71; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert-error" style="background: rgba(231,76,60,0.15); color: #e74c3c; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                <ul style="margin: 0; padding-left: 1.2rem;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <section class="section-companies-create">
-            <form>
+            <form action="{{ route('admin.patrocinadores.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <container class="expo-card container-companies-create">
                     <div class="div-companies-create">
 
                         <div class="d-grid-gap company-data">
                             <span>Nombre de la empresa:</span>
-                            <input type="text" id="company-name" name="company-name" class="input-c">
+                            <input type="text" id="company-name" name="nombre" class="input-c"
+                                   value="{{ old('nombre') }}" required>
 
                             <div class="checkbox-card">
                                 <div class="checkbox-wrapper">
-                                    <input type="checkbox" id="patrocinador" name="patrocinador" value="1"
-                                        class="checkbox-input" {{ old('patrocinador') ? 'checked' : '' }}>
+                                    <input type="checkbox" id="patrocinador" name="es_patrocinador" value="1"
+                                           class="checkbox-input" {{ old('es_patrocinador') ? 'checked' : '' }}>
                                 </div>
                                 <div for="patrocinador" class="checkbox-label quit-highlight">
                                     <span class="checkbox-description">Patrocinador</span>
@@ -50,20 +69,21 @@
                                     <div class="d-grid-gap">
                                         <div>
                                             <span>Grado:</span>
-                                            <select type="listbox" id="company-name" name="company-name"
+                                            <select type="listbox" id="company-tier" name="tier"
                                                 class="input-c">
                                                 <option value="" disabled selected>Selecciona un grado</option>
-                                                <option>Titanium</option>
-                                                <option>Diamante</option>
-                                                <option>Oro</option>
-                                                <option>Plata</option>
-                                                <option>Bronce</option>
+                                                @foreach ($tiers as $value => $label)
+                                                    <option value="{{ $value }}" {{ old('tier') === $value ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
 
                                         <div class="d-grid-gap">
                                             <span>Link:</span>
-                                            <input type="text" id="company-link" name="company-link" class="input-c">
+                                            <input type="text" id="company-link" name="website_url" class="input-c"
+                                                   value="{{ old('website_url') }}">
                                         </div>
 
                                     </div>
@@ -103,13 +123,13 @@
 
                         <div class="carousel-group">
 
-                            <x-admin.company-card name="OXXO" />
-                            <x-admin.company-card image="{{asset('assets/guest/sponsor(1).svg')}}" name="Epic Games"
-                                tier="Titanium" />
-                            <x-admin.company-card image="{{asset('assets/guest/sponsor(2).svg')}}" name="Coca Cola"
-                                tier="Gold" />
-                            <x-admin.company-card image="{{asset('assets/guest/sponsor(3).svg')}}" name="Accenture"
-                                tier="Bronze" />
+                            @forelse ($patrocinadores as $pat)
+                                <x-admin.company-card :patrocinador="$pat" />
+                            @empty
+                                <p style="color: var(--clr-gray); text-align: center; width: 100%;">
+                                    No hay empresas registradas aún.
+                                </p>
+                            @endforelse
                                 
                         </div>
 
@@ -123,7 +143,7 @@
 
         <!-- Modal de Edición Dinámico -->
         <dialog id="edit-modal" class="dialog-edit">
-            <form method="POST" id="edit-form" action="#" style="width: auto; display: flex; flex-grow: 1;">
+            <form method="POST" id="edit-form" action="#" enctype="multipart/form-data" style="width: auto; display: flex; flex-grow: 1;">
                 @method('PUT')
                 @csrf
                 <container class="expo-card container-companies-create" style="position: relative; width: 80vw">
@@ -136,15 +156,11 @@
                     <div class="div-companies-create">
                         <div class="d-grid-gap company-data">
                             <span>Nombre de la empresa:</span>
-                            <input type="text" id="edit-company-name" name="company-name" class="input-c" value="">
-
-                            <span>Representante:</span>
-                            <input type="text" id="edit-company-rep" name="company-representative" class="input-c"
-                                value="">
+                            <input type="text" id="edit-company-name" name="nombre" class="input-c" value="">
 
                             <div class="checkbox-card">
                                 <div class="checkbox-wrapper">
-                                    <input type="checkbox" id="edit-patrocinador" name="patrocinador" value="1"
+                                    <input type="checkbox" id="edit-patrocinador" name="es_patrocinador" value="1"
                                         class="checkbox-input">
                                 </div>
                                 <label for="edit-patrocinador" class="checkbox-label quit-highlight">
@@ -157,14 +173,12 @@
                                     <div class="d-grid-gap">
                                         <div>
                                             <span>Grado:</span>
-                                            <select type="listbox" id="edit-company-tier" name="company-tier"
+                                            <select type="listbox" id="edit-company-tier" name="tier"
                                                 class="input-c">
                                                 <option value="" disabled selected>Selecciona un grado</option>
-                                                <option value="Titanium">Titanium</option>
-                                                <option value="Diamante">Diamante</option>
-                                                <option value="Oro">Oro</option>
-                                                <option value="Plata">Plata</option>
-                                                <option value="Bronce">Bronce</option>
+                                                @foreach ($tiers as $value => $label)
+                                                    <option value="{{ $value }}">{{ $label }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

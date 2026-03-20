@@ -1,4 +1,10 @@
-@props(['code', 'editUrl' => '#', 'deleteUrl' => '#'])
+@props(['user'])
+
+@php
+    $code = $user->llave_acceso ?? $user->name;
+    $editUrl = route('admin.staff.update', $user);
+    $deleteUrl = route('admin.staff.destroy', $user);
+@endphp
 
 <div class="expo-card card-c">
 
@@ -12,10 +18,12 @@
     <div class="card-actions">
 
         <button id="btn-edit" class="btn btn-purple btn-icon" type="button"
-            onclick="openEditModal('{{ addslashes($code) }}')">
+            onclick="openEditModal('{{ addslashes($code) }}', '{{ $editUrl }}')">
             <img class="img-fluid img-icon" src="{{ asset('assets/admin/EditarIcon.png') }}">
         </button>
-        <form action="{{ $deleteUrl }}" method="POST">
+        <form action="{{ $deleteUrl }}" method="POST" onsubmit="return confirm('¿Seguro que deseas desactivar esta cuenta staff?')">
+            @csrf
+            @method('DELETE')
             <x-btn-icon id="btn-delete" icon="{{ asset('assets/admin/BorrarIcon.png') }}" />
         </form>
         
