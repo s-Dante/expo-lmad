@@ -78,7 +78,7 @@ class EloquentDashboardRepository implements DashboardRepositoryInterface
      */
     public function getAsistenciaPorEvento(): Collection
     {
-        return Evento::select('tbl_eventos.id', 'tbl_eventos.titulo')
+        return Evento::select('id', 'titulo')
             ->withCount('visitantes as total_asistentes')
             ->orderBy('total_asistentes', 'desc')
             ->get()
@@ -89,20 +89,46 @@ class EloquentDashboardRepository implements DashboardRepositoryInterface
     }
 
     /**
+     * Reporte detallado de eventos con sus asistentes.
+     */
+    public function getEventosDetallados(): Collection
+    {
+        return Evento::with('visitantes')->get();
+    }
+
+    /**
+     * Listado completo de conferencistas.
+     */
+    public function getExpositoresDetallados(): Collection
+    {
+        return Conferencista::all();
+    }
+
+    /**
+     * Listado completo de patrocinadores.
+     */
+    public function getPatrocinadoresDetallados(): Collection
+    {
+        return Patrocinador::all();
+    }
+
+    /**
      * Reporte completo para exportación.
      */
     public function getReporteCompleto(): array
     {
-        $externos = $this->getExternosConDesglose();
-
         return [
-            'total_asistentes'     => $this->getTotalAsistentes(),
-            'alumnos'              => $this->getAlumnosAsistidos(),
-            'externos'             => $externos,
-            'total_eventos'        => $this->getTotalEventos(),
-            'total_conferencistas' => $this->getTotalConferencistas(),
-            'total_empresas'       => $this->getTotalEmpresas(),
-            'asistencia_eventos'   => $this->getAsistenciaPorEvento()->toArray(),
+            'summary' => [
+                'total_asistentes'     => $this->getTotalAsistentes(),
+                'total_estudiantes'    => $this->getAlumnosAsistidos(),
+                'total_externos'       => $this->getExternosConDesglose()['total'],
+                'total_eventos'        => $this->getTotalEventos(),
+                'total_conferencistas' => $this->getTotalConferencistas(),
+                'total_patrocinadores' => $this->getTotalEmpresas(),
+            ],
+            'events'            => $this->getEventosDetallados(),
+            'conferencistas'    => $this->getExpositoresDetallados(),
+            'patrocinadores'    => $this->getPatrocinadoresDetallados(),
         ];
     }
 }

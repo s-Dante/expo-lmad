@@ -6,8 +6,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\DashboardRepositoryInterface;
+use App\Exports\DashboardExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Illuminate\View\View;
 
 /**
@@ -38,45 +41,13 @@ class AdminDashboardController extends Controller
     }
 
     /**
-     * Exporta el reporte del dashboard.
-     * Por ahora exporta como CSV; se migrará a Excel con Maatwebsite cuando se instale.
+     * Exporta el reporte del dashboard en formato Excel con múltiples pestañas.
      */
-    public function exportar(): Response
+    public function exportar(): BinaryFileResponse
     {
         $reporte = $this->dashboardRepo->getReporteCompleto();
+        $filename = 'Reporte_ExpoLMAD_' . date('Y-m-d') . '.xlsx';
 
-        $csvContent = "\xEF\xBB\xBF"; // BOM para UTF-8
-
-        // Resumen de Asistencias
-        $csvContent .= "--- RESUMEN DE ASISTENCIAS ---\n";
-        $csvContent .= "Categoría,Total\n";
-        $csvContent .= "Total de asistidos,{$reporte['total_asistentes']}\n";
-        $csvContent .= "Alumnos,{$reporte['alumnos']}\n";
-        $csvContent .= "Externos,{$reporte['externos']['total']}\n";
-        $csvContent .= "Masculino,{$reporte['externos']['masculino']}\n";
-        $csvContent .= "Femenino,{$reporte['externos']['femenino']}\n";
-        $csvContent .= "No binario,{$reporte['externos']['otro']}\n\n";
-
-        // Datos Generales
-        $csvContent .= "--- DATOS GENERALES ---\n";
-        $csvContent .= "Categoría,Total\n";
-        $csvContent .= "Eventos,{$reporte['total_eventos']}\n";
-        $csvContent .= "Expositores,{$reporte['total_conferencistas']}\n";
-        $csvContent .= "Empresas,{$reporte['total_empresas']}\n\n";
-
-        // Asistencia por Conferencia
-        $csvContent .= "--- ASISTENCIA POR CONFERENCIA ---\n";
-        $csvContent .= "Conferencia,Asistentes\n";
-        foreach ($reporte['asistencia_eventos'] as $evento) {
-            $titulo = str_replace('"', '""', $evento['titulo']);
-            $csvContent .= "\"{$titulo}\",{$evento['asistentes']}\n";
-        }
-
-        $filename = 'Reporte_ExpoLMAD_' . date('Y-m-d') . '.csv';
-
-        return response($csvContent, 200, [
-            'Content-Type'        => 'text/csv; charset=UTF-8',
-            'Content-Disposition' => "attachment; filename=\"{$filename}\"",
-        ]);
+        return Excel::download(new DashboardExport($reporte), $filename);
     }
 }

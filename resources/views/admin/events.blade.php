@@ -91,7 +91,6 @@
                                         @foreach ($conferencistas as $conf)
                                             <option value="{{ $conf->id }}">
                                                 {{ $conf->nombre }} {{ $conf->apellido_paterno }}
-                                                @if($conf->empresa) ({{ $conf->empresa }}) @endif
                                             </option>
                                         @endforeach
                                     </select>

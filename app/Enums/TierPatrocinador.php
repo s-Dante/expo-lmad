@@ -13,6 +13,7 @@ enum TierPatrocinador: string
 {
     use EnumHelper;
 
+    case Ninguno  = 'Ninguno';
     case Bronce   = 'Bronce';
     case Plata    = 'Plata';
     case Oro      = 'Oro';

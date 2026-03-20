@@ -42,13 +42,11 @@ h1 {
     padding: 1.5px 3px 3px 1.5px;
     border-radius: 18px;
 
-    background: conic-gradient(
-        from -70deg,
-        var(--contrast-color-C),
-        var(--contrast-color-D),
-        var(--contrast-color-E),
-        var(--contrast-color-E)
-    );
+    background: conic-gradient(from -70deg,
+            var(--contrast-color-C),
+            var(--contrast-color-D),
+            var(--contrast-color-E),
+            var(--contrast-color-E));
 
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
@@ -170,11 +168,9 @@ h1 {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(178, 178, 178, 0.1) 0%,
-        rgba(255, 255, 220, 0) 70%
-    );
+    background: radial-gradient(circle,
+            rgba(178, 178, 178, 0.1) 0%,
+            rgba(255, 255, 220, 0) 70%);
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
     transition:
@@ -208,23 +204,19 @@ h1 {
     left: 50%;
     width: 300px;
     height: 300px;
-    clip-path: polygon(
-        50% 0%,
-        61% 35%,
-        98% 35%,
-        68% 57%,
-        79% 91%,
-        50% 70%,
-        21% 91%,
-        32% 57%,
-        2% 35%,
-        39% 35%
-    );
-    background: radial-gradient(
-        circle,
-        rgba(209, 208, 208, 0.268) 0%,
-        rgba(255, 255, 220, 0) 60%
-    );
+    clip-path: polygon(50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%);
+    background: radial-gradient(circle,
+            rgba(209, 208, 208, 0.268) 0%,
+            rgba(255, 255, 220, 0) 60%);
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
     transition:
@@ -278,11 +270,9 @@ h1 {
     font-size: 1.5rem;
     text-transform: uppercase;
 
-    background: linear-gradient(
-        90deg,
-        var(--clr-cian-500) 0%,
-        var(--clr-purple-320) 100%
-    );
+    background: linear-gradient(90deg,
+            var(--clr-cian-500) 0%,
+            var(--clr-purple-320) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -297,14 +287,14 @@ h1 {
 
 .card-c {
     height: 7rem;
-    max-width: 5rem;
+    max-width: 15rem;
 }
 
 .card-info-name h3 {
     margin: unset;
 }
 
-.card-data{
+.card-data {
     height: fit-content;
 }
 

@@ -24,5 +24,8 @@ interface DashboardRepositoryInterface
     public function getTotalConferencistas(): int;
     public function getTotalEmpresas(): int;
     public function getAsistenciaPorEvento(): Collection;
+    public function getEventosDetallados(): Collection;
+    public function getExpositoresDetallados(): Collection;
+    public function getPatrocinadoresDetallados(): Collection;
     public function getReporteCompleto(): array;
 }

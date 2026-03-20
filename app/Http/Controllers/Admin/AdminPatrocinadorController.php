@@ -49,7 +49,7 @@ class AdminPatrocinadorController extends Controller
 
         // Si no es patrocinador, asegurar que tier sea null
         if (empty($data['es_patrocinador'])) {
-            $data['tier'] = null;
+            $data['tier'] = TierPatrocinador::Ninguno->value;
         }
 
         // Remover campo auxiliar que no va a la BD
@@ -77,7 +77,7 @@ class AdminPatrocinadorController extends Controller
 
         // Si no es patrocinador, asegurar que tier sea null
         if (empty($data['es_patrocinador'])) {
-            $data['tier'] = null;
+            $data['tier'] = TierPatrocinador::Ninguno->value;
         }
 
         // Remover campo auxiliar que no va a la BD

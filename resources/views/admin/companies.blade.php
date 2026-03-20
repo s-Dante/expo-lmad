@@ -171,8 +171,6 @@
                             <div class="sponsor-data">
                                 <container class="container-company-sponsor">
                                     <div class="d-grid-gap">
-                                        <div>
-                                            <span>Grado:</span>
                                             <select type="listbox" id="edit-company-tier" name="tier"
                                                 class="input-c">
                                                 <option value="" disabled selected>Selecciona un grado</option>
@@ -180,6 +178,10 @@
                                                     <option value="{{ $value }}">{{ $label }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="d-grid-gap">
+                                            <span>Link:</span>
+                                            <input type="text" id="edit-company-link" name="website_url" class="input-c" value="">
                                         </div>
                                     </div>
                                 </container>
