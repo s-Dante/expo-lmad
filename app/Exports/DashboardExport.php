@@ -13,13 +13,11 @@ class DashboardExport implements WithMultipleSheets
         $this->data = $data;
     }
 
-    /**
-     * @return array
-     */
     public function sheets(): array
     {
         return [
             new Sheets\SummarySheet($this->data['summary']),
+            new Sheets\ResumenEventosSheet($this->data['events']),   // ← nueva
             new Sheets\EventAttendanceSheet($this->data['events']),
             new Sheets\ExpositoresSheet($this->data['conferencistas']),
             new Sheets\PatrocinadoresSheet($this->data['patrocinadores']),
