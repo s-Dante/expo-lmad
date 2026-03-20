@@ -25,7 +25,11 @@ class VisitanteFactory extends Factory
         // Datos base
         $data = [
             'tipo' => $tipo,
-            'uuid' => fake()->uuid(), // HasUuids lo sobreescribe, pero útil para tests unitarios raw
+            'uuid' => fake()->uuid(),
+            'nombre' => fake()->firstName(),
+            'apellido_paterno' => fake()->lastName(),
+            'apellido_materno' => fake()->lastName(),
+            'email' => fake()->safeEmail(),
             'genero' => fake()->randomElement(['M', 'F', 'O']),
             'rango-edad' => fake()->randomElement(['<15', '15-25', '26-35', '36-45', '46-55', '56+']),
         ];
