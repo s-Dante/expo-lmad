@@ -79,11 +79,11 @@ export default defineConfig({
                 "resources/js/teacher/mostrarInfoMateria.js",
                 "resources/js/teacher/modalEditar.js",
 
-                "resources/js/admin/actions-empresas.js",
-                "resources/js/admin/actions-guest.js",
-                "resources/js/admin/actions-events.js",
-                "resources/js/admin/actions-staff.js",
-                "resources/js/admin/actions-teachers.js",
+                "resources/js/admin/companies/actions-empresas.js",
+                "resources/js/admin/guests/actions-guest.js",
+                "resources/js/admin/events/actions-events.js",
+                "resources/js/admin/staffs/actions-staff.js",
+                "resources/js/admin/teachers/actions-teachers.js",
                 "resources/js/admin/data-export.js",
                 "resources/js/admin/carrusel.js",
 

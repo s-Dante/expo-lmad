@@ -11,7 +11,7 @@
         'resources/css/components/carrusel.css',
         'resources/css/admin/events.css',
         'resources/js/components/load-portrait.js',
-        'resources/js/admin/actions-events.js',
+        'resources/js/admin/events/actions-events.js',
         'resources/js/admin/carrusel.js'
 
 

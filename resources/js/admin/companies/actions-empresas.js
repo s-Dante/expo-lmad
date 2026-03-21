@@ -1,6 +1,6 @@
-import { show_hide_list } from "../components/show-hide-elements.js";
-import { move_list } from "../components/move-elements.js";
-import { resizeSmoothly } from "../components/resize-page-smooth.js";
+import { show_hide_list } from "../../components/show-hide-elements.js";
+import { move_list } from "../../components/move-elements.js";
+import { resizeSmoothly } from "../../components/resize-page-smooth.js";
 
 const check_sponsor_create = document.getElementById("patrocinador");
 const container_create = document.querySelector(".section-companies-create");
@@ -40,7 +40,6 @@ window.openEditModal = function(name, rep, tier, image, editUrl) {
     if (editUrl) document.getElementById("edit-form").action = editUrl;
 
     document.getElementById("edit-company-name").value = name;
-    document.getElementById("edit-company-rep").value = rep;
 
     const chkPatrocinador = document.getElementById("edit-patrocinador");
     const selTier = document.getElementById("edit-company-tier");

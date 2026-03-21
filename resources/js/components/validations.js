@@ -1,5 +1,17 @@
 import { showModal } from "./alerts.js";
 
+export function validation_Empty(data){
+    if (!data){
+        showModal(
+            "Datos inválidos", 
+            "Por favor, llena todos los campos."
+        );
+        return true;
+    }
+    
+    return false;
+}
+
 export function validation_Length(data, min, limit, input) {
     if (data.length > limit) {
         showModal(

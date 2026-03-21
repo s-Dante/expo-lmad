@@ -20,10 +20,6 @@ const input_tuition =
 
 const input_email = document.getElementById("email");
 
-function emptyErr() {
-    showModal("Datos inválidos", "Por favor, llena todos los campos.");
-}
-
 export async function register_afi() {
     let faculty = input_faculty.value.trim();
     let conference = input_conference.value.trim();
@@ -65,6 +61,8 @@ export async function register_afi() {
 
     if (validation_Length(email, 3, 20, "correo universitario")) return true;
     if (validation_UANLUser(email)) return true;
+
+    return false;
 }
 
 export async function attendace_afi() {
@@ -81,4 +79,6 @@ export async function attendace_afi() {
 
     if (validation_Length(id, 0, 100, "ID")) return true;
     if (validation_TextNumbers(id, "ID")) return true;
+
+    return false;
 }

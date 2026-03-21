@@ -11,7 +11,7 @@
         'resources/css/admin/teachers.css',
         'resources/css/components/carrusel.css',
         'resources/js/components/load-portrait.js',
-        'resources/js/admin/actions-teachers.js',
+        'resources/js/admin/teachers/actions-teachers.js',
         'resources/js/admin/carrusel.js'
 
     ]);

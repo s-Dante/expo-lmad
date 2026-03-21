@@ -10,7 +10,7 @@
         'resources/css/guest/template.css',
         'resources/css/admin/empresas-lista.css',
         'resources/js/components/load-portrait.js',
-        'resources/js/admin/actions-empresas.js',
+        'resources/js/admin/companies/actions-empresas.js',
         'resources/js/admin/carrusel.js',
         'resources/css/components/carrusel.css'
 
@@ -50,7 +50,7 @@
                                     <div class="d-grid-gap">
                                         <div>
                                             <span>Grado:</span>
-                                            <select type="listbox" id="company-name" name="company-name"
+                                            <select type="listbox" id="sponsor-tier" name="sponsor-tier"
                                                 class="input-c">
                                                 <option value="" disabled selected>Selecciona un grado</option>
                                                 <option>Titanium</option>
@@ -137,10 +137,6 @@
                         <div class="d-grid-gap company-data">
                             <span>Nombre de la empresa:</span>
                             <input type="text" id="edit-company-name" name="company-name" class="input-c" value="">
-
-                            <span>Representante:</span>
-                            <input type="text" id="edit-company-rep" name="company-representative" class="input-c"
-                                value="">
 
                             <div class="checkbox-card">
                                 <div class="checkbox-wrapper">
