@@ -64,7 +64,7 @@ export default defineConfig({
                 "resources/js/guest/revealAnimation.js",
                 "resources/js/guest/afi/actions-registro.js",
                 "resources/js/guest/afi/register-afi.js",
-                "resources/js/guest/afi/attendace_afi.js",
+                "resources/js/guest/afi/attendace-afi.js",
                 "resources/js/guest/afi/validations-afi.js",
 
                 "resources/js/components/sidebar.js",

@@ -39,19 +39,36 @@
             <div class="form-group">
                 <div id="container-matricula">
                     <label for="matricula">Matrícula:</label>
-                    <input class="input-c" type="text" id="matricula" name="matricula" >
+                    <input class="input-c" type="text" id="matricula" name="matricula">
                 </div>
 
-                <label for="nombre">Nombre completo:</label>
-                <input class="input-c" type="text" id="nombre" name="nombre" >
 
-                <label for="genero">Género:</label>
-                <select class="input-c" id="genero" name="genero" >
-                    <option value="">Seleccionar</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="femenino">Femenino</option>
-                    <option value="otro">Otro</option>
-                </select>
+                <label for="nombre">Nombre completo:</label>
+                <input class="input-c" type="text" id="nombre" name="nombre">
+                
+                <label for="correo">Correo:</label>
+                <input class="input-c" type="text" id="correo" name="correo">
+
+                <div class="select-group">
+                    <label for="genero">Género:</label>
+                    <select class="input-c" id="genero" name="genero">
+                        <option value="">Seleccionar</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
+
+                    <label for="edad">Edad:</label>
+                    <select class="input-c" id="edad" name="edad">
+                        <option value="">Seleccionar</option>
+                        <option value="<15">-15</option>
+                        <option value="15-25">15-25</option>
+                        <option value="26-35">26-35</option>
+                        <option value="36-45">36-45</option>
+                        <option value="46-55">46-55</option>
+                        <option value="56+">56+</option>
+                    </select>
+                </div>
             </div>
 
             <button type="submit" class="btn-lg btn-purple">Registrar Visitante</button>
