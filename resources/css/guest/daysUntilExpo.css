@@ -1,3 +1,5 @@
+@import url(/resources/css/tokens.css);
+
 .header-cronograma {
     align-items: center;
     display: grid;
@@ -30,7 +32,7 @@
 
 .Timer-clock-style {
     color: #e1bbd4;
-    font-family: Bruno Ace;
+    font-family: var(--font-display);
     font-size: 82px;
     font-style: normal;
     line-height: 1;

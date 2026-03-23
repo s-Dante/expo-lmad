@@ -21,9 +21,9 @@
     <header class="hero">
 
         <div class="header-cronograma">
-            <div class="header-logo">
+            <a href="/" class="header-logo">
                 <img class="header-logo" src="{{ asset('assets/guest/LOGOEXPO2.png') }}">
-            </div>
+            </a>
 
             <x-guest.timer />
         </div>
