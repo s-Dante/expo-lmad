@@ -1,4 +1,4 @@
-import { showModal } from "../components/alerts.js";
+import { showModal } from "../../components/alerts.js";
 import {
     validation_Length,
     validation_Link,
@@ -6,7 +6,7 @@ import {
     validation_ImageSize,
     validation_TextClean,
     validation_Empty,
-} from "../components/validations.js";
+} from "../../components/validations.js";
 
 const input_company_name = document.getElementById("edit-company-name") || document.getElementById("company-name");
 const input_sponsor = document.getElementById("edit-patrocinador") || document.getElementById("patrocinador");

@@ -26,7 +26,7 @@
         <h1>Empresas</h1>
 
         <section class="section-companies-create">
-            <form>
+            <form id="form">
                 <container class="expo-card container-companies-create">
                     <div class="div-companies-create">
 
@@ -86,7 +86,7 @@
 
                     </div>
 
-                    <button class="btn">Registrar</button>
+                    <button id="btn" class="btn">Registrar</button>
 
                 </container>
 

@@ -1,6 +1,19 @@
 import { show_hide_list } from "../../components/show-hide-elements.js";
 import { move_list } from "../../components/move-elements.js";
 import { resizeSmoothly } from "../../components/resize-page-smooth.js";
+import { dataCompany  } from "./validations-companies.js";
+
+const form = document.getElementById("form");
+const btn = document.getElementById("btn");
+
+btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    if (await dataCompany()) return;
+
+    form.requestSubmit();
+
+});
 
 const check_sponsor_create = document.getElementById("patrocinador");
 const container_create = document.querySelector(".section-companies-create");
@@ -9,9 +22,11 @@ const check_sponsor_edit = document.getElementById("edit-patrocinador");
 const container_edit = document.getElementById("edit-modal");
 
 window.addEventListener("DOMContentLoaded", function () {
-        
     if (check_sponsor_create && !check_sponsor_create.checked) {
-        show_hide_list(container_create.querySelectorAll(".sponsor-data"), "none");
+        show_hide_list(
+            container_create.querySelectorAll(".sponsor-data"),
+            "none",
+        );
     }
 });
 
@@ -30,13 +45,17 @@ async function toggleSponsorVisibility(checkbox, container) {
 }
 
 if (check_sponsor_create) {
-    check_sponsor_create.addEventListener("change", () => toggleSponsorVisibility(check_sponsor_create, container_create));
+    check_sponsor_create.addEventListener("change", () =>
+        toggleSponsorVisibility(check_sponsor_create, container_create),
+    );
 }
 if (check_sponsor_edit) {
-    check_sponsor_edit.addEventListener("change", () => toggleSponsorVisibility(check_sponsor_edit, container_edit));
+    check_sponsor_edit.addEventListener("change", () =>
+        toggleSponsorVisibility(check_sponsor_edit, container_edit),
+    );
 }
 
-window.openEditModal = function(name, rep, tier, image, editUrl) {
+window.openEditModal = function (name, rep, tier, image, editUrl) {
     if (editUrl) document.getElementById("edit-form").action = editUrl;
 
     document.getElementById("edit-company-name").value = name;
