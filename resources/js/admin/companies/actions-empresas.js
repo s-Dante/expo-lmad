@@ -1,19 +1,33 @@
 import { show_hide_list } from "../../components/show-hide-elements.js";
 import { move_list } from "../../components/move-elements.js";
 import { resizeSmoothly } from "../../components/resize-page-smooth.js";
-import { dataCompany  } from "./validations-companies.js";
+import { dataCompany } from "./validations-companies.js";
 
-const form = document.getElementById("form");
-const btn = document.getElementById("btn");
+const form_create = document.getElementById("form");
+const btn_create = document.getElementById("btn");
 
-btn.addEventListener("click", async (e) => {
+const form_edit = document.getElementById("form-edit");
+const btn_edit = document.getElementById("btn-reg-edit");
+
+btn_create.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    if (await dataCompany()) return;
+    if (await dataCompany(false)) return;
 
-    form.requestSubmit();
+    form_create.requestSubmit();
 
 });
+
+btn_edit.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    if (await dataCompany(true)) return;
+
+    form_edit.requestSubmit();
+
+});
+
+
 
 const check_sponsor_create = document.getElementById("patrocinador");
 const container_create = document.querySelector(".section-companies-create");
@@ -55,13 +69,15 @@ if (check_sponsor_edit) {
     );
 }
 
-window.openEditModal = function (name, rep, tier, image, editUrl) {
-    if (editUrl) document.getElementById("edit-form").action = editUrl;
+window.openEditModal = function (name, link, tier, image, editUrl) {
+    if (editUrl) document.getElementById("form-edit").action = editUrl;
 
     document.getElementById("edit-company-name").value = name;
 
     const chkPatrocinador = document.getElementById("edit-patrocinador");
     const selTier = document.getElementById("edit-company-tier");
+
+    document.getElementById("edit-company-link").value = link;
 
     if (tier) {
         chkPatrocinador.checked = true;

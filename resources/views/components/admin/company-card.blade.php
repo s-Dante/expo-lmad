@@ -1,12 +1,12 @@
-@props(['name', 'tier' => null, 'image' => null, 'representative' => 'Sin representante', 'editUrl' => '#', 'deleteUrl' => '#'])
+@props(['name', 'link'=>null, 'tier' => null, 'image' => null, 'representative' => 'Sin representante', 'editUrl' => '#', 'deleteUrl' => '#'])
 
 <div class="expo-card card-c">
 
     <div class="card-data">
         @if ($image)
-            <div class="card-company-logo">
+            <a href="{{ $link }}" class="card-company-logo">
                 <img src="{{ $image }}" alt="{{ $name }}">
-            </div>
+            </a>
         @endif
 
         @if ($tier)
@@ -26,7 +26,7 @@
         <div class="card-actions">
 
             <button id="btn-edit" class="btn btn-purple btn-icon" type="button"
-                onclick="openEditModal('{{ addslashes($name) }}', '{{ addslashes($representative) }}', '{{ addslashes($tier ?? '') }}', '{{ addslashes($image ?? '') }}', '{{ $editUrl }}')">
+                onclick="openEditModal('{{ addslashes($name) }}', '{{ addslashes($link) }}', '{{ addslashes($tier ?? '') }}', '{{ addslashes($image ?? '') }}', '{{ $editUrl }}')">
                 <img class="img-fluid img-icon" src="{{ asset('assets/admin/EditarIcon.png') }}">
             </button>
             <form action="{{ $deleteUrl }}" method="POST">

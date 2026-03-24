@@ -105,12 +105,12 @@
 
                             <x-admin.company-card name="OXXO" />
                             <x-admin.company-card image="{{asset('assets/guest/sponsor(1).svg')}}" name="Epic Games"
-                                tier="Titanium" />
+                                tier="Titanium" link="https://epicgames.com" />
                             <x-admin.company-card image="{{asset('assets/guest/sponsor(2).svg')}}" name="Coca Cola"
-                                tier="Gold" />
+                                tier="Gold" link="https://coca-cola.com" />
                             <x-admin.company-card image="{{asset('assets/guest/sponsor(3).svg')}}" name="Accenture"
-                                tier="Bronze" />
-                                
+                                tier="Bronze" link="https://accenture.com" />
+
                         </div>
 
                     </div>
@@ -123,7 +123,7 @@
 
         <!-- Modal de Edición Dinámico -->
         <dialog id="edit-modal" class="dialog-edit">
-            <form method="POST" id="edit-form" action="#" style="width: auto; display: flex; flex-grow: 1;">
+            <form method="POST" id="form-edit" action="#" style="width: auto; display: flex; flex-grow: 1;">
                 @method('PUT')
                 @csrf
                 <container class="expo-card container-companies-create" style="position: relative; width: 80vw">
@@ -143,9 +143,9 @@
                                     <input type="checkbox" id="edit-patrocinador" name="patrocinador" value="1"
                                         class="checkbox-input">
                                 </div>
-                                <label for="edit-patrocinador" class="checkbox-label quit-highlight">
+                                <div for="edit-patrocinador" class="checkbox-label quit-highlight">
                                     <span class="checkbox-description">Patrocinador</span>
-                                </label>
+                                </div>
                             </div>
 
                             <div class="sponsor-data">
@@ -166,6 +166,12 @@
                                     </div>
                                 </container>
                             </div>
+
+                            <div class="d-grid-gap sponsor-data">
+                                <span>Link:</span>
+                                <input type="text" id="edit-company-link" name="company-link" class="input-c">
+                            </div>
+
                         </div>
 
                         <div class="sponsor-data">
@@ -185,7 +191,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn" style="margin-top: 1.5rem;">Guardar Cambios</button>
+                    <button type="submit" id="btn-reg-edit" class="btn" style="margin-top: 1.5rem;">Guardar Cambios</button>
                 </container>
             </form>
         </dialog>
