@@ -17,14 +17,7 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->string('slug')->unique();
             
-            $table->enum('estatus', [
-                'borrador',
-                'enviado',
-                'aprobado',
-                'rechazado',
-                'eliminado'
-            ])
-            ->default('borrador');
+            $table->string('estatus', 30)->default('borrador');
             
             $table->text('retroalimentacion')->nullable();
             $table->string('codigo_acceso')->index();

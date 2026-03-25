@@ -72,6 +72,7 @@ a {
 /*---- BOTONES ---*/
 .btn-lg {
     display: block;
+    width: fit-content;
     margin: 30px auto 0 auto;
 
     border: none;
@@ -85,6 +86,8 @@ a {
 
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
 }
 .btn-lg:hover {
     transform: scale(1.05);

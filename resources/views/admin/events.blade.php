@@ -102,7 +102,11 @@
 
                         <div class="div-event-logo d-grid-gap">
                             <span>Imagen del evento:</span>
-                            <x-image-uploader-event />
+                            <x-image-uploader-event
+                                imgId="create-event-portrait"
+                                inputId="create-event-file-upload"
+                                btnId="create-event-upload-btn"
+                            />
                         </div>
 
                     </div>
@@ -201,7 +205,11 @@
 
                         <div class="div-event-logo d-grid-gap">
                             <span>Imagen del evento:</span>
-                            <x-image-uploader-event />
+                            <x-image-uploader-event
+                                imgId="edit-event-portrait"
+                                inputId="edit-event-file-upload"
+                                btnId="edit-event-upload-btn"
+                            />
                         </div>
 
                     </div>

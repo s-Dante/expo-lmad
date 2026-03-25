@@ -48,13 +48,13 @@ class EventAttendanceSheet implements FromArray, WithTitle, WithStyles, WithColu
             foreach ($event->visitantes as $visitante) {
                 $rows[] = [
                     $event->titulo,
-                    $event->tipo ?? 'N/A',
+                    $event->tipo instanceof \BackedEnum ? $event->tipo->value : (string) ($event->tipo ?? 'N/A'),
                     $visitante->nombre,
                     $visitante->apellido_paterno,
                     $visitante->apellido_materno ?? '',
                     $visitante->email ?? $visitante->matricula ?? 'N/A',
-                    ucfirst($visitante->tipo ?? 'N/A'),
-                    match ($visitante->genero ?? '') {
+                    ucfirst($visitante->tipo instanceof \BackedEnum ? $visitante->tipo->value : (string) ($visitante->tipo ?? 'N/A')),
+                    match ($visitante->genero instanceof \BackedEnum ? $visitante->genero->value : ($visitante->genero ?? '')) {
                         'M' => 'Masculino',
                         'F' => 'Femenino',
                         'O' => 'No binario',

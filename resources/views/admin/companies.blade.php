@@ -98,7 +98,12 @@
                                 <div class="div-company-logo d-grid-gap">
                                     <span>Logo:</span>
                                     <span id="legend">Vista previa</span>
-                                    <x-image-uploader-company />
+                                    <x-image-uploader-company
+                                        imgId="create-portrait"
+                                        inputId="create-file-upload"
+                                        btnId="create-upload-btn"
+                                        inputName="logo"
+                                    />
                                 </div>
 
                             </container>
@@ -199,7 +204,12 @@
                                         previo</span>
 
                                     <span style="margin-top: 1rem;">Actualizar Logo:</span>
-                                    <x-image-uploader-company />
+                                    <x-image-uploader-company
+                                        imgId="edit-portrait"
+                                        inputId="edit-file-upload"
+                                        btnId="edit-upload-btn"
+                                        inputName="logo"
+                                    />
                                 </div>
                             </container>
                         </div>

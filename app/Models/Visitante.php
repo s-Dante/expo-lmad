@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 use App\Models\Evento;
+use App\Enums\TipoVisitante;
+use App\Enums\GeneroVisitante;
 
 class Visitante extends Model
 {
@@ -43,7 +45,8 @@ class Visitante extends Model
     ];
 
     protected $casts = [
-        //Podriamos castear 'tipo' por un enum en un futuro
+        'tipo'   => TipoVisitante::class,
+        'genero' => GeneroVisitante::class,
     ];
 
     /**

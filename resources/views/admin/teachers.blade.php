@@ -55,6 +55,8 @@
                                 @foreach ($profesoresSinCuenta as $prof)
                                     <option value="{{ $prof->id }}"
                                             data-email="{{ $prof->email ?? '' }}"
+                                            data-nombre="{{ $prof->apellido_paterno }}"
+                                            data-empleado="{{ $prof->numero_empleado }}"
                                             {{ old('profesor_id') == $prof->id ? 'selected' : '' }}>
                                         {{ $prof->nombre }} {{ $prof->apellido_paterno }} {{ $prof->apellido_materno ?? '' }}
                                         ({{ $prof->numero_empleado }})
@@ -152,6 +154,23 @@
                 emailInput.value = '';
                 emailInput.focus();
             }
+        }
+
+        function generatePassword() {
+            const select = document.getElementById('teacher-select');
+            const selectedOption = select.options[select.selectedIndex];
+
+            if (!selectedOption || !selectedOption.value) {
+                alert('Primero selecciona un profesor.');
+                return;
+            }
+
+            const apellido  = (selectedOption.getAttribute('data-nombre') || 'PROF').toUpperCase();
+            const empleado  = selectedOption.getAttribute('data-empleado') || '0000';
+
+            // Formato: Apellido + NumEmpleado + ! (fácil de comunicar, único por profesor)
+            const password = apellido + empleado + '!';
+            document.getElementById('teacher-pass').value = password;
         }
     </script>
 

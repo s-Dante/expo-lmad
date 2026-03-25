@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tbl_visitantes', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->enum('tipo', ['externo', 'estudiante', 'sponsor', 'staff', 'profesor', 'directivos']);
+            $table->string('tipo', 30);
 
             //Datos UANL
             $table->string('matricula')->nullable()->index();
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('semestre')->nullable();
 
             //Datos Externos
-            $table->enum('genero', ['M', 'F', 'O'])->nullable();
-            $table->enum('rango-edad', ['<15', '15-25', '26-35', '36-45', '46-55', '56+'])->nullable();
+            $table->string('genero', 5)->nullable();
+            $table->string('rango-edad', 10)->nullable();
  
             $table->softDeletes();
             $table->timestamps();

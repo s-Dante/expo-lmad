@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Conferencista;
 use App\Models\Visitante;
+use App\Enums\TipoEvento;
+use App\Enums\EstatusEvento;
 
 class Evento extends Model
 {
@@ -35,8 +37,10 @@ class Evento extends Model
 
     protected $casts = [
         'fecha_inicio_evento' => 'datetime',
-        'fecha_fin_evento' => 'datetime',
-        'capacidad' => 'integer',
+        'fecha_fin_evento'    => 'datetime',
+        'capacidad'           => 'integer',
+        'tipo'                => TipoEvento::class,
+        'estatus_evento'      => EstatusEvento::class,
     ];
 
     /**

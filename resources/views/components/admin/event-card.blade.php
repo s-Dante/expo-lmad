@@ -2,7 +2,7 @@
 
 @php
     $name = $evento->titulo;
-    $type = $evento->tipo;
+    $type = $evento->tipo instanceof \App\Enums\TipoEvento ? $evento->tipo->value : (string) $evento->tipo;
     $dateStart = $evento->fecha_inicio_evento->format('d-m-Y');
     $timeStart = $evento->fecha_inicio_evento->format('H:i');
     $dateEnd = $evento->fecha_fin_evento->format('d-m-Y');
@@ -15,6 +15,13 @@
 @endphp
 
 <div class="expo-card card-c">
+
+    @if ($evento->poster_evento)
+        <div class="card-event-poster" style="overflow: hidden; max-height: 140px; border-radius: 8px 8px 0 0;">
+            <img src="{{ asset('storage/' . $evento->poster_evento) }}" alt="{{ $name }}"
+                 style="width: 100%; height: 140px; object-fit: cover; display: block;">
+        </div>
+    @endif
 
     <div class="card-data">
 

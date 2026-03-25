@@ -50,7 +50,8 @@
 
         {{-- Acciones siempre al fondo --}}
         <div class="card-actions">
-            <button id="btn-edit" class="btn btn-purple btn-icon" type="button" onclick="openEditModal(...)">
+            <button id="btn-edit" class="btn btn-purple btn-icon" type="button"
+                onclick="openEditModal('{{ $patrocinador->id }}', '{{ addslashes($name) }}', '{{ $tier ?? '' }}', '{{ addslashes($image ?? '') }}', '{{ addslashes($website) }}', '{{ $editUrl }}')">
                 <img class="img-fluid img-icon" src="{{ asset('assets/admin/EditarIcon.png') }}">
             </button>
             <form action="{{ $deleteUrl }}" method="POST"

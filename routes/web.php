@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
 use App\Http\Controllers\Guest\PortafolioController;
+use App\Http\Controllers\Guest\GuestCronogramaController;
+use App\Http\Controllers\Guest\GuestPatrocinadorController;
 use App\Http\Controllers\Student\EstudianteController;
 use App\Http\Controllers\Teacher\ProfesorController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -30,9 +32,7 @@ Route::get('/login', function () {
 /**
  * Vista de Nuestras Estrellas / Patrocinadores
  */
-Route::get('/NuestrasEstrellas', function () {
-    return view('guest.patrocinadores');
-});
+Route::get('/NuestrasEstrellas', [GuestPatrocinadorController::class, 'index'])->name('patrocinadores');
 
 /**
  * Vista de Registro de AFI
@@ -51,9 +51,7 @@ Route::get('/Asistencia', function () {
 /**
  * Vista de Cronograma
  */
-Route::get('/Cronograma', function () {
-    return view('guest.cronograma');
-})->name('cronograma');
+Route::get('/Cronograma', [GuestCronogramaController::class, 'index'])->name('cronograma');
 
 /**
  * Vista de Portafolio
@@ -89,18 +87,20 @@ Route::middleware que le corresponda uwu. Se valida que haya tanto una sesion in
 
 // Rutas de Super_Admin
 Route::middleware(['auth', 'role:super_admin'])->group(function () {
-    Route::get('/superadmin/dashboard', function () {
-        return view('superadmin.dashboard');
-    })->name('superadmin.dashboard');
+    Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard'])
+        ->name('superadmin.dashboard');
+
+    Route::get('/superadmin/dashboard/exportar', [SuperAdminController::class, 'exportar'])
+        ->name('superadmin.dashboard.export');
 
     Route::get('/superadmin/revision-proyecto/{id}', [SuperAdminController::class, 'paginaRevisionProyecto'])->name('superadmin.revision-proyecto');
 
     Route::get('/superadmin/proyectos', [SuperAdminController::class, 'paginaProyectos'])
         ->name('superadmin.proyectos');
 
-    Route::post("/superadmin/actualizarRevisionProyecto", [SuperAdminController::class, 'actualizarRevisionProyecto']);Route::get('/superadmin/getDashboardInfo', [SuperAdminController::class, 'getDashboardInfo']);
-
     Route::post("/superadmin/actualizarRevisionProyecto", [SuperAdminController::class, 'actualizarRevisionProyecto']);
+
+    Route::get('/superadmin/getDashboardInfo', [SuperAdminController::class, 'getDashboardInfo']);
 
     Route::get('/superadmin/mandarRevisionProyecto/{id}', [SuperAdminController::class, 'mandarRevisionProyecto']);
 });
@@ -222,15 +222,15 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
 
     Route::get('/staff/registro-asistencia-expositor/{matricula}', [App\Http\Controllers\Staff\StaffController::class, 'registrarAsistenciaExpositor']);
 
-     Route::get('/staff/visitantes', function () {
+    Route::get('/staff/visitantes', function () {
         return view('staff.visitantes');
     })->name('staff.visitantes');
 
-     Route::get('/staff/empresas', function () {
+    Route::get('/staff/empresas', function () {
         return view('staff.empresas');
     })->name('staff.empresas');
 
-        Route::get('/staff/empresas/asistencia', function () {
+    Route::get('/staff/empresas/asistencia', function () {
         return view('staff.empresas-asist');
     })->name('staff.empresa-asistencia');
 

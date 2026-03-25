@@ -47,13 +47,16 @@ class AdminPatrocinadorController extends Controller
                 ->store('patrocinadores/logos', 'public');
         }
 
-        // Si no es patrocinador, asegurar que tier sea null
-        if (empty($data['es_patrocinador'])) {
-            $data['tier'] = TierPatrocinador::Ninguno->value;
+        // Normalizar es_patrocinador como booleano real
+        $data['es_patrocinador'] = !empty($data['es_patrocinador']);
+
+        // Si no es patrocinador, limpiar el tier
+        if (!$data['es_patrocinador']) {
+            $data['tier'] = null;
         }
 
-        // Remover campo auxiliar que no va a la BD
-        unset($data['es_patrocinador'], $data['logo']);
+        // Remover campo de archivo que no va a la BD
+        unset($data['logo']);
 
         $this->patrocinadorRepo->create($data);
 
@@ -75,13 +78,16 @@ class AdminPatrocinadorController extends Controller
                 ->store('patrocinadores/logos', 'public');
         }
 
-        // Si no es patrocinador, asegurar que tier sea null
-        if (empty($data['es_patrocinador'])) {
-            $data['tier'] = TierPatrocinador::Ninguno->value;
+        // Normalizar es_patrocinador como booleano real
+        $data['es_patrocinador'] = !empty($data['es_patrocinador']);
+
+        // Si no es patrocinador, limpiar el tier
+        if (!$data['es_patrocinador']) {
+            $data['tier'] = null;
         }
 
-        // Remover campo auxiliar que no va a la BD
-        unset($data['es_patrocinador'], $data['logo']);
+        // Remover campo de archivo que no va a la BD
+        unset($data['logo']);
 
         $this->patrocinadorRepo->update($patrocinador, $data);
 

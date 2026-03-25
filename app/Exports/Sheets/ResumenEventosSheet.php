@@ -46,7 +46,7 @@ class ResumenEventosSheet implements FromArray, WithTitle, WithStyles, WithColum
 
             $rows[] = [
                 $event->titulo,
-                $event->tipo ?? 'N/A',
+                $event->tipo instanceof \BackedEnum ? $event->tipo->value : (string) ($event->tipo ?? 'N/A'),
                 $registrados,
                 $asistieron,
                 $registrados > 0 ? round($asistieron / $registrados, 4) : 0,
