@@ -20,7 +20,7 @@ export default defineConfig({
 
                 "resources/css/guest/landing-page.css",
                 "resources/css/guest/login.css",
-                
+
                 "resources/css/components/sidebar.css",
 
                 "resources/css/teacher/registro-expositores.css",
@@ -51,10 +51,11 @@ export default defineConfig({
                 "resources/css/staff/expositor.css",
                 "resources/css/staff/visitantes.css",
                 "resources/css/staff/empresas.css",
+                "resources/css/staff/eventos.css",
 
                 "resources/css/components/carousel.css", //wip
                 "resources/css/components/carrusel.css", //funcional (finito)
-                
+
                 "resources/js/guest/expandImage.js",
                 "resources/js/guest/daysUntilExpo.js",
                 "resources/js/guest/cronogramaS1.js",
@@ -97,7 +98,8 @@ export default defineConfig({
                 "resources/js/student/actions-revisar-exposicion.js",
 
                 "resources/js/staff/qr-handler.js",
-                "resources/js/staff/visitantes-actions.js"
+                "resources/js/staff/visitantes-actions.js",
+                "resources/js/staff/eventos-actions.js",
             ],
             refresh: true,
         }),

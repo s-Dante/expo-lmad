@@ -236,3 +236,28 @@ input:-webkit-autofill:active {
     visibility: visible;
     opacity: 1;
 }
+
+/*--Radio de forms---*/
+.group-radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    cursor: pointer;
+}
+.group-radio input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--contrast-color-E);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.group-radio input[type="radio"]:checked {
+    background: var(--contrast-color-D);
+    box-shadow: 0 0 10px var(--contrast-color-D);
+    border-color: var(--contrast-color-E);
+}
