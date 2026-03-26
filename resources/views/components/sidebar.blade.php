@@ -89,11 +89,6 @@
             <span class="span-sidebar">Inicio</span>
         </a>
 
-        <a href="" class="sidebar-item ">
-            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Teachers-1.png') }}" alt="" />
-            <span class="span-sidebar">Maestros</span>
-        </a>
-
         <a href="{{ route('superadmin.proyectos') }}" class="sidebar-item ">
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Idea-1.png') }}" alt="" />
             <span class="span-sidebar">Proyectos</span>

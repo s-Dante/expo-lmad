@@ -9,7 +9,7 @@
         "resources/css/superadmin/proyectos.css",
         "resources/css/components/superadmin/modal-ver.css",
         "resources/js/superadmin/proyectos-handler.js",
-        "resources/js/superadmin/dashboard-info.js"
+        "resources/js/superadmin/proyectos-info.js"
 
     ])
 </head>

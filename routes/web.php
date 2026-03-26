@@ -93,12 +93,16 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
         return view('superadmin.dashboard');
     })->name('superadmin.dashboard');
 
+    Route::get("/superadmin/getInfoDashboard", [SuperAdminController::class, 'getInfoDashboard']);
+
     Route::get('/superadmin/revision-proyecto/{id}', [SuperAdminController::class, 'paginaRevisionProyecto'])->name('superadmin.revision-proyecto');
 
     Route::get('/superadmin/proyectos', [SuperAdminController::class, 'paginaProyectos'])
         ->name('superadmin.proyectos');
 
-    Route::post("/superadmin/actualizarRevisionProyecto", [SuperAdminController::class, 'actualizarRevisionProyecto']);Route::get('/superadmin/getDashboardInfo', [SuperAdminController::class, 'getDashboardInfo']);
+    Route::post("/superadmin/actualizarRevisionProyecto", [SuperAdminController::class, 'actualizarRevisionProyecto']);
+    
+    Route::get('/superadmin/getProyectosInfo', [SuperAdminController::class, 'getProyectosInfo']);
 
     Route::post("/superadmin/actualizarRevisionProyecto", [SuperAdminController::class, 'actualizarRevisionProyecto']);
 

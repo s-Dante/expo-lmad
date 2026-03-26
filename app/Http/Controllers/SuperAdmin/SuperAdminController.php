@@ -6,10 +6,41 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Proyecto;
+use App\Models\Visitante;
+use App\Models\Evento;
+use App\Models\Patrocinador;
 
 class SuperAdminController extends Controller
 {
-    public function getDashboardInfo()
+    public function getInfoDashboard()
+    {
+        $totalVisitantes = Visitante::count();
+        $visitantesExternos = Visitante::where('tipo', '!=', 'estudiante')->count();
+        $visitantesInstitucionales = Visitante::where('tipo', 'estudiante')->count();
+        $visitanteM = Visitante::where('genero', 'M')->count();
+        $visitanteF = Visitante::where('genero', 'F')->count();
+        $visitanteO = Visitante::where('genero', 'O')->count();
+        $eventos = Evento::count();
+        $patrocinadores = Patrocinador::count();
+
+        try {
+            return response()->json([
+                'total_visitantes' => $totalVisitantes,
+                'visitantes_institucionales' => $visitantesInstitucionales,
+                'visitantes_externos' => $visitantesExternos,
+                'visitante_f' => $visitanteF,
+                'visitante_m' => $visitanteM,
+                'visitante_o' => $visitanteO,
+                'eventos' => $eventos,
+                'patrocinadores' => $patrocinadores,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+
+    }
+    public function getProyectosInfo()
     {
         $expositores = User::where('rol', 'estudiante')->count();
         $proyectosTotal = Proyecto::count();
@@ -36,7 +67,7 @@ class SuperAdminController extends Controller
         $proyectosAprobados = Proyecto::where('estatus', 'aprobado')
             ->with(['materia', 'profesor'])
             ->get();
-            
+
         //$proyectosAprobados = Proyecto::where('estatus', 'aprobado');
 
         return view('superadmin.proyectos', compact('materias', 'profesores', 'proyectosRevision', 'proyectosAprobados'));
@@ -65,7 +96,8 @@ class SuperAdminController extends Controller
         ]);
 
     }
-    public function mandarRevisionProyecto($id){
+    public function mandarRevisionProyecto($id)
+    {
 
         $proyecto = Proyecto::findOrFail($id);
         $proyecto->estatus = 'enviado';
