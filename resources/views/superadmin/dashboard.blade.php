@@ -16,7 +16,7 @@
     <div class="main-content">
 
         <header>
-            <h1 class="text-main">DATA</h1>
+            <h1 class="text-main">INFORMACION RELEVANTE DE LA EXPO LMAD</h1>
             <span class="line"></span>
         </header>
 
@@ -77,47 +77,9 @@
         <span class="line2"></span>
 
         <section class="events-section">
-            <h2 class="section-title">Asistencia a eventos</h2>
+            <h2 class="section-title">Asistencia a eventos (%)</h2>
 
-            <div class="events-grid">
-
-                <div class="event-name">FROM IDEA TO SCREEN: DEVELOPING, WRITING AND DIRECTING A FILM</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 90%;"></div>
-                    <!-- Ejemplo de maso como hacer funcional las barras (de forma facil y de momentop)
-                    style="width: {($evento->asistentes / 150) * 100 }}%;"> -->
-                </div>
-                <div class="event-number">120</div>
-
-                <div class="event-name">DIBUJANDO MIS SUEÑOS</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 45%;"></div>
-                </div>
-                <div class="event-number">47</div>
-
-                <div class="event-name">TALLER: APRENDE A PROGRAMAR CON CODEWARS</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 25%;"></div>
-                </div>
-                <div class="event-number">20</div>
-
-                <div class="event-name">FROM IDEA TO SCREEN: DEVELOPING, WRITING AND DIRECTING A FILM</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 60%;"></div>
-                </div>
-                <div class="event-number">120</div>
-
-                <div class="event-name">DIBUJANDO MIS SUEÑOS</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 23%;"></div>
-                </div>
-                <div class="event-number">47</div>
-
-                <div class="event-name">TALLER: APRENDE A PROGRAMAR CON CODEWARS</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 10%;"></div>
-                </div>
-                <div class="event-number">20</div>
+            <div class="events-grid" id="events-list">
 
             </div>
 

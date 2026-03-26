@@ -66,7 +66,7 @@ class Evento extends Model
     {
         return $this->belongsToMany(Visitante::class,
                                     'tbl_asistencias_evento',
-                                    'evento_id', 'visitantes_id'
+                                    'evento_id', 'visitante_id'
         )
         ->withPivot(['asistencia', 'fecha_asistencia'])
         ->withTimestamps();

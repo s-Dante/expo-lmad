@@ -346,6 +346,12 @@
     height: 100%;
     background: var(--progress-bar-gradient);
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: smaller;
+    font-weight: bolder;
 }
 .event-number {
     color: var(--text-primary);

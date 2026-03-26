@@ -23,6 +23,8 @@ class SuperAdminController extends Controller
         $eventos = Evento::count();
         $patrocinadores = Patrocinador::count();
 
+        $listaEventos = Evento::withCount('visitantes')->get();
+
         try {
             return response()->json([
                 'total_visitantes' => $totalVisitantes,
@@ -33,6 +35,13 @@ class SuperAdminController extends Controller
                 'visitante_o' => $visitanteO,
                 'eventos' => $eventos,
                 'patrocinadores' => $patrocinadores,
+                'nombre_eventos' => $listaEventos->map(function ($evento) {
+                    return [
+                        'nombre' => $evento->titulo,
+                        'visitantes_count' => $evento->visitantes_count,
+                        'capacidad' => $evento->capacidad,
+                    ];
+                }),
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
