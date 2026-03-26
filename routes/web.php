@@ -203,6 +203,10 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
         return view('staff.empresas-asist');
     })->name('staff.empresa-asistencia');
 
+     Route::get('/staff/eventos', function () {
+        return view('staff.eventos');
+    })->name('staff.eventos');
+
 });
 
 
