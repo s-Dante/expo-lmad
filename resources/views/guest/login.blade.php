@@ -48,7 +48,7 @@
         showServerMessages(
             @json(session('success')),
             @json(session('error')),
-            @json($errors - > all())
+            @json($errors -> all())
         );
     </script>
 
