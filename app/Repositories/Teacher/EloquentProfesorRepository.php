@@ -62,6 +62,16 @@ class EloquentProfesorRepository implements ProfesorRepositoryInterface
                     $estudiante->update(['usuario_id' => $usuario->id]);
                 }
 
+                // Crear o recuperar Visitante
+                \App\Models\Visitante::firstOrCreate(
+                    ['matricula' => $estudiante->matricula],
+                    [
+                        'tipo'            => \App\Enums\TipoVisitante::Estudiante,
+                        'nombre_completo' => trim($estudiante->nombre . ' ' . $estudiante->apellido_paterno . ' ' . $estudiante->apellido_materno),
+                        'email'           => $estudiante->email,
+                    ]
+                );
+
                 // Adjuntar a la tabla pivote tbl_autores_proyecto
                 // El primero (index 0) es el líder
                 $esLider = ($index === 0);

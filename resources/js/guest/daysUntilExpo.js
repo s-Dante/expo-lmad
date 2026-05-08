@@ -1,5 +1,5 @@
 function calcularTiempoRestante() {
-  const fechaObjetivo = new Date(2026, 5, 23); // Meses en JavaScript son de 0 a 11, así que 8 representa septiembre.
+  const fechaObjetivo = new Date(2026, 4, 23); // Meses en JavaScript son de 0 a 11, así que 8 representa septiembre.
 
   // Obtiene la fecha actual
   const fechaActual = new Date();

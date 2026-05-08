@@ -31,18 +31,15 @@
     <section class="tex-presentation reveal">
         <h1>CARRERA</h1>
         <p>
-            Para entender la historia de fnaf, hay q olvidarse q estos son juegos y
-            quiero q tomen realmente está saga como lo q es de terror, Si pero sobre
-            todo ciencia, ciencia ficción Q pasaría si dos amigos abren una
-            pizzería, esa es la primera pregunta q hay q plantearnos, lo normal
-            sería q todo vaya medianamente bien con algún tipo de problemas, pero
-            nada saldría más allá q eso, la pregunta cambia completamente si nos
-            preguntamos, ¿q pasaría si Henry y William abren una pizzería? </br><br>
-            ¿Quienes son estos personajes? En un principio grandes amigos, Henry x
-            un lado era un ferviente y talentoso, mecánico q cuidaba a su propia
-            hija Charlie, no sabemos nada q le pasó a su esposa siquiera tiene a
-            alguien más en su familia y x el otro lado William Afton, la familia de
-            Afton estaba compuesta x cinco miembros.</p>
+            Desde 2009, la Licenciatura en Multimedia y Animación Digital se ha
+            consolidado como una licenciatura de innovación tecnológica y creativa.
+            Somos el punto de encuentro exacto donde el rigor de las ciencias exactas
+            y la visión artística convergen. Nuestro objetivo es formar especialistas
+            capaces de diseñar mundos únicos y experiencias inmersivas que desafían
+            los límites de la realidad. Un profesional de LMAD comprende las metodologías
+            de las tecnologías de la información con la misma fluidez con la que expresa
+            el arte, creando soluciones de diseño estratégico, interactivo y audiovisual
+            que transforman nuestra forma de interactuar con el entorno digital.</p>
     </section>
 
     <section class="projects-container">
@@ -51,9 +48,18 @@
             <div class="project-content glow-blue">
                 <h2>Videojuegos</h2>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</br><br>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    La creación de un videojuego es el máximo reto de colaboración
+                    tecnológica, y en LMAD lo convertimos en nuestro ecosistema
+                    natural. Nuestros estudiantes trabajan en células multidisciplinarias
+                    (fusionando el talento de artistas 2D y 3D con programadores)
+                    para conceptualizar, desarrollar y publicar proyectos jugables en el
+                    transcurso de un solo semestre. Con un comprendimiento de los motores
+                    gráficos líderes en la industria, como Unreal Engine 5 y Unity,
+                    construimos experiencias interactivas optimizadas tanto para PC
+                    como para plataformas móviles, demostrando que, en nuestra facultad,
+                    el arte y la lógica de programación pueden convivir en un mismo espacio.
                 </p>
-                <a href="#" class="project-link">Ver proyectos &rarr;</a>
+                <a href="{{ route('portafolio.index') }}" class="project-link">Ver proyectos &rarr;</a>
             </div>
             <div class="project-image glow-blue">
                 <img src="{{ asset('assets/guest/EXPOLMAD-Vid.JPG') }}" alt="Videojuegos">
@@ -65,12 +71,17 @@
             <div class="project-content glow-purple">
                 <h2 class="project-title">Arte</h2>
                 <p class="project-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</br><br>
-
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </br><br>
-
+                    El arte dentro de LMAD va mucho más allá de la estética; es
+                    diseño funcional con un propósito claro. Esta área es el motor
+                    visual de nuestra carrera, abarcando la precisión técnica del
+                    modelado 3D, la expresión del arte 2D, la postproducción y VFX
+                    para crear narrativa cinematográfica en producciones audiovisuales.
+                    Cada polígono, cada fotograma y cada composición están pensados
+                    para comunicar mensajes poderosos, construir interfaces inolvidables
+                    y darle alma a la tecnología. Nuestros estudiantes crean la identidad
+                    visual del futuro.
                 </p>
-                <a href="#" class="project-link">Ver proyectos &rarr;</a>
+                <a href="{{ route('portafolio.index') }}" class="project-link">Ver proyectos &rarr;</a>
             </div>
             <div class="project-image glow-purple">
                 <img src="{{ asset('assets/guest/ExpoLmadArte.jpeg') }}" alt="Arte">
@@ -80,13 +91,17 @@
             <div class="project-content glow-pink">
                 <h2 class="project-title">Programación</h2>
                 <p class="project-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</br><br>
-
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </br><br>
-
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    El código es nuestra herramienta para construir el mundo digital.
+                    Nuestros desarrolladores aplican el espectro completo de la
+                    programación: desde la creación de robustas bases de datos y
+                    complejas arquitecturas back-end, hasta el desarrollo ágil de
+                    aplicaciones y plataformas front-end. Sin embargo, lo que eleva a un
+                    programador de LMAD por encima del resto es su profunda sensibilidad
+                    hacia el diseño. Nuestros estudiantes desarrollan software funcional
+                    y optimizado; integrando su formación artística para garantizar una
+                    UI impecable y una UX intuitiva.
                 </p>
-                <a href="#" class="project-link">Ver proyectos &rarr;</a>
+                <a href="{{ route('portafolio.index') }}" class="project-link">Ver proyectos &rarr;</a>
             </div>
             <div class="project-image glow-pink">
                 <img src="{{ asset('assets/guest/EXPOLMAD-PROGRA.JPG') }}" alt="Programación">

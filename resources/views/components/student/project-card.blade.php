@@ -91,19 +91,21 @@
 
     @else
 
-        <a href="{{ route('estudiante.proyectos.show', $data->id) }}" class="btn {{ $btnClass }}">
-
-            @if($data->estatus === 'borrador')
+        @if($data->estatus === 'borrador')
+            <a href="{{ route('estudiante.proyectos.create', $data->id) }}" class="btn {{ $btnClass }}">
                 <p class="legend">Editar proyecto</p>
-            @elseif($data->estatus === 'rechazado')
-                <p class="legend">Revisar proyecto</p>
-            @elseif($data->estatus === 'eliminado')
-                <p class="legend">No disponible</p>
-            @else
-                <p class="legend">Ver proyecto</p>
-            @endif
-
-        </a>
+            </a>
+        @else
+            <a href="{{ route('estudiante.proyectos.show', $data->id) }}" class="btn {{ $btnClass }}">
+                @if($data->estatus === 'rechazado')
+                    <p class="legend">Revisar proyecto</p>
+                @elseif($data->estatus === 'eliminado')
+                    <p class="legend">No disponible</p>
+                @else
+                    <p class="legend">Ver proyecto</p>
+                @endif
+            </a>
+        @endif
 
     @endif
 

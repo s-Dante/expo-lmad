@@ -1,6 +1,6 @@
- @vite([
+@vite([
     'resources/js/guest/showButtonMenu.js'
-    ])
+])
 </head>
 <div class="bg-navbar d-none"></div>
 <nav class="navbar unselectable">
@@ -11,6 +11,7 @@
 
         <a href="{{ route('registro') }}" class="btn btn-purple-nav">Asistencia</a>
         <a href="{{ route('cronograma') }}" class="btn btn-darkpur-nav">Cronograma</a>
+        <a href="{{ route('patrocinadores') }}" class="btn btn-darkpur-nav">Nuestras Estrellas</a>
 
         <a href="{{ route('portafolio.index') }}" class="btn btn-ghost-nav">Portafolio</a>
         <a href="{{ route('login') }}" class="btn btn-blue-nav">Iniciar Sesión</a>

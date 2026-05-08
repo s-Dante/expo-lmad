@@ -21,9 +21,14 @@ class Patrocinador extends Model
 
     protected $fillable = [
         'nombre',
+        'es_patrocinador',
         'tier',
         'logo_url',
         'website_url',
+    ];
+
+    protected $casts = [
+        'es_patrocinador' => 'boolean',
     ];
 
     /**

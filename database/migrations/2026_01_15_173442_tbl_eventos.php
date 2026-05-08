@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('slug')->unique();
-            $table->enum('tipo', ['conferencia', 'taller', 'seminario', 'webinar']);
+            $table->string('tipo', 30);
             $table->text('descripcion_evento')->nullable();
             $table->dateTime('fecha_inicio_evento');
             $table->dateTime('fecha_fin_evento');
             $table->string('ubicacion_evento')->nullable();
             $table->unsignedInteger('capacidad')->nullable();
             $table->string('poster_evento')->nullable();
-            $table->enum('estatus_evento', ['programado', 'en_curso', 'finalizado', 'cancelado'])->default('programado');
+            $table->string('estatus_evento', 30)->default('programado');
             $table->softDeletes();
             $table->timestamps();
         });

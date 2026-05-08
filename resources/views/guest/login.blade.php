@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <title>EXPO LMAD - Iniciar Sesión</title>
     @vite([
-        'resources/css/guest/login.css',
-        "resources/css/components/alerts.css"
+    'resources/css/guest/login.css',
+    "resources/css/components/alerts.css"
     ])
 </head>
 
@@ -48,7 +48,7 @@
         showServerMessages(
             @json(session('success')),
             @json(session('error')),
-            @json($errors->all())
+            @json($errors - > all())
         );
     </script>
 

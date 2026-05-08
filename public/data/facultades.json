@@ -1,0 +1,215 @@
+[
+  {
+    "clave": "FCFM",
+    "nombre": "Facultad de Ciencias Físico Matemáticas",
+    "carreras": [
+      { "clave": "LMAD", "nombre": "Licenciatura en Multimedia y Animación Digital" },
+      { "clave": "LA",   "nombre": "Licenciatura en Actuaría" },
+      { "clave": "LCC",  "nombre": "Licenciatura en Ciencias Computacionales" },
+      { "clave": "LF",   "nombre": "Licenciatura en Física" },
+      { "clave": "LM",   "nombre": "Licenciatura en Matemáticas" },
+      { "clave": "LSTI", "nombre": "Licenciatura en Seguridad de Tecnologías de Información" }
+    ]
+  },
+  {
+    "clave": "FA",
+    "nombre": "Facultad de Agronomía",
+    "carreras": [
+      { "clave": "IGA", "nombre": "Ingeniería Agronómica" },
+      { "clave": "IHF", "nombre": "Ingeniería en Horticultura y Fruticultura" },
+      { "clave": "IBG", "nombre": "Ingeniería en Biotecnología Genómica" }
+    ]
+  },
+  {
+    "clave": "FARQ",
+    "nombre": "Facultad de Arquitectura",
+    "carreras": [
+      { "clave": "ARQ",  "nombre": "Licenciatura en Arquitectura" },
+      { "clave": "DISE", "nombre": "Licenciatura en Diseño Industrial" }
+    ]
+  },
+  {
+    "clave": "FAV",
+    "nombre": "Facultad de Artes Visuales",
+    "carreras": [
+      { "clave": "LDGV", "nombre": "Licenciatura en Diseño Gráfico" },
+      { "clave": "LAV",  "nombre": "Licenciatura en Artes Visuales" }
+    ]
+  },
+  {
+    "clave": "FCB",
+    "nombre": "Facultad de Ciencias Biológicas",
+    "carreras": [
+      { "clave": "LBG",  "nombre": "Licenciatura en Biología" },
+      { "clave": "LMB",  "nombre": "Licenciatura en Microbiología" },
+      { "clave": "LBT",  "nombre": "Licenciatura en Biotecnología" },
+      { "clave": "LCBT", "nombre": "Licenciatura en Ciencia de los Alimentos" }
+    ]
+  },
+  {
+    "clave": "FC",
+    "nombre": "Facultad de Ciencias de la Comunicación",
+    "carreras": [
+      { "clave": "LCC2", "nombre": "Licenciatura en Ciencias de la Comunicación" },
+      { "clave": "LPU",  "nombre": "Licenciatura en Periodismo Digital" }
+    ]
+  },
+  {
+    "clave": "FCT",
+    "nombre": "Facultad de Ciencias de la Tierra",
+    "carreras": [
+      { "clave": "ING", "nombre": "Ingeniería en Geología" },
+      { "clave": "IGA2","nombre": "Ingeniería Geofísica Ambiental" }
+    ]
+  },
+  {
+    "clave": "FCF",
+    "nombre": "Facultad de Ciencias Forestales",
+    "carreras": [
+      { "clave": "IFF", "nombre": "Ingeniería en Manejo de Recursos Naturales" }
+    ]
+  },
+  {
+    "clave": "FCPRI",
+    "nombre": "Facultad de Ciencias Políticas y Relaciones Internacionales",
+    "carreras": [
+      { "clave": "LCP",  "nombre": "Licenciatura en Ciencias Políticas" },
+      { "clave": "LRI",  "nombre": "Licenciatura en Relaciones Internacionales" },
+      { "clave": "LACE", "nombre": "Licenciatura en Administración y Gestión Pública" }
+    ]
+  },
+  {
+    "clave": "FCQ",
+    "nombre": "Facultad de Ciencias Químicas",
+    "carreras": [
+      { "clave": "IQ",  "nombre": "Ingeniería Química" },
+      { "clave": "LQI", "nombre": "Licenciatura en Química Industrial" },
+      { "clave": "LQF", "nombre": "Licenciatura en Química Farmacéutica" }
+    ]
+  },
+  {
+    "clave": "FCPA",
+    "nombre": "Facultad de Contaduría Pública y Administrativa",
+    "carreras": [
+      { "clave": "LCP2", "nombre": "Licenciatura en Contaduría Pública" },
+      { "clave": "LAE",  "nombre": "Licenciatura en Administración de Empresas" },
+      { "clave": "LMN",  "nombre": "Licenciatura en Mercadotecnia y Negocios" }
+    ]
+  },
+  {
+    "clave": "FDC",
+    "nombre": "Facultad de Derecho y Criminología",
+    "carreras": [
+      { "clave": "LD",  "nombre": "Licenciatura en Derecho" },
+      { "clave": "LCR", "nombre": "Licenciatura en Criminología" }
+    ]
+  },
+  {
+    "clave": "FE",
+    "nombre": "Facultad de Economía",
+    "carreras": [
+      { "clave": "LE",  "nombre": "Licenciatura en Economía" },
+      { "clave": "LEF", "nombre": "Licenciatura en Economía y Finanzas" }
+    ]
+  },
+  {
+    "clave": "FAEN",
+    "nombre": "Facultad de Enfermería",
+    "carreras": [
+      { "clave": "LENF", "nombre": "Licenciatura en Enfermería" }
+    ]
+  },
+  {
+    "clave": "FFL",
+    "nombre": "Facultad de Filosofía y Letras",
+    "carreras": [
+      { "clave": "LFI", "nombre": "Licenciatura en Filosofía" },
+      { "clave": "LHI", "nombre": "Licenciatura en Historia" },
+      { "clave": "LLE", "nombre": "Licenciatura en Letras Hispánicas" },
+      { "clave": "LBI", "nombre": "Licenciatura en Bibliotecología" }
+    ]
+  },
+  {
+    "clave": "FIC",
+    "nombre": "Facultad de Ingeniería Civil",
+    "carreras": [
+      { "clave": "IC", "nombre": "Ingeniería Civil" }
+    ]
+  },
+  {
+    "clave": "FIME",
+    "nombre": "Facultad de Ingeniería Mecánica y Eléctrica",
+    "carreras": [
+      { "clave": "IEM", "nombre": "Ingeniería Electromecánica" },
+      { "clave": "IMS", "nombre": "Ingeniería Mecánica" },
+      { "clave": "IAS", "nombre": "Ingeniería Administración de Sistemas" },
+      { "clave": "ISC", "nombre": "Ingeniería en Sistemas Computacionales" },
+      { "clave": "IEL", "nombre": "Ingeniería en Electrónica y Automatización" },
+      { "clave": "IA",  "nombre": "Ingeniería Aeronáutica" }
+    ]
+  },
+  {
+    "clave": "FACMED",
+    "nombre": "Facultad de Medicina",
+    "carreras": [
+      { "clave": "LMD",  "nombre": "Licenciatura en Médico Cirujano y Partero" },
+      { "clave": "LREH", "nombre": "Licenciatura en Rehabilitación" }
+    ]
+  },
+  {
+    "clave": "FACVE",
+    "nombre": "Facultad de Medicina Veterinaria y Zootecnia",
+    "carreras": [
+      { "clave": "MVZ", "nombre": "Médico Veterinario Zootecnista" }
+    ]
+  },
+  {
+    "clave": "FMU",
+    "nombre": "Facultad de Música",
+    "carreras": [
+      { "clave": "LMU", "nombre": "Licenciatura en Música" }
+    ]
+  },
+  {
+    "clave": "FO",
+    "nombre": "Facultad de Odontología",
+    "carreras": [
+      { "clave": "COD", "nombre": "Cirujano Dentista" }
+    ]
+  },
+  {
+    "clave": "FOD",
+    "nombre": "Facultad de Organización Deportiva",
+    "carreras": [
+      { "clave": "LCD", "nombre": "Licenciatura en Ciencias del Ejercicio" }
+    ]
+  },
+  {
+    "clave": "FP",
+    "nombre": "Facultad de Psicología",
+    "carreras": [
+      { "clave": "LPS", "nombre": "Licenciatura en Psicología" }
+    ]
+  },
+  {
+    "clave": "FSPN",
+    "nombre": "Facultad de Salud Pública y Nutrición",
+    "carreras": [
+      { "clave": "LN",  "nombre": "Licenciatura en Nutrición" },
+      { "clave": "LSP", "nombre": "Licenciatura en Salud Pública" }
+    ]
+  },
+  {
+    "clave": "FTSDH",
+    "nombre": "Facultad de Trabajo Social y Desarrollo Humano",
+    "carreras": [
+      { "clave": "LTS", "nombre": "Licenciatura en Trabajo Social" },
+      { "clave": "LDH", "nombre": "Licenciatura en Desarrollo Humano" }
+    ]
+  },
+  {
+    "clave": "NP",
+    "nombre": "Otro(s) / Dependencia externa",
+    "carreras": []
+  }
+]

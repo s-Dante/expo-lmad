@@ -127,18 +127,38 @@ class ProfesorController extends Controller
         $resultado = $this->profesorRepository->crearProyectoConEstudiantes($validated, $profesor);
 
         // 3. Llamada al Servicio (Correos)
-        try {
-            $this->emailService->enviarCorreosAsignacion(
-                $resultado['proyecto'], 
-                $resultado['codigo'], 
-                $resultado['usuarios']
+        $resultadoCorreos = $this->emailService->enviarCorreosAsignacion(
+            $resultado['proyecto'],
+            $resultado['codigo'],
+            $resultado['usuarios']
+        );
+
+        $totalEnviados = count($resultadoCorreos['enviados']);
+        $totalFallidos = count($resultadoCorreos['fallidos']);
+
+        if ($totalEnviados === 0 && $totalFallidos > 0) {
+            // Ningún correo llegó
+            return redirect()->back()->with(
+                'Warning',
+                'Proyecto creado (Código: ' . $resultado['codigo'] . '), pero no se pudo enviar ningún correo. ' .
+                'Verifica la configuración SMTP o que los alumnos tengan correo registrado.'
             );
-        } catch (\Exception $e) {
-            // Log::error('Error enviando correos: ' . $e->getMessage());
-            return redirect()->back()->with('Warning', 'Proyecto creado, pero hubo un error enviando los correos.');
         }
 
-        return redirect()->back()->with('Exito', 'Proyecto registrado y notificaciones enviadas. Código: ' . $resultado['codigo']);
+        if ($totalFallidos > 0) {
+            // Algunos fallaron
+            return redirect()->back()->with(
+                'Warning',
+                'Proyecto creado. Se enviaron ' . $totalEnviados . ' correo(s). ' .
+                'Fallaron: ' . implode(', ', $resultadoCorreos['fallidos'])
+            );
+        }
+
+        // Todo correcto
+        return redirect()->back()->with(
+            'Exito',
+            'Proyecto registrado y ' . $totalEnviados . ' notificación(es) enviada(s). Código: ' . $resultado['codigo']
+        );
     }
 
     public function listadoProyectos()

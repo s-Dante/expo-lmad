@@ -55,18 +55,20 @@ export async function update_project(first_time) {
 
     let link_promo = input_link_promo.value.trim();
 
-    let link_drive;
-    if (!input_link_drive) {
+    let link_drive = "";
+    if (input_link_drive) {
         link_drive = input_link_drive.value.trim();
 
-        if(validation_Length(link_drive, 0, 252, "enlace a Google Drive")) return true;
-        if (validation_Link(link_drive, "drive", "a Google Drive")) return true;
+        if (link_drive) {
+            if(validation_Length(link_drive, 0, 252, "enlace a Google Drive")) return true;
+            if (validation_Link(link_drive, "drive", "a Google Drive")) return true;
+        }
     }
 
     let link_repo = input_link_repo.value.trim();
 
-    if (!description || !link_promo || !link_repo) {
-        showModal("Datos inválidos", "Por favor, llena todos los campos.");
+    if (!description || !link_promo) {
+        showModal("Datos inválidos", "Por favor, llena los campos obligatorios.");
         return true;
     }
 
@@ -85,7 +87,7 @@ export async function update_project(first_time) {
     }
 
     if (validation_Link(link_promo, "youtube", "promocional")) return true;
-    if (validation_Link(link_repo, "", "proyecto")) return true;
+    if (link_repo && validation_Link(link_repo, "", "proyecto")) return true;
 
     return false;
 }

@@ -169,10 +169,10 @@
                             <img src="{{ $currentImg }}" class="img-fluid project-card" id="project-portrait">
 
                             <div class="div-btn-changeimage">
-                                <button type="button" id="upload-photo" class="btn btn-blue state-editing" style="display: none;">Cambiar
+                                <button type="button" id="upload-photo" class="btn btn-blue state-editing" style="display: none;" data-target="file-upload" onclick="triggerUpload(this)">Cambiar
                                     imagen</button>
                                 <input type="file" id="file-upload" name="poster" accept="image/*"
-                                    style="display: none;">
+                                    style="display: none;" data-preview="project-portrait">
                                 <input type="hidden" id="has-image" value="{{ $portada ? 'true' : 'false' }}">
                             </div>
 
