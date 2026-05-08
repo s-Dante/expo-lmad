@@ -114,10 +114,10 @@
             <span class="span-sidebar">Inicio</span>
         </a>
 
-        <!-- <a href="" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Eventos-1.png') }}" alt="" />
-                <span class="span-sidebar">Eventos</span>
-            </a> -->
+        <a href="{{ route('staff.eventos') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Eventos-1.png') }}" alt="" />
+            <span class="span-sidebar">Eventos</span>
+        </a>
 
         <a href="{{ route('staff.visitantes') }}" class="sidebar-item ">
             <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />

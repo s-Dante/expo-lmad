@@ -256,6 +256,10 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
     Route::get('/staff/empresas/asistencia', function () {
         return view('staff.empresas-asist');
     })->name('staff.empresa-asistencia');
+
+    Route::get('/staff/eventos', function () {
+        return view('staff.eventos');
+    })->name('staff.eventos');
 });
 
 
