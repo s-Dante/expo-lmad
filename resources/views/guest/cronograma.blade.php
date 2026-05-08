@@ -51,12 +51,6 @@
                     <div class="container-grid-horario-map">
                         <div class="glassContainer horario-map">
                             <canvas id="MapaInteractivo"></canvas>
-                            <div class="glassContainer button-sm" id="MapaInteractivo-L1">
-                                L1
-                            </div>
-                            <div class="glassContainer button-sm" id="MapaInteractivo-L2">
-                                L2
-                            </div>
                         </div>
                     </div>
 
