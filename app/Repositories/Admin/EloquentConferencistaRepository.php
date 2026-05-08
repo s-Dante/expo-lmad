@@ -27,7 +27,7 @@ class EloquentConferencistaRepository implements ConferencistaRepositoryInterfac
      */
     public function getAllForDropdown(): Collection
     {
-        return Conferencista::select('id', 'nombre', 'apellido_paterno', 'apellido_materno', 'empresa')
+        return Conferencista::select('id', 'nombre', 'apellido_paterno', 'apellido_materno', 'nickname', 'empresa')
             ->where('estatus', true)
             ->orderBy('nombre')
             ->get();

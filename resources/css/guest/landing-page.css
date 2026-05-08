@@ -12,6 +12,7 @@
     max-width: 35%;
     margin: 0 auto;
 }
+
 .tex-presentation h1 {
     font-family: var(--font-display);
     font-size: 1.5rem;
@@ -20,8 +21,9 @@
     margin-bottom: 0;
     margin-top: 30px;
 }
+
 .tex-presentation p {
-    text-align: justify;
+    text-align: left;
     font-family: var(--font-alt);
     font-size: 1.3rem;
     color: var(--text-secondary);
@@ -38,13 +40,16 @@
     flex-direction: column;
     gap: 100px;
 }
+
 .project-row {
     display: flex;
     align-items: flex-start;
 }
+
 .project-row.reverse {
     flex-direction: row-reverse;
 }
+
 .project-content {
     flex: 1;
     height: 320px;
@@ -55,6 +60,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .project-content h2,
 .project-content p,
 .project-content a {
@@ -62,6 +68,7 @@
     margin-right: 0;
     width: 90%;
 }
+
 .project-content h2 {
     font-family: var(--font-main);
     color: var(--text-primary);
@@ -70,19 +77,22 @@
     margin-bottom: 0px;
     margin-top: 0px;
 }
+
 .project-content p {
     font-family: var(--font-alt);
     color: var(--text-primary);
     opacity: 80%;
     font-size: 1rem;
-    text-align: justify;
+    text-align: left;
 }
+
 .project-content a {
     font-family: var(--font-alt);
     color: var(--text-link);
     text-decoration: none;
     font-weight: 600;
 }
+
 .project-image {
     border: 1px solid;
     flex: 3;
@@ -90,6 +100,7 @@
     height: 500px;
     overflow: hidden;
 }
+
 .project-image img {
     width: 100%;
     height: 100%;
@@ -97,18 +108,17 @@
 }
 
 .glow-blue {
-    box-shadow: 0 0 40px
-        color-mix(in srgb, var(--contrast-color-A), transparent 50%);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--contrast-color-A), transparent 50%);
     border-color: var(--contrast-color-A);
 }
+
 .glow-purple {
-    box-shadow: 0 0 40px
-        color-mix(in srgb, var(--contrast-color-B), transparent 50%);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--contrast-color-B), transparent 50%);
     border-color: var(--contrast-color-B);
 }
+
 .glow-pink {
-    box-shadow: 0 0 40px
-        color-mix(in srgb, var(--contrast-color-C), transparent 50%);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--contrast-color-C), transparent 50%);
     border-color: var(--contrast-color-C);
 }
 
@@ -124,10 +134,12 @@
     transform: translateY(30px);
     transition: all 0.8s ease-out;
 }
+
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
+
 .project-row.reveal.active {
     transform: translateY(0);
     opacity: 1;
@@ -140,6 +152,7 @@
         margin: 40px auto;
         padding: 0 15px;
     }
+
     .project-content,
     .project-image {
         box-sizing: border-box;
@@ -160,6 +173,7 @@
         text-align: center;
         box-sizing: border-box;
     }
+
     .project-image {
         width: 100%;
         height: 400px;
@@ -175,6 +189,7 @@
     .project-content p {
         font-size: 0.9rem;
     }
+
     .project-content a {
         font-size: 0.9rem;
     }
@@ -182,12 +197,13 @@
     .tex-presentation {
         max-width: 60%;
     }
+
     .tex-presentation h1 {
         font-size: 1.2rem;
     }
+
     .tex-presentation p {
         font-size: 1rem;
         text-align: justify;
     }
 }
-

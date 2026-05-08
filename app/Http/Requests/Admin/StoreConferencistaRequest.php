@@ -24,8 +24,8 @@ class StoreConferencistaRequest extends FormRequest
         $conferencistaId = $this->route('conferencista')?->id;
 
         return [
-            'nombre'           => ['required', 'string', 'max:255'],
-            'apellido_paterno' => ['required', 'string', 'max:255'],
+            'nombre'           => ['nullable', 'string', 'max:255'],
+            'apellido_paterno' => ['nullable', 'string', 'max:255'],
             'apellido_materno' => ['nullable', 'string', 'max:255'],
             'nickname'         => ['nullable', 'string', 'max:100', 'unique:tbl_conferencistas,nickname,' . $conferencistaId],
             'biografia'        => ['nullable', 'string'],
@@ -40,7 +40,7 @@ class StoreConferencistaRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nombre.required'           => 'El nombre del conferencista es obligatorio.',
+            'nombre.required'           => 'El nombre del conferencista es obligatorio si no hay nickname.',
             'apellido_paterno.required' => 'El apellido paterno es obligatorio.',
             'email.email'               => 'Debe proporcionar un correo electrónico válido.',
             'email.unique'              => 'Este correo ya está registrado para otro conferencista.',

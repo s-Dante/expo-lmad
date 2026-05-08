@@ -31,6 +31,7 @@ class EventAttendanceSheet implements FromArray, WithTitle, WithStyles, WithColu
         $rows[] = [
             'Evento',
             'Tipo Evento',
+            'Nombre Completo',
             'Nombre',
             'Apellido Paterno',
             'Apellido Materno',
@@ -49,6 +50,7 @@ class EventAttendanceSheet implements FromArray, WithTitle, WithStyles, WithColu
                 $rows[] = [
                     $event->titulo,
                     $event->tipo instanceof \BackedEnum ? $event->tipo->value : (string) ($event->tipo ?? 'N/A'),
+                    $visitante->nombre_completo,
                     $visitante->nombre,
                     $visitante->apellido_paterno,
                     $visitante->apellido_materno ?? '',
@@ -65,8 +67,8 @@ class EventAttendanceSheet implements FromArray, WithTitle, WithStyles, WithColu
                     $visitante->rango_edad ?? 'N/A',
                     $visitante->pivot->asistencia ? 'Sí' : 'No',
                     $visitante->pivot->fecha_registro
-                    ? \Carbon\Carbon::parse($visitante->pivot->fecha_registro)->format('d/m/Y H:i')
-                    : 'N/A',
+                        ? \Carbon\Carbon::parse($visitante->pivot->fecha_registro)->format('d/m/Y H:i')
+                        : 'N/A',
                 ];
             }
         }

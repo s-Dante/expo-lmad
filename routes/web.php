@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Guest\PortafolioController;
 use App\Http\Controllers\Guest\GuestCronogramaController;
 use App\Http\Controllers\Guest\GuestPatrocinadorController;
+use App\Http\Controllers\Guest\GuestAsistenciaController;
 use App\Http\Controllers\Student\EstudianteController;
 use App\Http\Controllers\Teacher\ProfesorController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -162,21 +163,37 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.staff.update');
     Route::delete('/admin/staff/{staff}', [App\Http\Controllers\Admin\AdminStaffController::class, 'destroy'])
         ->name('admin.staff.destroy');
+
+    // ── Importación masiva de datos (Excel) ──────────────────────────────────
+    Route::get('/admin/importar', [App\Http\Controllers\Admin\AdminImportController::class, 'index'])
+        ->name('admin.importar');
+    Route::post('/admin/importar/programas',   [App\Http\Controllers\Admin\AdminImportController::class, 'importarProgramas'])
+        ->name('admin.importar.programas');
+    Route::post('/admin/importar/planes',      [App\Http\Controllers\Admin\AdminImportController::class, 'importarPlanes'])
+        ->name('admin.importar.planes');
+    Route::post('/admin/importar/softwares',   [App\Http\Controllers\Admin\AdminImportController::class, 'importarSoftwares'])
+        ->name('admin.importar.softwares');
+    Route::post('/admin/importar/profesores',  [App\Http\Controllers\Admin\AdminImportController::class, 'importarProfesores'])
+        ->name('admin.importar.profesores');
+    Route::post('/admin/importar/estudiantes', [App\Http\Controllers\Admin\AdminImportController::class, 'importarEstudiantes'])
+        ->name('admin.importar.estudiantes');
+    Route::post('/admin/importar/materias',    [App\Http\Controllers\Admin\AdminImportController::class, 'importarMaterias'])
+        ->name('admin.importar.materias');
 });
 
 //Rutas de Estudiante 
 Route::middleware(['auth', 'role:estudiante'])->group(function () {
-    Route::get('/estudiante/dashboard', function () {
-        return view('student.dashboard');
-    })->name('estudiante.dashboard');
+    // Route::get('/estudiante/dashboard', function () {
+    //     return view('student.dashboard');
+    // })->name('estudiante.dashboard');
 
-    Route::get('/estudiante/registro-proyecto', function () {
-        return view('student.registro-proyecto');
-    })->name('estudiante.registro-proyecto');
+    // Route::get('/estudiante/registro-proyecto', function () {
+    //     return view('student.registro-proyecto');
+    // })->name('estudiante.registro-proyecto');
 
-    Route::get('/estudiante/lista-exposiciones', function () {
-        return view('student.lista-exposiciones');
-    })->name('estudiante.lista-exposiciones');
+    // Route::get('/estudiante/lista-exposiciones', function () {
+    //     return view('student.lista-exposiciones');
+    // })->name('estudiante.lista-exposiciones');
 
     Route::get('/estudiante/dashboard', [EstudianteController::class, 'dashboard'])->name('estudiante.dashboard');
 
@@ -186,7 +203,7 @@ Route::middleware(['auth', 'role:estudiante'])->group(function () {
     Route::get('/estudiante/proyectos/{id}/editar', [EstudianteController::class, 'edit'])->name('estudiante.proyectos.edit');
     Route::get('/estudiante/proyectos/{id}/registro', [EstudianteController::class, 'firts_Show'])->name('estudiante.proyectos.create');
     Route::put('/estudiante/proyectos/{id}', [EstudianteController::class, 'update'])->name('estudiante.proyectos.update');
-    Route::put('/estudiante/proyectos/{id}', [EstudianteController::class, 'updateEdit'])->name('estudiante.proyectos.updateEdit');
+    Route::put('/estudiante/proyectos/{id}/update-edit', [EstudianteController::class, 'updateEdit'])->name('estudiante.proyectos.updateEdit');
     Route::put('/estudiante/proyectos/{id}/send', [EstudianteController::class, 'send'])->name('estudiante.proyectos.send');
     Route::get('/estudiante/proyectos/{id}', [EstudianteController::class, 'show'])->name('estudiante.proyectos.show');
 });
@@ -202,6 +219,10 @@ Route::middleware(['auth', 'role:profesor'])->group(function () {
 
     Route::post('/profesor/cargar-proyecto', [ProfesorController::class, 'cargarProyecto'])
         ->name('teacher.cargar-proyecto');
+
+    // cargarProyecto2: versión con envío de correo al líder con su token de acceso
+    Route::post('/profesor/cargar-proyecto2', [ProfesorController::class, 'cargarProyecto2'])
+        ->name('teacher.cargar-proyecto2');
 
     Route::get('/profesor/lista-proyectos', [App\Http\Controllers\Teacher\ProfesorController::class, 'listadoProyectos'])
         ->name('teacher.lista-proyectos');
@@ -226,6 +247,8 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
         return view('staff.visitantes');
     })->name('staff.visitantes');
 
+    Route::post('/staff/visitantes', [App\Http\Controllers\Staff\StaffController::class, 'storeVisitante'])->name('staff.visitantes.store');
+
     Route::get('/staff/empresas', function () {
         return view('staff.empresas');
     })->name('staff.empresas');
@@ -233,7 +256,6 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
     Route::get('/staff/empresas/asistencia', function () {
         return view('staff.empresas-asist');
     })->name('staff.empresa-asistencia');
-
 });
 
 
@@ -247,3 +269,39 @@ La verdad creo que dentro de lo planeado no teniamos pensado algo asi, pero es c
 Route::get('/api/buscar-estudiante/{matricula}', [App\Http\Controllers\api\ApiController::class, 'buscarEstudiantePorMatricula']);
 Route::get('/api/obtener-proyecto-token/{token}', [App\Http\Controllers\api\ApiController::class, 'obtenerProyectoPorToken']);
 Route::get('/api/obtener-proyecto-id/{id}', [App\Http\Controllers\api\ApiController::class, 'obtenerProyectoPorId']);
+
+// ── Asistencia de eventos (AFI) ────────────────────────────────────────────
+// GET  /api/eventos-activos        → lista de eventos disponibles para registro
+// POST /api/registro-asistencia    → registra visitante + genera token (Opción 2)
+// POST /api/confirmar-matricula    → confirma asistencia por matrícula (Opción 1)
+// POST /api/confirmar-token        → confirma asistencia por token de correo (Opción 2)
+Route::get('/api/eventos-activos', [GuestAsistenciaController::class, 'getEventos']);
+Route::post('/api/registro-asistencia', [GuestAsistenciaController::class, 'registrar']);
+Route::post('/api/confirmar-matricula', [GuestAsistenciaController::class, 'confirmarPorMatricula']);
+Route::post('/api/confirmar-token', [GuestAsistenciaController::class, 'confirmarPorToken']);
+
+
+
+/**
+ * Eastereggs
+ */
+// Humanos
+Route::get('humans', function () {
+    return response()->file(public_path('humans.txt'));
+})->name('humans');
+
+// Vicentemetegol
+Route::get('566963656e74654d657465476f6c', function () {
+    $patrocinadores = App\Models\Patrocinador::where('es_patrocinador', true)
+        ->whereNotNull('tier')
+        ->where('tier', '!=', App\Enums\TierPatrocinador::Ninguno->value)
+        ->orderBy('tier')
+        ->get();
+    $porTier = $patrocinadores->groupBy('tier');
+    return view('eastereggs.vicentemetegol.index', compact('porTier'));
+})->name('vicentemetegol');
+
+// Delfin
+Route::get('01001100010011010100000101000100', function () {
+    return view('eastereggs.delfin.index');
+})->name('delfin');

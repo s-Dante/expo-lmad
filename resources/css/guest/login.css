@@ -51,6 +51,15 @@ body {
 
     animation: formIn 1s ease-out forwards;
 }
+
+.a-logo-w {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 15px;
+}
 .logo-w {
     width: 60%;
     max-width: 400px;

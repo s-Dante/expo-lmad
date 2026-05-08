@@ -8,12 +8,12 @@
     <title>Admin Conferencistas</title>
 
     @vite([
-        'resources/css/guest/template.css',
-        'resources/css/admin/guest.css',
-        'resources/css/components/carrusel.css',
-        'resources/js/components/load-portrait.js',
-        'resources/js/admin/actions-guest.js',
-        'resources/js/admin/carrusel.js'
+    'resources/css/guest/template.css',
+    'resources/css/admin/guest.css',
+    'resources/css/components/carrusel.css',
+    'resources/js/components/load-portrait.js',
+    'resources/js/admin/actions-guest.js',
+    'resources/js/admin/carrusel.js'
     ]);
 </head>
 
@@ -26,19 +26,19 @@
 
         {{-- Mensajes flash --}}
         @if (session('success'))
-            <div class="alert-success" style="background: rgba(46,204,113,0.15); color: #2ecc71; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
-                {{ session('success') }}
-            </div>
+        <div class="alert-success" style="background: rgba(46,204,113,0.15); color: #2ecc71; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
+            {{ session('success') }}
+        </div>
         @endif
 
         @if ($errors->any())
-            <div class="alert-error" style="background: rgba(231,76,60,0.15); color: #e74c3c; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                <ul style="margin: 0; padding-left: 1.2rem;">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="alert-error" style="background: rgba(231,76,60,0.15); color: #e74c3c; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem;">
+            <ul style="margin: 0; padding-left: 1.2rem;">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
 
         <section class="section-guest-create">
@@ -50,27 +50,31 @@
                         <div class="d-grid-gap guest-data">
                             <span>Nombre:</span>
                             <input type="text" id="guest-nombre" name="nombre" class="input-c"
-                                   value="{{ old('nombre') }}" required>
+                                value="{{ old('nombre') }}">
 
                             <span>Apellido Paterno:</span>
                             <input type="text" id="guest-apellido-p" name="apellido_paterno" class="input-c"
-                                   value="{{ old('apellido_paterno') }}" required>
+                                value="{{ old('apellido_paterno') }}">
 
                             <span>Apellido Materno:</span>
                             <input type="text" id="guest-apellido-m" name="apellido_materno" class="input-c"
-                                   value="{{ old('apellido_materno') }}">
+                                value="{{ old('apellido_materno') }}">
+
+                            <span>Nickname (Sobrenombre):</span>
+                            <input type="text" id="guest-nickname" name="nickname" class="input-c"
+                                value="{{ old('nickname') }}">
 
                             <span>Email:</span>
                             <input type="email" id="guest-email" name="email" class="input-c"
-                                   value="{{ old('email') }}">
+                                value="{{ old('email') }}">
 
                             <span>Empresa (opcional):</span>
                             <input type="text" id="guest-empresa" name="empresa" class="input-c"
-                                   value="{{ old('empresa') }}" placeholder="Nombre de la empresa">
+                                value="{{ old('empresa') }}" placeholder="Nombre de la empresa">
 
                             <span>Cargo:</span>
                             <input type="text" id="guest-cargo" name="cargo" class="input-c"
-                                   value="{{ old('cargo') }}">
+                                value="{{ old('cargo') }}">
 
                         </div>
 
@@ -93,11 +97,11 @@
 
                         <div class="carousel-group">
                             @forelse ($conferencistas as $conf)
-                                <x-admin.guest-card :conferencista="$conf" />
+                            <x-admin.guest-card :conferencista="$conf" />
                             @empty
-                                <p style="color: var(--clr-gray); text-align: center; width: 100%;">
-                                    No hay conferencistas registrados aún.
-                                </p>
+                            <p style="color: var(--clr-gray); text-align: center; width: 100%;">
+                                No hay conferencistas registrados aún.
+                            </p>
                             @endforelse
                         </div>
 
@@ -132,6 +136,9 @@
 
                             <span>Apellido Materno:</span>
                             <input type="text" id="edit-guest-apellido-m" name="apellido_materno" class="input-c">
+
+                            <span>Nickname (Sobrenombre):</span>
+                            <input type="text" id="edit-guest-nickname" name="nickname" class="input-c">
 
                             <span>Email:</span>
                             <input type="email" id="edit-guest-email" name="email" class="input-c">

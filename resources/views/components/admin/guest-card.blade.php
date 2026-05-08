@@ -1,7 +1,10 @@
 @props(['conferencista'])
 
 @php
-    $fullName = $conferencista->nombre . ' ' . $conferencista->apellido_paterno . ($conferencista->apellido_materno ? ' ' . $conferencista->apellido_materno : '');
+    $fullName = trim(($conferencista->nombre ?? '') . ' ' . ($conferencista->apellido_paterno ?? '') . ' ' . ($conferencista->apellido_materno ?? ''));
+    if (empty($fullName)) {
+        $fullName = $conferencista->nickname ?? 'Sin nombre';
+    }
     $empresa = $conferencista->empresa ?? 'Sin empresa';
     $cargo = $conferencista->cargo ?? '';
     $email = $conferencista->email ?? '';
@@ -28,7 +31,7 @@
     <div class="card-actions">
 
         <button id="btn-edit-{{ $conferencista->id }}" class="btn btn-purple btn-icon" type="button"
-            onclick="openEditModal('{{ addslashes($conferencista->nombre) }}', '{{ addslashes($conferencista->apellido_paterno) }}', '{{ addslashes($conferencista->apellido_materno ?? '') }}', '{{ addslashes($email) }}', '{{ addslashes($conferencista->empresa ?? '') }}', '{{ addslashes($cargo) }}', '{{ $editUrl }}')">
+            onclick="openEditModal('{{ addslashes($conferencista->nombre ?? '') }}', '{{ addslashes($conferencista->apellido_paterno ?? '') }}', '{{ addslashes($conferencista->apellido_materno ?? '') }}', '{{ addslashes($conferencista->nickname ?? '') }}', '{{ addslashes($email) }}', '{{ addslashes($conferencista->empresa ?? '') }}', '{{ addslashes($cargo) }}', '{{ $editUrl }}')">
             <img class="img-fluid img-icon" src="{{ asset('assets/admin/EditarIcon.png') }}">
         </button>
         <form action="{{ $deleteUrl }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este conferencista?')">

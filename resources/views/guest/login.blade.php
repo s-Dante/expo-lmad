@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>EXPO LMAD - Iniciar Sesión</title>
-    @vite(['resources/css/guest/login.css',
-    "resources/css/components/alerts.css"])
+    @vite([
+    'resources/css/guest/login.css',
+    "resources/css/components/alerts.css"
+    ])
 </head>
 
 <body>
@@ -17,7 +19,9 @@
 
         @csrf
 
-        <img class="logo-w" src="{{ asset('assets/guest/LOGOEXPO2.png') }}" alt="" />
+        <a href="/" class="a-logo-w">
+            <img class="logo-w" src="{{ asset('assets/guest/LOGOEXPO2.png') }}" alt="" />
+        </a>
 
         <div class="input-container">
             <div class="input-group">

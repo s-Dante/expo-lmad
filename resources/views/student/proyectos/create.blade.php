@@ -53,10 +53,11 @@
                         placeholder="drive, github, dropbox..." value="{{ old('link_github', $github?->url) }}">
 
                     <span>Software utilizado: </span>
+                    @php $selectedSoftwares = $proyecto->softwares->pluck('id')->toArray(); @endphp
                     <div class="container-proyecto-tags tags-list" id="software">
                         @foreach($softwares as $software)
                             <x-tag-checkbox name="softwares[]" id="{{ $software->id }}" value="{{ $software->id }}"
-                                label="{{ $software->nombre }}" />
+                                label="{{ $software->nombre }}" :checked="in_array($software->id, $selectedSoftwares)" />
                         @endforeach
                     </div>
 
@@ -81,8 +82,13 @@
 
             <section class="expo-card picture-datas align-items-center">
                 <span class="text-align-center">Foto del proyecto</span>
-                
-                <x-image-uploader />
+                @php
+                    $portada = $proyecto->multimedia->where('es_portada', true)->first();
+                    $defaultImg = asset('assets/guest/imageloading.png');
+                    $currentImg = $portada ? asset('storage/' . $portada->url) : $defaultImg;
+                @endphp
+                <x-image-uploader src="{{ $currentImg }}" />
+                <input type="hidden" id="has-image" value="{{ $portada ? 'true' : 'false' }}">
                 
                 <span class="info-secondary">
                     El tamaño preciso para la foto es de 1024 x 1024 ppx

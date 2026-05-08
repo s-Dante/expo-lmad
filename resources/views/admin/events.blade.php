@@ -7,12 +7,12 @@
     <title>Admin Eventos</title>
 
     @vite([
-        'resources/css/guest/template.css',
-        'resources/css/components/carrusel.css',
-        'resources/css/admin/events.css',
-        'resources/js/components/load-portrait.js',
-        'resources/js/admin/actions-events.js',
-        'resources/js/admin/carrusel.js'
+    'resources/css/guest/template.css',
+    'resources/css/components/carrusel.css',
+    'resources/css/admin/events.css',
+    'resources/js/components/load-portrait.js',
+    'resources/js/admin/actions-events.js',
+    'resources/js/admin/carrusel.js'
 
 
     ]);
@@ -28,19 +28,19 @@
 
         {{-- Mensajes flash --}}
         @if (session('success'))
-            <div class="alert-success" style="background: rgba(46,204,113,0.15); color: #2ecc71; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
-                {{ session('success') }}
-            </div>
+        <div class="alert-success" style="background: rgba(46,204,113,0.15); color: #2ecc71; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
+            {{ session('success') }}
+        </div>
         @endif
 
         @if ($errors->any())
-            <div class="alert-error" style="background: rgba(231,76,60,0.15); color: #e74c3c; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                <ul style="margin: 0; padding-left: 1.2rem;">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="alert-error" style="background: rgba(231,76,60,0.15); color: #e74c3c; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem;">
+            <ul style="margin: 0; padding-left: 1.2rem;">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
 
         <section class="section-events-create">
@@ -53,15 +53,15 @@
 
                             <span>Nombre del evento:</span>
                             <input type="text" id="event-name" name="titulo" class="input-c"
-                                   value="{{ old('titulo') }}" required>
+                                value="{{ old('titulo') }}" required>
 
                             <span>Tipo:</span>
                             <select id="event-type" name="tipo" class="input-c" required>
                                 <option value="" disabled selected>Selecciona un tipo</option>
                                 @foreach ($tiposEvento as $value => $label)
-                                    <option value="{{ $value }}" {{ old('tipo') === $value ? 'selected' : '' }}>
-                                        {{ $label }}
-                                    </option>
+                                <option value="{{ $value }}" {{ old('tipo') === $value ? 'selected' : '' }}>
+                                    {{ $label }}
+                                </option>
                                 @endforeach
                             </select>
 
@@ -70,28 +70,39 @@
                                 <div>
                                     <span>Fecha y hora inicio:</span>
                                     <input type="datetime-local" id="event-date-start" name="fecha_inicio_evento"
-                                           class="input-c" value="{{ old('fecha_inicio_evento') }}" required>
+                                        class="input-c" value="{{ old('fecha_inicio_evento') }}" required>
 
                                     <span>Fecha y hora fin:</span>
                                     <input type="datetime-local" id="event-date-end" name="fecha_fin_evento"
-                                           class="input-c" value="{{ old('fecha_fin_evento') }}" required>
+                                        class="input-c" value="{{ old('fecha_fin_evento') }}" required>
 
                                     <span>Ubicación:</span>
                                     <input type="text" id="event-location" name="ubicacion_evento"
-                                           class="input-c" value="{{ old('ubicacion_evento') }}">
+                                        class="input-c" value="{{ old('ubicacion_evento') }}">
 
                                     <span>Capacidad:</span>
                                     <input type="number" id="event-capacity" name="capacidad"
-                                           class="input-c" value="{{ old('capacidad') }}" min="1">
+                                        class="input-c" value="{{ old('capacidad') }}" min="1">
                                 </div>
 
                                 <div>
                                     <span>Conferencistas:</span>
                                     <select id="event-guest" name="conferencistas[]" class="input-c" size="5" multiple>
                                         @foreach ($conferencistas as $conf)
-                                            <option value="{{ $conf->id }}">
-                                                {{ $conf->nombre }} {{ $conf->apellido_paterno }}
-                                            </option>
+                                        @php
+                                            $fullName = trim(($conf->nombre ?? '') . ' ' . ($conf->apellido_paterno ?? '') . ' ' . ($conf->apellido_materno ?? ''));
+                                            $display = '';
+                                            if (!empty($fullName) && !empty($conf->nickname)) {
+                                                $display = $fullName . ' ("' . $conf->nickname . '")';
+                                            } elseif (!empty($fullName)) {
+                                                $display = $fullName;
+                                            } else {
+                                                $display = $conf->nickname ?? 'Sin nombre';
+                                            }
+                                        @endphp
+                                        <option value="{{ $conf->id }}">
+                                            {{ $display }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -105,8 +116,7 @@
                             <x-image-uploader-event
                                 imgId="create-event-portrait"
                                 inputId="create-event-file-upload"
-                                btnId="create-event-upload-btn"
-                            />
+                                btnId="create-event-upload-btn" />
                         </div>
 
                     </div>
@@ -128,11 +138,11 @@
 
                         <div class="carousel-group">
                             @forelse ($eventos as $evento)
-                                <x-admin.event-card :evento="$evento" />
+                            <x-admin.event-card :evento="$evento" />
                             @empty
-                                <p style="color: var(--clr-gray); text-align: center; width: 100%;">
-                                    No hay eventos registrados aún.
-                                </p>
+                            <p style="color: var(--clr-gray); text-align: center; width: 100%;">
+                                No hay eventos registrados aún.
+                            </p>
                             @endforelse
                         </div>
 
@@ -168,7 +178,7 @@
                             <select id="edit-event-type" name="tipo" class="input-c">
                                 <option value="" disabled>Selecciona un tipo</option>
                                 @foreach ($tiposEvento as $value => $label)
-                                    <option value="{{ $value }}">{{ $label }}</option>
+                                <option value="{{ $value }}">{{ $label }}</option>
                                 @endforeach
                             </select>
 
@@ -192,9 +202,20 @@
                                     <span>Conferencistas:</span>
                                     <select id="edit-event-guest" name="conferencistas[]" class="input-c" size="5" multiple>
                                         @foreach ($conferencistas as $conf)
-                                            <option value="{{ $conf->id }}">
-                                                {{ $conf->nombre }} {{ $conf->apellido_paterno }}
-                                            </option>
+                                        @php
+                                            $fullName = trim(($conf->nombre ?? '') . ' ' . ($conf->apellido_paterno ?? '') . ' ' . ($conf->apellido_materno ?? ''));
+                                            $display = '';
+                                            if (!empty($fullName) && !empty($conf->nickname)) {
+                                                $display = $fullName . ' ("' . $conf->nickname . '")';
+                                            } elseif (!empty($fullName)) {
+                                                $display = $fullName;
+                                            } else {
+                                                $display = $conf->nickname ?? 'Sin nombre';
+                                            }
+                                        @endphp
+                                        <option value="{{ $conf->id }}">
+                                            {{ $display }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -208,8 +229,7 @@
                             <x-image-uploader-event
                                 imgId="edit-event-portrait"
                                 inputId="edit-event-file-upload"
-                                btnId="edit-event-upload-btn"
-                            />
+                                btnId="edit-event-upload-btn" />
                         </div>
 
                     </div>

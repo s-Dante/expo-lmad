@@ -16,118 +16,123 @@
     <nav class="sidebar-nav">
         <!-- NAVBAR PARA PROFESORES -->
         @if(auth()->user()->rol == 'profesor')
-            <a href="{{ route('teacher.lista-proyectos') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
-                <span class="span-sidebar">Mostrar Proyectos</span>
-            </a>
+        <a href="{{ route('teacher.lista-proyectos') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+            <span class="span-sidebar">Mostrar Proyectos</span>
+        </a>
 
-            <a href="{{ route('teacher.registro-expositores') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
-                <span class="span-sidebar">Registrar Expositores</span>
-            </a>
+        <a href="{{ route('teacher.registro-expositores') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
+            <span class="span-sidebar">Registrar Expositores</span>
+        </a>
 
-            <!-- FIN NAVBAR PARA PROFESORES -->
+        <!-- FIN NAVBAR PARA PROFESORES -->
 
-            <!-- NAVBAR PARA ESTUDIANTES -->
+        <!-- NAVBAR PARA ESTUDIANTES -->
         @elseif(auth()->user()->rol == 'estudiante')
-            <nav class="sidebar-nav">
-                {{-- Tome los iconos que encontre (cambiar si es necesario) --}}
-                <a href="{{ route('estudiante.dashboard') }}"
-                    class="sidebar-item {{ request()->routeIs('student.dashboard') ? 'active' : '' }}">
-                    <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
-                    <span class="span-sidebar">Panel de Administración</span>
-                </a>
-
-                <a href="{{ route('estudiante.proyectos.index') }}"
-                    class="sidebar-item {{ request()->routeIs('student.proyectos.*') ? 'active' : '' }}">
-                    <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
-                    <span class="span-sidebar">Mis Proyectos</span>
-                </a>
-
-                <a href="{{ route('estudiante.qr') }}"
-                    class="sidebar-item {{ request()->routeIs('student.qr') ? 'active' : '' }}">
-                    <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
-                    <span class="span-sidebar">Mi Pase (QR)</span>
-                </a>
-            </nav>
-            <!-- FIN NAVBAR PARA ESTUDIANTES -->
-
-            <!-- NAVBAR PARA ADMINS -->
-        @elseif(auth()->user()->rol == 'admin')
-            <a href="{{ route('admin.dashboard') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
-                <span class="span-sidebar">Inicio</span>
-            </a>
-
-            <a href="{{ route('admin.events') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/calendario-1.png') }}" alt="" />
-                <span class="span-sidebar">Eventos</span>
-            </a>
-
-            <a href="{{ route('admin.guest') }}" class="sidebar-item ">
+        <nav class="sidebar-nav">
+            {{-- Tome los iconos que encontre (cambiar si es necesario) --}}
+            <a href="{{ route('estudiante.dashboard') }}"
+                class="sidebar-item {{ request()->routeIs('student.dashboard') ? 'active' : '' }}">
                 <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
-                <span class="span-sidebar">Invitados</span>
+                <span class="span-sidebar">Panel de Administración</span>
             </a>
 
-            <a href="{{ route('admin.companies') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Company-1.png') }}" alt="" />
-                <span class="span-sidebar">Empresas</span>
+            <a href="{{ route('estudiante.proyectos.index') }}"
+                class="sidebar-item {{ request()->routeIs('student.proyectos.*') ? 'active' : '' }}">
+                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+                <span class="span-sidebar">Mis Proyectos</span>
             </a>
 
-            <a href="{{ route('admin.teachers') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Teachers-1.png') }}" alt="" />
-                <span class="span-sidebar">Maestros</span>
+            <a href="{{ route('estudiante.qr') }}"
+                class="sidebar-item {{ request()->routeIs('student.qr') ? 'active' : '' }}">
+                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
+                <span class="span-sidebar">Mi Pase (QR)</span>
             </a>
+        </nav>
+        <!-- FIN NAVBAR PARA ESTUDIANTES -->
 
-            <a href="{{ route('admin.staff') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Staff-1.png') }}" alt="" />
-                <span class="span-sidebar">Staff</span>
-            </a>
-            <!-- FIN NAVBAR PARA ADMINS -->
+        <!-- NAVBAR PARA ADMINS -->
+        @elseif(auth()->user()->rol == 'admin')
+        <a href="{{ route('admin.dashboard') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
+            <span class="span-sidebar">Inicio</span>
+        </a>
 
-            <!-- NAVBAR PARA SUPER ADMIN -->
+        <a href="{{ route('admin.events') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/calendario-1.png') }}" alt="" />
+            <span class="span-sidebar">Eventos</span>
+        </a>
+
+        <a href="{{ route('admin.guest') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+            <span class="span-sidebar">Invitados</span>
+        </a>
+
+        <a href="{{ route('admin.companies') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Company-1.png') }}" alt="" />
+            <span class="span-sidebar">Empresas</span>
+        </a>
+
+        <a href="{{ route('admin.teachers') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Teachers-1.png') }}" alt="" />
+            <span class="span-sidebar">Maestros</span>
+        </a>
+
+        <a href="{{ route('admin.staff') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Staff-1.png') }}" alt="" />
+            <span class="span-sidebar">Staff</span>
+        </a>
+
+        <a href="{{ route('admin.importar') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/teacher/EditarIcon.png') }}" alt="" />
+            <span class="span-sidebar">Importar Datos</span>
+        </a>
+        <!-- FIN NAVBAR PARA ADMINS -->
+
+        <!-- NAVBAR PARA SUPER ADMIN -->
         @elseif(auth()->user()->rol == 'super_admin')
-            <a href="{{ route('superadmin.dashboard') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
-                <span class="span-sidebar">Inicio</span>
-            </a>
+        <a href="{{ route('superadmin.dashboard') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
+            <span class="span-sidebar">Inicio</span>
+        </a>
 
-            <!-- <a href="" class="sidebar-item ">
+        <!-- <a href="" class="sidebar-item ">
                         <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Teachers-1.png') }}" alt="" />
                         <span class="span-sidebar">Maestros</span>
                     </a> -->
 
-            <a href="{{ route('superadmin.proyectos') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Idea-1.png') }}" alt="" />
-                <span class="span-sidebar">Proyectos</span>
-            </a>
-            <!-- FIN DEL NAVBAR PARA SUPER ADMIN -->
+        <a href="{{ route('superadmin.proyectos') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Idea-1.png') }}" alt="" />
+            <span class="span-sidebar">Proyectos</span>
+        </a>
+        <!-- FIN DEL NAVBAR PARA SUPER ADMIN -->
 
         @elseif(auth()->user()->rol == 'staff')
-            <a href="{{ route('staff.dashboard') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
-                <span class="span-sidebar">Inicio</span>
-            </a>
+        <a href="{{ route('staff.dashboard') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
+            <span class="span-sidebar">Inicio</span>
+        </a>
 
-            <a href="" class="sidebar-item ">
+        <!-- <a href="" class="sidebar-item ">
                 <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Eventos-1.png') }}" alt="" />
                 <span class="span-sidebar">Eventos</span>
-            </a>
+            </a> -->
 
-            <a href="{{ route('staff.visitantes') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
-                <span class="span-sidebar">Visitantes</span>
-            </a>
+        <a href="{{ route('staff.visitantes') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Public-1.png') }}" alt="" />
+            <span class="span-sidebar">Visitantes</span>
+        </a>
 
-            <a href="{{ route('staff.empresas') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Empresas-1.png') }}" alt="" />
-                <span class="span-sidebar">Empresas</span>
-            </a>
+        <a href="{{ route('staff.empresas') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Empresas-1.png') }}" alt="" />
+            <span class="span-sidebar">Empresas</span>
+        </a>
 
-            <a href="{{ route('staff.expositor') }}" class="sidebar-item ">
-                <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
-                <span class="span-sidebar">Expositores</span>
-            </a>
+        <a href="{{ route('staff.expositor') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Expositor-1.png') }}" alt="" />
+            <span class="span-sidebar">Expositores</span>
+        </a>
         @endif
     </nav>
 

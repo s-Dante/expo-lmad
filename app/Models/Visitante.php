@@ -32,6 +32,7 @@ class Visitante extends Model
     protected $fillable = [
         'uuid',
         'tipo',
+        'nombre_completo',
         'nombre',
         'apellido_paterno',
         'apellido_materno',

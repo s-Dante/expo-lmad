@@ -68,13 +68,11 @@ h1 {
     text-justify: center;
     justify-items: center;
     justify-content: center;
-    background: -webkit-linear-gradient(
-        270deg,
-        #2f7321 0%,
-        #061d39 20.01%,
-        #0b2927 62%,
-        #0b2927 100%
-    );
+    background: -webkit-linear-gradient(270deg,
+            #2f7321 0%,
+            #061d39 20.01%,
+            #0b2927 62%,
+            #0b2927 100%);
 }
 
 .container-gradient-segment {
@@ -87,29 +85,23 @@ h1 {
     text-justify: center;
     justify-items: center;
     justify-content: center;
-    background: -webkit-linear-gradient(
-        90deg,
-        #141725 0%,
-        #141725 0.01%,
-        #071f3a 100%,
-        #071f3a 100%
-    );
+    background: -webkit-linear-gradient(90deg,
+            #141725 0%,
+            #141725 0.01%,
+            #071f3a 100%,
+            #071f3a 100%);
     filter: blur(12px);
     opacity: 0.8;
-    -webkit-mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%
-    );
-    mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%
-    );
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 20%,
+            black 80%,
+            transparent 100%);
+    mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 20%,
+            black 80%,
+            transparent 100%);
 }
 
 .container-gradient-segment-horario {
@@ -122,39 +114,31 @@ h1 {
     text-justify: center;
     justify-items: center;
     justify-content: center;
-    background: -webkit-linear-gradient(
-        90deg,
-        #141725 0%,
-        #141725 0.01%,
-        #141725 100%,
-        #141725 100%
-    );
+    background: -webkit-linear-gradient(90deg,
+            #141725 0%,
+            #141725 0.01%,
+            #141725 100%,
+            #141725 100%);
     filter: blur(12px);
     opacity: 0.8;
-    -webkit-mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 48%,
-        black 56%,
-        transparent 100%
-    );
-    mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 48%,
-        black 56%,
-        transparent 100%
-    );
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 48%,
+            black 56%,
+            transparent 100%);
+    mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 48%,
+            black 56%,
+            transparent 100%);
 }
 
 body {
-    background: -webkit-linear-gradient(
-        90deg,
-        #1c481a 0%,
-        #1c481a 0.01%,
-        #0a1c33 100%,
-        #0a1c33 100%
-    );
+    background: -webkit-linear-gradient(90deg,
+            #1c481a 0%,
+            #1c481a 0.01%,
+            #0a1c33 100%,
+            #0a1c33 100%);
     height: 100%;
     background-attachment: fixed;
 }
@@ -179,11 +163,9 @@ body {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(178, 178, 178, 0.1) 0%,
-        rgba(255, 255, 220, 0) 70%
-    );
+    background: radial-gradient(circle,
+            rgba(178, 178, 178, 0.1) 0%,
+            rgba(255, 255, 220, 0) 70%);
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
     transition:
@@ -217,23 +199,19 @@ body {
     left: 50%;
     width: 300px;
     height: 300px;
-    clip-path: polygon(
-        50% 0%,
-        61% 35%,
-        98% 35%,
-        68% 57%,
-        79% 91%,
-        50% 70%,
-        21% 91%,
-        32% 57%,
-        2% 35%,
-        39% 35%
-    );
-    background: radial-gradient(
-        circle,
-        rgba(209, 208, 208, 0.268) 0%,
-        rgba(255, 255, 220, 0) 60%
-    );
+    clip-path: polygon(50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%);
+    background: radial-gradient(circle,
+            rgba(209, 208, 208, 0.268) 0%,
+            rgba(255, 255, 220, 0) 60%);
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
     transition:
@@ -265,10 +243,14 @@ body {
 }
 
 .container-sponsors {
-    display: grid;
-    grid-template-columns: max-content max-content max-content max-content;
-    padding: 20px;
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 20px 40px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -303,8 +285,7 @@ body {
     }
 }
 
-@media (max-width: 364px) {
-}
+@media (max-width: 364px) {}
 
 .confe-backimage {
     position: absolute;
@@ -317,20 +298,16 @@ body {
     background-position: center;
     filter: blur(12px);
     opacity: 0.4;
-    -webkit-mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%
-    );
-    mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 20%,
-        black 80%,
-        transparent 100%
-    );
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 20%,
+            black 80%,
+            transparent 100%);
+    mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 20%,
+            black 80%,
+            transparent 100%);
     z-index: 0;
 }
 
@@ -537,6 +514,7 @@ body {
         transform: scale(1);
         opacity: 1;
     }
+
     to {
         transform: scale(0.1);
         opacity: 0;
@@ -548,6 +526,7 @@ body {
         transform: scale(0.1);
         opacity: 0;
     }
+
     to {
         transform: scale(1);
         opacity: 1;
@@ -558,10 +537,167 @@ body {
 #conference-background-image {
     transition: opacity 0.4s ease-in-out;
 }
+
 .image-fade-out {
     opacity: 0;
 }
 
 canvas {
     z-index: 1 !important;
+}
+
+/* =============================================
+   TIERS - Diferenciación de tamaños por nivel
+   Orden: Titanium > Diamante > Oro > Plata > Bronce
+   ============================================= */
+
+.tier-section {
+    margin-top: 10rem;
+    width: 100%;
+    padding: 2rem 0 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Etiquetas de tier */
+.tier-label {
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.tier-label--titanium {
+    font-size: 2rem;
+    color: #e8f0ff;
+    text-shadow: 0 0 20px rgba(180, 210, 255, 0.8), 0 0 40px rgba(100, 160, 255, 0.4);
+}
+
+.tier-label--diamante {
+    font-size: 1.7rem;
+    color: #b9f0ff;
+    text-shadow: 0 0 16px rgba(100, 220, 255, 0.7);
+}
+
+.tier-label--oro {
+    font-size: 1.5rem;
+    color: #ffd966;
+    text-shadow: 0 0 14px rgba(255, 200, 50, 0.6);
+}
+
+.tier-label--plata {
+    font-size: 1.3rem;
+    color: #c9d4e0;
+    text-shadow: 0 0 12px rgba(180, 200, 220, 0.5);
+}
+
+.tier-label--bronce {
+    font-size: 1.1rem;
+    color: #d4956a;
+    text-shadow: 0 0 10px rgba(180, 110, 60, 0.5);
+}
+
+/* Grids de sponsors por tier */
+/* Los tiers solo ajustan el gap entre sponsors — el flex-wrap del padre hace el resto */
+.container-sponsors--titanium {
+    gap: 3rem;
+}
+
+.container-sponsors--diamante {
+    gap: 2.5rem;
+}
+
+.container-sponsors--oro {
+    gap: 2rem;
+}
+
+.container-sponsors--plata {
+    gap: 1.5rem;
+}
+
+.container-sponsors--bronce {
+    gap: 1rem;
+}
+
+/* Tamaños de imagen por tier */
+.sponsor--titanium {
+    width: 240px;
+    height: auto;
+}
+
+.sponsor--diamante {
+    width: 190px;
+    height: auto;
+}
+
+.sponsor--oro {
+    width: 150px;
+    height: auto;
+}
+
+.sponsor--plata {
+    width: 120px;
+    height: auto;
+}
+
+.sponsor--bronce {
+    width: 90px;
+    height: auto;
+}
+
+/* Placeholder cuando no hay logo_url */
+.sponsor-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: #ffffff;
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 1rem;
+}
+
+.sponsor-placeholder.sponsor--titanium {
+    width: 240px;
+    height: 120px;
+    font-size: 1.4rem;
+}
+
+.sponsor-placeholder.sponsor--diamante {
+    width: 190px;
+    height: 95px;
+    font-size: 1.2rem;
+}
+
+.sponsor-placeholder.sponsor--oro {
+    width: 150px;
+    height: 75px;
+    font-size: 1.0rem;
+}
+
+.sponsor-placeholder.sponsor--plata {
+    width: 120px;
+    height: 60px;
+    font-size: 0.9rem;
+}
+
+.sponsor-placeholder.sponsor--bronce {
+    width: 90px;
+    height: 45px;
+    font-size: 0.8rem;
+}
+
+/* Mensaje sin patrocinadores */
+.no-sponsors-msg {
+    font-family: "Kodchasan", sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 5rem;
+    letter-spacing: 0.05em;
 }
