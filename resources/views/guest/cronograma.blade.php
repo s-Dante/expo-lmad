@@ -75,7 +75,9 @@
                             class="img-fluid conferencia-flyer" />
                     </div>
 
-                    <div class="container-grid-conferencias-list"> </div>
+                    <div class="glassContainer container-grid-conferencias-list"> 
+                        <div class="glassContainer button-large"> Conferencia - conferencista </div>
+                    </div>
 
                     <div style="max-width: 98dvw;overflow-x: scroll;margin: 0rem;">
                         <img id="conference-background-image" style="margin: 0rem;overflow-x: auto;"
