@@ -110,9 +110,12 @@ h1 {
     padding: 1.3rem;
     position: absolute;
     justify-content: center;
-    justify-self: anchor-center;
-    width: inherit;
+    width: stretch;
     top: 28%;
+}
+
+.section-proyecto-header > center {
+    justify-self: center;
 }
 
 .container-baner {
