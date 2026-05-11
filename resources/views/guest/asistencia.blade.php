@@ -8,10 +8,10 @@
     <title>Confirmar Asistencia - EXPO LMAD</title>
 
     @vite([
-    'resources/css/guest/template.css',
-    'resources/css/guest/registro.css',
-    'resources/css/components/sidebar.css',
-    'resources/js/guest/actions-asistencia.js'
+        'resources/css/guest/template.css',
+        'resources/css/guest/registro.css',
+        'resources/css/components/sidebar.css',
+        'resources/js/guest/actions-asistencia.js'
     ])
 </head>
 
@@ -24,7 +24,7 @@
         <x-guest.navbar />
     </header>
 
-    <section>
+    <section class="section-form-card">
         <container class="card-expo">
 
             <h1>Confirmar asistencia</h1>
@@ -46,23 +46,32 @@
             <div class="tab-panel active" id="panel-opcion1">
 
                 <p style="font-size:0.85rem; color:var(--gray); font-weight:400; margin-bottom:1.2rem;">
-                    Ingresa tu matrícula y el evento al que asististe. El sistema buscará tu registro de entrada y confirmará tu asistencia.
+                    Ingresa tu matrícula y el evento al que asististe. El sistema buscará tu registro de entrada y
+                    confirmará tu asistencia.
                 </p>
 
                 <div id="msg-opcion1" class="form-msg" style="display:none;"></div>
 
                 <form id="form-opcion1">
-                    <p>Evento</p>
-                    <select id="select-evento-op1" name="evento_id">
-                        <option value="" disabled selected>Cargando eventos...</option>
-                    </select>
 
-                    <p>Matrícula</p>
-                    <input type="text" id="input-matricula-op1" name="matricula" placeholder="Ej. 1985623">
+                    <div>
+                        <p>Evento</p>
+                        <select id="select-evento-op1" name="evento_id">
+                            <option value="" disabled selected>Cargando eventos...</option>
+                        </select>
+                    </div>
 
-                    <button type="submit" class="btn btn-purple" id="btn-confirmar-op1" style="margin-top:1.5rem; width:100%;">
-                        Confirmar asistencia
-                    </button>
+                    <div>
+                        <p>Matrícula</p>
+                        <input type="text" id="input-matricula-op1" name="matricula" placeholder="Ej. 1985623">
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-purple" id="btn-confirmar-op1">
+                            Confirmar asistencia
+                        </button>
+                    </div>
+
                 </form>
 
             </div>
@@ -71,31 +80,33 @@
             <div class="tab-panel" id="panel-opcion2">
 
                 <p style="font-size:0.85rem; color:var(--gray); font-weight:400; margin-bottom:1.2rem;">
-                    Al registrarte recibiste un correo con un token de 8 caracteres. Ingrésalo aquí junto con tu correo para confirmar tu asistencia.
+                    Al registrarte recibiste un correo con un token de 8 caracteres. Ingrésalo aquí junto con tu correo
+                    para confirmar tu asistencia.
                 </p>
 
                 <div id="msg-opcion2" class="form-msg" style="display:none;"></div>
 
                 <form id="form-opcion2">
-                    <p>Correo universitario</p>
-                    <div style="display:flex; align-items:center; gap:0.8rem;">
-                        <input type="text" id="input-correo-op2" name="correo" placeholder="tumatricula" style="flex:1;">
-                        <span style="color:var(--gray); font-weight:700; white-space:nowrap;">@uanl.edu.mx</span>
+                    <div>
+                        <p>Correo universitario</p>
+                        <div style="display:flex; align-items:center; gap:0.8rem;">
+                            <input type="text" id="input-correo-op2" name="correo" placeholder="jane.doe"
+                                style="flex:1;">
+                            <span style="color:var(--gray); font-weight:700; white-space:nowrap;">@uanl.edu.mx</span>
+                        </div>
                     </div>
 
-                    <p>Token de confirmación</p>
-                    <input
-                        type="text"
-                        id="input-token-op2"
-                        name="token"
-                        placeholder="Ej. A3X9KP2Q"
-                        maxlength="8"
-                        style="letter-spacing:0.3em; text-transform:uppercase;">
-                    <p style="font-size:0.78rem; color:var(--gray); font-weight:400; margin-top:0.3rem;">
-                        Revisa el correo que recibiste al inicio del evento.
-                    </p>
+                    <div>
+                        <p>Token de confirmación</p>
+                        <input type="text" id="input-token-op2" name="token" placeholder="Ej. A3X9KP2Q" maxlength="8"
+                            style="letter-spacing:0.3em; text-transform:uppercase;">
+                        <p style="font-size:0.78rem; color:var(--gray); font-weight:400; margin-top:0.3rem;">
+                            Revisa el correo que recibiste al inicio del evento.
+                        </p>
+                    </div>
 
-                    <button type="submit" class="btn btn-purple" id="btn-confirmar-op2" style="margin-top:1.5rem; width:100%;">
+
+                    <button type="submit" class="btn btn-purple" id="btn-confirmar-op2">
                         Confirmar con token
                     </button>
                 </form>

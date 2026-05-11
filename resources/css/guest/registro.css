@@ -7,6 +7,10 @@ h1 {
     flex-shrink: 0;
     text-align: center;
     font-size: 30px;
+
+    color: var(--clr-white);
+    font-size: 1.5rem;
+    font-family: var(--font-body);
 }
 
 .div-header {
@@ -59,6 +63,7 @@ form {
     padding: 2.5rem 3rem;
     width: 100%;
     max-width: 800px;
+    justify-self: center;
     box-shadow: 0 0 30px rgba(95, 226, 255, 0.15); /* Brillo similar al modal en template.css */
 }
 
@@ -66,6 +71,11 @@ form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
+}
+
+.section-form-card {
+    justify-content: center;
+    display: grid;
 }
 
 .card-expo p {
@@ -136,11 +146,75 @@ form {
     white-space: nowrap;
 }
 
+.tab-panel > form {
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 1rem;
+}
+
+.tab-panel > form > div > p {
+    margin: 0%;
+}
+
+.tab-panel > form > div {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#form-opcion2{
+    grid-template-columns: auto;
+}
+
+#form-opcion2 > div{
+    justify-content: center;
+}
+
 .modal-overlay{
     top: 0%;
 }
 
+.tab-panel > form > button{
+    max-width: 15rem;
+    margin: 0%;
+}
+
 /* --- Diseño Responsivo --- */
+@media (max-width: 1000px){
+    .tab-panel > form > div {
+        grid-template-columns: auto;
+    }
+
+    .tab-panel > form {
+        grid-template-columns: auto;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    #btn-registrar {
+        width: 100%;
+    }
+
+    .card-expo {
+        padding: 1.5rem;
+        max-width: 80%;
+        
+    }
+
+    .card-expo p:first-child {
+        margin-top: 1.5rem;
+    }
+
+    .card-expo .grid > div:first-child > p:first-child {
+        margin-top: 0;
+    }
+}
+
 @media (min-width: 768px) {
     .div-header {
         grid-template-columns: 14rem auto;
@@ -168,26 +242,7 @@ form {
 }
 
 @media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    #btn-registrar {
-        width: 100%;
-    }
-
-    .card-expo {
-        padding: 1.5rem;
-    }
-
-    .card-expo p:first-child {
-        margin-top: 1.5rem;
-    }
-
-    .card-expo .grid > div:first-child > p:first-child {
-        margin-top: 0;
-    }
+    
 }
 
 /* ── Mensajes de respuesta del formulario ──────────────────────────────────── */
