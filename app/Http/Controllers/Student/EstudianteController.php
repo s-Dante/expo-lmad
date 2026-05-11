@@ -203,27 +203,7 @@ class EstudianteController extends Controller
             $request->file('poster')
         );
 
-        $estudianteId = \Illuminate\Support\Facades\Auth::user()->estudiante->id;
-        $proyecto = $this->studentRepo->findProyectoDelEstudiante($id, $estudianteId);
-
-        if (!$proyecto) {
-            return redirect()->route('estudiante.proyectos.index')->with('error', 'Proyecto no encontrado.');
-        }
-
-        $esLider = $proyecto->autores()
-            ->where('tbl_estudiantes.id', $estudianteId)
-            ->wherePivot('es_lider', true)
-            ->exists();
-
-        if (!$esLider) {
-            return redirect()->route('estudiante.proyectos.index')
-                ->with('error', 'Solo el líder del equipo tiene permisos para registrar o editar la información.');
-        }
-
-        $softwares = $this->studentRepo->getAllSoftwares();
-
         return back()->with('success', 'El proyecto ha sido guardado exitosamente.');
-        //return view('student.proyectos.show', compact('proyecto', 'softwares'));
     }
 
     public function send(Request $request, $id)
@@ -269,26 +249,7 @@ class EstudianteController extends Controller
             $request->file('poster')
         );
 
-        $estudianteId = \Illuminate\Support\Facades\Auth::user()->estudiante->id;
-        $proyecto = $this->studentRepo->findProyectoDelEstudiante($id, $estudianteId);
-
-        if (!$proyecto) {
-            return redirect()->route('estudiante.proyectos.index')->with('error', 'Proyecto no encontrado.');
-        }
-
-        $esLider = $proyecto->autores()
-            ->where('tbl_estudiantes.id', $estudianteId)
-            ->wherePivot('es_lider', true)
-            ->exists();
-
-        if (!$esLider) {
-            return redirect()->route('estudiante.proyectos.index')
-                ->with('error', 'Solo el líder del equipo tiene permisos para registrar o editar la información.');
-        }
-
-        $softwares = $this->studentRepo->getAllSoftwares();
-
-        return view('student.proyectos.show', compact('proyecto', 'softwares'));
+        return redirect()->route('estudiante.proyectos.show', $id)->with('success', 'Proyecto reenviado a revisión.');
     }
 
     public function show($id)

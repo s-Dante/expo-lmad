@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
 use App\Http\Controllers\Guest\PortafolioController;
+use App\Http\Controllers\Guest\GuestCronogramaController;
+use App\Http\Controllers\Guest\GuestPatrocinadorController;
+use App\Http\Controllers\Guest\GuestAsistenciaController;
 use App\Http\Controllers\Student\EstudianteController;
 use App\Http\Controllers\Teacher\ProfesorController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -30,9 +33,7 @@ Route::get('/login', function () {
 /**
  * Vista de Nuestras Estrellas / Patrocinadores
  */
-Route::get('/NuestrasEstrellas', function () {
-    return view('guest.patrocinadores');
-});
+Route::get('/NuestrasEstrellas', [GuestPatrocinadorController::class, 'index'])->name('patrocinadores');
 
 /**
  * Vista de Registro de AFI
@@ -51,9 +52,7 @@ Route::get('/Asistencia', function () {
 /**
  * Vista de Cronograma
  */
-Route::get('/Cronograma', function () {
-    return view('guest.cronograma');
-})->name('cronograma');
+Route::get('/Cronograma', [GuestCronogramaController::class, 'index'])->name('cronograma');
 
 /**
  * Vista de Portafolio
@@ -89,63 +88,112 @@ Route::middleware que le corresponda uwu. Se valida que haya tanto una sesion in
 
 // Rutas de Super_Admin
 Route::middleware(['auth', 'role:super_admin'])->group(function () {
-    Route::get('/superadmin/dashboard', function () {
-        return view('superadmin.dashboard');
-    })->name('superadmin.dashboard');
+    Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard'])
+        ->name('superadmin.dashboard');
+
+    Route::get('/superadmin/dashboard/exportar', [SuperAdminController::class, 'exportar'])
+        ->name('superadmin.dashboard.export');
 
     Route::get('/superadmin/revision-proyecto/{id}', [SuperAdminController::class, 'paginaRevisionProyecto'])->name('superadmin.revision-proyecto');
 
     Route::get('/superadmin/proyectos', [SuperAdminController::class, 'paginaProyectos'])
         ->name('superadmin.proyectos');
 
-    Route::post("/superadmin/actualizarRevisionProyecto", [SuperAdminController::class, 'actualizarRevisionProyecto']);Route::get('/superadmin/getDashboardInfo', [SuperAdminController::class, 'getDashboardInfo']);
-
     Route::post("/superadmin/actualizarRevisionProyecto", [SuperAdminController::class, 'actualizarRevisionProyecto']);
+
+    Route::get('/superadmin/getDashboardInfo', [SuperAdminController::class, 'getDashboardInfo']);
 
     Route::get('/superadmin/mandarRevisionProyecto/{id}', [SuperAdminController::class, 'mandarRevisionProyecto']);
 });
 
 //Rutas de Admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    // Dashboard
+    Route::get('/admin/dashboard', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])
+        ->name('admin.dashboard');
+    Route::get('/admin/dashboard/exportar', [App\Http\Controllers\Admin\AdminDashboardController::class, 'exportar'])
+        ->name('admin.dashboard.export');
 
-    Route::get('/admin/events', function () {
-        return view('admin.events');
-    })->name('admin.events');
+    // Eventos
+    Route::get('/admin/events', [App\Http\Controllers\Admin\AdminEventoController::class, 'index'])
+        ->name('admin.events');
+    Route::post('/admin/eventos', [App\Http\Controllers\Admin\AdminEventoController::class, 'store'])
+        ->name('admin.eventos.store');
+    Route::put('/admin/eventos/{evento}', [App\Http\Controllers\Admin\AdminEventoController::class, 'update'])
+        ->name('admin.eventos.update');
+    Route::delete('/admin/eventos/{evento}', [App\Http\Controllers\Admin\AdminEventoController::class, 'destroy'])
+        ->name('admin.eventos.destroy');
 
-    Route::get('/admin/guest', function () {
-        return view('admin.guest');
-    })->name('admin.guest');
+    // Conferencistas (Guests)
+    Route::get('/admin/guest', [App\Http\Controllers\Admin\AdminConferencistaController::class, 'index'])
+        ->name('admin.guest');
+    Route::post('/admin/conferencistas', [App\Http\Controllers\Admin\AdminConferencistaController::class, 'store'])
+        ->name('admin.conferencistas.store');
+    Route::put('/admin/conferencistas/{conferencista}', [App\Http\Controllers\Admin\AdminConferencistaController::class, 'update'])
+        ->name('admin.conferencistas.update');
+    Route::delete('/admin/conferencistas/{conferencista}', [App\Http\Controllers\Admin\AdminConferencistaController::class, 'destroy'])
+        ->name('admin.conferencistas.destroy');
 
-    Route::get('/admin/companies', function () {
-        return view('admin.companies');
-    })->name('admin.companies');
-    
-    Route::get('/admin/teachers', function () {
-        return view('admin.teachers');
-    })->name('admin.teachers');
+    // Empresas / Patrocinadores
+    Route::get('/admin/companies', [App\Http\Controllers\Admin\AdminPatrocinadorController::class, 'index'])
+        ->name('admin.companies');
+    Route::post('/admin/patrocinadores', [App\Http\Controllers\Admin\AdminPatrocinadorController::class, 'store'])
+        ->name('admin.patrocinadores.store');
+    Route::put('/admin/patrocinadores/{patrocinador}', [App\Http\Controllers\Admin\AdminPatrocinadorController::class, 'update'])
+        ->name('admin.patrocinadores.update');
+    Route::delete('/admin/patrocinadores/{patrocinador}', [App\Http\Controllers\Admin\AdminPatrocinadorController::class, 'destroy'])
+        ->name('admin.patrocinadores.destroy');
 
-    Route::get('/admin/staff', function () {
-        return view('admin.staff');
-    })->name('admin.staff');
+    // Maestros (Teachers)
+    Route::get('/admin/teachers', [App\Http\Controllers\Admin\AdminTeacherController::class, 'index'])
+        ->name('admin.teachers');
+    Route::post('/admin/teachers', [App\Http\Controllers\Admin\AdminTeacherController::class, 'store'])
+        ->name('admin.teachers.store');
+    Route::put('/admin/teachers/{profesor}', [App\Http\Controllers\Admin\AdminTeacherController::class, 'update'])
+        ->name('admin.teachers.update');
+    Route::delete('/admin/teachers/{profesor}', [App\Http\Controllers\Admin\AdminTeacherController::class, 'destroy'])
+        ->name('admin.teachers.destroy');
 
+    // Staff
+    Route::get('/admin/staff', [App\Http\Controllers\Admin\AdminStaffController::class, 'index'])
+        ->name('admin.staff');
+    Route::post('/admin/staff', [App\Http\Controllers\Admin\AdminStaffController::class, 'store'])
+        ->name('admin.staff.store');
+    Route::put('/admin/staff/{staff}', [App\Http\Controllers\Admin\AdminStaffController::class, 'update'])
+        ->name('admin.staff.update');
+    Route::delete('/admin/staff/{staff}', [App\Http\Controllers\Admin\AdminStaffController::class, 'destroy'])
+        ->name('admin.staff.destroy');
+
+    // ── Importación masiva de datos (Excel) ──────────────────────────────────
+    Route::get('/admin/importar', [App\Http\Controllers\Admin\AdminImportController::class, 'index'])
+        ->name('admin.importar');
+    Route::post('/admin/importar/programas',   [App\Http\Controllers\Admin\AdminImportController::class, 'importarProgramas'])
+        ->name('admin.importar.programas');
+    Route::post('/admin/importar/planes',      [App\Http\Controllers\Admin\AdminImportController::class, 'importarPlanes'])
+        ->name('admin.importar.planes');
+    Route::post('/admin/importar/softwares',   [App\Http\Controllers\Admin\AdminImportController::class, 'importarSoftwares'])
+        ->name('admin.importar.softwares');
+    Route::post('/admin/importar/profesores',  [App\Http\Controllers\Admin\AdminImportController::class, 'importarProfesores'])
+        ->name('admin.importar.profesores');
+    Route::post('/admin/importar/estudiantes', [App\Http\Controllers\Admin\AdminImportController::class, 'importarEstudiantes'])
+        ->name('admin.importar.estudiantes');
+    Route::post('/admin/importar/materias',    [App\Http\Controllers\Admin\AdminImportController::class, 'importarMaterias'])
+        ->name('admin.importar.materias');
 });
 
 //Rutas de Estudiante 
 Route::middleware(['auth', 'role:estudiante'])->group(function () {
-    Route::get('/estudiante/dashboard', function () {
-        return view('student.dashboard');
-    })->name('estudiante.dashboard');
+    // Route::get('/estudiante/dashboard', function () {
+    //     return view('student.dashboard');
+    // })->name('estudiante.dashboard');
 
-    Route::get('/estudiante/registro-proyecto', function () {
-        return view('student.registro-proyecto');
-    })->name('estudiante.registro-proyecto');
+    // Route::get('/estudiante/registro-proyecto', function () {
+    //     return view('student.registro-proyecto');
+    // })->name('estudiante.registro-proyecto');
 
-    Route::get('/estudiante/lista-exposiciones', function () {
-        return view('student.lista-exposiciones');
-    })->name('estudiante.lista-exposiciones');
+    // Route::get('/estudiante/lista-exposiciones', function () {
+    //     return view('student.lista-exposiciones');
+    // })->name('estudiante.lista-exposiciones');
 
     Route::get('/estudiante/dashboard', [EstudianteController::class, 'dashboard'])->name('estudiante.dashboard');
 
@@ -155,7 +203,7 @@ Route::middleware(['auth', 'role:estudiante'])->group(function () {
     Route::get('/estudiante/proyectos/{id}/editar', [EstudianteController::class, 'edit'])->name('estudiante.proyectos.edit');
     Route::get('/estudiante/proyectos/{id}/registro', [EstudianteController::class, 'firts_Show'])->name('estudiante.proyectos.create');
     Route::put('/estudiante/proyectos/{id}', [EstudianteController::class, 'update'])->name('estudiante.proyectos.update');
-    Route::put('/estudiante/proyectos/{id}', [EstudianteController::class, 'updateEdit'])->name('estudiante.proyectos.updateEdit');
+    Route::put('/estudiante/proyectos/{id}/update-edit', [EstudianteController::class, 'updateEdit'])->name('estudiante.proyectos.updateEdit');
     Route::put('/estudiante/proyectos/{id}/send', [EstudianteController::class, 'send'])->name('estudiante.proyectos.send');
     Route::get('/estudiante/proyectos/{id}', [EstudianteController::class, 'show'])->name('estudiante.proyectos.show');
 });
@@ -171,6 +219,10 @@ Route::middleware(['auth', 'role:profesor'])->group(function () {
 
     Route::post('/profesor/cargar-proyecto', [ProfesorController::class, 'cargarProyecto'])
         ->name('teacher.cargar-proyecto');
+
+    // cargarProyecto2: versión con envío de correo al líder con su token de acceso
+    Route::post('/profesor/cargar-proyecto2', [ProfesorController::class, 'cargarProyecto2'])
+        ->name('teacher.cargar-proyecto2');
 
     Route::get('/profesor/lista-proyectos', [App\Http\Controllers\Teacher\ProfesorController::class, 'listadoProyectos'])
         ->name('teacher.lista-proyectos');
@@ -191,22 +243,23 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
 
     Route::get('/staff/registro-asistencia-expositor/{matricula}', [App\Http\Controllers\Staff\StaffController::class, 'registrarAsistenciaExpositor']);
 
-     Route::get('/staff/visitantes', function () {
+    Route::get('/staff/visitantes', function () {
         return view('staff.visitantes');
     })->name('staff.visitantes');
 
-     Route::get('/staff/empresas', function () {
+    Route::post('/staff/visitantes', [App\Http\Controllers\Staff\StaffController::class, 'storeVisitante'])->name('staff.visitantes.store');
+
+    Route::get('/staff/empresas', function () {
         return view('staff.empresas');
     })->name('staff.empresas');
 
-        Route::get('/staff/empresas/asistencia', function () {
+    Route::get('/staff/empresas/asistencia', function () {
         return view('staff.empresas-asist');
     })->name('staff.empresa-asistencia');
 
-     Route::get('/staff/eventos', function () {
+    Route::get('/staff/eventos', function () {
         return view('staff.eventos');
     })->name('staff.eventos');
-
 });
 
 
@@ -220,3 +273,39 @@ La verdad creo que dentro de lo planeado no teniamos pensado algo asi, pero es c
 Route::get('/api/buscar-estudiante/{matricula}', [App\Http\Controllers\api\ApiController::class, 'buscarEstudiantePorMatricula']);
 Route::get('/api/obtener-proyecto-token/{token}', [App\Http\Controllers\api\ApiController::class, 'obtenerProyectoPorToken']);
 Route::get('/api/obtener-proyecto-id/{id}', [App\Http\Controllers\api\ApiController::class, 'obtenerProyectoPorId']);
+
+// ── Asistencia de eventos (AFI) ────────────────────────────────────────────
+// GET  /api/eventos-activos        → lista de eventos disponibles para registro
+// POST /api/registro-asistencia    → registra visitante + genera token (Opción 2)
+// POST /api/confirmar-matricula    → confirma asistencia por matrícula (Opción 1)
+// POST /api/confirmar-token        → confirma asistencia por token de correo (Opción 2)
+Route::get('/api/eventos-activos', [GuestAsistenciaController::class, 'getEventos']);
+Route::post('/api/registro-asistencia', [GuestAsistenciaController::class, 'registrar']);
+Route::post('/api/confirmar-matricula', [GuestAsistenciaController::class, 'confirmarPorMatricula']);
+Route::post('/api/confirmar-token', [GuestAsistenciaController::class, 'confirmarPorToken']);
+
+
+
+/**
+ * Eastereggs
+ */
+// Humanos
+Route::get('humans', function () {
+    return response()->file(public_path('humans.txt'));
+})->name('humans');
+
+// Vicentemetegol
+Route::get('566963656e74654d657465476f6c', function () {
+    $patrocinadores = App\Models\Patrocinador::where('es_patrocinador', true)
+        ->whereNotNull('tier')
+        ->where('tier', '!=', App\Enums\TierPatrocinador::Ninguno->value)
+        ->orderBy('tier')
+        ->get();
+    $porTier = $patrocinadores->groupBy('tier');
+    return view('eastereggs.vicentemetegol.index', compact('porTier'));
+})->name('vicentemetegol');
+
+// Delfin
+Route::get('01001100010011010100000101000100', function () {
+    return view('eastereggs.delfin.index');
+})->name('delfin');

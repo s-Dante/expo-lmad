@@ -41,4 +41,27 @@ class StaffController extends Controller
             'message' => 'Asistencia registrada exitosamente.'
         ]);
     }
+
+    public function storeVisitante(Request $request)
+    {
+        $validated = $request->validate([
+            'tipo_visitante' => 'required|in:alumno,visitante',
+            'matricula'      => 'nullable|required_if:tipo_visitante,alumno|string',
+            'nombre'         => 'required|string',
+            'genero'         => 'nullable|in:M,F,O',
+        ]);
+
+        $tipo = $validated['tipo_visitante'] === 'alumno' 
+            ? \App\Enums\TipoVisitante::Estudiante 
+            : \App\Enums\TipoVisitante::Externo;
+
+        \App\Models\Visitante::create([
+            'tipo'            => $tipo,
+            'matricula'       => $validated['tipo_visitante'] === 'alumno' ? $validated['matricula'] : null,
+            'nombre_completo' => $validated['nombre'],
+            'genero'          => $validated['genero'] ?: null,
+        ]);
+
+        return back()->with('success', 'Visitante registrado exitosamente.');
+    }
 }

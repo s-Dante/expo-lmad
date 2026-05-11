@@ -22,7 +22,13 @@
             <span class="line"></span>
         </header>
 
-        <form id="form-visitante" action="" method="POST" class="form-visitor">
+        @if (session('success'))
+        <div style="background: rgba(46,204,113,0.15); color: #2ecc71; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
+            {{ session('success') }}
+        </div>
+        @endif
+        <form id="form-visitante" action="{{ route('staff.visitantes.store') }}" method="POST" class="form-visitor">
+            @csrf
             <div class="type-vistor">
 
                 <div class="group-radio">
@@ -45,7 +51,7 @@
 
                 <label for="nombre">Nombre completo:</label>
                 <input class="input-c" type="text" id="nombre" name="nombre">
-                
+
                 <label for="correo">Correo:</label>
                 <input class="input-c" type="text" id="correo" name="correo">
 

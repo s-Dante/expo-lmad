@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuperAdmin Dashboard</title>
     @vite([
-    "resources/css/superadmin/dashboard.css"
+        "resources/css/superadmin/dashboard.css"
     ])
 </head>
 
@@ -26,29 +26,31 @@
 
                 <div class="stat-card main-circle">
                     <div class="circle-content">
-                        <span class="number">549</span>
+                        <span class="number">{{ $totalAsistentes }}</span>
                         <span class="label">TOTAL DE ASISTIDOS</span>
                     </div>
                 </div>
 
                 <div class="stat-card tall-card">
-                    <span class="number">516</span>
+                    <span class="number">{{ $alumnos }}</span>
                     <span class="label">ALUMNOS</span>
                 </div>
 
                 <div class="stat-card combined-card">
                     <div class="top-val">
-                        <span class="number">33</span>
+                        <span class="number">{{ $externos['total'] }}</span>
                         <span class="label">EXTERNOS</span>
                     </div>
 
                     <div class="bottom-vals">
-                        <div><span class="sub-num">12</span><span class="sub-label">FEMENINO</span></div>
-                        <div><span class="sub-num">21</span><span class="sub-label">MASCULINO</span></div>
+                        <div><span class="sub-num">{{ $externos['femenino'] }}</span><span
+                                class="sub-label">FEMENINO</span></div>
+                        <div><span class="sub-num">{{ $externos['masculino'] }}</span><span
+                                class="sub-label">MASCULINO</span></div>
                     </div>
 
                     <div class="no-binario-val">
-                        <span class="sub-num">—</span>
+                        <span class="sub-num">{{ $externos['otro'] > 0 ? $externos['otro'] : '—' }}</span>
                         <span class="sub-label">NO BINARIO</span>
                     </div>
                 </div>
@@ -57,7 +59,7 @@
                     <div class="mini-card">
                         <img src="{{ asset('assets/superadmin/calendario-1.png') }}" alt="Eventos" class="mini-icon">
                         <div class="mini-data">
-                            <span class="mini-number">13</span>
+                            <span class="mini-number">{{ $totalEventos }}</span>
                             <span class="mini-label">EVENTOS</span>
                         </div>
                     </div>
@@ -65,7 +67,7 @@
                     <div class="mini-card">
                         <img src="{{ asset('assets/superadmin/empresa-1.png') }}" alt="Empresas" class="mini-icon">
                         <div class="mini-data">
-                            <span class="mini-number">1</span>
+                            <span class="mini-number">{{ $totalEmpresas }}</span>
                             <span class="mini-label">EMPRESAS</span>
                         </div>
                     </div>
@@ -80,47 +82,26 @@
 
             <div class="events-grid">
 
-                <div class="event-name">FROM IDEA TO SCREEN: DEVELOPING, WRITING AND DIRECTING A FILM</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 90%;"></div>
-                    <!-- Ejemplo de maso como hacer funcional las barras (de forma facil y de momentop)
-                    style="width: {($evento->asistentes / 150) * 100 }}%;"> -->
-                </div>
-                <div class="event-number">120</div>
+                @forelse ($asistenciaEventos as $evento)
+                    @php
+                        $maxAsistentes = $asistenciaEventos->max('asistentes') ?: 1;
+                        $porcentaje = round(($evento['asistentes'] / $maxAsistentes) * 100);
+                    @endphp
 
-                <div class="event-name">DIBUJANDO MIS SUEÑOS</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 45%;"></div>
-                </div>
-                <div class="event-number">47</div>
-
-                <div class="event-name">TALLER: APRENDE A PROGRAMAR CON CODEWARS</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 25%;"></div>
-                </div>
-                <div class="event-number">20</div>
-
-                <div class="event-name">FROM IDEA TO SCREEN: DEVELOPING, WRITING AND DIRECTING A FILM</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 60%;"></div>
-                </div>
-                <div class="event-number">120</div>
-
-                <div class="event-name">DIBUJANDO MIS SUEÑOS</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 23%;"></div>
-                </div>
-                <div class="event-number">47</div>
-
-                <div class="event-name">TALLER: APRENDE A PROGRAMAR CON CODEWARS</div>
-                <div class="progress-wrapper">
-                    <div class="progress-bar" style="width: 10%;"></div>
-                </div>
-                <div class="event-number">20</div>
+                    <div class="event-name">{{ strtoupper($evento['titulo']) }}</div>
+                    <div class="progress-wrapper">
+                        <div class="progress-bar" style="width: {{ $porcentaje }}%;"></div>
+                    </div>
+                    <div class="event-number">{{ $evento['asistentes'] }}</div>
+                @empty
+                    <div class="event-name" style="grid-column: 1 / -1; color: var(--clr-gray); text-align: center;">
+                        No hay eventos con asistencia registrada.
+                    </div>
+                @endforelse
 
             </div>
 
-            <button class="btn-lg btn-purple">Exportar a excel</button>
+            <a href="{{ route('superadmin.dashboard.export') }}" class="btn-lg btn-purple">Exportar a excel</a>
 
         </section>
 

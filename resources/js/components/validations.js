@@ -42,17 +42,19 @@ export function validation_Length(data, min, limit, input) {
 
 export function validation_Link(data, type, input) {
     if (type === "youtube") {
-        if (!/^(https?:\/\/)?www\.youtube\.com\/.+/.test(data)) {
+        if (!/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+/.test(data)) {
             showModal(
+                "Datos inválidos",
                 "El enlace " +
                     input +
-                    " debe ser de YouTube (www.youtube.com/).",
+                    " debe ser de YouTube (youtube.com o youtu.be).",
             );
             return true;
         }
     } else if (type === "drive") {
         if (!/^(https?:\/\/)?(www\.)?drive\.google\.com\/.+/.test(data)) {
             showModal(
+                "Datos inválidos",
                 "El enlace " +
                     input +
                     " no es válido (drive.google.com/).",
@@ -62,7 +64,7 @@ export function validation_Link(data, type, input) {
     } else {
         if (!/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(data,)
         ) {
-            showModal("El enlace de " + input + " no es válido.");
+            showModal("Datos inválidos", "El enlace de " + input + " no es válido.");
             return true;
         }
     }

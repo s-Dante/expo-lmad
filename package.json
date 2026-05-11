@@ -5,7 +5,9 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "dev:all": "concurrently \"php artisan serve --host=localhost --port=8000\" \"vite\""
+        "dev:all": "concurrently \"php artisan serve --host=localhost --port=8000\" \"vite\"",
+        "dev:all:host": "concurrently \"php artisan serve --host=[IP_ADDRESS] --port=8000\" \"vite\"",
+        "dev:dev": "concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve --host=localhost --port=8000\" \"php artisan queue:work --tries=1\" \"php artisan pail\" \"pnpm run dev\" --names=server,queue,logs,vite --kill-others"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",

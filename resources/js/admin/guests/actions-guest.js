@@ -1,15 +1,13 @@
-window.openEditModal = function(company, rep, editUrl) {
-    document.getElementById("edit-form").action = editUrl;
+window.openEditModal = function(nombre, apellidoP, apellidoM, nickname, email, empresa, cargo, editUrl) {
+    if (editUrl) document.getElementById("edit-form").action = editUrl;
 
-    document.getElementById("edit-guest-name").value = rep;
-
-    const selCompany = document.getElementById("edit-guest-company");
-    for (let i = 0; i < selCompany.options.length; i++) {
-        if (selCompany.options[i].value === company) {
-            selCompany.selectedIndex = i;
-            break;
-        }
-    }
+    document.getElementById("edit-guest-nombre").value = nombre || '';
+    document.getElementById("edit-guest-apellido-p").value = apellidoP || '';
+    document.getElementById("edit-guest-apellido-m").value = apellidoM || '';
+    document.getElementById("edit-guest-nickname").value = nickname || '';
+    document.getElementById("edit-guest-email").value = email || '';
+    document.getElementById("edit-guest-empresa").value = empresa || '';
+    document.getElementById("edit-guest-cargo").value = cargo || '';
 
     document.getElementById("edit-modal").showModal();
 };

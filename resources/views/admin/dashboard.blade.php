@@ -9,7 +9,6 @@
     @vite([
         'resources/css/guest/template.css',
         'resources/css/admin/dashboard.css',
-        'resources/js/admin/data-export.js'
     ])
 
 </head>
@@ -27,15 +26,15 @@
 
             <div class="user-info">
                 <div class="user-name">
-                    Jane
-                    Doe
-                    Doe
+                    {{ auth()->user()->nombre ?? '' }}
+                    {{ auth()->user()->apellido_paterno ?? '' }}
+                    {{ auth()->user()->apellido_materno ?? '' }}
                 </div>
 
                 <div class="user-meta">
-                    <span>Admin</span>
+                    <span>{{ ucfirst(auth()->user()->rol ?? 'Admin') }}</span>
                     <span>|</span>
-                    <span>000000</span>
+                    <span>{{ auth()->user()->name ?? '' }}</span>
                 </div>
             </div>
         </header>
@@ -45,7 +44,7 @@
         </center>
 
         <section class="section-export">
-            <button class="btn btn-purple">Exportar en Excel</button>
+            <a href="{{ route('admin.dashboard.export') }}" class="btn btn-purple">Exportar en Excel</a>
         </section>
 
         <section class="cards">
@@ -53,14 +52,14 @@
             <div class="card blue">
                 <p class="card-label">Total de asistidos</p>
                 <div class="card-content">
-                    <p class="card-number"> 0000 </p>
+                    <p class="card-number">{{ number_format($totalAsistentes) }}</p>
                 </div>
             </div>
 
             <div class="card yellow">
                 <p class="card-label">Alumnos</p>
                 <div class="card-content">
-                    <p class="card-number">000</p>
+                    <p class="card-number">{{ number_format($alumnos) }}</p>
                 </div>
             </div>
 
@@ -72,7 +71,7 @@
                         <p class="card-label">Externos</p>
 
                         <div class="card-content margin-mid">
-                            <p class="card-number">000</p>
+                            <p class="card-number">{{ number_format($externos['total']) }}</p>
                         </div>
                     </div>
 
@@ -80,21 +79,21 @@
                         <div class="card-s green-s">
                             <p class="card-label">Masculino</p>
                             <div class="card-content">
-                                <span class="card-number">000</span>
+                                <span class="card-number">{{ number_format($externos['masculino']) }}</span>
                             </div>
                         </div>
 
                         <div class="card-s green-s">
                             <p class="card-label">Femenino</p>
                             <div class="card-content">
-                                <span class="card-number">000</span>
+                                <span class="card-number">{{ number_format($externos['femenino']) }}</span>
                             </div>
                         </div>
 
                         <div class="card-s green-s">
                             <p class="card-label">No binario</p>
                             <div class="card-content">
-                                <span class="card-number">000</span>
+                                <span class="card-number">{{ number_format($externos['otro']) }}</span>
                             </div>
                         </div>
                     </div>
@@ -113,7 +112,7 @@
                     </svg>
                 </div>
                 <div class="info-header">
-                    <h2>00</h2>
+                    <h2>{{ $totalEventos }}</h2>
                     <h3>Eventos</h3>
                 </div>
             </div>
@@ -125,7 +124,7 @@
                     </svg>
                 </div>
                 <div class="info-header">
-                    <h2>00</h2>
+                    <h2>{{ $totalConferencistas }}</h2>
                     <h3>Expositores</h3>
                 </div>
             </div>
@@ -137,7 +136,7 @@
                     </svg>
                 </div>
                 <div class="info-header">
-                    <h2>00</h2>
+                    <h2>{{ $totalEmpresas }}</h2>
                     <h3>Empresas</h3>
                 </div>
             </div>
@@ -146,18 +145,18 @@
         <section class="section-other-data">
             <table class="table-data-conferences" style="width: 100%; text-align: center;">
                 <tbody>
-                    <tr>
-                        <td class="td-data-conference">Conferencia 1 Conferencia 1 Conferencia 1 Conferencia 1</td>
-                        <td class="td-data">23</td>
-                    </tr>
-                    <tr>
-                        <td class="td-data-conference">Conferencia 2</td>
-                        <td class="td-data">50</td>
-                    </tr>
-                    <tr>
-                        <td class="td-data-conference">Conferencia 3</td>
-                        <td class="td-data">32</td>
-                    </tr>
+                    @forelse ($asistenciaEventos as $evento)
+                        <tr>
+                            <td class="td-data-conference">{{ $evento['titulo'] }}</td>
+                            <td class="td-data">{{ $evento['asistentes'] }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="2" style="color: var(--clr-gray); padding: 1rem;">
+                                No hay eventos registrados aún.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </section>

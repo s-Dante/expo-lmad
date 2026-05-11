@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('tbl_patrocinadores', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->enum('tier', ['Bronce', 'Plata', 'Oro', 'Platino']);
+            $table->string('tier', 30)->nullable();
+            $table->boolean('es_patrocinador')->default(false);
             $table->string('logo_url')->nullable();
             $table->string('website_url')->nullable();
             $table->softDeletes();

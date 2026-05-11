@@ -293,6 +293,7 @@ h1 {
     }
 
     .div-companies-create {
+        display: grid;
         grid-template-columns: 50% 32%;
         justify-content: center;
         padding-inline: 1rem;

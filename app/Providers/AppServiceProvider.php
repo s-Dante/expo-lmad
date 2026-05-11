@@ -36,6 +36,38 @@ class AppServiceProvider extends ServiceProvider
             EstudianteRepositoryInterface::class,
             EloquentEstudianteRepository::class
         );
+
+        // ── Admin Repositories ──────────────────────────────────────────
+
+        $this->app->bind(
+            \App\Repositories\Admin\EventoRepositoryInterface::class,
+            \App\Repositories\Admin\EloquentEventoRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\ConferencistaRepositoryInterface::class,
+            \App\Repositories\Admin\EloquentConferencistaRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\PatrocinadorRepositoryInterface::class,
+            \App\Repositories\Admin\EloquentPatrocinadorRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\ProfesorAdminRepositoryInterface::class,
+            \App\Repositories\Admin\EloquentProfesorAdminRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\StaffRepositoryInterface::class,
+            \App\Repositories\Admin\EloquentStaffRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Admin\DashboardRepositoryInterface::class,
+            \App\Repositories\Admin\EloquentDashboardRepository::class
+        );
     }
 
     /**

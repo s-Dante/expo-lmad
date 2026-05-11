@@ -19,7 +19,7 @@
 
         <section class="expo-card">
 
-            <form id="form-registro" method="post" action="{{ route('teacher.cargar-proyecto') }}" class="expo-form">
+            <form id="form-registro" method="post" action="{{ route('teacher.cargar-proyecto2') }}" class="expo-form">
                 @csrf
 
                 <input type="hidden" name="profesor_id" value="{{ auth()->user()->id }}">
