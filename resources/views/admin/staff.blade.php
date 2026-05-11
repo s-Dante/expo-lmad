@@ -10,11 +10,10 @@
     @vite([
         'resources/css/guest/template.css',
         'resources/css/components/carrusel.css',
-        'resources/css/admin/staffs/staff.css',
+        'resources/css/admin/staff.css',
         'resources/js/components/load-portrait.js',
         'resources/js/admin/actions-staff.js',
         'resources/js/admin/carrusel.js'
-
     ]);
 
 </head>
