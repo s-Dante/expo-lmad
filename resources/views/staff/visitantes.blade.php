@@ -27,6 +27,15 @@
             {{ session('success') }}
         </div>
         @endif
+        @if ($errors->any())
+        <div style="background: rgba(231, 76, 60, 0.15); color: #e74c3c; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <form id="form-visitante" action="{{ route('staff.visitantes.store') }}" method="POST" class="form-visitor">
             @csrf
             <div class="type-vistor">
@@ -59,9 +68,9 @@
                     <label for="genero">Género:</label>
                     <select class="input-c" id="genero" name="genero">
                         <option value="">Seleccionar</option>
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                        <option value="otro">Otro</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                        <option value="O">Otro</option>
                     </select>
 
                     <label for="edad">Edad:</label>

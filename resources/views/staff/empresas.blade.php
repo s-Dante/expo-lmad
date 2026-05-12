@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://unpkg.com/html5-qrcode"></script>
     <title>EXPO LMAD - Staff</title>
     @vite([
     "resources/css/staff/empresas.css"
@@ -30,36 +29,29 @@
                 </thead>
                 <tbody>
 
+                    @forelse($empresas as $empresa)
                     <tr>
-                        <td>Wacom</td>
+                        <td>{{ $empresa->nombre }}</td>
                         <td>
-                            <button class="btn-accion" onclick="window.location.href='/staff/empresas/asistencia'">
+                            <a href="{{ route('staff.empresa-asistencia', $empresa->id) }}"
+                               class="btn-accion">
                                 Asistencia
-                            </button>
+                            </a>
                         </td>
                     </tr>
+                    @empty
                     <tr>
-                        <td>Wacom2</td>
-                        <td>
-                            <button class="btn-accion">
-                                Asistencia
-                            </button>
+                        <td colspan="2" style="text-align:center; padding: 2rem; opacity: 0.6;">
+                            No hay empresas registradas aún.
                         </td>
                     </tr>
-                    <tr>
-                        <td>Wacom3</td>
-                        <td>
-                            <button class="btn-accion">
-                                Asistencia
-                            </button>
-                        </td>
-                    </tr>
+                    @endforelse
 
                 </tbody>
             </table>
         </div>
 
-
     </main>
 
 </body>
+</html>

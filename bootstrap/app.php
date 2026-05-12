@@ -12,7 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'role' => \App\Http\Middleware\validarRoles::class,
+            'role'      => \App\Http\Middleware\validarRoles::class,
+            'ext.token' => \App\Http\Middleware\CheckExternalApiToken::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -49,6 +49,8 @@ class StaffController extends Controller
             'matricula'      => 'nullable|required_if:tipo_visitante,alumno|string',
             'nombre'         => 'required|string',
             'genero'         => 'nullable|in:M,F,O',
+            'correo'         => 'nullable|email',
+            'edad'           => 'nullable|string',
         ]);
 
         $tipo = $validated['tipo_visitante'] === 'alumno' 
@@ -60,6 +62,8 @@ class StaffController extends Controller
             'matricula'       => $validated['tipo_visitante'] === 'alumno' ? $validated['matricula'] : null,
             'nombre_completo' => $validated['nombre'],
             'genero'          => $validated['genero'] ?: null,
+            'email'           => $validated['correo'] ?? null,
+            'edad'            => $validated['edad'] ?? null,
         ]);
 
         return back()->with('success', 'Visitante registrado exitosamente.');

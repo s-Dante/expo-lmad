@@ -1,5 +1,112 @@
 @import url(/resources/css/layouts/admin-layout.css);
 
+/* ── VISTA EMPRESAS-ASISTENCIA ─────────────────────────────────────── */
+
+.empresa-nombre-titulo {
+    font-family: var(--font-main);
+    color: var(--text-primary);
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.3rem;
+}
+
+.empresa-subtitulo {
+    font-family: var(--font-alt);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Mensajes de éxito / error */
+.msg-empresa {
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+.msg-exito {
+    background: rgba(50, 200, 100, 0.15);
+    border: 1px solid rgba(50, 200, 100, 0.4);
+    color: #6effa8;
+}
+.msg-error {
+    background: rgba(220, 50, 50, 0.15);
+    border: 1px solid rgba(220, 50, 50, 0.4);
+    color: #ff8a8a;
+}
+
+/* Filas de nombre + botón quitar */
+.campo-representante {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    animation: slideInDown 0.25s ease-out both;
+}
+
+.btn-quitar {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: rgba(220, 50, 50, 0.18);
+    border: 1px solid rgba(220, 50, 50, 0.35);
+    color: #ff8a8a;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2px;
+}
+.btn-quitar:hover {
+    background: rgba(220, 50, 50, 0.35);
+}
+
+.btn-quitar-placeholder {
+    flex-shrink: 0;
+    width: 36px;
+}
+
+/* Botones de acción del formulario */
+.acciones-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.4rem;
+    flex-wrap: wrap;
+}
+
+.btn-agregar {
+    background: rgba(101, 72, 110, 0.25);
+    border: 1px solid rgba(101, 72, 110, 0.5);
+}
+.btn-agregar:hover {
+    background: rgba(101, 72, 110, 0.45);
+}
+
+/* Volver link */
+.volver-empresas {
+    margin-left: 7rem;
+    margin-bottom: 2rem;
+}
+@media (max-width: 650px) {
+    .volver-empresas {
+        margin-left: 1rem;
+    }
+    .acciones-form {
+        justify-content: center;
+    }
+    .campo-representante {
+        flex-wrap: nowrap;
+    }
+}
+
 /*TABLA EMPRESAS*/
 .info-title {
     color: var(--text-secondary);

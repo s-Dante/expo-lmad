@@ -81,19 +81,26 @@ class ProfesorImport implements ToCollection, WithHeadingRow, SkipsEmptyRows
 
                 // Sync Materias y Programas
                 if ($materiasStr) {
-                    $nombresMaterias = array_map('trim', explode(',', $materiasStr));
-                    
-                    // Buscar materias por nombre, clave o abreviatura
-                    $materiasDb = \App\Models\Materia::with('planAcademico')
-                        ->whereIn('nombre', $nombresMaterias)
-                        ->orWhereIn('clave', $nombresMaterias)
-                        ->orWhereIn('abreviatura', $nombresMaterias)
-                        ->get();
-                    
+                    // Si el campo dice "todas", se liga con todas las materias de la BD
+                    if (strtolower($materiasStr) === 'todas') {
+                        $materiasDb = \App\Models\Materia::with('planAcademico')->get();
+                    } else {
+                        $nombresMaterias = array_map('trim', explode(',', $materiasStr));
+
+                        // Buscar materias por nombre, clave o abreviatura
+                        $materiasDb = \App\Models\Materia::with('planAcademico')
+                            ->where(function ($q) use ($nombresMaterias) {
+                                $q->whereIn('nombre', $nombresMaterias)
+                                  ->orWhereIn('clave', $nombresMaterias)
+                                  ->orWhereIn('abreviatura', $nombresMaterias);
+                            })
+                            ->get();
+                    }
+
                     if ($materiasDb->count() > 0) {
                         // Sincronizar materias
                         $profesor->materias()->syncWithoutDetaching($materiasDb->pluck('id')->toArray());
-                        
+
                         // Sincronizar programas académicos basándose en las materias
                         $programasIds = $materiasDb->pluck('planAcademico.programa_academico_id')->filter()->unique()->toArray();
                         if (!empty($programasIds)) {

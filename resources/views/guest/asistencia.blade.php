@@ -34,16 +34,52 @@
 
             {{-- Tabs para elegir método de confirmación --}}
             <div class="tabs-asistencia">
-                <button class="tab-btn active" data-tab="opcion1">
-                    Opción 1 — Por matrícula
+                <button class="tab-btn active" data-tab="opcion2">
+                    Opción 1 — Por token de correo
                 </button>
-                <button class="tab-btn" data-tab="opcion2">
-                    Opción 2 — Por token de correo
+                <button class="tab-btn" data-tab="opcion1">
+                    Opción 2 — Por matrícula
                 </button>
             </div>
 
+            {{-- ── OPCIÓN 2: confirmación por token de correo ──────────── --}}
+            <div class="tab-panel active" id="panel-opcion2">
+
+                <p style="font-size:0.85rem; color:var(--gray); font-weight:400; margin-bottom:1.2rem;">
+                    Al registrarte recibiste un correo con un token de 8 caracteres. Ingrésalo aquí junto con tu correo
+                    para confirmar tu asistencia.
+                </p>
+
+                <div id="msg-opcion2" class="form-msg" style="display:none;"></div>
+
+                <form id="form-opcion2">
+                    <div>
+                        <p>Correo universitario</p>
+                        <div style="display:flex; align-items:center; gap:0.8rem;">
+                            <input type="text" id="input-correo-op2" name="correo" placeholder="jane.doe"
+                                style="flex:1;">
+                            <span style="color:var(--gray); font-weight:700; white-space:nowrap;">@uanl.edu.mx</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p>Token de confirmación</p>
+                        <input type="text" id="input-token-op2" name="token" placeholder="Ej. A3X9KP2Q" maxlength="8"
+                            style="letter-spacing:0.3em; text-transform:uppercase;">
+                        <p style="font-size:0.78rem; color:var(--gray); font-weight:400; margin-top:0.3rem;">
+                            Revisa el correo que recibiste al inicio del evento.
+                        </p>
+                    </div>
+
+                    <button type="submit" class="btn btn-purple" id="btn-confirmar-op2">
+                        Confirmar con token
+                    </button>
+                </form>
+
+            </div>
+
             {{-- ── OPCIÓN 1: confirmación por matrícula ────────────────── --}}
-            <div class="tab-panel active" id="panel-opcion1">
+            <div class="tab-panel" id="panel-opcion1">
 
                 <p style="font-size:0.85rem; color:var(--gray); font-weight:400; margin-bottom:1.2rem;">
                     Ingresa tu matrícula y el evento al que asististe. El sistema buscará tu registro de entrada y
@@ -72,43 +108,6 @@
                         </button>
                     </div>
 
-                </form>
-
-            </div>
-
-            {{-- ── OPCIÓN 2: confirmación por token de correo ──────────── --}}
-            <div class="tab-panel" id="panel-opcion2">
-
-                <p style="font-size:0.85rem; color:var(--gray); font-weight:400; margin-bottom:1.2rem;">
-                    Al registrarte recibiste un correo con un token de 8 caracteres. Ingrésalo aquí junto con tu correo
-                    para confirmar tu asistencia.
-                </p>
-
-                <div id="msg-opcion2" class="form-msg" style="display:none;"></div>
-
-                <form id="form-opcion2">
-                    <div>
-                        <p>Correo universitario</p>
-                        <div style="display:flex; align-items:center; gap:0.8rem;">
-                            <input type="text" id="input-correo-op2" name="correo" placeholder="jane.doe"
-                                style="flex:1;">
-                            <span style="color:var(--gray); font-weight:700; white-space:nowrap;">@uanl.edu.mx</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p>Token de confirmación</p>
-                        <input type="text" id="input-token-op2" name="token" placeholder="Ej. A3X9KP2Q" maxlength="8"
-                            style="letter-spacing:0.3em; text-transform:uppercase;">
-                        <p style="font-size:0.78rem; color:var(--gray); font-weight:400; margin-top:0.3rem;">
-                            Revisa el correo que recibiste al inicio del evento.
-                        </p>
-                    </div>
-
-
-                    <button type="submit" class="btn btn-purple" id="btn-confirmar-op2">
-                        Confirmar con token
-                    </button>
                 </form>
 
             </div>

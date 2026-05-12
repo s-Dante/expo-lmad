@@ -88,6 +88,11 @@
             <img class="sidebar-icon" src="{{ asset('assets/teacher/EditarIcon.png') }}" alt="" />
             <span class="span-sidebar">Importar Datos</span>
         </a>
+
+        <a href="{{ route('admin.backup') }}" class="sidebar-item ">
+            <img class="sidebar-icon" src="{{ asset('assets/components/sidebar/Home-1.png') }}" alt="" />
+            <span class="span-sidebar">Backup</span>
+        </a>
         <!-- FIN NAVBAR PARA ADMINS -->
 
         <!-- NAVBAR PARA SUPER ADMIN -->

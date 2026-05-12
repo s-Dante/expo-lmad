@@ -7,11 +7,13 @@ use App\Http\Controllers\Guest\PortafolioController;
 use App\Http\Controllers\Guest\GuestCronogramaController;
 use App\Http\Controllers\Guest\GuestPatrocinadorController;
 use App\Http\Controllers\Guest\GuestAsistenciaController;
+use App\Http\Controllers\Staff\StaffEmpresaController;
 use App\Http\Controllers\Student\EstudianteController;
 use App\Http\Controllers\Teacher\ProfesorController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Guest\ProyectoController;
+use App\Http\Controllers\api\ExternalApiController;
 
 // Rutas de paginas publicas
 
@@ -179,6 +181,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.importar.estudiantes');
     Route::post('/admin/importar/materias',    [App\Http\Controllers\Admin\AdminImportController::class, 'importarMaterias'])
         ->name('admin.importar.materias');
+
+    // ── Backup / Migración de datos ─────────────────────────────────────────
+    Route::get('/admin/backup',                  [App\Http\Controllers\Admin\AdminBackupController::class, 'index'])
+        ->name('admin.backup');
+    Route::get('/admin/backup/exportar-sql',     [App\Http\Controllers\Admin\AdminBackupController::class, 'exportarSQL'])
+        ->name('admin.backup.exportar-sql');
+    Route::get('/admin/backup/exportar-storage', [App\Http\Controllers\Admin\AdminBackupController::class, 'exportarStorage'])
+        ->name('admin.backup.exportar-storage');
+    Route::post('/admin/backup/importar-sql',    [App\Http\Controllers\Admin\AdminBackupController::class, 'importarSQL'])
+        ->name('admin.backup.importar-sql');
 });
 
 //Rutas de Estudiante 
@@ -249,13 +261,14 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
 
     Route::post('/staff/visitantes', [App\Http\Controllers\Staff\StaffController::class, 'storeVisitante'])->name('staff.visitantes.store');
 
-    Route::get('/staff/empresas', function () {
-        return view('staff.empresas');
-    })->name('staff.empresas');
+    Route::get('/staff/empresas', [StaffEmpresaController::class, 'index'])
+        ->name('staff.empresas');
 
-    Route::get('/staff/empresas/asistencia', function () {
-        return view('staff.empresas-asist');
-    })->name('staff.empresa-asistencia');
+    Route::get('/staff/empresas/{id}/asistencia', [StaffEmpresaController::class, 'asistencia'])
+        ->name('staff.empresa-asistencia');
+
+    Route::post('/staff/empresas/{id}/representantes', [StaffEmpresaController::class, 'registrarRepresentantes'])
+        ->name('staff.empresa-representantes');
 
     Route::get('/staff/eventos', function () {
         return view('staff.eventos');
@@ -284,6 +297,27 @@ Route::post('/api/registro-asistencia', [GuestAsistenciaController::class, 'regi
 Route::post('/api/confirmar-matricula', [GuestAsistenciaController::class, 'confirmarPorMatricula']);
 Route::post('/api/confirmar-token', [GuestAsistenciaController::class, 'confirmarPorToken']);
 
+
+// ── API Externa — Bolsa de Trabajo ────────────────────────────────────────────
+//
+// Todas las rutas requieren el header:
+//   Authorization: Bearer <EXTERNAL_API_TOKEN>
+//   ó  X-Api-Token: <EXTERNAL_API_TOKEN>
+//
+// El token se configura en .env → EXTERNAL_API_TOKEN
+//
+// GET  /api/ext/expositores              → todos los alumnos con proyecto aprobado
+// GET  /api/ext/estudiante/{matricula}   → perfil + proyectos del alumno
+// GET  /api/ext/proyecto/{slug}          → detalle completo de un proyecto
+// GET  /api/ext/programas                → catálogo de programas académicos
+// GET  /api/ext/categorias               → categorías de proyectos disponibles
+Route::middleware('ext.token')->prefix('api/ext')->group(function () {
+    Route::get('/expositores',            [ExternalApiController::class, 'expositores']);
+    Route::get('/estudiante/{matricula}', [ExternalApiController::class, 'estudiante']);
+    Route::get('/proyecto/{slug}',        [ExternalApiController::class, 'proyecto']);
+    Route::get('/programas',              [ExternalApiController::class, 'programas']);
+    Route::get('/categorias',             [ExternalApiController::class, 'categorias']);
+});
 
 
 /**

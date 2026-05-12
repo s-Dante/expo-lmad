@@ -12,7 +12,8 @@
     'resources/css/guest/registro.css',
     'resources/css/components/sidebar.css',
     'resources/js/guest/afi/actions-registro.js',
-    'resources/js/guest/afi/register-afi.js'
+    'resources/js/guest/afi/register-afi.js',
+    'resources/js/guest/afi/actions-registro.js',
     ])
 </head>
 
@@ -45,7 +46,7 @@
                     {{-- Columna izquierda --}}
                     <div>
                         <p>Facultad</p>
-                        <select id="select-facultad" name="facultad">
+                        <select id="select-facultad" name="facultad" required>
                             <option value="" disabled selected>Selecciona una facultad</option>
                             {{-- Opciones cargadas dinámicamente desde /data/facultades.json --}}
                         </select>
@@ -63,7 +64,7 @@
                         </div>
 
                         <p>Conferencia / Taller (AFI)</p>
-                        <select id="conferencias" name="conferencias">
+                        <select id="conferencias" name="conferencias" required>
                             <option value="" disabled selected>Cargando eventos...</option>
                         </select>
                     </div>
@@ -71,14 +72,14 @@
                     {{-- Columna derecha --}}
                     <div>
                         <p>Nombre completo</p>
-                        <input type="text" id="input-nombre" name="nombre" placeholder="Nombre(s) Apellido Paterno Apellido Materno">
+                        <input type="text" id="input-nombre" name="nombre" placeholder="Nombre(s) Apellido Paterno Apellido Materno" required>
 
                         <p>Matrícula</p>
-                        <input type="text" id="input-matricula" name="matricula" placeholder="Ej. 1985623">
+                        <input type="text" id="input-matricula" name="matricula" placeholder="Ej. 1985623" required>
 
                         <p>Correo universitario</p>
                         <div>
-                            <input type="text" id="input-correo" name="correo" placeholder="tumatricula">
+                            <input type="text" id="input-correo" name="correo" placeholder="algo.ejemplo" required>
                             <span>@uanl.edu.mx</span>
                         </div>
                         <p style="font-size:0.78rem; color:var(--gray); font-weight:400; margin-top:0.4rem; margin-bottom:0;">
