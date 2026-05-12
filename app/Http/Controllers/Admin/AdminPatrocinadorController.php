@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\UpdatePatrocinadorRequest;
 use App\Models\Patrocinador;
 use App\Repositories\Admin\PatrocinadorRepositoryInterface;
 use App\Enums\TierPatrocinador;
+use App\Services\ImagenService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -43,8 +44,10 @@ class AdminPatrocinadorController extends Controller
 
         // Manejo del logo si se subió uno
         if ($request->hasFile('logo')) {
-            $data['logo_url'] = $request->file('logo')
-                ->store('patrocinadores/logos', 'public');
+            $data['logo_url'] = ImagenService::guardarWebp(
+                $request->file('logo'),
+                'patrocinadores/logos'
+            );
         }
 
         // Normalizar es_patrocinador como booleano real
@@ -74,8 +77,10 @@ class AdminPatrocinadorController extends Controller
 
         // Manejo del logo si se subió uno nuevo
         if ($request->hasFile('logo')) {
-            $data['logo_url'] = $request->file('logo')
-                ->store('patrocinadores/logos', 'public');
+            $data['logo_url'] = ImagenService::guardarWebp(
+                $request->file('logo'),
+                'patrocinadores/logos'
+            );
         }
 
         // Normalizar es_patrocinador como booleano real

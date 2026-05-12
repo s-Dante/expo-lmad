@@ -112,7 +112,7 @@ class EstudianteController extends Controller
         $validated = $request->validate([
             'titulo' => 'required|string|max:200',
             'descripcion' => 'required|string|min:20',
-            'poster' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // 5MB
+            'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB — se convierte a WebP automáticamente
             'link_youtube' => 'required|url', // Obligatorio según tu descripción
             'link_drive' => 'nullable|url',
             'link_github' => 'nullable|url',
@@ -167,7 +167,7 @@ class EstudianteController extends Controller
         $validated = $request->validate([
             'titulo' => 'required|string|max:200',
             'descripcion' => 'required|string|min:20',
-            'poster' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // 5MB
+            'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB — se convierte a WebP automáticamente
             'link_youtube' => 'required|url', // Obligatorio según tu descripción
             'link_drive' => 'nullable|url',
             'link_github' => 'nullable|url',
@@ -212,7 +212,7 @@ class EstudianteController extends Controller
         $validated = $request->validate([
             'titulo' => 'required|string|max:200',
             'descripcion' => 'required|string|min:20',
-            'poster' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // 5MB
+            'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB — se convierte a WebP automáticamente
             'link_youtube' => 'required|url', // Obligatorio según tu descripción
             'link_drive' => 'nullable|url',
             'link_github' => 'nullable|url',

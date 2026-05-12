@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreConferencistaRequest;
 use App\Models\Conferencista;
 use App\Repositories\Admin\ConferencistaRepositoryInterface;
+use App\Services\ImagenService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -38,8 +39,10 @@ class AdminConferencistaController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('foto')) {
-            $data['foto_url'] = $request->file('foto')
-                ->store('conferencistas/fotos', 'public');
+            $data['foto_url'] = ImagenService::guardarWebp(
+                $request->file('foto'),
+                'conferencistas/fotos'
+            );
         }
 
         unset($data['foto']);
@@ -59,8 +62,10 @@ class AdminConferencistaController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('foto')) {
-            $data['foto_url'] = $request->file('foto')
-                ->store('conferencistas/fotos', 'public');
+            $data['foto_url'] = ImagenService::guardarWebp(
+                $request->file('foto'),
+                'conferencistas/fotos'
+            );
         }
 
         unset($data['foto']);

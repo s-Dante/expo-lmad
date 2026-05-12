@@ -11,6 +11,7 @@ use App\Repositories\Admin\EventoRepositoryInterface;
 use App\Repositories\Admin\ConferencistaRepositoryInterface;
 use App\Enums\TipoEvento;
 use App\Enums\EstatusEvento;
+use App\Services\ImagenService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -45,8 +46,10 @@ class AdminEventoController extends Controller
 
         // Manejo del poster
         if ($request->hasFile('poster')) {
-            $data['poster_evento'] = $request->file('poster')
-                ->store('eventos/posters', 'public');
+            $data['poster_evento'] = ImagenService::guardarWebp(
+                $request->file('poster'),
+                'eventos/posters'
+            );
         }
 
         // Extraer conferencistas antes de crear
@@ -73,8 +76,10 @@ class AdminEventoController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('poster')) {
-            $data['poster_evento'] = $request->file('poster')
-                ->store('eventos/posters', 'public');
+            $data['poster_evento'] = ImagenService::guardarWebp(
+                $request->file('poster'),
+                'eventos/posters'
+            );
         }
 
         $conferencistas = $data['conferencistas'] ?? [];

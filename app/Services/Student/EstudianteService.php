@@ -6,6 +6,7 @@ use App\Models\Proyecto;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Services\ImagenService;
 
 
 class EstudianteService
@@ -42,9 +43,9 @@ class EstudianteService
 
         // 5. Manejo de Multimedia
 
-        // A) PORTADA (Imagen)
+        // A) PORTADA (Imagen) — se convierte automáticamente a WebP
         if ($poster) {
-            $path = $poster->store('proyectos/posters', 'public');
+            $path = ImagenService::guardarWebp($poster, 'proyectos/posters');
             $proyecto->multimedia()->updateOrCreate(
                 ['es_portada' => true],
                 ['tipo' => 'imagen', 'url' => $path, 'titulo' => 'Portada Oficial']
