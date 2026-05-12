@@ -12,6 +12,9 @@
     width: 300px;
     height: 200px;
     border-radius: 30px;
+
+    -webkit-filter: drop-shadow(29px 39px 2px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(29px 39px 2px rgba(0, 0, 0, 0.5));
 }
 
 .glassContainer::before {
@@ -37,10 +40,8 @@
     z-index: -1;
     inset: 0;
     border-radius: 30px;
-    -webkit-backdrop-filter: blur(1.5px);
-    backdrop-filter: blur(5px);
-    -webkit-filter: url(#container-glass);
-    filter: url(#container-glass);
+    -webkit-backdrop-filter: blur(5px) var(--glass-filter, url(#container-glass));
+    backdrop-filter: blur(5px) var(--glass-filter, url(#container-glass));
     overflow: hidden;
     isolation: isolate;
 }
@@ -60,11 +61,14 @@
     width: 70px;
     height: 70px;
     padding: 15px;
-    background-color: rgba(41, 202, 255, 0.292);
-    border-radius: 9999px;
+    background-color: rgba(41, 202, 255, 0.192);
+    color: white;
+    border-radius: 1rem;
     outline: none;
     border: none;
     z-index: 0;
+    -webkit-filter: drop-shadow(29px 39px 2px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(29px 39px 2px rgba(0, 0, 0, 0.5));
 }
 
 .glassBtn::before {
@@ -73,7 +77,7 @@
     inset: 0;
     z-index: 0;
     overflow: hidden;
-    border-radius: 9999px;
+    border-radius: 1rem;
     -webkit-box-shadow:
         inset 2px 2px 0px -2px rgba(167, 230, 255, 0.7),
         inset 0 0 3px 1px rgba(167, 230, 255, 0.456);
@@ -88,11 +92,9 @@
     position: absolute;
     z-index: -1;
     inset: 0;
-    border-radius: 9999px;
-    -webkit-backdrop-filter: blur(1.5px);
-    backdrop-filter: blur(1.5px);
-    -webkit-filter: url(#btn-glass);
-    filter: url(#btn-glass);
+    border-radius: 1rem;
+    -webkit-backdrop-filter: blur(1px) var(--btn-filter, url(#btn-glass));
+    backdrop-filter: blur(1px) var(--btn-filter, url(#btn-glass));
     overflow: hidden;
     isolation: isolate;
 }
@@ -101,4 +103,34 @@
     width: 100%;
     height: 100%;
     stroke: #92defa;
+}
+
+
+/* Estado base */
+.btnAnimation {
+    z-index: 10!important;
+  transition: transform 0.3s cubic-bezier(0.25, 1.25, 0.5, 1);
+}
+
+/* Hover: expansión suave */
+.btnAnimation:hover {
+    z-index: 10!important;
+  transform: scale(1.05, 1.02); /* 5% más grande */
+}
+
+.btnAnimation:active {
+    z-index: 10!important;
+  transform: scale(1.1, 1.08);
+}
+
+/* Active: pequeño rebote de gelatina */
+.btnAnimation.animate {
+    z-index: 10!important;
+  animation: jelly 0.4s ease;
+}
+
+@keyframes jelly {
+  0%   { transform: scale(1.1, 1.08); }
+  50%  { transform: scale(0.97, 0.97); }
+  100% { transform: scale(1.05 1.02); }
 }

@@ -48,14 +48,19 @@
 
                 <div class="container-grid-horario">
 
-                    <div class="container-grid-horario-map">
-                        <div class="glassContainer horario-map">
-                            <canvas id="MapaInteractivo"></canvas>
+                    <div>
+                        <button id="show-map" class="glassBtn icon btnAnimation" style="--btn-filter: url(#btn-glass);">
+                            <img src="{{ asset('assets/guest/arrow.svg') }}">
+                        </button>
+                        <div class="container-grid-horario-map">
+                            <div class="glassContainer horario-map" style="--glass-filter: url(#container-glass);">
+                                <canvas id="MapaInteractivo"></canvas>
+                            </div>
                         </div>
                     </div>
 
                     <div class="container-grid-horario-flyer">
-                        <img id="eventsMap" src="{{ asset('assets/guest/AmbassadorSchedules.jpg') }}"
+                        <img id="eventsMap" src="{{ asset('assets/guest/Aula8_Cronograma.png') }}"
                             class="img-fluid horario-flyer" />
                     </div>
 
@@ -63,33 +68,6 @@
 
                 <div class="container-gradient-segment-horario"></div>
 
-            </section>
-
-            <section class="section-conferencias">
-                <h1 class="title-conferencias">CONFERENCIAS</h1>
-
-                <div class="container-grid-conferencias">
-
-                    <div class="container-grid-conferencias-flyer">
-                        <img id="conference-image" src="{{ asset('assets/guest/CRONOGRAMA1.png') }}"
-                            class="img-fluid conferencia-flyer" />
-                    </div>
-
-                    <div class="glassContainer container-grid-conferencias-list"> 
-                        <div class="glassContainer button-large"> Conferencia - conferencista </div>
-                    </div>
-
-                    <div style="max-width: 98dvw;overflow-x: scroll;margin: 0rem;">
-                        <img id="conference-background-image" style="margin: 0rem;overflow-x: auto;"
-                            class="confe-backimage" src="{{ asset('assets/guest/CRONOGRAMA1.png') }}" />
-                    </div>
-
-                </div>
-
-            </section>
-
-            <section class="section-talleres">
-                <h1>TALLERES</h1>
             </section>
 
         </div>
@@ -102,13 +80,13 @@
 
     <svg style="display: none">
         <filter id="container-glass" x="0%" y="0%" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.008 0.008" numOctaves="2" seed="92" result="noise" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.001 0.001" numOctaves="4" seed="91" result="noise" />
             <feGaussianBlur in="noise" stdDeviation="0.02" result="blur" />
-            <feDisplacementMap in="SourceGraphic" in2="blur" scale="77" xChannelSelector="R" yChannelSelector="G" />
+            <feDisplacementMap in="SourceGraphic" in2="blur" scale="-77" xChannelSelector="R" yChannelSelector="G" />
         </filter>
         <filter id="btn-glass" primitiveUnits="objectBoundingBox">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="0.02" result="blur"></feGaussianBlur>
-            <feDisplacementMap id="disp" in="blur" in2="map" scale="1" xChannelSelector="R" yChannelSelector="G" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="0.02" result="blur" />
+            <feDisplacementMap in="blur" in2="blur" scale="0.1" xChannelSelector="R" yChannelSelector="G" />
         </filter>
     </svg>
 

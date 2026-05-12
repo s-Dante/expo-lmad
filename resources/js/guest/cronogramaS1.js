@@ -7,18 +7,24 @@ var selectMap = document.querySelector("#MapaInteractivo");
 var ctx = map.getContext("2d");
 
 var backgroundImage = new Image();
-backgroundImage.src = "assets/guest/ChancellorsSchedules.jpg"; //mapa
+backgroundImage.src = "assets/guest/MAPA-EAP-cronograma.png"; //mapa
 
 
 var salones = [ //estas son las salas de conferencias y demás, tal vez el array crezca cuando se aplique la segunda planta
-    { name: "Sala Cancilleres", selected: false, x: 42, y: 51, width: 105, height: 120, image: "assets/guest/CRONOGRAMA1.png" }, //cronogramas del salon
-    { name: "Sala Embajadores", selected: false, x: 42, y: 352, width: 105, height: 140, image: "assets/guest/AmbassadorSchedules.jpg" },
+    { name: "Aula 8", fontsize: 20, selected: true, x: 0, y: 0, width: 63, height: 104, image: "assets/guest/Aula8_Cronograma.png" }, //cronogramas del salon
+    { name: "Hub Cultural Masterclass", fontsize: 13, selected: false, x: 310, y: 269, width: 88, height: 97, image: "assets/guest/Masterclass_Cronograma.jpg" },
+    { name: "Hub Cultural Coworking", fontsize: 14, selected: false, x: 310, y: 169, width: 88, height: 97, image: "assets/guest/Coworking_Cronograma.png" }
 ];
 
 function getCursorPosition(canvas, event) {
     const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    
+    // Calculamos la escala para mapear el tamaño visual con la resolución interna del canvas
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    const x = (event.clientX - rect.left) * scaleX;
+    const y = (event.clientY - rect.top) * scaleY;
     return { x: x, y: y };
 }
 
@@ -34,7 +40,7 @@ function drawRooms(salon) {
     ctx.fillStyle = rm_primarycolor;
     drawRoundedRect(ctx, salon.x, salon.y, salon.width, salon.height, 10, '#00afc4');
     ctx.fillStyle = rm_secundarycolor;
-    ctx.font = '16px Kodchasan';
+    ctx.font = salon.fontsize + 'px Kodchasan';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     var lines = salon.name.split(' ');
@@ -136,6 +142,18 @@ function main() {
                 salon.selected = true;
                 console.log("estado del salon: "+salon.selected);
                 changed = true;
+                
+                // Ocultar mapa en versión móvil al seleccionar un salón
+                const horarioMapMovil = document.querySelector('.horario-map');
+                if (horarioMapMovil && horarioMapMovil.classList.contains('active')) {
+                    horarioMapMovil.classList.remove('active');
+                    horarioMapMovil.style.transform = '';
+                    const btnMapMovil = document.getElementById('show-map');
+                    if (btnMapMovil) {
+                        const icon = btnMapMovil.querySelector('img');
+                        if (icon) icon.style.transform = 'rotate(0deg)';
+                    }
+                }
                 //clearCanvas(map);
             } else if (i >= 1 && changed == false) {
                 console.log("Limpiando canvas...");
@@ -215,3 +233,70 @@ function main() {
 }
 
 window.addEventListener('load', main);
+
+/* ONLY MOVIL VERSION */
+document.addEventListener('DOMContentLoaded', () => {
+    const btnMap = document.getElementById('show-map');
+    const horarioMap = document.querySelector('.horario-map');
+
+    // Función encargada de calcular y aplicar el centrado perfecto
+    function centerMap() {
+        const container = horarioMap.parentElement;
+        const containerRect = container.getBoundingClientRect();
+        const mapWidth = horarioMap.offsetWidth;
+        const screenCenter = window.innerWidth / 2;
+        
+        // Posición deseada: centro de la pantalla menos la mitad del ancho del mapa
+        const targetLeft = screenCenter - (mapWidth / 2);
+        
+        // Distancia a desplazar: diferencia entre la posición deseada y la posición base estática del contenedor
+        const moveDistance = targetLeft - containerRect.left;
+        
+        // Aplicamos el desplazamiento exacto en pixeles
+        horarioMap.style.transform = `translateX(${moveDistance}px)`;
+    }
+
+    if (btnMap && horarioMap) {
+        btnMap.addEventListener('click', (e) => {
+            // Evitar que este clic se propague al document y lo cierre inmediatamente
+            e.stopPropagation();
+
+            // Intercala la clase 'active'
+            const isActive = horarioMap.classList.toggle('active');
+            
+            if (isActive) {
+                centerMap();
+            } else {
+                // Al esconder el mapa, removemos la transformación en línea para que regrese a su sitio original
+                horarioMap.style.transform = '';
+            }
+            
+            // Rotar la flecha para indicar que el panel se puede volver a esconder
+            const icon = btnMap.querySelector('img');
+            if (icon) {
+                icon.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
+        });
+
+        // Cerrar si se hace clic fuera del mapa
+        document.addEventListener('click', (e) => {
+            if (horarioMap.classList.contains('active')) {
+                // Si el clic no fue dentro del contenedor del mapa ni en el botón
+                if (!horarioMap.contains(e.target) && !btnMap.contains(e.target)) {
+                    horarioMap.classList.remove('active');
+                    horarioMap.style.transform = '';
+                    const icon = btnMap.querySelector('img');
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                }
+            }
+        });
+
+        // Evento útil por si el usuario gira el teléfono o redimensiona la pantalla
+        // mientras el mapa está abierto, para mantenerlo bien centrado.
+        window.addEventListener('resize', () => {
+            if (horarioMap.classList.contains('active')) {
+                centerMap();
+            }
+        });
+    }
+});
