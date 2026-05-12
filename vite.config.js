@@ -70,6 +70,7 @@ export default defineConfig({
 
                 "resources/js/components/sidebar.js",
                 "resources/js/components/alerts.js",
+                "resources/js/components/flash-alerts.js",
                 "resources/js/components/show-hide-elements.js",
                 "resources/js/components/resize-page-smooth.js",
                 "resources/js/components/move-elements.js",
