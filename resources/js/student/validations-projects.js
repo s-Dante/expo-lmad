@@ -51,21 +51,23 @@ export async function update_project(first_time) {
         if (validation_Select(softwares, "software utilizado")) return true;
     }
 
-    let description = input_description.value.trim();
+    // Null-safety: algunos campos son <p> en modo lectura (sin .value)
+    // o pueden no existir en ciertas vistas; usamos optional chaining.
+    let description = input_description?.value?.trim() ?? "";
 
-    let link_promo = input_link_promo.value.trim();
+    let link_promo = input_link_promo?.value?.trim() ?? "";
 
     let link_drive = "";
-    if (input_link_drive) {
+    if (input_link_drive?.value) {
         link_drive = input_link_drive.value.trim();
 
         if (link_drive) {
-            if(validation_Length(link_drive, 0, 252, "enlace a Google Drive")) return true;
+            if (validation_Length(link_drive, 0, 252, "enlace a Google Drive")) return true;
             if (validation_Link(link_drive, "drive", "a Google Drive")) return true;
         }
     }
 
-    let link_repo = input_link_repo.value.trim();
+    let link_repo = input_link_repo?.value?.trim() ?? "";
 
     if (!description || !link_promo) {
         showModal("Datos inválidos", "Por favor, llena los campos obligatorios.");

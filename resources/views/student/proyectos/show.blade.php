@@ -282,24 +282,14 @@
 
     </main>
 
+    {{-- Datos de sesión y rutas para el JS (sin inline module imports) --}}
+    <div id="page-data"
+         data-flash-success=@json(session('success'))
+         data-flash-error=@json(session('error'))
+         data-flash-errors=@json($errors->all())
+         data-resend-url="{{ route('estudiante.proyectos.send', $proyecto->id) }}"
+         style="display:none"></div>
+
     @vite('resources/js/student/actions-revisar-exposicion.js')
-    <script type="module">
-        import { showServerMessages } from "{{ Vite::asset('resources/js/components/flash-alerts.js') }}";
-
-        showServerMessages(
-            @json(session('success')),
-            @json(session('error')),
-            @json($errors->all())
-        );
-
-        const btnResend = document.getElementById('resend');
-        if (btnResend) {
-            btnResend.addEventListener('click', () => {
-                const form = document.getElementById('projectForm');
-                form.action = "{{ route('estudiante.proyectos.send', $proyecto->id) }}";
-                form.submit();
-            });
-        }
-    </script>
 
 </body>
