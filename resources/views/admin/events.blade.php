@@ -7,15 +7,13 @@
     <title>Admin Eventos</title>
 
     @vite([
-    'resources/css/guest/template.css',
-    'resources/css/components/carrusel.css',
-    'resources/css/admin/events.css',
-    'resources/js/components/load-portrait.js',
-    'resources/js/admin/actions-events.js',
-    'resources/js/admin/carrusel.js'
-
-
-    ]);
+        'resources/css/guest/template.css',
+        'resources/css/components/carrusel.css',
+        'resources/css/admin/events.css',
+        'resources/js/components/load-portrait.js',
+        'resources/js/admin/events/actions-events.js',
+        'resources/js/admin/carrusel.js',
+    ])
 
 </head>
 

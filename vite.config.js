@@ -41,6 +41,7 @@ export default defineConfig({
                 "resources/css/admin/guest.css",
                 "resources/css/admin/teachers.css",
                 "resources/css/admin/staff.css",
+                "resources/css/admin/events.css",
 
                 "resources/css/superadmin/dashboard.css",
                 "resources/css/superadmin/revision-proyecto.css",
@@ -88,6 +89,8 @@ export default defineConfig({
                 "resources/js/admin/teachers/actions-teachers.js",
                 "resources/js/admin/data-export.js",
                 "resources/js/admin/carrusel.js",
+                "resources/js/admin/actions-staff.js",
+                "resources/js/admin/actions-guest.js",
 
                 "resources/js/superadmin/actions-check.js",
                 "resources/js/superadmin/proyectos-handler.js",
