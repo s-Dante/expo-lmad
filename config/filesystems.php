@@ -60,6 +60,37 @@ return [
             'report' => false,
         ],
 
+        /*
+        |----------------------------------------------------------------------
+        | Disco de Medios (Imágenes / Archivos públicos)
+        |----------------------------------------------------------------------
+        | Localmente usa el driver 'local' apuntando a storage/app/public.
+        | En producción (Laravel Cloud + S3) cambia MEDIA_DRIVER=s3 en las
+        | variables de entorno del deploy y las imágenes se guardarán en S3.
+        |
+        | Variables necesarias en producción:
+        |   MEDIA_DRIVER=s3
+        |   MEDIA_URL=https://<bucket>.s3.<region>.amazonaws.com
+        |   (más las AWS_* ya configuradas)
+        */
+        'media' => [
+            'driver'                  => env('MEDIA_DRIVER', 'local'),
+            // Local
+            'root'                    => storage_path('app/public'),
+            'url'                     => env('MEDIA_URL', rtrim(env('APP_URL', 'http://localhost'), '/') . '/storage'),
+            // S3 (ignorado cuando driver=local)
+            'key'                     => env('AWS_ACCESS_KEY_ID'),
+            'secret'                  => env('AWS_SECRET_ACCESS_KEY'),
+            'region'                  => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'bucket'                  => env('AWS_BUCKET'),
+            'endpoint'                => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            // Siempre público
+            'visibility'              => 'public',
+            'throw'                   => false,
+            'report'                  => false,
+        ],
+
     ],
 
     /*

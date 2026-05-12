@@ -50,22 +50,28 @@ class PlanAcademicoImport implements ToCollection, WithHeadingRow, SkipsEmptyRow
             }
 
             try {
-                $existente = PlanAcademico::where('nombre', $nombre)
+                // withTrashed() para detectar registros soft-deleted que bloquean el unique index
+                $existente = PlanAcademico::withTrashed()
+                    ->where('nombre', $nombre)
                     ->where('programa_academico_id', $programa->id)
                     ->first();
 
                 if ($existente) {
+                    if ($existente->trashed()) {
+                        $existente->restore();
+                    }
+                    $existente->update(['estatus' => true]);
                     $this->actualizados++;
                 } else {
                     PlanAcademico::create([
                         'nombre'               => $nombre,
-                        'programa_academico_id'=> $programa->id,
+                        'programa_academico_id' => $programa->id,
                         'estatus'              => true,
                     ]);
                     $this->importados++;
                 }
             } catch (\Exception $e) {
-                $this->errores[] = "Fila " . ($i + 2) . ": Error de base de datos - " . $e->getMessage();
+                $this->errores[] = "Fila " . ($i + 2) . ": " . $e->getMessage();
             }
         }
     }

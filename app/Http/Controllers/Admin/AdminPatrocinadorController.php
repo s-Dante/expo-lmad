@@ -46,7 +46,8 @@ class AdminPatrocinadorController extends Controller
         if ($request->hasFile('logo')) {
             $data['logo_url'] = ImagenService::guardarWebp(
                 $request->file('logo'),
-                'patrocinadores/logos'
+                'patrocinadores/logos',
+                nombreBase: $data['nombre'] ?? null
             );
         }
 
@@ -79,7 +80,8 @@ class AdminPatrocinadorController extends Controller
         if ($request->hasFile('logo')) {
             $data['logo_url'] = ImagenService::guardarWebp(
                 $request->file('logo'),
-                'patrocinadores/logos'
+                'patrocinadores/logos',
+                nombreBase: $data['nombre'] ?? $patrocinador->nombre
             );
         }
 

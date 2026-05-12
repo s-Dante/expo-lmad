@@ -48,7 +48,8 @@ class AdminEventoController extends Controller
         if ($request->hasFile('poster')) {
             $data['poster_evento'] = ImagenService::guardarWebp(
                 $request->file('poster'),
-                'eventos/posters'
+                'eventos/posters',
+                nombreBase: $data['titulo'] ?? null
             );
         }
 
@@ -78,7 +79,8 @@ class AdminEventoController extends Controller
         if ($request->hasFile('poster')) {
             $data['poster_evento'] = ImagenService::guardarWebp(
                 $request->file('poster'),
-                'eventos/posters'
+                'eventos/posters',
+                nombreBase: $data['titulo'] ?? null
             );
         }
 

@@ -9,69 +9,94 @@ use Illuminate\Support\Str;
 /**
  * Convierte cualquier imagen subida a formato WebP antes de guardarla.
  *
- * Ventajas:
- *   - WebP pesa ~30% menos que JPEG y ~25% menos que PNG con calidad equivalente.
- *   - Un solo formato simplifica la gestión del storage.
- *   - Compatible con todos los navegadores modernos.
- *
- * Usa la extensión GD (incluida por defecto en PHP 8+ y Laravel Cloud).
- * Funciona con local y S3 porque escribe los bytes vía Storage::put().
+ * El disco de destino se configura con la variable de entorno MEDIA_DRIVER:
+ *   - MEDIA_DRIVER=local  → storage/app/public  (desarrollo, default)
+ *   - MEDIA_DRIVER=s3     → bucket S3 con visibilidad pública (producción)
  *
  * Uso:
- *   $ruta = ImagenService::guardarWebp($request->file('logo'), 'patrocinadores/logos');
- *   // devuelve algo como: "patrocinadores/logos/550e8400-e29b-41d4-a716.webp"
+ *   $ruta = ImagenService::guardarWebp($file, 'proyectos/posters', nombre: 'Mi Proyecto');
+ *   // → "proyectos/posters/mi-proyecto.webp"
+ *
+ *   $url = ImagenService::url($ruta); // URL pública (local o S3)
  */
 class ImagenService
 {
-    /** Calidad WebP por defecto (0-100). 82 es un buen equilibrio tamaño/nitidez. */
+    /** Calidad WebP por defecto (0-100). 82 es buen equilibrio tamaño/nitidez. */
     private const CALIDAD_DEFAULT = 82;
 
+    /** Nombre del disco de medios definido en filesystems.php */
+    private const DISCO = 'media';
+
     /**
-     * Convierte la imagen a WebP y la almacena en el disco 'public'.
+     * Convierte la imagen a WebP y la almacena en el disco de medios configurado.
      *
-     * @param  UploadedFile $archivo   Archivo subido por el usuario
-     * @param  string       $carpeta   Carpeta destino dentro del disco public (ej. 'proyectos/posters')
-     * @param  int          $calidad   Calidad WebP (0-100), default 82
-     * @return string                  Ruta relativa almacenada (para guardar en BD)
+     * @param  UploadedFile $archivo    Archivo subido por el usuario
+     * @param  string       $carpeta    Carpeta destino (ej. 'proyectos/posters')
+     * @param  int          $calidad    Calidad WebP (0-100), default 82
+     * @param  string|null  $nombreBase Nombre base para el archivo (ej. "Mi Proyecto").
+     *                                  Si se omite se usa un UUID.
+     * @return string                   Ruta relativa almacenada (para guardar en BD)
      */
     public static function guardarWebp(
         UploadedFile $archivo,
         string $carpeta,
-        int $calidad = self::CALIDAD_DEFAULT
+        int $calidad = self::CALIDAD_DEFAULT,
+        ?string $nombreBase = null
     ): string {
-        $nombre       = Str::uuid()->toString() . '.webp';
+        // Generar nombre de archivo
+        if ($nombreBase) {
+            $slug   = Str::slug($nombreBase);
+            $nombre = ($slug ?: Str::random(10)) . '.webp';
+        } else {
+            $nombre = Str::uuid()->toString() . '.webp';
+        }
+
         $rutaRelativa = trim($carpeta, '/') . '/' . $nombre;
 
         // Intentar conversión con GD
         $gdImage = self::crearImagenGD($archivo);
 
         if ($gdImage === null) {
-            // GD no soporta el formato o la extensión GD no está instalada:
-            // guardar el archivo original sin convertir como fallback seguro.
-            $extension    = $archivo->getClientOriginalExtension() ?: 'jpg';
-            $rutaFallback = trim($carpeta, '/') . '/' . Str::uuid()->toString() . '.' . $extension;
-            Storage::disk('public')->put($rutaFallback, file_get_contents($archivo->getRealPath()));
+            // Fallback: guardar original sin convertir
+            $extension      = $archivo->getClientOriginalExtension() ?: 'jpg';
+            $nombreFallback = $nombreBase
+                ? (Str::slug($nombreBase) ?: Str::random(10)) . '.' . $extension
+                : Str::uuid()->toString() . '.' . $extension;
+            $rutaFallback = trim($carpeta, '/') . '/' . $nombreFallback;
+            Storage::disk(self::DISCO)->put($rutaFallback, file_get_contents($archivo->getRealPath()));
             return $rutaFallback;
         }
 
-        // Capturar los bytes WebP en memoria (null como destino = buffer)
+        // Capturar bytes WebP en memoria
         ob_start();
         imagewebp($gdImage, null, $calidad);
         $bytesWebp = ob_get_clean();
         imagedestroy($gdImage);
 
-        // Guardar via Storage (funciona con 'local' y con 'S3')
-        Storage::disk('public')->put($rutaRelativa, $bytesWebp);
+        // Guardar (funciona con local y S3)
+        Storage::disk(self::DISCO)->put($rutaRelativa, $bytesWebp);
 
         return $rutaRelativa;
     }
 
     /**
-     * Crea un recurso GD a partir del archivo subido.
-     * Preserva el canal alfa en imágenes PNG para que la transparencia
-     * se mantenga correctamente en el WebP resultante.
+     * Devuelve la URL pública de un archivo guardado por este servicio.
+     * Funciona correctamente tanto con disco local como con S3.
      *
-     * @return \GdImage|null  null si el formato no es soportado
+     * @param  string|null $ruta  Ruta relativa devuelta por guardarWebp()
+     * @return string|null        URL pública, o null si la ruta es nula/vacía
+     */
+    public static function url(?string $ruta): ?string
+    {
+        if (!$ruta) return null;
+        return Storage::disk(self::DISCO)->url($ruta);
+    }
+
+    /**
+     * Crea un recurso GD a partir del archivo subido.
+     * Preserva el canal alfa en imágenes PNG.
+     *
+     * @return \GdImage|null  null si el formato no es soportado o GD no está instalado
      */
     private static function crearImagenGD(UploadedFile $archivo): ?\GdImage
     {
@@ -95,19 +120,17 @@ class ImagenService
             return null;
         }
 
-        // Para PNG: convertir a truecolor y preservar transparencia
+        // Para PNG: preservar transparencia
         if (str_contains($mime, 'png')) {
             $ancho  = imagesx($gd);
             $alto   = imagesy($gd);
             $canvas = imagecreatetruecolor($ancho, $alto);
 
-            // Fondo transparente
             imagealphablending($canvas, false);
             imagesavealpha($canvas, true);
             $transparente = imagecolorallocatealpha($canvas, 0, 0, 0, 127);
             imagefilledrectangle($canvas, 0, 0, $ancho, $alto, $transparente);
 
-            // Copiar imagen original preservando alfa
             imagealphablending($canvas, true);
             imagecopy($canvas, $gd, 0, 0, 0, 0, $ancho, $alto);
             imagedestroy($gd);

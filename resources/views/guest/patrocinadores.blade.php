@@ -53,7 +53,7 @@
                             @if ($patrocinador->logo_url)
                             <a href="{{ $patrocinador->website_url ?? '#' }}" target="_blank" rel="noopener">
                                 <img
-                                    src="{{ str_starts_with($patrocinador->logo_url, 'http') ? $patrocinador->logo_url : asset('storage/' . $patrocinador->logo_url) }}"
+                                    src="{{ str_starts_with($patrocinador->logo_url ?? '', 'http') ? $patrocinador->logo_url : \App\Services\ImagenService::url($patrocinador->logo_url) }}"
                                     alt="{{ $patrocinador->nombre }}"
                                     class="img-fluid sponsor sponsor--{{ strtolower($tierNombre) }}"
                                     title="{{ $patrocinador->nombre }}" />

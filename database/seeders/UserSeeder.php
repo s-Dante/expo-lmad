@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
                 'name' => $username,
                 'nombre' => ucfirst($rol),
                 'apellido_paterno' => 'LMAD',
-                'password' => Hash::make('password'), // Contraseña genérica segura para dev
+                'password' => Hash::make('Pswd4321_'), // Contraseña genérica segura para dev
                 'rol' => $rol,
                 'estatus' => true,
             ]

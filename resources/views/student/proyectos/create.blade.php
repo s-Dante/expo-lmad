@@ -85,7 +85,7 @@
                 @php
                     $portada = $proyecto->multimedia->where('es_portada', true)->first();
                     $defaultImg = asset('assets/guest/imageloading.png');
-                    $currentImg = $portada ? asset('storage/' . $portada->url) : $defaultImg;
+                    $currentImg = $portada ? \App\Services\ImagenService::url($portada->url) : $defaultImg;
                 @endphp
                 <x-image-uploader src="{{ $currentImg }}" />
                 <input type="hidden" id="has-image" value="{{ $portada ? 'true' : 'false' }}">

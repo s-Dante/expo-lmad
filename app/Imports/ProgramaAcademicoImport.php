@@ -35,10 +35,31 @@ class ProgramaAcademicoImport implements ToCollection, WithHeadingRow, SkipsEmpt
             if (!$nombre || !$abreviatura) continue;
 
             try {
-                $existente = ProgramaAcademico::where('abreviatura', $abreviatura)->first();
+                // Buscar con withTrashed() para detectar registros soft-deleted
+                // que siguen ocupando el índice único en la BD.
+                $existente = ProgramaAcademico::withTrashed()
+                    ->where('abreviatura', $abreviatura)
+                    ->first();
+
+                // Si no lo encontramos por abreviatura, buscar por nombre
+                // (puede que cambiaron la abreviatura pero el nombre es el mismo)
+                if (!$existente) {
+                    $existente = ProgramaAcademico::withTrashed()
+                        ->where('nombre', $nombre)
+                        ->first();
+                }
 
                 if ($existente) {
-                    $existente->update(['nombre' => $nombre, 'descripcion' => $descripcion]);
+                    // Restaurar si estaba eliminado
+                    if ($existente->trashed()) {
+                        $existente->restore();
+                    }
+                    $existente->update([
+                        'nombre'      => $nombre,
+                        'abreviatura' => $abreviatura,
+                        'descripcion' => $descripcion,
+                        'estatus'     => true,
+                    ]);
                     $this->actualizados++;
                 } else {
                     ProgramaAcademico::create([
@@ -50,7 +71,7 @@ class ProgramaAcademicoImport implements ToCollection, WithHeadingRow, SkipsEmpt
                     $this->importados++;
                 }
             } catch (\Exception $e) {
-                $this->errores[] = "Fila " . ($i + 2) . ": Error de base de datos - " . $e->getMessage();
+                $this->errores[] = "Fila " . ($i + 2) . ": " . $e->getMessage();
             }
         }
     }

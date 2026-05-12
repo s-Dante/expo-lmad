@@ -4,10 +4,10 @@
     $name = $patrocinador->nombre;
     $tier = $patrocinador->tier;
 
-    $hasRealLogo = $patrocinador->logo_url && (str_starts_with($patrocinador->logo_url, 'http') || file_exists(storage_path('app/public/' . $patrocinador->logo_url)));
+    $hasRealLogo = (bool) $patrocinador->logo_url;
 
     $image = $hasRealLogo
-        ? (str_starts_with($patrocinador->logo_url, 'http') ? $patrocinador->logo_url : asset('storage/' . $patrocinador->logo_url))
+        ? (str_starts_with($patrocinador->logo_url, 'http') ? $patrocinador->logo_url : \App\Services\ImagenService::url($patrocinador->logo_url))
         : null;
 
     $isSponsor = $patrocinador->es_patrocinador && $tier && $tier !== 'Ninguno';

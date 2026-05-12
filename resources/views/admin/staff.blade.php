@@ -12,7 +12,7 @@
         'resources/css/components/carrusel.css',
         'resources/css/admin/staff.css',
         'resources/js/components/load-portrait.js',
-        'resources/js/admin/actions-staff.js',
+        'resources/js/admin/staffs/actions-staff.js',
         'resources/js/admin/carrusel.js'
     ]);
 

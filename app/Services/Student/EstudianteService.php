@@ -45,7 +45,7 @@ class EstudianteService
 
         // A) PORTADA (Imagen) — se convierte automáticamente a WebP
         if ($poster) {
-            $path = ImagenService::guardarWebp($poster, 'proyectos/posters');
+            $path = ImagenService::guardarWebp($poster, 'proyectos/posters', nombreBase: $datos['titulo'] ?? null);
             $proyecto->multimedia()->updateOrCreate(
                 ['es_portada' => true],
                 ['tipo' => 'imagen', 'url' => $path, 'titulo' => 'Portada Oficial']

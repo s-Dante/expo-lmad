@@ -71,7 +71,7 @@
                         $finalUrl = $ruta;
                     } else {
                         // Es un archivo local, agregamos el path de storage
-                        $finalUrl = asset('storage/' . $ruta);
+                        $finalUrl = \App\Services\ImagenService::url($ruta);
                     }
 
                     $bgStyle = "background-image: url('$finalUrl');";

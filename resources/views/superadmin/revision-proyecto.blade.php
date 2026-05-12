@@ -138,7 +138,7 @@
                         <div class="image-box">
                             @foreach ($proyecto->multimedia as $multimedia)
                             @if ($multimedia->tipo == 'imagen')
-                            <img src="{{ asset('storage/' . $multimedia->url) }}" alt="Imagen del proyecto"
+                            <img src="{{ \App\Services\ImagenService::url($multimedia->url) }}" alt="Imagen del proyecto"
                                 class="project-image">
                             @endif
                             @endforeach

@@ -18,7 +18,7 @@
 
     @if ($evento->poster_evento)
         <div class="card-event-poster" style="overflow: hidden; max-height: 140px; border-radius: 8px 8px 0 0;">
-            <img src="{{ asset('storage/' . $evento->poster_evento) }}" alt="{{ $name }}"
+            <img src="{{ \App\Services\ImagenService::url($evento->poster_evento) }}" alt="{{ $name }}"
                  style="width: 100%; height: 140px; object-fit: cover; display: block;">
         </div>
     @endif

@@ -12,7 +12,7 @@
     'resources/css/admin/guest.css',
     'resources/css/components/carrusel.css',
     'resources/js/components/load-portrait.js',
-    'resources/js/admin/actions-guest.js',
+    'resources/js/admin/guests/actions-guest.js',
     'resources/js/admin/carrusel.js'
     ]);
 </head>

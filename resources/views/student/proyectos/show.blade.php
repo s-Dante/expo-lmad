@@ -163,7 +163,7 @@
                             @php
                                 $portada = $proyecto->multimedia->where('es_portada', true)->first();
                                 $defaultImg = 'https://via.placeholder.com/300x300?text=Subir+Imagen';
-                                $currentImg = $portada ? asset('storage/' . $portada->url) : $defaultImg;
+                                $currentImg = $portada ? \App\Services\ImagenService::url($portada->url) : $defaultImg;
                             @endphp
 
                             <img src="{{ $currentImg }}" class="img-fluid project-card" id="project-portrait">

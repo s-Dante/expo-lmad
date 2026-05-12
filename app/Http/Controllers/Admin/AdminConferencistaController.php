@@ -39,9 +39,11 @@ class AdminConferencistaController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('foto')) {
+            $nombreConferencista = trim(($data['nombre'] ?? '') . ' ' . ($data['apellido_paterno'] ?? '')) ?: ($data['nickname'] ?? null);
             $data['foto_url'] = ImagenService::guardarWebp(
                 $request->file('foto'),
-                'conferencistas/fotos'
+                'conferencistas/fotos',
+                nombreBase: $nombreConferencista
             );
         }
 
@@ -62,9 +64,11 @@ class AdminConferencistaController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('foto')) {
+            $nombreConferencista = trim(($data['nombre'] ?? '') . ' ' . ($data['apellido_paterno'] ?? '')) ?: ($data['nickname'] ?? null);
             $data['foto_url'] = ImagenService::guardarWebp(
                 $request->file('foto'),
-                'conferencistas/fotos'
+                'conferencistas/fotos',
+                nombreBase: $nombreConferencista
             );
         }
 

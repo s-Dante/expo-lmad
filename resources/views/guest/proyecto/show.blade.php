@@ -41,8 +41,7 @@
             @endif
             @if ($media->es_portada)
                 <container class="container-proyecto-info">
-                    {{-- CORRECCIÓN: Usar asset('storage/...') para generar la URL pública --}}
-                    <img class="img-proyecto" src="{{ asset('storage/' . $media->url) }}">
+                    <img class="img-proyecto" src="{{ \App\Services\ImagenService::url($media->url) }}">
                     <p>{{ $proyecto->descripcion }}</p>
                 
                     <container class="container-proyecto-tags">
