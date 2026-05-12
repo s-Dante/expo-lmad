@@ -89,8 +89,7 @@ export default defineConfig({
                 "resources/js/admin/teachers/actions-teachers.js",
                 "resources/js/admin/data-export.js",
                 "resources/js/admin/carrusel.js",
-                "resources/js/admin/actions-staff.js",
-                "resources/js/admin/actions-guest.js",
+                "resources/js/admin/staffs/actions-staff.js",
 
                 "resources/js/superadmin/actions-check.js",
                 "resources/js/superadmin/proyectos-handler.js",
