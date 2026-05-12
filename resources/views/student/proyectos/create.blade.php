@@ -10,7 +10,8 @@
         'resources/css/guest/template.css',
         'resources/css/student/registro-proyecto.css',
         'resources/js/student/create-project.js',
-        'resources/js/components/load-portrait.js'
+        'resources/js/components/load-portrait.js',
+        'resources/js/components/flash-alerts.js',
     ])
 
 </head>
@@ -147,13 +148,9 @@
 
     </form>
 
-    <script type="module">
-        import { showServerMessages } from "{{ Vite::asset('resources/js/components/flash-alerts.js') }}";
-
-        showServerMessages(
-            @json(session('success')),
-            @json(session('error')),
-            @json($errors->all())
-        );
-    </script>
+    <div id="page-data"
+         data-flash-success=@json(session('success'))
+         data-flash-error=@json(session('error'))
+         data-flash-errors=@json($errors->all())
+         style="display:none"></div>
 </body>

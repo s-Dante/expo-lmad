@@ -6,8 +6,9 @@
     <meta charset="utf-8" />
     <title>EXPO LMAD - Iniciar Sesión</title>
     @vite([
-    'resources/css/guest/login.css',
-    "resources/css/components/alerts.css"
+        'resources/css/guest/login.css',
+        'resources/css/components/alerts.css',
+        'resources/js/components/flash-alerts.js',
     ])
 </head>
 
@@ -40,17 +41,11 @@
 
     <img class="planet" src="{{ asset('assets/guest/planet-1.png') }}" alt="" />
 
-    <script type="module">
-        import {
-            showServerMessages
-        } from "{{ Vite::asset('resources/js/components/flash-alerts.js') }}";
-
-        showServerMessages(
-            @json(session('success')),
-            @json(session('error')),
-            @json($errors -> all())
-        );
-    </script>
+    <div id="page-data"
+         data-flash-success=@json(session('success'))
+         data-flash-error=@json(session('error'))
+         data-flash-errors=@json($errors->all())
+         style="display:none"></div>
 
 </body>
 

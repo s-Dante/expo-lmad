@@ -76,8 +76,14 @@ return [
             'driver'                  => env('MEDIA_DRIVER', 'local'),
             // Local (ignorado cuando driver=s3)
             'root'                    => storage_path('app/public'),
-            // URL pública: MEDIA_URL > AWS_URL > APP_URL/storage (en ese orden de prioridad)
-            'url'                     => env('MEDIA_URL', env('AWS_URL', rtrim(env('APP_URL', 'http://localhost'), '/') . '/storage')),
+            // URL pública: MEDIA_URL siempre tiene prioridad.
+            // Si driver=s3 usa AWS_URL (la R2 pública de Laravel Cloud).
+            // Si driver=local usa APP_URL/storage (para servir archivos locales).
+            'url'                     => env('MEDIA_URL',
+                env('MEDIA_DRIVER') === 's3'
+                    ? env('AWS_URL')
+                    : rtrim(env('APP_URL', 'http://localhost'), '/') . '/storage'
+            ),
             // S3 / R2 (ignorado cuando driver=local)
             'key'                     => env('AWS_ACCESS_KEY_ID'),
             'secret'                  => env('AWS_SECRET_ACCESS_KEY'),
