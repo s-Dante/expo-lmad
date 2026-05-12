@@ -65,23 +65,23 @@ return [
         | Disco de Medios (Imágenes / Archivos públicos)
         |----------------------------------------------------------------------
         | Localmente usa el driver 'local' apuntando a storage/app/public.
-        | En producción (Laravel Cloud + S3) cambia MEDIA_DRIVER=s3 en las
-        | variables de entorno del deploy y las imágenes se guardarán en S3.
-        |
-        | Variables necesarias en producción:
+        | En producción (Laravel Cloud + Cloudflare R2) solo agrega:
         |   MEDIA_DRIVER=s3
-        |   MEDIA_URL=https://<bucket>.s3.<region>.amazonaws.com
-        |   (más las AWS_* ya configuradas)
+        |
+        | La URL pública se toma automáticamente de AWS_URL (que Laravel Cloud
+        | ya configura al crear el bucket). No necesitas MEDIA_URL a menos que
+        | quieras sobrescribir esa URL (ej. dominio personalizado/CDN).
         */
         'media' => [
             'driver'                  => env('MEDIA_DRIVER', 'local'),
-            // Local
+            // Local (ignorado cuando driver=s3)
             'root'                    => storage_path('app/public'),
-            'url'                     => env('MEDIA_URL', rtrim(env('APP_URL', 'http://localhost'), '/') . '/storage'),
-            // S3 (ignorado cuando driver=local)
+            // URL pública: MEDIA_URL > AWS_URL > APP_URL/storage (en ese orden de prioridad)
+            'url'                     => env('MEDIA_URL', env('AWS_URL', rtrim(env('APP_URL', 'http://localhost'), '/') . '/storage')),
+            // S3 / R2 (ignorado cuando driver=local)
             'key'                     => env('AWS_ACCESS_KEY_ID'),
             'secret'                  => env('AWS_SECRET_ACCESS_KEY'),
-            'region'                  => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'region'                  => env('AWS_DEFAULT_REGION', 'auto'),
             'bucket'                  => env('AWS_BUCKET'),
             'endpoint'                => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
