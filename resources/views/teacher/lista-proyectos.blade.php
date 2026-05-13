@@ -30,14 +30,15 @@
                 </div>
 
                 <div class="project-members">
+                    @php $lider = $proyecto->autores->firstWhere('pivot.es_lider', 1); @endphp
                     <div class="member-item">
-                        <p>Matrícula: {{ $proyecto->autores[0]->matricula }}</p>
-                        <p>Lider:
-                            {{ $proyecto->autores[0]->nombre . ' ' . $proyecto->autores[0]->apellido_paterno . ' ' . $proyecto->autores[0]->apellido_materno}}
-                        </p>
+                        @if($lider)
+                            <p>Matrícula: {{ $lider->matricula }}</p>
+                            <p>Líder: {{ $lider->nombre }} {{ $lider->apellido_paterno }} {{ $lider->apellido_materno }}</p>
+                        @else
+                            <p>Sin líder asignado</p>
+                        @endif
                     </div>
-
-
                 </div>
 
                 @if ($proyecto->estatus === 'aprobado')

@@ -44,8 +44,8 @@
                         required>
 
                     @php $drive = $proyecto->multimedia->where('tipo', 'drive')->first(); @endphp
-                    <span>Enlace a Google Drive (Documentación): </span>
-                    <input type="url" id="link-drive-project" name="link_drive" placeholder="Enlace a Drive (Opcional)"
+                    <span>Enlace de documentación (Opcional): </span>
+                    <input type="url" id="link-drive-project" name="link_drive" placeholder="Drive, Canva, Docs... (Opcional)"
                         value="{{ old('link_drive', $drive?->url) }}">
 
                     @php $github = $proyecto->multimedia->where('tipo', 'github')->first(); @endphp
@@ -121,7 +121,7 @@
 
                     <span>Código de autorización: </span>
                     <input type="text" class="input-codigo" id="token" name="codigo_acceso"
-                        placeholder="proporcionado por el docente" value="{{ old('codigo_acceso') }}" required>
+                        placeholder="proporcionado por el docente" value="{{ old('codigo_acceso', $proyecto->codigo_acceso) }}" required>
                 </section>
             </section>
         </div>

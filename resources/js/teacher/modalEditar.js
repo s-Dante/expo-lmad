@@ -1,3 +1,23 @@
+// ── Copiar token al portapapeles ─────────────────────────────────────────────
+document.querySelectorAll('.btn-copy-circle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = btn.closest('.card-project');
+        const token = card?.dataset.proyectoToken;
+        if (!token) return;
+        navigator.clipboard.writeText(token).then(() => {
+            const img = btn.querySelector('img');
+            const original = img?.src;
+            btn.title = '¡Copiado!';
+            btn.style.opacity = '0.5';
+            setTimeout(() => {
+                btn.title = '';
+                btn.style.opacity = '';
+            }, 1200);
+        });
+    });
+});
+
 window.abrirModal = function (button) {
     const modal = document.getElementById("modal-edicion");
 

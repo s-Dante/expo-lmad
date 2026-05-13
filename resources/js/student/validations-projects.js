@@ -62,8 +62,8 @@ export async function update_project(first_time) {
         link_drive = input_link_drive.value.trim();
 
         if (link_drive) {
-            if (validation_Length(link_drive, 0, 252, "enlace a Google Drive")) return true;
-            if (validation_Link(link_drive, "drive", "a Google Drive")) return true;
+            if (validation_Length(link_drive, 0, 252, "enlace de documentación")) return true;
+            if (validation_Link(link_drive, "", "de documentación")) return true;
         }
     }
 

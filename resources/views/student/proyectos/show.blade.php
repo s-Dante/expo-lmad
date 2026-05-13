@@ -128,7 +128,7 @@
                                     <span>Enlace a proyecto:</span>
 
                                     @php
-                                        $repo = $proyecto->multimedia->whereIn('tipo', ['drive', 'github'])->first();
+                                        $repo = $proyecto->multimedia->where('tipo', 'github')->first();
                                     @endphp
 
                                     <p id="link-repo-project" class="state-saved">

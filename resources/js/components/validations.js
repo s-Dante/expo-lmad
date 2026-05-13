@@ -45,25 +45,17 @@ export function validation_Link(data, type, input) {
         if (!/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+/.test(data)) {
             showModal(
                 "Datos inválidos",
-                "El enlace " +
-                    input +
-                    " debe ser de YouTube (youtube.com o youtu.be).",
-            );
-            return true;
-        }
-    } else if (type === "drive") {
-        if (!/^(https?:\/\/)?(www\.)?drive\.google\.com\/.+/.test(data)) {
-            showModal(
-                "Datos inválidos",
-                "El enlace " +
-                    input +
-                    " no es válido (drive.google.com/).",
+                "El enlace " + input + " debe ser de YouTube (youtube.com o youtu.be).",
             );
             return true;
         }
     } else {
-        if (!/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(data,)
-        ) {
+        // Validación genérica: usar el API nativa URL para evitar
+        // regex con backtracking catastrófico en URLs largas.
+        try {
+            const url = new URL(data.startsWith('http') ? data : 'https://' + data);
+            if (!['http:', 'https:'].includes(url.protocol)) throw new Error();
+        } catch {
             showModal("Datos inválidos", "El enlace de " + input + " no es válido.");
             return true;
         }
@@ -141,12 +133,13 @@ export function validation_Select(data, input) {
 }
 
 export function validation_TextClean(data, input) {
-    if (!/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ¡!¿?',.\s]+$/.test(data)) {
+    // Permite letras (incluyendo acentos/ñ), números, espacios y la
+    // puntuación habitual en títulos/descripciones académicas en español.
+    // Bloquea emojis y caracteres de control, pero acepta: # : () [] - / @ + & % _ " etc.
+    if (/[\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27BF}]|[\x00-\x08\x0B\x0C\x0E-\x1F]/u.test(data)) {
         showModal(
             "Datos inválidos",
-            "El campo " +
-                input +
-                " contiene caracteres no permitidos (emojis o símbolos especiales).",
+            "El campo " + input + " contiene emojis o caracteres de control no permitidos.",
         );
         return true;
     }
