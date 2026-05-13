@@ -146,7 +146,21 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const data = await res.json();
 
                 if (res.ok) {
-                    mostrarMensaje(msgRegistro, data.mensaje ?? '¡Registro exitoso!', 'success');
+                    // Si el correo no se envió, el token viene en data.token — mostrarlo
+                    // de forma destacada y sin auto-ocultar para que el usuario pueda anotarlo.
+                    const mensajeBase = data.mensaje ?? '¡Registro exitoso!';
+                    if (data.token) {
+                        // Mostrar en HTML con el token resaltado
+                        msgRegistro.innerHTML =
+                            `<span>${mensajeBase.replace(data.token,
+                                `<strong style="font-size:1.3em;letter-spacing:0.15em;">${data.token}</strong>`)}</span>` +
+                            `<br><small>📋 Guarda este código — lo necesitarás para confirmar tu asistencia al salir.</small>`;
+                        msgRegistro.className = 'form-msg form-msg--success';
+                        msgRegistro.style.display = 'block';
+                        // No auto-ocultar cuando hay token
+                    } else {
+                        mostrarMensaje(msgRegistro, mensajeBase, 'success');
+                    }
                     formRegistro.reset();
                     if (selectCarrera) selectCarrera.disabled = true;
                 } else {

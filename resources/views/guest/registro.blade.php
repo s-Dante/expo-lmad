@@ -8,12 +8,10 @@
     <title>Registro - EXPO LMAD</title>
 
     @vite([
-    'resources/css/guest/template.css',
-    'resources/css/guest/registro.css',
-    'resources/css/components/sidebar.css',
-    'resources/js/guest/afi/actions-registro.js',
-    'resources/js/guest/afi/register-afi.js',
-    'resources/js/guest/afi/actions-registro.js',
+        'resources/css/guest/template.css',
+        'resources/css/guest/registro.css',
+        'resources/css/components/sidebar.css',
+        'resources/js/guest/afi/actions-registro.js',
     ])
 </head>
 
@@ -77,13 +75,13 @@
                         <p>Matrícula</p>
                         <input type="text" id="input-matricula" name="matricula" placeholder="Ej. 1985623" required>
 
-                        <p>Correo universitario</p>
+                        <p>Correo universitario <span style="font-size:0.78rem; color:var(--gray); font-weight:400;">(Opcional)</span></p>
                         <div>
-                            <input type="text" id="input-correo" name="correo" placeholder="algo.ejemplo" required>
+                            <input type="text" id="input-correo" name="correo" placeholder="algo.ejemplo">
                             <span>@uanl.edu.mx</span>
                         </div>
                         <p style="font-size:0.78rem; color:var(--gray); font-weight:400; margin-top:0.4rem; margin-bottom:0;">
-                            Se enviará un token de confirmación a este correo para verificar tu asistencia al finalizar.
+                            Si lo proporcionas, recibirás un token de confirmación por correo. De lo contrario, el token se mostrará en pantalla al registrarte.
                         </p>
                     </div>
 
