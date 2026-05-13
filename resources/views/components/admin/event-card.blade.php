@@ -18,7 +18,7 @@
 
     @if ($evento->poster_evento)
         <div class="card-event-poster" style="overflow: hidden; max-height: 140px; border-radius: 8px 8px 0 0;">
-            <img src="{{ \App\Services\ImagenService::url($evento->poster_evento) }}" alt="{{ $name }}"
+            <img src="{{ \App\Services\ImagenService::url($evento->poster_evento) }}?v={{ $evento->updated_at->timestamp }}" alt="{{ $name }}"
                  style="width: 100%; height: 140px; object-fit: cover; display: block;">
         </div>
     @endif
@@ -49,7 +49,7 @@
             <form action="{{ $deleteUrl }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este evento?')">
                 @csrf
                 @method('DELETE')
-                <x-btn-icon id="btn-delete" icon="{{ asset('assets/admin/BorrarIcon.png') }}" />
+                <x-btn-icon type="submit" id="btn-delete" icon="{{ asset('assets/admin/BorrarIcon.png') }}" />
             </form>
         </div>
 

@@ -113,6 +113,49 @@
             </div>
         </section>
 
+        {{-- Modal: Gestionar Materias --}}
+        <dialog id="materias-modal" class="dialog-edit">
+            <form method="POST" id="materias-form" action="#" style="width: auto; display: flex; flex-grow: 1;">
+                @csrf
+
+                <container class="expo-card container-teachers-create-d" style="position: relative;">
+
+                    <button type="button" onclick="document.getElementById('materias-modal').close()"
+                        style="position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none; color: var(--clr-white); font-size: 2rem; cursor: pointer; z-index: 50; line-height: 1; padding: 0.5rem;">
+                        &times;
+                    </button>
+
+                    <h3 id="materias-modal-title" style="margin-bottom: 1rem; padding-right: 3rem;">Materias de Profesor</h3>
+
+                    <div id="materias-list"
+                         style="max-height: 55vh; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; padding-right: 0.5rem;">
+                        @foreach ($todasLasMaterias as $materia)
+                            <label style="display: flex; align-items: flex-start; gap: 0.6rem; cursor: pointer; padding: 0.4rem 0.5rem; border-radius: 6px; transition: background 0.15s;"
+                                   onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox"
+                                       name="materia_ids[]"
+                                       value="{{ $materia->id }}"
+                                       class="materia-checkbox"
+                                       style="margin-top: 0.2rem; accent-color: var(--clr-purple, #a855f7); flex-shrink: 0;">
+                                <span style="line-height: 1.3;">
+                                    <strong>{{ $materia->clave }}</strong> — {{ $materia->nombre }}
+                                    @if ($materia->planAcademico)
+                                        <small style="color: var(--clr-gray, #9ca3af); display: block;">{{ $materia->planAcademico->nombre }}</small>
+                                    @endif
+                                </span>
+                            </label>
+                        @endforeach
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem; align-items: center;">
+                        <button type="submit" class="btn">Guardar Materias</button>
+                        <small id="materias-count-label" style="color: var(--clr-gray, #9ca3af);"></small>
+                    </div>
+                </container>
+            </form>
+        </dialog>
+
+        {{-- Modal: Editar cuenta --}}
         <dialog id="edit-modal" class="dialog-edit">
             <form method="POST" id="edit-form" action="#" style="width: auto; display: flex; flex-grow: 1;">
                 @method('PUT')

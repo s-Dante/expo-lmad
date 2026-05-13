@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreTeacherAccountRequest;
+use App\Models\Materia;
 use App\Models\Profesor;
 use App\Repositories\Admin\ProfesorAdminRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
@@ -30,6 +31,9 @@ class AdminTeacherController extends Controller
         return view('admin.teachers', [
             'profesoresSinCuenta' => $this->profesorRepo->getProfesoresSinCuenta(),
             'profesoresConCuenta' => $this->profesorRepo->getProfesoresConCuenta(),
+            'todasLasMaterias'    => Materia::with('planAcademico')
+                                        ->orderBy('nombre')
+                                        ->get(),
         ]);
     }
 
@@ -76,5 +80,22 @@ class AdminTeacherController extends Controller
         return redirect()
             ->route('admin.teachers')
             ->with('success', 'Cuenta de ' . $profesor->nombre . ' desactivada correctamente.');
+    }
+
+    /**
+     * Sincroniza las materias asignadas a un profesor (pivot tbl_materia_profesor).
+     */
+    public function syncMaterias(Request $request, Profesor $profesor): RedirectResponse
+    {
+        $data = $request->validate([
+            'materia_ids'   => ['nullable', 'array'],
+            'materia_ids.*' => ['integer', 'exists:tbl_materias,id'],
+        ]);
+
+        $profesor->materias()->sync($data['materia_ids'] ?? []);
+
+        return redirect()
+            ->route('admin.teachers')
+            ->with('success', 'Materias de ' . $profesor->nombre . ' ' . $profesor->apellido_paterno . ' actualizadas.');
     }
 }

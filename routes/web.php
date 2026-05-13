@@ -155,6 +155,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.teachers.update');
     Route::delete('/admin/teachers/{profesor}', [App\Http\Controllers\Admin\AdminTeacherController::class, 'destroy'])
         ->name('admin.teachers.destroy');
+    Route::post('/admin/teachers/{profesor}/materias', [App\Http\Controllers\Admin\AdminTeacherController::class, 'syncMaterias'])
+        ->name('admin.teachers.materias.sync');
 
     // Staff
     Route::get('/admin/staff', [App\Http\Controllers\Admin\AdminStaffController::class, 'index'])

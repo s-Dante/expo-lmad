@@ -6,8 +6,11 @@
 
     $hasRealLogo = (bool) $patrocinador->logo_url;
 
+    $cacheBuster = '?v=' . $patrocinador->updated_at->timestamp;
     $image = $hasRealLogo
-        ? (str_starts_with($patrocinador->logo_url, 'http') ? $patrocinador->logo_url : \App\Services\ImagenService::url($patrocinador->logo_url))
+        ? (str_starts_with($patrocinador->logo_url, 'http')
+            ? $patrocinador->logo_url . $cacheBuster
+            : \App\Services\ImagenService::url($patrocinador->logo_url) . $cacheBuster)
         : null;
 
     $isSponsor = $patrocinador->es_patrocinador && $tier && $tier !== 'Ninguno';
@@ -58,7 +61,7 @@
                 onsubmit="return confirm('¿Seguro que deseas eliminar esta empresa?')">
                 @csrf
                 @method('DELETE')
-                <x-btn-icon id="btn-delete" icon="{{ asset('assets/admin/BorrarIcon.png') }}" />
+                <x-btn-icon type="submit" id="btn-delete" icon="{{ asset('assets/admin/BorrarIcon.png') }}" />
             </form>
         </div>
 

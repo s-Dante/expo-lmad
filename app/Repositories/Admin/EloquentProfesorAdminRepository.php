@@ -32,7 +32,7 @@ class EloquentProfesorAdminRepository implements ProfesorAdminRepositoryInterfac
     public function getProfesoresConCuenta(): Collection
     {
         return Profesor::whereNotNull('usuario_id')
-            ->with('usuario')
+            ->with(['usuario', 'materias'])
             ->orderBy('apellido_paterno')
             ->orderBy('nombre')
             ->get();
