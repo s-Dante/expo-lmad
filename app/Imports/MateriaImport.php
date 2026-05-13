@@ -91,31 +91,35 @@ class MateriaImport implements ToCollection, WithHeadingRow, SkipsEmptyRows
             $categoria = $this->cacheCategorias[$catNombre];
 
             try {
-                // Buscar materia existente por clave + plan, o por nombre + plan
+                // Buscar materia existente (incluyendo soft-deleted) por clave+plan o nombre+plan
                 $existente = null;
                 if ($clave) {
-                    $existente = Materia::where('clave', $clave)
+                    $existente = Materia::withTrashed()
+                        ->where('clave', $clave)
                         ->where('plan_academico_id', $plan->id)
                         ->first();
                 }
                 if (!$existente) {
-                    $existente = Materia::where('nombre', $nombre)
+                    $existente = Materia::withTrashed()
+                        ->where('nombre', $nombre)
                         ->where('plan_academico_id', $plan->id)
                         ->first();
                 }
 
                 $datos = [
-                    'clave'           => $clave,
-                    'nombre'          => $nombre,
-                    'abreviatura'     => $abreviatura,
-                    'descripcion'     => $descripcion,
-                    'creditos'        => $creditos,
-                    'semestre'        => $semestre,
-                    'plan_academico_id'=> $plan->id,
-                    'categoria_id'    => $categoria->id,
+                    'clave'            => $clave,
+                    'nombre'           => $nombre,
+                    'abreviatura'      => $abreviatura,
+                    'descripcion'      => $descripcion,
+                    'creditos'         => $creditos,
+                    'semestre'         => $semestre,
+                    'plan_academico_id' => $plan->id,
+                    'categoria_id'     => $categoria->id,
+                    'deleted_at'       => null, // restaurar si estaba eliminada
                 ];
 
                 if ($existente) {
+                    if ($existente->trashed()) $existente->restore();
                     $existente->update($datos);
                     $this->actualizados++;
                 } else {

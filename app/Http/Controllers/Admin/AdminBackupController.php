@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 
 /**
@@ -44,15 +45,23 @@ class AdminBackupController extends Controller
     }
 
     // ──────────────────────────────────────────────────────────────────────────
-    // Exportar carpeta storage/app/public como .zip
+    // Exportar archivos de media (imágenes) como .zip
+    // Funciona tanto con el disco local como con S3/R2 en producción.
     // ──────────────────────────────────────────────────────────────────────────
     public function exportarStorage()
     {
-        $storageDir = storage_path('app/public');
-        $zipPath    = storage_path('app/private/storage_backup_' . now()->format('Y-m-d_His') . '.zip');
+        $disk     = Storage::disk('public');
+        $archivos = $disk->allFiles();
 
-        if (!is_dir($storageDir)) {
-            return back()->with('backup_error', 'La carpeta de storage está vacía o no existe todavía.');
+        if (empty($archivos)) {
+            return back()->with('backup_error', 'No hay archivos en storage todavía.');
+        }
+
+        $zipPath = storage_path('app/private/storage_backup_' . now()->format('Y-m-d_His') . '.zip');
+
+        // Asegurar que el directorio destino exista
+        if (!is_dir(dirname($zipPath))) {
+            mkdir(dirname($zipPath), 0775, true);
         }
 
         $zip = new ZipArchive();
@@ -60,7 +69,16 @@ class AdminBackupController extends Controller
             return back()->with('backup_error', 'No se pudo crear el archivo ZIP.');
         }
 
-        $this->agregarCarpetaAZip($zip, $storageDir, 'storage');
+        foreach ($archivos as $archivo) {
+            try {
+                $contenido = $disk->get($archivo);
+                // Estructura dentro del zip: storage/proyectos/posters/nombre.webp
+                $zip->addFromString('storage/' . $archivo, $contenido);
+            } catch (\Throwable) {
+                // Si un archivo falla, continuamos con el resto
+            }
+        }
+
         $zip->close();
 
         return response()->download($zipPath, basename($zipPath))->deleteFileAfterSend(true);
@@ -168,22 +186,4 @@ class AdminBackupController extends Controller
         return implode("\n", $lines);
     }
 
-    /**
-     * Agrega recursivamente una carpeta al ZipArchive.
-     */
-    private function agregarCarpetaAZip(ZipArchive $zip, string $dir, string $prefix): void
-    {
-        $archivos = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS),
-            \RecursiveIteratorIterator::LEAVES_ONLY
-        );
-
-        foreach ($archivos as $archivo) {
-            if (!$archivo->isDir()) {
-                $rutaReal     = $archivo->getRealPath();
-                $rutaRelativa = $prefix . '/' . substr($rutaReal, strlen($dir) + 1);
-                $zip->addFile($rutaReal, $rutaRelativa);
-            }
-        }
-    }
 }
