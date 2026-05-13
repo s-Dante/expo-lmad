@@ -9,9 +9,9 @@ use Illuminate\Support\Str;
 /**
  * Convierte cualquier imagen subida a formato WebP antes de guardarla.
  *
- * El disco de destino se configura con la variable de entorno MEDIA_DRIVER:
- *   - MEDIA_DRIVER=local  → storage/app/public  (desarrollo, default)
- *   - MEDIA_DRIVER=s3     → bucket S3 con visibilidad pública (producción)
+ * Usa el disco 'public' de Laravel:
+ *   - Desarrollo local: storage/app/public  (servido vía /storage con artisan storage:link)
+ *   - Laravel Cloud:    R2 (LARAVEL_CLOUD_DISK_CONFIG reemplaza 'public' automáticamente)
  *
  * Uso:
  *   $ruta = ImagenService::guardarWebp($file, 'proyectos/posters', nombre: 'Mi Proyecto');
@@ -24,8 +24,13 @@ class ImagenService
     /** Calidad WebP por defecto (0-100). 82 es buen equilibrio tamaño/nitidez. */
     private const CALIDAD_DEFAULT = 82;
 
-    /** Nombre del disco de medios definido en filesystems.php */
-    private const DISCO = 'media';
+    /**
+     * Disco de almacenamiento.
+     * - Local: usa storage/app/public (accesible vía /storage)
+     * - Laravel Cloud: LARAVEL_CLOUD_DISK_CONFIG reemplaza 'public' con R2 automáticamente.
+     *   No necesita credenciales separadas — Laravel Cloud las inyecta solo.
+     */
+    private const DISCO = 'public';
 
     /**
      * Convierte la imagen a WebP y la almacena en el disco de medios configurado.
